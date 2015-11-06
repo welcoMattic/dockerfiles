@@ -18,5 +18,3 @@ RUN apk add --update wget ca-certificates && \
   cd /opt/jre/lib/amd64 && rm libjavafx_* libjfx* libfx* && \
   cd /opt/jre/lib/ && rm -rf ext/jfxrt.jar jfxswt.jar javafx.properties font* && \
   apk del wget ca-certificates && rm /tmp/* /var/cache/apk/*
-  
-ENTRYPOINT ["java"]
