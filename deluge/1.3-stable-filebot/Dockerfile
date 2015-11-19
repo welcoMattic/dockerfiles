@@ -23,7 +23,7 @@ ENV WEB_ROOT=/
 ADD rootfs /
 
 RUN chmod +x /usr/bin/startup
-RUN chmod +x /usr/bin/postdl
+RUN chmod +x /usr/bin/postdl && chmod +x /usr/bin/postrm
 RUN cp -r /config /config-bck
 
 CMD ["/usr/bin/startup"]
