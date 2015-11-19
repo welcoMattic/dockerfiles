@@ -2,7 +2,7 @@
 
 [[ -e /config/core.conf ]] || cp -rf /config-bck/* /config/*
 
-[[ $WEB_ROOT =~ ^\/.* ]] && sed -i 's/<webroot>/'$WEB_ROOT'/' /config/web.conf || sed -i 's/<webroot>/\/'$WEB_ROOT'/' /config/web.conf
+[[ $WEB_ROOT =~ ^\/.* ]] && sed -i 's#<webroot>#'$WEB_ROOT'#' /config/web.conf || sed -i 's#<webroot>#/'$WEB_ROOT'#' /config/web.conf
 
 mkdir -p /config/state
 mkdir -p /data/.torrents
