@@ -1,10 +1,10 @@
 # DELUGE
 
 ## TAG/DOCKERFILE
-* 1.3-stable latest
-* 1.3-stable-filebot filebot 
-* 1.4-master
-* develop
+* 1.3-stable latest [(deluge/1.3-stable/Dockerfile)] (https://github.com/xataz/dockerfiles/blob/master/deluge/1.3-stable/Dockerfile)
+* 1.3-stable-filebot filebot [(deluge/1.3-stable-filebot/Dockerfile)] (https://github.com/xataz/dockerfiles/blob/master/deluge/1.3-stable-filebot/Dockerfile)
+* 1.4-master [(deluge/1.4-master/Dockerfile)] (https://github.com/xataz/dockerfiles/blob/master/deluge/1.4-master/Dockerfile)
+* develop [(deluge/develop/Dockerfile)] (https://github.com/xataz/dockerfiles/blob/master/deluge/develop/Dockerfile)
 
 ## IMAGE USAGE
 ### Environment
