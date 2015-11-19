@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 [[ -e /config/core.conf ]] || cp -rf /config-bck/* /config/*
 

@@ -4,7 +4,7 @@ MAINTAINER xataz <https://github.com/xataz/>
 ENV DELUGE_VER=1.3-stable
 
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-	apk add --update python py-setuptools py-six py-mako py-cffi@testing py-chardet \
+	apk add --update bash python py-setuptools py-six py-mako py-cffi@testing py-chardet \
 		xdg-utils py-xdg@testing py-gtk libtorrent-rasterbar@testing py-openssl \
 		py-twisted py-cryptography@testing py-enum34 py-pip librsvg git supervisor && \
 	cd / && git clone -b ${DELUGE_VER} git://deluge-torrent.org/deluge.git && \
