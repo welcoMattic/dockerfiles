@@ -1,4 +1,0 @@
-#!/bin/sh
-
-sh /opt/filebot/filebot.sh --lang fr -script fn:amc --output "/data/Media" --log-file /home/torrent/amc.log --action symlink --conflict override -non-strict --def music=y "ut_dir=$TR_TORRENT_DIR/$TR_TORRENT_NAME" "ut_kind=multi" "ut_title=$TR_TORRENT_NAME" &
-

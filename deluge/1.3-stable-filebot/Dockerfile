@@ -1,4 +1,4 @@
-FROM alpine:3.2
+FROM xataz/filebot 
 MAINTAINER xataz <https://github.com/xataz/>
 
 ENV DELUGE_VER=1.3-stable
@@ -12,14 +12,19 @@ RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/re
 	apk del py-pip git && rm -rf /var/cache/apk/* /deluge && \
 	addgroup -g 5000 torrent && adduser -h /home/torrent -s /bin/sh -D -G torrent -u 5000 torrent 
 
+
 EXPOSE 53160
 EXPOSE 53160/udp
 EXPOSE 8112
 EXPOSE 58846
 
-VOLUME ["/data"]
+VOLUME ["/data", "/config"]
 
+ENV WEB_ROOT=/
 ADD rootfs /
+
 RUN chmod +x /usr/bin/startup
+RUN chmod +x /usr/bin/postdl
+RUN cp -r /config /config-bck
 
 CMD ["/usr/bin/startup"]
