@@ -10,7 +10,7 @@ RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/re
 	cd / && git clone -b ${DELUGE_VER} git://deluge-torrent.org/deluge.git && \
 	cd /deluge && python setup.py build && python setup.py install && \
 	apk del py-pip git && rm -rf /var/cache/apk/* /deluge && \
-	addgroup -g 5000 torrent && adduser -h /home/torrent -s /bin/sh -D -G torrent -u 5000 torrent && \
+	addgroup -g 5000 torrent && adduser -h /home/torrent -s /bin/sh -D -G torrent -u 5000 torrent
 
 EXPOSE 53160
 EXPOSE 53160/udp
