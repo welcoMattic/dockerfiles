@@ -1,0 +1,67 @@
+#!/bin/bash
+set -e
+
+usage() {
+	echo "usage: $0 ext-name [ext-name ...]"
+	echo "   ie: $0 gd mysqli"
+	echo "       $0 pdo pdo_mysql"
+	echo
+	echo 'if custom ./configure arguments are necessary, see docker-php-ext-configure'
+	echo
+	echo 'Possible values for ext-name:'
+	echo $(find /usr/src/php/ext -mindepth 2 -maxdepth 2 -type f -name 'config.m4' | cut -d/ -f6 | sort)
+}
+
+PKG_BUILD="build-base wget autoconf" 
+apk add --update ${PKG_BUILD}
+
+if [ ! -e /tmp/php-${PHP_VER}.tar.gz ]
+then
+	cd /tmp
+	wget --no-check-certificate https://downloads.php.net/~ab/php-${PHP_VER}.tar.gz
+	tar -xzf php-${PHP_VER}.tar.gz -C /usr/src/ && mv /usr/src/php-${PHP_VER} /usr/src/php
+else
+	if [ ! -d /usr/src/php ]
+	then
+		cd /tmp
+        	tar -xzf php-${PHP_VER}.tar.gz -C /usr/src/ && mv /usr/src/php-${PHP_VER} /usr/src/php
+	fi
+fi
+
+cd /usr/src/php/ext
+
+exts=()
+while [ $# -gt 0 ]; do
+	ext="$1"
+	shift
+	if [ -z "$ext" ]; then
+		continue
+	fi
+	if [ ! -d "$ext" ]; then
+		echo >&2 "error: $(pwd -P)/$ext does not exist"
+		echo >&2
+		usage >&2
+		apk del ${PKG_BUILD} && rm -rf /var/cache/apk/* /usr/src/php /tmp/*
+		exit 1
+	fi
+	exts+=( "$ext" )
+done
+
+if [ "${#exts[@]}" -eq 0 ]; then
+	usage >&2
+	apk del ${PKG_BUILD} && rm -rf /var/cache/apk/* /usr/src/php /tmp/*
+	exit 1
+fi
+
+for ext in "${exts[@]}"; do
+	(
+		cd "$ext"
+		[ -e Makefile ] || docker-php-ext-configure "$ext"
+		make
+		make install
+		find modules -maxdepth 1 -name '*.so' -exec basename '{}' ';' | xargs docker-php-ext-enable
+		make clean
+	)
+done
+
+apk del ${PKG_BUILD} && rm -rf /var/cache/apk/* /usr/src/php /tmp/*
