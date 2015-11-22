@@ -1,5 +1,5 @@
 FROM alpine:3.2 
-MAINTAINER xataz <xataz@mondedie.fr>
+MAINTAINER xataz <https://github.com/xataz/>
 
 ADD start.sh /usr/bin/start.sh
 

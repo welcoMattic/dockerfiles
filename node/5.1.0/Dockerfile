@@ -1,5 +1,5 @@
 FROM alpine:3.2
-MAINTAINER xataz <xataz@mondedie.fr>
+MAINTAINER xataz <https://github.com/xataz/>
 
 ENV NODE_VER=v5.1.0 NPM_VER=3
 

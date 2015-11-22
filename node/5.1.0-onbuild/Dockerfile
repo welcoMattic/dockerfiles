@@ -1,5 +1,5 @@
 FROM xataz/node
-MAINTAINER xataz <xataz@mondedie.fr>
+MAINTAINER xataz <https://github.com/xataz/>
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

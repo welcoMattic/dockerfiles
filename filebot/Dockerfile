@@ -1,5 +1,5 @@
 FROM xataz/java
-MAINTAINER xataz <xataz@mondedie.fr>
+MAINTAINER xataz <https://github.com/xataz/>
 
 ENV FB_VER=4.6
 
