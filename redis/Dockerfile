@@ -1,5 +1,5 @@
 FROM alpine:3.2
-MAINTAINER <xataz@mondedie.fr>
+MAINTAINER <https://github.com/xataz>
 
 RUN echo "@edge http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
 	apk add --update redis && rm -rf /var/cache/apk/* && \
