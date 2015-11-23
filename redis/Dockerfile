@@ -7,7 +7,9 @@ RUN apk add --update build-base wget linux-headers && \
 	cd /tmp && wget http://download.redis.io/releases/redis-${REDIS_VER}.tar.gz && \
 	tar xzf redis-${REDIS_VER}.tar.gz
 RUN	cd /tmp/redis-${REDIS_VER} && make 
-RUN	make install && make test && 
+RUN	cd /tmp/redis-${REDIS_VER} && make test
+RUN	cd /tmp/redis-${REDIS_VER} && make install
+RUN	cd /tmp/redis-${REDIS_VER} && ls
 RUN	apk del build-base wget linux-headers && rm -rf /var/cache/apk/* /tmp/*
 
 ADD startup /usr/bin/startup
