@@ -1,0 +1,11 @@
+#!/bin/sh
+
+addgroup -g ${GID} transmission && adduser -h /home/transmission -D -G transmission -s /bin/sh -u ${UID} transmission
+
+mkdir -p /data/torrents
+mkdir -p /data/Media
+mkdir -p /data/watch
+chown -R transmission:transmission /data
+chown -R transmission:transmission /home/transmission
+
+su - transmission -c "transmission-daemon --foreground"

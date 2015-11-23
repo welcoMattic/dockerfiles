@@ -5,4 +5,4 @@ addgroup -g ${GID} www-data && adduser -H -s /bin/sh -D -G www-data -u ${UID} ww
 
 chown -R www-data:www-data /www
 
-nginx -g 'daemon off;'
+php-fpm

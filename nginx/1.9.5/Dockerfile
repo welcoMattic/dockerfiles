@@ -3,7 +3,7 @@ MAINTAINER xataz <xataz@mondedie.fr>
 
 EXPOSE 80 443
 VOLUME ["/www","/sites-enabled","/conf.d"]
-ENV NGINX_VER=1.9.5
+ENV NGINX_VER=1.9.5 UID=991 GID=991
 
 RUN adduser -H -G www-data -s /bin/sh -D -u 82 www-data 
 RUN apk add --update openssl-dev pcre-dev zlib-dev wget build-base && \

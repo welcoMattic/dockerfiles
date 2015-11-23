@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ ! -z ${CUSTOM_MENU_NAME} ] && [ ! -z ${CUSTOM_MENU_LINK} ]; then
+	sed -i "s%#<custom menu>%('${CUSTOM_MENU_NAME}', '${CUSTOM_MENU_LINK}'),%" /settings.py 
+	sleep 2
+fi
+
+sed -i 's/<email>/'$CONTACT_MAIL'/' /settings.py
+
+zerobin --settings-file=/settings.py

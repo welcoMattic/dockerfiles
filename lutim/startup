@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+
+
+#chown -R lutim:lutim /data
+#chown -R lutim:lutim /lutim
+
+sed -i 's/<secret>/'${LUTIM_SECRET}'/;s/<contact>/'${LUTIM_CONTACT}'/;s/<max_file_size>/'${LUTIM_MAX_FILE_SIZE}'/' /lutim/lutim.conf
+
+/usr/local/bin/carton exec hypnotoad -f /lutim/script/lutim

@@ -1,7 +1,9 @@
 FROM alpine:3.2
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV PHP_VER=7.0.0RC7
+ENV PHP_VER=7.0.0RC7 UID=991 GID=991
+
+VOLUME /www
 
 RUN PKG_BUILD="wget build-base curl-dev openssl-dev libxml2-dev readline-dev zlib-dev" && \
 	apk add --update libxml2 curl ${PKG_BUILD} bash && \
@@ -31,5 +33,7 @@ RUN chmod +x /usr/local/bin/docker-php-ext-*
 
 ADD php-fpm.conf /usr/local/etc/php-fpm.conf
 ADD www.conf /usr/local/etc/php-fpm.d/www.conf
+ADD startup /usr/bin/startup
+RUN chmod +x /usr/bin/startup
 
-CMD ['php-fpm']
+CMD ["startup"]
