@@ -5,9 +5,10 @@ ENV UID=991 GID=991 REDIS_VER=3.0.5
 
 RUN apk add --update build-base wget linux-headers && \ 
 	cd /tmp && wget http://download.redis.io/releases/redis-${REDIS_VER}.tar.gz && \
-	tar xzf redis-${REDIS_VER}.tar.gz && \
-	cd /tmp/redis-${REDIS_VER} && make && make install && make test && \
-	apk del build-base wget linux-headers && rm -rf /var/cache/apk/* /tmp/*
+	tar xzf redis-${REDIS_VER}.tar.gz
+RUN	cd /tmp/redis-${REDIS_VER} && make 
+RUN	make install && make test && 
+RUN	apk del build-base wget linux-headers && rm -rf /var/cache/apk/* /tmp/*
 
 ADD startup /usr/bin/startup
 RUN chmod +x /usr/bin/startup
