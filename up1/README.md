@@ -12,25 +12,28 @@ Simple up1 conteneur pour docker
 # Usage
 ## Volume, port, env
 ### PORT
-+ 80
++ 5000
 
 ### ENV
 + WEB_ROOT
 + APIKEY
 + DELETEKEY
++ GID
++ UID
 
 ### Volume
 + /Up1/i
 
 
 ## Lancement simple
-``docker run -d -p 80:80 xataz/up1``
+``docker run -d -p 5000:5000 xataz/up1``
 
 ## Lancement avec un volume
-``docker run -d -p 80:80 -v /mnt:/Up1/i --name up1 xataz/up1``
+``docker run -d -p 5000:5000 -v /mnt:/Up1/i --name up1 xataz/up1``
 
 ## Lancement avec un webroot différent
-``docker run -d -p 80:80 -v /mnt:/Up1/i -e WEB_ROOT="/up1" --name up1 xataz/up1``
+``docker run -d -p 5000:5000 -v /mnt:/Up1/i -e WEB_ROOT="/up1" --name up1 xataz/up1``
 
 Up1 est accessible maintenant avec :
-http://yourserver/up1
+http://yourserver:5000/up1
+
