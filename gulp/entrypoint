@@ -1,8 +1,8 @@
 #!/bin/sh
 
 addgroup -g ${GID} gulp 2> /dev/null
-adduser -h /home/gulp -D -s /bin/sh -D -G ${GID} gulp
+adduser -h /home/gulp -D -s /bin/sh -D -G gulp gulp
 
-npm install -g bower tsd
+npm install -g bower tsd gulp
 
 gulp $@
