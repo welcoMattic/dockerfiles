@@ -3,4 +3,6 @@
 addgroup -g ${GID} gulp 2> /dev/null
 adduser -h /home/gulp -D -s /bin/sh -D -G ${GID} gulp
 
+npm install -g bower tsd
+
 gulp $@
