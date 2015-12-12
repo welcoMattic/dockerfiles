@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+### Check Configuration
+sed -i 's/<FQDN>/'$FQDN'/g' /etc/postfix/main.cf
+sed -i 's/<DOMAIN>/'$DOMAIN'/g' /etc/postfix/main.cf
+sed -i 's/<UID>/'$UID'/g' /etc/postfix/main.cf
+sed -i 's/<GID>/'$GID'/g' /etc/postfix/main.cf
+sed -i 's/<db_host>/'$db_host'/g' /etc/postfix/*.cf
+sed -i 's/<db_name>/'$db_name'/g' /etc/postfix/*.cf
+sed -i 's/<db_user>/'$db_user'/g' /etc/postfix/*.cf
+sed -i 's/<db_passwd>/'$db_passwd'/g' /etc/postfix/*.cf
+
+sed -i 's/<UID>/'$UID'/g' /etc/dovecot/conf.d/*.conf
+sed -i 's/<GID>/'$GID'/g' /etc/dovecot/conf.d/*.conf
+sed -i 's/<db_host>/'$db_host'/g' /etc/dovecot/conf.d/*.ext
+sed -i 's/<db_name>/'$db_name'/g' /etc/dovecot/conf.d/*.ext
+sed -i 's/<db_user>/'$db_user'/g' /etc/dovecot/conf.d/*.ext
+sed -i 's/<db_passwd>/'$db_passwd'/g' /etc/dovecot/conf.d/*.ext
+
+### Create Folder
+mkdir -p /mail/vhosts/$DOMAIN
+groupadd -g $GID vmail 
+useradd -g vmail -u $UID vmail -d /mail
+
+
+
+
+### Application des permissions
+chown -R vmail:dovecot /etc/dovecot
+chmod -R o-rwx /etc/dovecot 
+chown -R vmail:vmail /mail
+
+
+### Launch Supervisord

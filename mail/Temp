@@ -1,0 +1,19 @@
+virtual_uid_maps        = static:<UID>
+virtual_gid_maps        = static:<GID>
+virtual_minimum_uid     = <UID>
+virtual_mailbox_base    = /mail
+
+myhostname    = <hostname>
+myorigin      = <hostname> # mail.domain.tld
+
+hosts = <db_host>
+user = <db_user>
+password = <db_passwd>
+dbname = <db_name>
+
+
+<HOSTNAME> mail
+<FQDN> mail.domain.tld
+<UID> 5000
+<GID> 5000
+<DOMAIN> domain.tld
