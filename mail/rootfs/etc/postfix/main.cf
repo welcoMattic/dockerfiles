@@ -31,7 +31,7 @@ alias_database = hash:/etc/aliases
 # Smtp ( OUTGOING / Client )
 smtp_tls_loglevel            = 1
 smtp_tls_security_level      = may
-smtp_tls_CAfile              = /ssl/ca.cert.pem
+smtp_tls_CAfile              = <postfix_cafile>
 smtp_tls_protocols           = !SSLv2, !SSLv3
 smtp_tls_mandatory_protocols = !SSLv2, !SSLv3
 smtp_tls_mandatory_ciphers   = high
@@ -60,8 +60,8 @@ smtpd_tls_mandatory_ciphers   = medium
 # smtpd_tls_cipherlist        = Ne pas modifier non plus !
 
 smtpd_tls_CAfile              = $smtp_tls_CAfile
-smtpd_tls_cert_file           = /ssl/mailserver.crt
-smtpd_tls_key_file            = /ssl/mailserver.key
+smtpd_tls_cert_file           = <postfix_certfile>
+smtpd_tls_key_file            = <postfix_keyfile>
 smtpd_tls_dh1024_param_file   = $config_directory/dh2048.pem
 smtpd_tls_dh512_param_file    = $config_directory/dh512.pem
 
