@@ -1,0 +1,8 @@
+#!/bin/sh
+
+deluser www-data
+addgroup -g ${GID} www-data && adduser -H -s /bin/sh -D -G www-data -u ${UID} www-data
+
+chown -R www-data:www-data /www
+
+nginx -g 'daemon off;'
