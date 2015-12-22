@@ -1,7 +1,7 @@
 FROM xataz/java
 MAINTAINER xataz <https://github.com/xataz/>
 
-ENV FB_VER=4.6
+ENV FB_VER=4.6.1
 
 RUN apk add --update wget unzip && \
   mkdir /opt/filebot && cd /opt/filebot && \
