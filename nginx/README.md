@@ -1,11 +1,11 @@
 # Nginx Image
 
 [![](https://badge.imagelayers.io/xataz/nginx:latest.svg)](https://imagelayers.io/?images=xataz/nginx:latest 'Get your own badge on imagelayers.io')
-latest, 1.9, 1.9.9 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.9/Dockerfile)
-1.9.8 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.8/Dockerfile)
-1.9.7 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.7/Dockerfile)
-1.9.6 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.6/Dockerfile)
-1.9.7 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.5/Dockerfile)
+* latest, 1.9, 1.9.9 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.9/Dockerfile)
+* 1.9.8 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.8/Dockerfile)
+* 1.9.7 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.7/Dockerfile)
+* 1.9.6 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.6/Dockerfile)
+* 1.9.7 [Dockerfile](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.5/Dockerfile)
 
 ## Description
 What is Nginx?
@@ -19,8 +19,8 @@ Nginx (pronounced "engine-x") is an open source reverse proxy server for HTTP, H
 * 443
 
 ### Environment
-* UID
-* GID
+* UID : 991
+* GID : 991
 
 ### Volume
 * /www : Place your site's files here
