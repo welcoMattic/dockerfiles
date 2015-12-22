@@ -21,6 +21,6 @@ FROM xataz/alpine:3.3
 
 RUN apk -U add nginx
 
-CMD ["nginx", "-g", "daemon off;"
-```]
+CMD ["nginx", "-g", "daemon off;"]
+```
 
