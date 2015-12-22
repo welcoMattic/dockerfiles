@@ -1,7 +1,7 @@
 FROM alpine:3.2
 MAINTAINER xataz <https://github.com/xataz/>
 
-ENV NODE_VER=v5.1.0 NPM_VER=3
+ENV NODE_VER=v5.3.0 NPM_VER=3
 
 RUN apk add --update git wget make gcc g++ python linux-headers paxctl libgcc libstdc++ && \
 	cd /tmp && wget --no-check-certificate https://nodejs.org/dist/${NODE_VER}/node-${NODE_VER}.tar.gz && \

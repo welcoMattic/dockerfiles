@@ -1,0 +1,39 @@
+#!/bin/sh
+
+if [ ! -e /lufi/lufi.conf ]
+then
+	if [ -z ${SECRET} ]
+	then
+		SECRET=$(date +%s | md5sum | head -c 16)
+		echo "secret : ${SECRET}"
+	fi
+
+	cat > /lufi/lufi.conf <<-EOF
+	{
+	toad => {
+        	listen => ['http://0.0.0.0:8080'],
+        	proxy  => 1,
+    	},
+    	contact       => '${CONTACT}',
+    	secrets        => ['${SECRET}'],
+    	length            => 8,
+    	provis_step       => 5,
+    	provisioning      => 100,
+    	token_length      => 32,
+    	max_file_size     => 10000000000,
+    	default_delay     => 1,
+    	max_delay         => 0,
+    	upload_dir  => '/files',
+    	prefix      => '${WEBROOT}',
+	};
+	EOF
+
+fi
+
+
+addgroup -g ${GID} lufi && adduser -D -h /lufi -s /bin/sh -u ${UID} -G lufi lufi
+
+chown -R lufi:lufi /lufi
+chown lufi:lufi /files
+
+su - lufi -c "carton exec hypnotoad -f /lufi/script/lufi"
