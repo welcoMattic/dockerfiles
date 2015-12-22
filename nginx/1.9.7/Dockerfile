@@ -1,11 +1,10 @@
-FROM alpine:3.2
-MAINTAINER xataz <xataz@mondedie.fr>
+FROM xataz/alpine:3.3
+MAINTAINER xataz <https://github.com/xataz>
 
 EXPOSE 80 443
 VOLUME ["/www","/sites-enabled","/conf.d"]
 ENV NGINX_VER=1.9.7 UID=991 GID=991
 
-RUN adduser -H -G www-data -s /bin/sh -D -u 82 www-data 
 RUN apk add --update openssl-dev pcre-dev zlib-dev wget build-base && \
 	cd /tmp && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz && \
 	tar xzf nginx-${NGINX_VER}.tar.gz && cd /tmp/nginx-${NGINX_VER} && \
