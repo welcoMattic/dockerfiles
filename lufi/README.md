@@ -1,8 +1,10 @@
 # Lufi image
 
-[![](https://badge.imagelayers.io/xataz/lufi:latest.svg)](https://imagelayers.io/?images=xataz/lufi:latest
+## ImageLayer
+* [![](https://badge.imagelayers.io/xataz/lufi:latest.svg)](https://imagelayers.io/?images=xataz/lufi:latest
 
-latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/lufi)
+## Tag available
+* latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/lufi)
 
 
 ## Description

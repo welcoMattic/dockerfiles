@@ -1,12 +1,17 @@
 # up1
 Simple up1 conteneur pour docker
 
+## ImageLayer
+* [![](https://badge.imagelayers.io/xataz/up1:latest.svg)](https://imagelayers.io/?images=xataz/up1:latest 'Get your own badge on imagelayers.io')
 
-# Intallation
-## Installation via docker hub
+## Tag available
+* latest [(Dockerfile)]()
+
+## Intallation
+### Installation via docker hub
 ``docker pull xataz/up1``
 
-## installation via dockerfile
+### installation via dockerfile
 ```git clone https://github.com/xataz/dockerfiles.git && cd dockerfiles/up1 && docker build -t xataz/up1 .```
 
 # Usage

@@ -1,6 +1,9 @@
 # Git image
 
-[![](https://badge.imagelayers.io/xataz/git:latest.svg)](https://imagelayers.io/?images=xataz/git:latest 'Get your own badge on imagelayers.io')
+## ImageLayer
+* [![](https://badge.imagelayers.io/xataz/git:latest.svg)](https://imagelayers.io/?images=xataz/git:latest 'Get your own badge on imagelayers.io')
+
+## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/git/Dockerfile)
 
 ## USAGE
