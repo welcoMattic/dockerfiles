@@ -1,0 +1,9 @@
+#!/bin/sh
+
+addgroup -g ${GID} emby
+adduser -H -h /embyData -s /bin/sh -G emby -u ${UID} -D emby
+
+chown -R emby:emby /embyServer
+chown -R emby:emby /embyData
+
+su - emby -c 'cd /embyServer && mono MediaBrowser.Server.Mono.exe -ffmpeg "/usr/bin/ffmpeg" -ffprobe "/usr/bin/ffprobe"'
