@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ ! -z $1 ]
+then
+	ALPINE_VERSION=$1
+fi
+
+
+REPO=http://dl-4.alpinelinux.org/alpine/${ALPINE_VERSION}/main
+
+mkdir -p /chroot/rootfs
+apk -X ${REPO} -U --allow-untrusted --root /chroot/rootfs --initdb add alpine-base
+echo ${REPO} > /chroot/rootfs/etc/apk/repositories
+
+cd /chroot/rootfs
+rm -rf var/cache/apk/*
+tar czvf ../rootfs.tar.gz ./*
+
+cd /chroot
+rm -rf rootfs
