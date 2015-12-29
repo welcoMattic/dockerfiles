@@ -1,4 +1,4 @@
-FROM xataz/java
+FROM xataz/java:8u66
 MAINTAINER xataz <https://github.com/xataz/>
 
 ENV FB_VER=4.6.1
