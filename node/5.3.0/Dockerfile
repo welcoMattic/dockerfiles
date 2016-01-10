@@ -1,4 +1,4 @@
-FROM alpine:3.2
+FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
 ENV NODE_VER=v5.3.0 NPM_VER=3

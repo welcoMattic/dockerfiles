@@ -1,4 +1,4 @@
-FROM alpine:3.2
+FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV PHP_VER=5.6.16 UID=991 GID=991

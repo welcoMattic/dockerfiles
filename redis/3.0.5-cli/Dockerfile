@@ -1,4 +1,4 @@
-FROM alpine:3.2
+FROM xataz/alpine:3.3
 MAINTAINER <https://github.com/xataz>
 
 ENV REDIS_VER=3.0.5
