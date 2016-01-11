@@ -8,7 +8,7 @@ VOLUME /www
 RUN PKG_BUILD="wget build-base curl-dev openssl-dev libxml2-dev readline-dev zlib-dev \
                 libmcrypt-dev jpeg-dev libpng-dev icu-dev pcre-dev linux-headers imap-dev \
                 freetype-dev libjpeg-turbo-dev" && \
-        NB_CORS=$(grep -c "processor" /proc/cpuinfo) && \
+        NB_CORES=$(grep -c "processor" /proc/cpuinfo) && \
         apk add --update libxml2 curl wget ${PKG_BUILD} bash && \
         mkdir -p /usr/src/ && cd /tmp && \
         wget http://fr2.php.net/distributions/php-${PHP_VER}.tar.gz && \
