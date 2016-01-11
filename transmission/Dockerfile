@@ -1,4 +1,5 @@
-FROM xataz/alpine:3.3
+FROM xataz/alpine:3.
+
 MAINTAINER xataz <https://github.com/xataz/>
 
 VOLUME ["/data"]
