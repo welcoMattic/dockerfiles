@@ -1,0 +1,12 @@
+#!/bin/bash
+
+groupadd -g ${GID} sonarr && useradd -M -g sonarr -u 991 -s /bin/bash sonarr
+
+cp /tmp/config.xml /config/config.xml
+chown -R sonarr:sonarr /config
+
+sed -i "s|<webroot>|/sonarr|" /config/config.xml
+
+echo "starting sonarr"
+su - sonarr -c "mono /opt/NzbDrone/NzbDrone.exe --no-browser -data=/config/"
+echo "stopping sonarr"
