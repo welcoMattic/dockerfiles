@@ -3,5 +3,6 @@
 addgroup -g ${GID} jackett && adduser -h /home/jackett -s /bin/sh -G jackett -u ${UID} -D jackett
 
 chown -R jackett:jackett /opt/Jackett
+chown -R jackett:jackett /home/jackett
 
 su - jackett -c "cd /opt/Jackett && mono JackettConsole.exe -p ${PORT}"
