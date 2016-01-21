@@ -1,0 +1,15 @@
+#!/bin/sh
+
+addgroup -g ${GID} couchpotato && adduser -h /home/couchpotato -s /bin/sh -D -G couchpotato -u ${UID} couchpotato
+
+if [ ! -f /config/config.ini ]
+then
+	mv /tmp/config.ini /config/config.ini
+	sed -i "s|<webroot>|"${WEBROOT}"|" /config/config.ini
+fi
+
+mkdir -p /config/data
+chown -R couchpotato:couchpotato /config
+chown -R couchpotato:couchpotato /CouchPotatoServer
+
+supervisord
