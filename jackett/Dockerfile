@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV JACKETT_VER=0.7.132 PORT=5000 UID=991 GID=991
+ENV JACKETT_VER=0.7.146 PORT=5000 UID=991 GID=991
 
 RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
 	apk add -U curl-dev mono@testing && \
