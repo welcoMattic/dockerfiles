@@ -13,6 +13,12 @@ Emby Server is a home media server built on top of other popular open source tec
 
 It features a REST-based API with built-in documention to facilitate client development. We also have client libraries for our API to enable rapid development. 
 
+## Build Image
+
+```shell
+docker build -t xataz/emby github.com/xataz/dockerfiles.git#master:emby
+```
+
 ## Configuration
 ### Environments
 * UID : Choose uid for launch emby (default : 991)
@@ -26,13 +32,13 @@ It features a REST-based API with built-in documention to facilitate client deve
 
 ## Usage
 ### Speed launch
-```
+```shell
 docker run -d -p 8096 xataz/emby
 ```
 URI access : http://XX.XX.XX.XX:8096
 
 ### Advanced launch
-```
+```shell
 docker run -d -p 8096 \
 	-v /docker/config/emby:/embyData \
 	-v /docker/Media:/Media \

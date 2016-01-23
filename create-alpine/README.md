@@ -10,6 +10,12 @@
 A simple image for create rootfs alpine.
 This image create a rootfs.tar.gz file, with a single command.
 
+## Build Image
+
+```shell
+docker build -t xataz/create-alpine github.com/xataz/dockerfiles.git#master:create-alpine
+```
+
 ## Usage
 ### Create a v3.3 image
 ```shell

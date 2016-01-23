@@ -24,14 +24,19 @@ Alpine Linux is a very simple distribution that will try to stay out of your way
 
 Alpine Linux was designed with security in mind. The kernel is patched with grsecurity/PaX out of the box, and all userland binaries are compiled as Position Independent Executables (PIE) with stack smashing protection. These proactive security features prevent exploitation of entire classes of zero-day and other vulnerabilities.
 
+## Build Image
+
+```shell
+docker build -t xataz/alpine:3.3 github.com/xataz/dockerfiles.git#master:alpine/3.3
+```
 
 ## Usage
 ### Simple launch
-```
+```shell
 docker run -ti xataz/alpine:3.3 sh
 ```
 ### For create an image
-```
+```shell
 FROM xataz/alpine:3.3
 
 RUN apk -U add nginx

@@ -4,8 +4,12 @@ addgroup -g ${GID} couchpotato && adduser -h /home/couchpotato -s /bin/sh -D -G 
 
 if [ ! -f /config/config.ini ]
 then
+	if [ -z ${APIKEY} ]; then
+		APIKEY=$(date +%s | md5sum | head -c 32)
+	fi
 	mv /tmp/config.ini /config/config.ini
 	sed -i "s|<webroot>|"${WEBROOT}"|" /config/config.ini
+	sed -i "s|<apikey>|"${APIKEY}"|" /config/config.ini
 fi
 
 mkdir -p /config/data

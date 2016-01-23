@@ -14,6 +14,12 @@ What is [0bin](https://github.com/sametmax/0bin) ?
 
 It's an Python implementation of the zerobin project under the WTF licence. It's easy to install even if you know nothing about Python.
 
+## Build Image
+
+```shell
+docker build -t xataz/0bin github.com/xataz/dockerfiles.git#master:0bin
+```
+
 ## Configuration
 ### Environments
 * CONTACT_MAIL : Choose mailto for contact button (default : admin@domain.tld)
@@ -30,13 +36,13 @@ It's an Python implementation of the zerobin project under the WTF licence. It's
 
 ## Usage
 ### Speed launch
-```
+```shell
 docker run -d -p 8000:8000 xataz/0bin 
 ```
 URI access : http://XX.XX.XX.XX:8000
 
 ### Advanced launch
-```
+```shell
 docker run -d -p 8080:8000 \
 	-v /docker/data/0bin:/paste \
 	-e CONTACT_MAIL=my@mydomain.lan \
