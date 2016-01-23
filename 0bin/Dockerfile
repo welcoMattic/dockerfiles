@@ -5,7 +5,7 @@ EXPOSE 8000
 ENV CONTACT_MAIL=admin@domain.tld UID=991 GID=991
 
 RUN apk add --update python py-setuptools py-pip && pip install --upgrade pip && \
-        pip install zerobin && \
+        pip install --no-cache zerobin && \
         apk del py-pip && rm -rf /var/cache/apk/* && rm -rf /root/.cache
 
 ADD settings.py /zerobin/settings.py
