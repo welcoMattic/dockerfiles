@@ -5,35 +5,40 @@
 
 ## Tag available
 * latest, 1.9, 1.9.9 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.9/Dockerfile)
-* 1.9.8 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.8/Dockerfile)
-* 1.9.7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.7/Dockerfile)
-* 1.9.6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.6/Dockerfile)
-* 1.9.7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.5/Dockerfile)
 
 ## Description
-What is Nginx?
+What is [Nginx](http://nginx.org)?
 
-Nginx (pronounced "engine-x") is an open source reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer, HTTP cache, and a web server (origin server). The nginx project started with a strong focus on high concurrency, high performance and low memory usage. It is licensed under the 2-clause BSD-like license and it runs on Linux, BSD variants, Mac OS X, Solaris, AIX, HP-UX, as well as on other *nix flavors.
+nginx (engine x) is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 24.29% busiest sites in December 2015. Here are some of the success stories: Netflix, Wordpress.com, FastMail.FM.
 
+## Build Image
 
-## Usage
-### Ports
-* 80
-* 443
+```shell
+docker build -t xataz/nginx github.com/xataz/dockerfiles.git#master:nginx/1.9.9
+```
 
-### Environment
-* UID : 991
-* GID : 991
+## Configuration
+### Environments
+* UID : Choose uid for launch 0bin (default : 991)
+* GID : Choose gid for launch 0bin (default : 991)
 
-### Volume
+### Volumes
 * /www : Place your site's files here
 * /sites-enabled : Place your vhost here
 * /conf.d : If necessary, place configuration file here
 
+### Ports
+* 80
+* 443
 
-## Run
+## Usage
+### Advanced launch
+```shell
+docker run -d \
+	-p 80:80 \
+	-p 443:443 \
+	-v /docker/config/nginx/www:/www \
+	-v /docker/config/nginx/sites-enabled:/sites-enabled \
+	xataz/nginx:1.9.9
 ```
-docker run -d -p 80:80 -p 443:443 -v /docker/nginx/www:/www -v /docker/nginx/sites:/sites-enabled xataz/nginx:1.9.9
-```
-
 

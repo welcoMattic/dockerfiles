@@ -1,5 +1,0 @@
-#!/bin/sh
-
-addgroup -g ${GID} git 2> /dev/null && adduser -h /home/git -s /bin/sh -D -u ${UID} -G ${GID} git
-
-git $@
