@@ -7,9 +7,9 @@
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/0bin/Dockerfile)
 
 ## Description
-What is 0bin?
+What is [0bin](https://github.com/sametmax/0bin) ?
 
-0bin is a client side encrypted pastebin that can run without a database. [(github)](https://github.com/sametmax/0bin)
+0bin is a client side encrypted pastebin that can run without a database.
 0bin allows anybody to host a pastebin while welcoming any type of content to be pasted in it. The idea is that one can (probably...) not be legally entitled to moderate the pastebin content as they have no way to decrypt it.
 
 It's an Python implementation of the zerobin project under the WTF licence. It's easy to install even if you know nothing about Python.
@@ -33,7 +33,9 @@ It's an Python implementation of the zerobin project under the WTF licence. It's
 ```
 docker run -d -p 8000:8000 xataz/0bin 
 ```
-### Launch full option
+URI access : http://XX.XX.XX.XX:8000
+
+### Advanced launch
 ```
 docker run -d -p 8080:8000 \
 	-v /docker/data/0bin:/paste \
@@ -44,4 +46,4 @@ docker run -d -p 8080:8000 \
 	-e CUSTOM_MENU_LINK=https://forum.mydomain.lan \
 	xataz/0bin
 ```
-
+URI access : http://XX.XX.XX.XX:8080

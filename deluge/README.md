@@ -13,8 +13,8 @@
 * WEB_ROOT
 
 ### Volumes
-* /config
-* /data
+* /config : Configuration file is here
+* /data : Folder for download torrents
 
 ### Ports
 * 8112
