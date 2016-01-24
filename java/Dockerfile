@@ -2,8 +2,8 @@ FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
 ENV JAVA_HOME=/opt/jre \
-	JAVA_VERSION=8u66-b17 \
-	FOLDER_TMP=jre1.8.0_66
+	JAVA_VERSION=8u72-b15 \
+	FOLDER_TMP=jre1.8.0_72
 
 RUN apk add --update wget ca-certificates && \
   cd /tmp && \
