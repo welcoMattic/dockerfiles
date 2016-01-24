@@ -1,16 +1,16 @@
 # node image
 
 ## ImageLayer
-* 4.2.3 [![](https://badge.imagelayers.io/xataz/node:4.svg)](https://imagelayers.io/?images=xataz/node:4 'Get your own badge on imagelayers.io')
-* 4.2.3-onbuild [![](https://badge.imagelayers.io/xataz/node:4-onbuild.svg)](https://imagelayers.io/?images=xataz/node:4-onbuild 'Get your own badge on imagelayers.io')
-* 5.3.0 [![](https://badge.imagelayers.io/xataz/node:5.svg)](https://imagelayers.io/?images=xataz/node:5 'Get your own badge on imagelayers.io')
-* 5.3.0-onbuild [![](https://badge.imagelayers.io/xataz/node:5-onbuild.svg)](https://imagelayers.io/?images=xataz/node:5-onbuild 'Get your own badge on imagelayers.io')
+* 4.2.6 [![](https://badge.imagelayers.io/xataz/node:4.svg)](https://imagelayers.io/?images=xataz/node:4 'Get your own badge on imagelayers.io')
+* 4.2.6-onbuild [![](https://badge.imagelayers.io/xataz/node:4-onbuild.svg)](https://imagelayers.io/?images=xataz/node:4-onbuild 'Get your own badge on imagelayers.io')
+* 5.5.0 [![](https://badge.imagelayers.io/xataz/node:5.svg)](https://imagelayers.io/?images=xataz/node:5 'Get your own badge on imagelayers.io')
+* 5.5.0-onbuild [![](https://badge.imagelayers.io/xataz/node:5-onbuild.svg)](https://imagelayers.io/?images=xataz/node:5-onbuild 'Get your own badge on imagelayers.io')
 
 ## Tag available
-* latest, 5.3.0, 5.3, 5 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/5.3.0/Dockerfile)
-* latest-onbuild, 5.3.0-onbuild, 5.3-onbuild, 5-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/5.3.0-onbuild/Dockerfile)
-* lts, 4.2.3, 4.2, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.2.3/Dockerfile)
-* lts-onbuild, 4.2.3-onbuild, 4.2-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.2.3-onbuild/Dockerfile)
+* latest, 5.5.0, 5.5, 5 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/5.5.0/Dockerfile)
+* latest-onbuild, 5.5.0-onbuild, 5.5-onbuild, 5-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/5.5.0-onbuild/Dockerfile)
+* lts, 4.2.6, 4.2, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.2.6/Dockerfile)
+* lts-onbuild, 4.2.6-onbuild, 4.2-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.2.6-onbuild/Dockerfile)
 
 ## Description
 What is Node.js?
@@ -24,13 +24,13 @@ Node.js internally uses the Google V8 JavaScript engine to execute code; a large
 ## Usage
 ### Simple run
 ```
-docker run -d -v $(pwd):/usr/app/src -w /usr/app/src xataz/node:5.3.0 node app.js
+docker run -d -v $(pwd):/usr/app/src -w /usr/app/src xataz/node:5.5.0 node app.js
 ```
 
 ### With onbuild
 Create a Dockerfile on your project :
 ```
-FROM xataz/node:5.3.0-onbuild
+FROM xataz/node:5.5.0-onbuild
 
 ```
 
