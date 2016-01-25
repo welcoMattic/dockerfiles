@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV UID=991 GID=991 MEDIAINFO_VER=0.7.81 FILEBOT_VER=4.6.1
+ENV UID=991 GID=991 MEDIAINFO_VER=0.7.81 FILEBOT_VER=4.6.1 WEBROOT=/
 
 RUN export BUILD_DEPS="build-base \
                         git \
