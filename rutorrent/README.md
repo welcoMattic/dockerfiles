@@ -32,6 +32,7 @@ docker build -t xataz/rutorrent github.com/xataz/dockerfiles.git#master:rutorren
 ### Environments
 * UID : Choose uid for launch rtorrent (default : 991)
 * GID : Choose gid for launch rtorrent (default : 991)
+* WEBROOT : (default : /)
 
 ### Volumes
 * /data : Folder for download torrents
@@ -50,7 +51,7 @@ docker build -t xataz/rutorrent github.com/xataz/dockerfiles.git#master:rutorren
 ```shell
 docker run -d -p 80:80 xataz/rutorrent
 ```
-URI access : http://XX.XX.XX.XX/torrent
+URI access : http://XX.XX.XX.XX
 
 ### Advanced launch
 ```shell
@@ -58,6 +59,7 @@ docker run -d -p 8112:8112 \
 	-v /docker/data:/data \ 
 	-e UID=1001 \
 	-e GID=1001 \
+    -e WEBROOT=/rutorrent \
 	xataz/rutorrent:filebot
 ```
-URI access : http://XX.XX.XX.XX/torrent
+URI access : http://XX.XX.XX.XX/rutorrent
