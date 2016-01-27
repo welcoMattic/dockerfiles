@@ -24,6 +24,7 @@ chown -R torrent:torrent /data
 chown -R torrent:torrent /var/www 
 chown -R torrent:torrent /home/torrent
 chown -R torrent:torrent /var/lib/nginx
+chown -R torrent:torrent /filebot
 
 rm -f /data/.session/rtorrent.lock
 
