@@ -4,7 +4,7 @@
 * [![](https://badge.imagelayers.io/xataz/nginx:latest.svg)](https://imagelayers.io/?images=xataz/nginx:latest 'Get your own badge on imagelayers.io')
 
 ## Tag available
-* latest, 1.9, 1.9.9 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.9/Dockerfile)
+* latest, 1.9, 1.9.10 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.9/Dockerfile)
 
 ## Description
 What is [Nginx](http://nginx.org)?
@@ -14,7 +14,7 @@ nginx (engine x) is an HTTP and reverse proxy server, a mail proxy server, and a
 ## Build Image
 
 ```shell
-docker build -t xataz/nginx github.com/xataz/dockerfiles.git#master:nginx/1.9.9
+docker build -t xataz/nginx github.com/xataz/dockerfiles.git#master:nginx/1.9.10
 ```
 
 ## Configuration
@@ -39,6 +39,6 @@ docker run -d \
 	-p 443:443 \
 	-v /docker/config/nginx/www:/www \
 	-v /docker/config/nginx/sites-enabled:/sites-enabled \
-	xataz/nginx:1.9.9
+	xataz/nginx:1.9.10
 ```
 
