@@ -55,7 +55,7 @@ URI access : http://XX.XX.XX.XX
 
 ### Advanced launch
 ```shell
-docker run -d -p 8112:8112 \
+docker run -d -p 80:80 \
 	-v /docker/data:/data \ 
 	-e UID=1001 \
 	-e GID=1001 \
