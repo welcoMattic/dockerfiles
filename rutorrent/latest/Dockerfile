@@ -24,6 +24,12 @@ RUN export BUILD_DEPS="build-base \
                 supervisor \
                 geoip \
     && cd /tmp \
+    && wget http://downloads.sourceforge.net/mktorrent/mktorrent-1.0.tar.gz \
+    && tar xzvf mktorrent-1.0.tar.gz \
+    && cd mktorrent-1.0 \
+    && make \
+    && make install \
+    && cd /tmp \
     && wget http://mediaarea.net/download/binary/mediainfo/${MEDIAINFO_VER}/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && wget http://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VER}/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && tar xzf MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \

@@ -1,18 +1,27 @@
-FROM xataz/alpine:3.3
+FROM debian:jessie
 MAINTAINER xataz <https://github.com/xataz>
 
-RUN apk add -U openssl-dev openssl git build-base perl perl-dev perl-crypt-rijndael wget && \
-    cpan install Carton && cd / && git clone https://git.framasoft.org/luc/lutim.git && \
-    cd /lutim && carton install && \
-    apk del build-base perl-dev wget git && rm -rf /var/cache/apk/* /root/.cpan/* /root/.cpanm/*
+ENV GID=991 UID=991 CONTACT=contact@domain.tld WEBROOT=/ SECRET=e7c0b28877f7479fe6711720475dcbbd MAX_FILE_SIZE=10000000000
 
-VOLUME /files
+RUN apt-get update && apt-get upgrade \
+    && BUILD_DEPS="wget make gcc ca-certificates libssl-dev git" \
+    && apt-get install -y --no-install-recommends --no-install-suggests \
+        perl \
+        ca-certificates \
+        shared-mime-info \
+        perlmagick \
+        ${BUILD_DEPS} \
+    && cpan install Carton \
+    && cd / \
+    && git clone https://git.framasoft.org/luc/lutim.git \
+    && cd /lutim && carton install \
+    && apt-get purge -y ${BUILD_DEPS} \
+    && apt-get autoremove --purge -y && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /root/.cpan*
+
+VOLUME /lutim/files /data
 
 EXPOSE 8181
-VOLUME /data
-WORKDIR /lutim
-
-ENV GID=991 UID=991 CONTACT=contact@domain.tld WEBROOT=/ =dmjamzdijzmoj LUTIM_MAX_FILE_SIZE=10000000000
 
 ADD lutim.conf /lutim/lutim.conf
 ADD startup /usr/bin/startup

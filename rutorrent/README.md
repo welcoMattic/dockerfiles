@@ -5,8 +5,8 @@
 * latest-filebot, filebot [![](https://badge.imagelayers.io/xataz/rutorrent:filebot.svg)](https://imagelayers.io/?images=xataz/rutorrent:filebot 'Get your own badge on imagelayers.io')
 
 ## Tag available
-* latest [(deluge/1.3-stable/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/rutorrent/latest/Dockerfile)
-* latest-filebot, filebot [(deluge/1.3-stable-filebot/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/rutorrent/latest-filebot/Dockerfile)
+* latest [(rutorrent/latest/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/rutorrent/latest/Dockerfile)
+* latest-filebot, filebot [(rutorrent/latest-filebot/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/rutorrent/latest-filebot/Dockerfile)
 
 ## Description
 What is [RuTorrent](https://github.com/Novik/ruTorrent) ?

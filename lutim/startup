@@ -1,11 +1,15 @@
 #!/bin/bash
 
+grep lutim /etc/group > /dev/null 2>&1 && [[ $? -eq 1 ]] && addgroup --gid ${GID} lutim
+grep lutim /etc/passwd > /dev/null 2>&1 && [[ $? -eq 1 ]] && adduser --system --shell /bin/sh --no-create-home --ingroup lutim --uid ${UID} lutim
 
+chown -R lutim:lutim /data /lutim /files
 
+sed -i -e 's|<secret>|'${LUTIM_SECRET}'|' \
+        -e 's|<contact>|'${LUTIM_CONTACT}'|' \
+        -e 's|<max_file_size>|'${MAX_FILE_SIZE}'|' \
+        -e 's|<webroot>|'${WEBROOT}'|' /lutim/lutim.conf
 
-#chown -R lutim:lutim /data
-#chown -R lutim:lutim /lutim
+cd /lutim
+su lutim -c "/usr/local/bin/carton exec hypnotoad -f /lutim/script/lutim"
 
-sed -i 's/<secret>/'${LUTIM_SECRET}'/;s/<contact>/'${LUTIM_CONTACT}'/;s/<max_file_size>/'${LUTIM_MAX_FILE_SIZE}'/' /lutim/lutim.conf
-
-/usr/local/bin/carton exec hypnotoad -f /lutim/script/lutim
