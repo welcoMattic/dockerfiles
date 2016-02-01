@@ -36,14 +36,8 @@ Tip : you can use the following command to generate SECRET. `date +%s | md5sum |
 * /data : Lutim's database is here
 * /lutim/files : Location of uploaded images
 
-#### data Folder tree
-* /data/.watch : Rtorrent watch this folder and add automatly torrent file
-* /data/.session : Rtorrent save statement here
-* /data/torrents : Rtorrent download torrent here
-* /data/Media : If filebot version, rtorrent create a symlink 
-
 ### Ports
-* 80
+* 8181
 
 ## Usage
 ### Simple launch
