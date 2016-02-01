@@ -50,7 +50,7 @@ URI access : http://XX.XX.XX.XX:8080
 ```shell
 docker run -d -p 8181:8080 \
 	-v /docker/config/lufi/data:/data \
-    -v /docker/data/lufi:/files 
+    -v /docker/data/lufi:/files \
 	-e UID=1001 \
 	-e GID=1001 \
     -e WEBROOT=/lufi \

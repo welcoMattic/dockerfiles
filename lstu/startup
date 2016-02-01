@@ -1,0 +1,14 @@
+#!/bin/bash
+
+grep lstu /etc/group > /dev/null 2>&1; [[ $? -eq 1 ]] && addgroup --gid ${GID} lstu
+grep lstu /etc/passwd > /dev/null 2>&1; [[ $? -eq 1 ]] && adduser --system --shell /bin/sh --no-create-home --ingroup lstu --uid ${UID} lstu
+
+chown -R lstu:lstu /lstu
+
+sed -i -e 's|<secret>|'${SECRET}'|' \
+        -e 's|<contact>|'${CONTACT}'|' \
+        -e 's|<adminpwd>|'${ADMINPWD}'|' \
+        -e 's|<webroot>|'${WEBROOT}'|' /lstu/lstu.conf
+
+cd /lstu
+su lstu -c "/usr/local/bin/carton exec hypnotoad -f /lstu/script/lstu"
