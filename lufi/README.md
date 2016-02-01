@@ -37,7 +37,7 @@ Tip : you can use the following command to generate SECRET. `date +%s | md5sum |
 * /files : Location of uploaded files
 
 ### Ports
-* 8181
+* 8080
 
 ## Usage
 ### Simple launch
