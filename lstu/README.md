@@ -9,11 +9,7 @@
 ## Description
 What is [lstu](https://git.framasoft.org/luc/lstu) ?
 
-It means Let's Upload That Image.
-
-It stores images and allows you to see them, download them or share them on social networks. From version 0.5, the gif images can be displayed as animated gifs in Twitter, but you need a HTTPS server (Twitter requires that. lstu detects if you have a HTTPS server and displays an static image twitter card if you don't);
-
-Images are indefinitly stored unless you request that they will be deleted at first view or after 24 hours / one week / one month / one year.
+It means Let's Shorten That Url.
 
 ## BUILD IMAGE
 
