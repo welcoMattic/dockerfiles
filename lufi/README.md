@@ -9,11 +9,11 @@
 ## Description
 What is [lufi](https://git.framasoft.org/luc/lufi) ?
 
-It means Let's Upload That Image.
+Lufi means Let's Upload that FIle.
 
-It stores images and allows you to see them, download them or share them on social networks. From version 0.5, the gif images can be displayed as animated gifs in Twitter, but you need a HTTPS server (Twitter requires that. lufi detects if you have a HTTPS server and displays an static image twitter card if you don't);
+It stores files and allows you to download them.
 
-Images are indefinitly stored unless you request that they will be deleted at first view or after 24 hours / one week / one month / one year.
+Is that all? No. All the files are encrypted by the browser! It means that your files never leave your computer unencrypted. The administrator of the Lufi instance you use will not be able to see what is in your file, neither will your network administrator, or your ISP.
 
 ## BUILD IMAGE
 
