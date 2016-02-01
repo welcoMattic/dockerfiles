@@ -1,12 +1,15 @@
-![](https://git.framasoft.org/uploads/project/avatar/1998/lufi.png)
+![](https://git.framasoft.org/uploads/project/avatar/1998/lufi.png =250x)
 
 ## ImageLayer
+___
 * latest [![](https://badge.imagelayers.io/xataz/lufi:latest.svg)](https://imagelayers.io/?images=xataz/lufi:latest 'Get your own badge on imagelayers.io')
 
 ## Tag available
+___
 * latest [(lufi/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/lufi/Dockerfile)
 
 ## Description
+___
 What is [lufi](https://git.framasoft.org/luc/lufi) ?
 
 Lufi means Let's Upload that FIle.
@@ -16,12 +19,14 @@ It stores files and allows you to download them.
 Is that all? No. All the files are encrypted by the browser! It means that your files never leave your computer unencrypted. The administrator of the Lufi instance you use will not be able to see what is in your file, neither will your network administrator, or your ISP.
 
 ## BUILD IMAGE
+___
 
 ```shell
 docker build -t xataz/lufi github.com/xataz/dockerfiles.git#master:lufi
 ```
 
 ## Configuration
+___
 ### Environments
 * UID : Choose uid for launch lufi (default : 991)
 * GID : Choose gid for launch lufi (default : 991)
@@ -40,6 +45,7 @@ Tip : you can use the following command to generate SECRET. `date +%s | md5sum |
 * 8080
 
 ## Usage
+___
 ### Simple launch
 ```shell
 docker run -d -p 8080:8080 xataz/lufi
