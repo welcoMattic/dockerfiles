@@ -14,7 +14,8 @@ RUN apt-get update && apt-get upgrade \
     && cd /lufi \
     && carton install \
     && apt-get purge -y ${BUILD_DEPS} \
-    && apt-get autoremove --purge -y && apt-get clean \
+    && apt-get autoremove --purge -y \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /root/.cpan* /lufi/local/cache/* /lufi/utilities
     
 VOLUME /files /data
