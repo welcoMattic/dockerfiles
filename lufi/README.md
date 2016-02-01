@@ -44,7 +44,7 @@ Tip : you can use the following command to generate SECRET. `date +%s | md5sum |
 ```shell
 docker run -d -p 8080:8080 xataz/lufi
 ```
-URI access : http://XX.XX.XX.XX:8181
+URI access : http://XX.XX.XX.XX:8080
 
 ### Advanced launch
 ```shell
