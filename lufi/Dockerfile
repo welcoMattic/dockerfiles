@@ -1,20 +1,28 @@
-FROM xataz/alpine:3.3
+FROM debian:jessie
 MAINTAINER xataz <https://github.com/xataz>
 
-RUN apk add -U git build-base perl perl-dev perl-crypt-rijndael wget && \
-    cpan install Carton && cd / && git clone https://git.framasoft.org/luc/lufi.git && \
-    cd /lufi && carton install && \
-    apk del build-base perl-dev wget git && rm -rf /var/cache/apk/* /root/.cpan/* /root/.cpanm/* && rm -rf /lufi/local/cache/* /lufi/utilities
-    
+ENV GID=991 UID=991 SECRET=0423bab3aea2d87d5eedd9a4e8173618 CONTACT=contact@domain.tld MAX_FILE_SIZE=1000000000 WEBROOT=/
 
-VOLUME /files
+RUN apt-get update && apt-get upgrade \
+    && BUILD_DEPS="build-essential ca-certificates git" \
+    && apt-get install -y --no-install-recommends --no-install-suggests \
+            perl \
+            ${BUILD_DEPS} \
+    && cpan install Carton \
+    && cd / \
+    && git clone https://git.framasoft.org/luc/lufi.git \
+    && cd /lufi \
+    && carton install \
+    && apt-get purge -y ${BUILD_DEPS} \
+    && apt-get autoremove --purge -y && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /root/.cpan* /lufi/local/cache/* /lufi/utilities
+    
+VOLUME /files /data
 
 EXPOSE 8080
-WORKDIR /lufi
-
-ENV GID=991 UID=991 CONTACT=contact@domain.tld WEBROOT=/
 
 ADD startup /usr/bin/startup
+ADD lufi.conf /lufi/lufi.conf
 RUN chmod +x /usr/bin/startup
 
 CMD ["startup"]
