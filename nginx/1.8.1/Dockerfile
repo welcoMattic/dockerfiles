@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 EXPOSE 80 443
 VOLUME ["/www","/sites-enabled","/conf.d"]
-ENV NGINX_VER=1.9.11 UID=991 GID=991
+ENV NGINX_VER=1.8.1 UID=991 GID=991
 
 RUN export BUILD_DEPS="build-base \
                     openssl-dev \
@@ -18,7 +18,6 @@ RUN export BUILD_DEPS="build-base \
     && cd /tmp/nginx-${NGINX_VER} \
     && ./configure \
             --with-http_ssl_module \
-            --with-http_v2_module \
             --with-http_gzip_static_module \
             --with-http_stub_status_module \
         	--prefix=/etc/nginx \
