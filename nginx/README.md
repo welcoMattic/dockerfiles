@@ -1,4 +1,4 @@
-# Nginx Image
+![](http://nginx.org/nginx.png)
 
 ## ImageLayer
 * 1.9.11 [![](https://badge.imagelayers.io/xataz/nginx:latest.svg)](https://imagelayers.io/?images=xataz/nginx:latest 'Get your own badge on imagelayers.io')
