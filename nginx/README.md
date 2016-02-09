@@ -4,7 +4,7 @@
 * [![](https://badge.imagelayers.io/xataz/nginx:latest.svg)](https://imagelayers.io/?images=xataz/nginx:latest 'Get your own badge on imagelayers.io')
 
 ## Tag available
-* latest, 1.9, 1.9.10 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.9/Dockerfile)
+* latest, 1.9, 1.9.11 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.11/Dockerfile)
 
 ## Description
 What is [Nginx](http://nginx.org)?

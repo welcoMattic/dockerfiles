@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 EXPOSE 80 443
 VOLUME ["/www","/sites-enabled","/conf.d"]
-ENV NGINX_VER=1.9.10 UID=991 GID=991
+ENV NGINX_VER=1.9.11 UID=991 GID=991
 
 RUN apk add --update openssl-dev pcre-dev zlib-dev wget build-base && \
 	cd /tmp && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz && \
