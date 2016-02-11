@@ -1,7 +1,13 @@
-FROM xataz/alpine:3.3
+FROM xataz/alpine:3.3-tini
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV UID=991 GID=991 MEDIAINFO_VER=0.7.81 WEBROOT=/
+ENV UID=991 \
+    GID=991 \
+    MEDIAINFO_VER=0.7.81 \
+    WEBROOT=/ \
+    RTORRENT_VER=0.9.6 \
+    LIBTORRENT_VER=0.13.6 \
+    PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -9,11 +15,15 @@ RUN export BUILD_DEPS="build-base \
                         automake \
                         autoconf \
                         wget \
-                        subversion" \
+                        subversion \
+                        cppunit-dev \
+                        openssl-dev \
+                        ncurses-dev \
+                        curl-dev" \
+    && export NB_CORES=$(grep -c "processor" /proc/cpuinfo) \
     && apk add -U ${BUILD_DEPS} \
                 ffmpeg \
                 ca-certificates \
-                rtorrent \
                 nginx \
                 php-fpm \
                 php-json \
@@ -26,14 +36,18 @@ RUN export BUILD_DEPS="build-base \
     && cd /tmp \
     && wget http://downloads.sourceforge.net/mktorrent/mktorrent-1.0.tar.gz \
     && tar xzvf mktorrent-1.0.tar.gz \
-    && cd mktorrent-1.0 \
-    && make \
-    && make install \
     && cd /tmp \
+    && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
+    && git clone https://github.com/rakshasa/libtorrent.git \
+    && git clone https://github.com/rakshasa/rtorrent.git \
     && wget http://mediaarea.net/download/binary/mediainfo/${MEDIAINFO_VER}/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && wget http://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VER}/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && tar xzf MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && tar xzf MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
+    && tar xzvf mktorrent-1.0.tar.gz \
+    && cd /tmp/mktorrent-1.0 \
+    && make -j ${NB_CORES} \
+    && make install \
     && cd  /tmp/MediaInfo_DLL_GNU_FromSource \
     && ./SO_Compile.sh \
     && cd /tmp/MediaInfo_DLL_GNU_FromSource/ZenLib/Project/GNU/Library \
@@ -43,6 +57,22 @@ RUN export BUILD_DEPS="build-base \
     && cd /tmp/MediaInfo_CLI_GNU_FromSource \
     && ./CLI_Compile.sh \
     && cd /tmp/MediaInfo_CLI_GNU_FromSource/MediaInfo/Project/GNU/CLI \
+    && make install \
+    && cd /tmp/xmlrpc-c \
+    && ./configure \
+    && make -j ${NB_CORES} \
+    && make install \
+    && cd /tmp/libtorrent \
+    && git checkout ${LIBTORRENT_VER} \    
+    && ./autogen.sh \
+    && ./configure \
+    && make -j ${NB_CORES} \
+    && make install \
+    && cd /tmp/rtorrent \
+    && git checkout ${RTORRENT_VER} \
+    && ./autogen.sh \
+    && ./configure --with-xmlrpc-c \
+    && make -j ${NB_CORES} \
     && make install \
     && mkdir -p /var/www \
     && cd /var/www \
@@ -62,4 +92,5 @@ VOLUME /data
 EXPOSE 80
 RUN chmod +x /usr/bin/startup
 
-CMD ["startup"]
+CMD ["tini","--","/usr/bin/startup"]
+
