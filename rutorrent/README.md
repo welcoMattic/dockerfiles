@@ -18,10 +18,6 @@ What is [rtorrent](https://github.com/rakshasa/rtorrent/) ?
 
 rtorrent is the popular Bittorrent client.
 
-## Image Composition
-
-Alpine + libtorrent + rtorrent + nginx + php-fpm + rutorrent + supervisor
-
 ## BUILD IMAGE
 
 ```shell
