@@ -34,16 +34,16 @@ etc ...
 You can use environment variable CRYPT, for use users.conf with encrypt password :
 ```shell
 xataz:FAC84832FFCB741F13C5758E1319F46A
-user1:857D76EA6A3A28809C38175521F74B26
+user1:F5C8257B666CB899CC34AA3FF3771316
 ```
 for encrypt your password on samba's format, use this command :
 ```shell
-printf '%s' "<passwd>" | iconv -t utf16 | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
+printf '%s' "<passwd>" | iconv -t utf16le | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
 ```
 exemple with xatazpasswd :
 ```shell
-$ printf '%s' "user1passwd" | iconv -t utf16 | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
-FAC84832FFCB741F13C5758E1319F46A
+$ printf '%s' "user1passwd" | iconv -t utf16le | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
+F5C8257B666CB899CC34AA3FF3771316
 ```
 
 Mount this files on /config/users.conf, with `-v /path/of/file/users.conf:/config/users.conf`
