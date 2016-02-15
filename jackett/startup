@@ -2,7 +2,7 @@
 
 addgroup -g ${GID} jackett && adduser -h /home/jackett -s /bin/sh -G jackett -u ${UID} -D jackett
 
-chown -R jackett:jackett /opt/Jackett
-chown -R jackett:jackett /home/jackett
+chown -R ${UID}:${GID} /opt/Jackett
+chown -R ${UID}:${GID} /home/jackett
 
 gosu ${UID}:${GID} sh -c "cd /opt/Jackett && mono JackettConsole.exe"
