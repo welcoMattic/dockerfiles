@@ -30,18 +30,18 @@ docker build -t xataz/jackett github.com/xataz/dockerfiles.git#master:jackett
 * /home/jackett/.config/Jackett/ : Configuration files are here
 
 ### Ports
-* 5000
+* 9117
 
 ## Usage
 ### Simple launch
 ```shell
-docker run -d -p 5000:5000 xataz/jackett
+docker run -d -p 9117:9117 xataz/jackett
 ```
-URI access : http://XX.XX.XX.XX:5000
+URI access : http://XX.XX.XX.XX:9117
 
 ### Advanced launch
 ```shell
-docker run -d -p 5000:5000 \
+docker run -d -p 5000:9117 \
 	-e UID=1001 \
 	-e GID=1001 \
 	-v /docker/config/jackett:/home/jackett/.config/Jackett \
