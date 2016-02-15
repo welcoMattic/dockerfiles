@@ -1,0 +1,58 @@
+#!/bin/sh
+
+if [ -e /config/shares.conf ] && [ -e /config/users.conf ]; then
+    # Generate user
+    if [ -z $CRYPT ]; then
+        for line in $(cat /config/users.conf); do
+            USERNAME=$(echo $line | cut -d: -f1)
+            PASSWORD=$(echo $line | cut -d: -f2)
+            adduser -D $USERNAME
+            (echo $PASSWORD;echo $PASSWORD) | smbpasswd -s -a $USERNAME
+        done
+    else
+        # for generate encrypt passwd, use this command, replace <passwd> by your password :..
+        #..printf '%s' "<passwd>" | iconv -t utf16le | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
+        for line in $(cat /config/user.conf); do
+            # <user>:<uid>:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX:<passwd>:[U          ]:LCT-<date>:
+            USERNAME=$(echo $line | cut -d: -f1)
+            PASSWORD=$(echo $line | cut -d: -f2)
+            DATE=$(echo "obase=16;$(date +%s)" | bc)
+            UID=$(grep ${USERNAME} /etc/passwd | cut -d: -f3)
+            adduser -D $USERNAME
+            sed 's|<user>|'${USERNAME}'|;s|<uid>|'${UID}'|;s|<passwd>|'${PASSWORD}'|;s|<date>|'${DATE}'|' /templates/smbpasswd.tmpl >> /var/lib/samba/private/smbpasswd
+        done
+    fi
+
+    for line in $(cat /config/shares.conf); do
+        FOLDER=$(echo $line | cut -d: -f1)
+        NAME_SHARE=$(echo $line | cut -d: -f2)
+        WRITE_USERS=$(echo $line | cut -d: -f3)
+        READ_USERS=$(echo $line | cut -d: -f4)
+        LIST_USERS=""
+        mkdir -p ${FOLDER}
+        setfacl -R -b ${FOLDER}
+        for user in $(echo $WRITE_USERS | sed 's/,/ /g'); do
+            setfacl -R -m u:$user:rwx ${FOLDER}
+        done
+        for user in $(echo $READ_USERS | sed 's/,/ /g'); do
+            setfacl -R -m u:$user:rx ${FOLDER}
+        done
+        if [ "${WRITE_USERS}" != "" ] && [ "${READ_USERS}" != "" ];then
+            LIST_USERS=${WRITE_USERS},${READ_USERS}
+        elif [ ${WRITE_USERS} == "" ];then
+            LIST_USERS=${READ_USERS}
+        elif [ ${READ_USERS} == "" ];then
+            LIST_USERS==${WRITE_USERS}
+        else
+            echo "No users for ${NAME_SHARE} share"
+            exit 1
+        fi
+        sed 's|<share_name>|'${NAME_SHARE}'|;s|<share_path>|'${FOLDER}'|;s|<read_list>|'${READ_USERS}'|;s|<write_list>|'${WRITE_USERS}'|;s|<valid_user>|'${LIST_USERS}'|' /templates/shares.tmpl >> /etc/samba/smb.conf
+    done
+
+else
+    echo "shares.conf or users.conf doesn't exist"
+    exit 1
+fi
+
+/usr/bin/supervisord -c /etc/supervisord.conf

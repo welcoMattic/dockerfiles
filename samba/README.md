@@ -1,0 +1,91 @@
+![# Samba](http://wiki.univention.de/images/6/6d/Logo_Samba.png)
+
+## ImageLayer
+* latest [![](https://badge.imagelayers.io/xataz/samba:latest.svg)](https://imagelayers.io/?images=xataz/samba:latest 'Get your own badge on imagelayers.io')
+
+## Tag available
+* latest [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/samba/Dockerfile)
+
+## Description
+What is [Samba](https://www.samba.org/) ?
+
+Samba is the standard Windows interoperability suite of programs for Linux and Unix.  
+Samba is Free Software licensed under the GNU General Public License, the Samba project is a member of the Software Freedom Conservancy.  
+Since 1992, Samba has provided secure, stable and fast file and print services for all clients using the SMB/CIFS protocol, such as all versions of DOS and Windows, OS/2, Linux and many others.  
+Samba is an important component to seamlessly integrate Linux/Unix Servers and Desktops into Active Directory environments. It can function both as a domain controller or as a regular domain member  
+
+## BUILD IMAGE
+
+```shell
+docker build -t xataz/samba github.com/xataz/dockerfiles.git#master:samba
+```
+
+## Configuration
+### Configuration file
+#### users.conf
+users.conf is a configuration file for list your users and them password :
+```shell
+USER:PASSWORD
+xataz:xatazpasswd
+user1:user1passwd
+etc ...
+```
+
+You can use environment variable CRYPT, for use users.conf with encrypt password :
+```shell
+xataz:FAC84832FFCB741F13C5758E1319F46A
+user1:857D76EA6A3A28809C38175521F74B26
+```
+for encrypt your password on samba's format, use this command :
+```shell
+printf '%s' "<passwd>" | iconv -t utf16 | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
+```
+exemple with xatazpasswd :
+```shell
+$ printf '%s' "user1passwd" | iconv -t utf16 | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
+FAC84832FFCB741F13C5758E1319F46A
+```
+
+Mount this files on /config/users.conf, with `-v /path/of/file/users.conf:/config/users.conf`
+
+#### shares.conf
+shares.conf is a configuration file for list your shares and them permission :
+```shell
+SHARE_PATH:SHARE_NAME:USER_WRITE:USER_READ
+/storage/share1:Shared:xataz,user2:user1
+/storage/share2:Volume:user1:user2,xataz
+```
+
+Use "," for separte user, without space.
+
+Mount this files on /config/shares.conf, with `-v /path/of/file/shares.conf:/config/shares.conf`
+
+### Environments
+* CRYPT : Use encrypt password in users.conf
+
+### Volumes
+* /config/users.conf : users configuration file
+* /config/shares.conf : shares configuration file
+
+### Ports
+* 137
+* 138
+* 139
+* 445
+
+## Usage
+My configuration files (users.conf and shares.conf) are in /docker/config/samba directory.
+```shell
+docker run -d -p 137:137 \
+              -p 138:138 \
+              -p 139:139 \
+              -p 445:445 \
+	-v /docker/config/samba:/config \ 
+    -v /docker/storage:/storage \
+	xataz/samba
+```
+
+On linux, you can mount share with :
+```shell
+mount -t cifs -o username=user1,password=user1passwd //172.1.0.2/Shared /mnt
+```
