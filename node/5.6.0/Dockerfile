@@ -18,8 +18,8 @@ RUN export PKGS_BUILD="git \
     && tar xzf node-${NODE_VER}.tar.gz \
     && cd /tmp/node-${NODE_VER} \
     && NB_CORES=$(grep -c "processor" /proc/cpuinfo) \
-    && ./configure --prefix=/usr \
-    # && ./configure --prefix=/usr --without-snapshot \
+    # && ./configure --prefix=/usr \
+    && ./configure --prefix=/usr --without-snapshot \
     && make -j ${NB_CORES} \
     && make install && paxctl -cm /usr/bin/node \
     && npm install -g npm@${NPM_VER} \
