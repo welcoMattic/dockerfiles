@@ -3,7 +3,7 @@ MAINTAINER <https://github.com/xataz>
 
 ENV UID=991 \
     GID=991 \
-    REDIS_VER=unstable
+    REDIS_VER=3.0.7
 
 EXPOSE 6379
 
