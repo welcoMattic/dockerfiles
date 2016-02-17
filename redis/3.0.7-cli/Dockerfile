@@ -14,7 +14,7 @@ RUN export BUILD_DEPS="wget \
 		    make \
 		    tar" \
 	&& apk add --update ${BUILD_DEPS} \ 
-	&& wget http://download.redis.io/releases/redis-${REDIS_VER}.tar.gz -O /tmp/redis-${REDIS_VER}.tar.gz \
+	&& wget https://github.com/antirez/redis/archive/${REDIS_VER}.tar.gz -O /tmp/redis-${REDIS_VER}.tar.gz \
 	&& cd /tmp \
 	&& tar xzf redis-${REDIS_VER}.tar.gz \
 	&& cd redis-${REDIS_VER} \
