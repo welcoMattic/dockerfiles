@@ -1,7 +1,5 @@
 #!/bin/sh
 
-addgroup -g ${GID} couchpotato && adduser -h /home/couchpotato -s /bin/sh -D -G couchpotato -u ${UID} couchpotato
-
 if [ ! -f /config/config.ini ]
 then
 	if [ -z ${APIKEY} ]; then
@@ -13,7 +11,7 @@ then
 fi
 
 mkdir -p /config/data
-chown -R couchpotato:couchpotato /config
-chown -R couchpotato:couchpotato /CouchPotatoServer
+chown -R ${UID}:${GID} /config
+chown -R ${UID}:${GID} /CouchPotatoServer
 
-supervisord
+gosu ${UID}:${GID} sh -c "cd /CouchPotatoServer && /usr/bin/python /CouchPotatoServer/CouchPotato.py --config_file=/config/config.ini --data_dir=/config/data"
