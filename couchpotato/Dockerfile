@@ -6,7 +6,6 @@ ENV WEBROOT="" \
     GID=991
 
 RUN export BUILD_DEPS="py-pip \
-                    git \
                     build-base \
                     libxml2-dev \
                     python-dev \
@@ -17,6 +16,7 @@ RUN export BUILD_DEPS="py-pip \
                 libxml2 \
                 libxslt \
                 libffi \
+                git \
                 ${BUILD_DEPS} \
 	&& git clone https://github.com/CouchPotato/CouchPotatoServer \
 	&& cd /CouchPotatoServer \
