@@ -1,21 +1,22 @@
-FROM xataz/alpine:3.3
+FROM xataz/alpine:3.3-full
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV WEBROOT="/" UID="991" GID="991"
+ENV WEBROOT="/" \
+    UID="991" \
+    GID="991"
 
-RUN apk add --update python \
+RUN apk add -U python \
 		py-pip \
-		git \
-		supervisor && \ 
-	pip install cheetah && \
-	cd / && git clone https://github.com/SickRage/SickRage.git && \
-	apk del py-pip && rm -rf /var/cache/apk/* 
+        git
+	&& pip install cheetah \
+    && git clone https://github.com/SickRage/SickRage.git \
+	&& apk del py-pip \
+    && rm -rf /var/cache/apk/* 
 
 ADD startup /usr/bin/startup
 ADD config.ini /tmp/config.ini
-ADD supervisor.ini /etc/supervisor.d/supervisor.ini
 RUN chmod +x /usr/bin/startup
 
 VOLUME ["/config"]
 EXPOSE 8081
-CMD ["/usr/bin/startup"]
+CMD ["tini","--","/usr/bin/startup"]
