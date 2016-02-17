@@ -30,9 +30,11 @@ if [ -e /config/shares.conf ] && [ -e /config/users.conf ]; then
         setfacl -R -b ${FOLDER}
         for user in $(echo $WRITE_USERS | sed 's/,/ /g'); do
             setfacl -R -m u:$user:rwx ${FOLDER}
+            setfacl -R -m default:u:$user:rwx ${FOLDER}
         done
         for user in $(echo $READ_USERS | sed 's/,/ /g'); do
             setfacl -R -m u:$user:rx ${FOLDER}
+            setfacl -R -m default:u:$user:rx ${FOLDER}
         done
         if [ "${WRITE_USERS}" != "" ] && [ "${READ_USERS}" != "" ];then
             LIST_USERS=${WRITE_USERS},${READ_USERS}
