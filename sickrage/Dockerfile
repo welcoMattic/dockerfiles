@@ -7,7 +7,7 @@ ENV WEBROOT="/" \
 
 RUN apk add -U python \
 		py-pip \
-        git
+        git \
 	&& pip install cheetah \
     && git clone https://github.com/SickRage/SickRage.git \
 	&& apk del py-pip \
