@@ -1,4 +1,4 @@
-# Couchpotato Image
+![CouchPotato](http://couchpota.to/media/images/full.png)
 
 ## ImageLayer
 [![](https://badge.imagelayers.io/xataz/couchpotato:latest.svg)](https://imagelayers.io/?images=xataz/couchpotato:latest 'Get your own badge on imagelayers.io')
