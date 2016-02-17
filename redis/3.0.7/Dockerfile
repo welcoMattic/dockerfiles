@@ -20,7 +20,8 @@ RUN export BUILD_DEPS="wget \
 	&& cd /tmp \
 	&& tar xzf redis-${REDIS_VER}.tar.gz \
 	&& cd redis-${REDIS_VER} \
-	&& make \
+	&& NB_CORES=`grep -c "processor" /proc/cpuinfo` \
+	&& make -j ${NB_CORES} \
 	&& cp src/redis-server /usr/local/bin/redis-server \
 	&& apk del ${BUILD_DEPS} \
 	&& rm -rf /tmp/* /var/cache/apk/* \

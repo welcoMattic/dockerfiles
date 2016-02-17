@@ -1,9 +1,7 @@
-FROM xataz/alpine:3.3-tini
+FROM xataz/alpine:3.3
 MAINTAINER <https://github.com/xataz>
 
-ENV UID=991 \
-    GID=991 \
-    REDIS_VER=unstable
+ENV REDIS_VER=3.2.0-rc3
 
 EXPOSE 6379
 
@@ -22,14 +20,10 @@ RUN export BUILD_DEPS="wget \
 	&& cd redis-${REDIS_VER} \
 	&& NB_CORES=`grep -c "processor" /proc/cpuinfo` \
 	&& make -j ${NB_CORES} \
-	&& cp src/redis-server /usr/local/bin/redis-server \
+	&& cp src/redis-cli /usr/local/bin/redis-cli \
 	&& apk del ${BUILD_DEPS} \
 	&& rm -rf /tmp/* /var/cache/apk/* \
 	&& mkdir /var/lib/redis
 
-
-ADD redis.conf /var/lib/redis/redis.conf
-ADD startup /usr/bin/startup
-RUN chmod +x /usr/bin/startup
-
-CMD ["tini","--","startup"]
+ENTRYPOINT ["redis-cli"]
+CMD ["-h"]
