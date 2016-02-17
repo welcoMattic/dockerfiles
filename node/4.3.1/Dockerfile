@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
-ENV NODE_VER=v4.3.0 NPM_VER=3
+ENV NODE_VER=v4.3.1 NPM_VER=3
 
 RUN export PKGS_BUILD="git \
                 wget \
