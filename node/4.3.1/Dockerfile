@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz/>
 
 ENV NODE_VER=v4.3.1 NPM_VER=3
 
-RUN export PKGS_BUILD="git \
+RUN export BUILD_DEPS="git \
                 wget \
                 make \
                 gcc \
@@ -12,7 +12,7 @@ RUN export PKGS_BUILD="git \
                 linux-headers \
                 paxctl \
                 binutils-gold" \
-    && apk add --update libgcc libstdc++ ${PKGS_BUILD} \
+    && apk add --update libgcc libstdc++ ${BUILD_DEPS} \
     && cd /tmp \
     && wget --no-check-certificate https://nodejs.org/dist/${NODE_VER}/node-${NODE_VER}.tar.gz \
     && tar xzf node-${NODE_VER}.tar.gz \
@@ -25,7 +25,7 @@ RUN export PKGS_BUILD="git \
     && npm install -g npm@${NPM_VER} \
     && find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf \
     && cd / \
-    && apk del ${PKGS_BUILD} \
+    && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* \
         /var/cache/apk/* \
         /root/.npm \
