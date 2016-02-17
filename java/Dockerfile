@@ -13,7 +13,7 @@ RUN export BUILD_DEPS="wget \
     && wget ${GLIBC_URL}/glibc-${GLIBC_VER}.apk -O /tmp/glibc-${GLIBC_VER}.apk \
     && wget ${GLIBC_URL}/glibc-bin-${GLIBC_VER}.apk -O /tmp/glibc-bin-${GLIBC_VER}.apk \
     && apk add --allow-untrusted /tmp/glibc-${GLIBC_VER}.apk \
-                                    /tmp/glibc-i18n-${GLIBC_VER}.apk \
+                                    /tmp/glibc-bin-${GLIBC_VER}.apk \
     && /usr/glibc/usr/bin/ldconfig /lib /usr/glibc/usr/lib \
     && echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf \
     && mkdir /opt \
