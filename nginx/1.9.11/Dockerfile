@@ -10,7 +10,7 @@ RUN export BUILD_DEPS="build-base \
                     pcre-dev \
                     zlib-dev \
                     wget" \
-    && NB_CORES=`grep -c "processor" /proc/cpuinfo` \
+    && NB_CORES=$(grep -c "processor" /proc/cpuinf) \
     && apk add -U ${BUILD_DEPS} \
     && cd /tmp \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
