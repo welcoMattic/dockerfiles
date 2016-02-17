@@ -27,9 +27,10 @@ Node.js internally uses the Google V8 JavaScript engine to execute code; a large
 docker build -t xataz/node:5.6.0 github.com/xataz/dockerfiles.git#master:node/5.6.0
 ```
 
+
 ## Autobuild specification
-This image is a autobuild image, but for the autobuild works, I add compilation directive --without-snapshot.
-You can build this image without this directive, it's works on my computer.
+This is an autobuild image, but for this autobuild works, I added the compilation directive --without-snapshot.
+You can build this image without this directive, it works on my computer.
 
 ## Usage
 ### Simple run
