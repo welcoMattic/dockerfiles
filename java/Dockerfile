@@ -14,7 +14,6 @@ RUN export BUILD_DEPS="wget \
     && wget ${GLIBC_URL}/glibc-bin-${GLIBC_VER}.apk -O /tmp/glibc-bin-${GLIBC_VER}.apk \
     && apk add --allow-untrusted /tmp/glibc-${GLIBC_VER}.apk \
                                     /tmp/glibc-bin-${GLIBC_VER}.apk \
-    && /usr/glibc/usr/bin/ldconfig /lib /usr/glibc/usr/lib \
     && echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf \
     && mkdir /opt \
     && wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
