@@ -85,7 +85,9 @@ RUN export BUILD_DEPS="build-base \
     && svn checkout http://rutorrent-pausewebui.googlecode.com/svn/trunk pausewebui \
     && mv /var/www/rutorrent /var/www/torrent \
     && apk del ${BUILD_DEPS} \
-    && rm -rf /var/cache/apk/* /tmp/* 
+    && rm -rf /var/cache/apk/* /tmp/* \
+    && deluser svn \
+    && delgroup svnusers
 
 ADD rootfs /
 VOLUME /data
