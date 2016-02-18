@@ -47,7 +47,7 @@
     "rpc-enabled": true,
     "rpc-password": "{4b5a5d638fc5b55d390e548ac030eef0761c5fe0Sh0pdHXy",
     "rpc-port": 9091,
-    "rpc-url": "/torrent/",
+    "rpc-url": "<webroot>/",
     "rpc-username": "",
     "rpc-whitelist": "0.0.0.0",
     "rpc-whitelist-enabled": false,

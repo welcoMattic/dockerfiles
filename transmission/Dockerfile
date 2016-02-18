@@ -1,14 +1,16 @@
-FROM xataz/alpine:3.
-
+FROM xataz/alpine:3.3-full
 MAINTAINER xataz <https://github.com/xataz/>
 
-VOLUME ["/data"]
-ADD rootfs /
+ENV UID=991 \
+    GID=991 \
+    WEBROOT=""
 
-ENV UID=991 GID=991
+RUN apk add -U transmission-daemon \
+    && rm /var/cache/apk/*
 
-RUN chmod +x /usr/bin/startup && \
-    apk add --update transmission-daemon && \
-    rm /var/cache/apk/*
+VOLUME ["/data","/home/transmission/.config/transmission-daemon/"]
+ADD startup /usr/bin/startup
+ADD settings.json /tmp/settings.json
+RUN chmod +x /usr/bin/startup
 
-CMD ["startup"]
+CMD ["tini","--","startup"]
