@@ -39,13 +39,13 @@ docker build -t xataz/sickrage github.com/xataz/dockerfiles.git#master:sickrage
 
 ## Configuration
 ### Environments
-* WEBROOT : Choose webroot of couchpotato (default : nothing)
-* UID : Choose uid for launch couchpotato (default : 991)
-* GID : Choose gid for launch couchpotato (default : 991)
+* WEBROOT : Choose webroot of sickrage (default : nothing)
+* UID : Choose uid for launch sickrage (default : 991)
+* GID : Choose gid for launch sickrage (default : 991)
 * APIKEY : API KEY for use API (default : Random)
 
 ### Volumes
-* /config : Path where is configuration of couchpotato
+* /config : Path where is configuration of sickrage
 
 ### Ports
 * 8081 
@@ -66,4 +66,4 @@ docker run -d -p 8080:8081 \
 	-v /docker/config/SR:/config \
 	xataz/sickrage
 ```
-URI access : http://XX.XX.XX.XX:8080/cp
+URI access : http://XX.XX.XX.XX:8080/sr
