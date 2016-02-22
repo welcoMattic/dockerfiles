@@ -2,11 +2,12 @@
 
 if [ -e /config/shares.conf ] && [ -e /config/users.conf ]; then
     # Generate user
-    USERNAME=$(echo $line | cut -d: -f1)
-    PASSWORD=$(echo $line | cut -d: -f2)
-    adduser -D $USERNAME
     if [ -z $CRYPT ]; then
         for line in $(cat /config/users.conf); do
+            USERNAME=$(echo $line | cut -d: -f1)
+            PASSWORD=$(echo $line | cut -d: -f2)
+            echo "Add user $USERNAME"
+            adduser -D $USERNAME
             (echo $PASSWORD;echo $PASSWORD) | smbpasswd -s -a $USERNAME
         done
     else
@@ -14,6 +15,10 @@ if [ -e /config/shares.conf ] && [ -e /config/users.conf ]; then
         #..printf '%s' "<passwd>" | iconv -t utf16le | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
         for line in $(cat /config/users.conf); do
             # <user>:<uid>:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX:<passwd>:[U          ]:LCT-<date>:
+            USERNAME=$(echo $line | cut -d: -f1)
+            PASSWORD=$(echo $line | cut -d: -f2)
+            echo "Add user $USERNAME"
+            adduser -D $USERNAME
             DATE=$(echo "obase=16;$(date +%s)" | bc)
             UID_USER=$(grep ${USERNAME} /etc/passwd | cut -d: -f3)
             sed 's|<user>|'${USERNAME}'|;s|<uid>|'${UID_USER}'|;s|<passwd>|'${PASSWORD}'|;s|<date>|'${DATE}'|' /templates/smbpasswd.tmpl >> /var/lib/samba/private/smbpasswd
@@ -26,6 +31,7 @@ if [ -e /config/shares.conf ] && [ -e /config/users.conf ]; then
         WRITE_USERS=$(echo $line | cut -d: -f3)
         READ_USERS=$(echo $line | cut -d: -f4)
         LIST_USERS=""
+        echo "Add share $NAME_SHARE"
         mkdir -p ${FOLDER}
         setfacl -R -b ${FOLDER}
         for user in $(echo $WRITE_USERS | sed 's/,/ /g'); do
