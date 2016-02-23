@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.3-tini
+FROM xataz/alpine:3.3
 MAINTAINER <https://github.com/xataz>
 
 ENV UID=991 \

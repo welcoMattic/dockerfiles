@@ -26,4 +26,4 @@ RUN export BUILD_DEPS="wget \
 	&& mkdir /var/lib/redis
 
 ENTRYPOINT ["redis-cli"]
-CMD ["-h"]
+CMD ["--help"]
