@@ -52,7 +52,7 @@ EOF
 
 fi
 
-addgroup -g ${GID} up1 && adduser -D -h /Up1 -s /bin/sh -u ${UID} -G up1 up1
-chown -R up1:up1 /Up1
+# addgroup -g ${GID} up1 && adduser -D -h /Up1 -s /bin/sh -u ${UID} -G up1 up1
+chown -R ${UID}:${GID} /Up1
 
-su - up1 -c "/usr/bin/up1"
+gosu ${UID}:${GID} -c "/usr/bin/up1"
