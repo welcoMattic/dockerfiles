@@ -1,0 +1,34 @@
+#!/bin/sh
+
+addgroup -g ${GID} web && adduser -H -s /bin/sh -D -G web -u ${UID} web
+
+mkdir -p /sites-enabled
+
+if [ "$(ls /sites-enabled)" == "" ];then
+    echo "
+    server {
+	listen 8080;
+	    root /var/www/html;
+        index index.html;
+    }
+    " > /sites-enabled/default.conf
+fi
+
+if [ ! -e /var/www/html/index.php ];then
+mkdir -p /var/www/html
+echo "
+    <!DOCTYPE html>
+    <head><title>Alpine Docker and Nginx</title></head>
+    <h1>Nginx v${NGINX_VER}</h1>
+    <p>
+	Nginx running inside a $(du -m / | sort -n | tail -1 | awk '{print $1}')MB Alpine Docker Container.<br>
+    </p>
+" > /var/www/html/index.html
+fi
+
+
+mkdir -p /var/www/html
+chown -R web:web /var/www
+chown -R web:web /etc/nginx
+
+gosu web:web nginx -g 'daemon off;'
