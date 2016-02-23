@@ -5,8 +5,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 ENV GOSU_VER=1.7
 
-RUN echo "@community http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories \
-    && echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
+RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
     && apk add -U tini@community \
     && rm -rf /var/cache/apk/*
 
