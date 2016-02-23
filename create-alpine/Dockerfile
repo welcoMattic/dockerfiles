@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.3
+FROM alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV ALPINE_VERSION=v3.3
