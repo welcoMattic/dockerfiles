@@ -35,8 +35,8 @@ docker build -t xataz/nginx github.com/xataz/dockerfiles.git#master:nginx/1.9.10
 ### Advanced launch
 ```shell
 docker run -d \
-	-p 80:80 \
-	-p 443:443 \
+	-p 80:8080 \
+	-p 443:8443 \
 	-v /docker/config/nginx/www:/www \
 	-v /docker/config/nginx/sites-enabled:/sites-enabled \
 	xataz/nginx:1.9.11

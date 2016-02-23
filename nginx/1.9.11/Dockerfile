@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-# ARG NGINX_VER=1.9.11
+# ARG NGINX_VER=1.8.1
 # ARG BUILD_CORES
 
 ENV UID=991 \
@@ -25,10 +25,10 @@ RUN export BUILD_DEPS="build-base \
             --with-http_gzip_static_module \
             --with-http_stub_status_module \
             --prefix=/etc/nginx \
-            --http-log-path=/var/log/nginx/access.log \
-            --error-log-path=/var/log/nginx/error.log \
+            --http-log-path=/tmp/nginx_access.log \
+            --error-log-path=/tmp/nginx_error.log \
             --sbin-path=/usr/local/sbin/nginx \
-	    --user=www-data --group=www-data \
+            --user=web --group=web \
     && make -j ${NB_CORES} \
     && make install \
     && apk del ${BUILD_DEPS} \
@@ -37,8 +37,6 @@ RUN export BUILD_DEPS="build-base \
 
 ADD startup /usr/bin/startup
 ADD nginx.conf /etc/nginx/conf/nginx.conf
-ADD exemple.conf /sites-enabled/exemple.conf
-ADD index.html /var/www/html/index.html
 
 RUN chmod +x /usr/bin/startup
 
