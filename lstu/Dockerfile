@@ -1,7 +1,12 @@
 FROM debian:jessie
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV GID=991 UID=991 SECRET=f6056062888a9a6aff1cc89dd3397853 CONTACT=contact@domain.tld WEBROOT=/ ADMINPWD="s3cr3T"
+ENV GID=991 \
+    UID=991 \
+    SECRET=f6056062888a9a6aff1cc89dd3397853 \
+    CONTACT=contact@domain.tld \
+    WEBROOT=/ \
+    ADMINPWD="s3cr3T"
 
 RUN apt-get update && apt-get upgrade \
     && BUILD_DEPS="make gcc ca-certificates git libssl-dev" \
