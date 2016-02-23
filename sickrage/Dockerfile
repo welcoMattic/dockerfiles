@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.3-full
+FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV WEBROOT="/" \
@@ -6,11 +6,11 @@ ENV WEBROOT="/" \
     GID="991"
 
 RUN apk add -U python \
-		py-pip \
-        git \
-	&& pip install cheetah \
+                py-pip \
+                git \
+    && pip install cheetah \
     && git clone https://github.com/SickRage/SickRage.git \
-	&& apk del py-pip \
+    && apk del py-pip \
     && rm -rf /var/cache/apk/* 
 
 ADD startup /usr/bin/startup
