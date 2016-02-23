@@ -1,7 +1,12 @@
 FROM debian:jessie
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV GID=991 UID=991 CONTACT=contact@domain.tld WEBROOT=/ SECRET=e7c0b28877f7479fe6711720475dcbbd MAX_FILE_SIZE=10000000000
+ENV GID=991 \
+    UID=991 \
+    CONTACT=contact@domain.tld \
+    WEBROOT=/ \
+    SECRET=e7c0b28877f7479fe6711720475dcbbd \
+    MAX_FILE_SIZE=10000000000
 
 RUN apt-get update && apt-get upgrade \
     && BUILD_DEPS="make gcc ca-certificates libssl-dev git" \
