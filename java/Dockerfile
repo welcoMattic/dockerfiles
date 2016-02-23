@@ -5,7 +5,7 @@ ENV JAVA_HOME=/opt/jre \
     JAVA_VERSION=8u74-b02 \
     FOLDER_TMP=jre1.8.0_74 \
     GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased \
-    GLIBC_VER=2.22-r8
+    GLIBC_VER=2.23-r1
 
 RUN export BUILD_DEPS="wget \
 			ca-certificates" \
