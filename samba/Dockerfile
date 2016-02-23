@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.3-tini
+FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
 EXPOSE 137 138 139 445
