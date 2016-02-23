@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.3-full
+FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
 ENV UID=991 \
