@@ -1,7 +1,30 @@
 #!/bin/sh
 
-addgroup -g ${GID} www-data && adduser -H -s /bin/sh -D -G www-data -u ${UID} www-data
+addgroup -g ${GID} nginx && adduser -H -s /bin/sh -D -G nginx -u ${UID} nginx
 
-chown -R www-data:www-data /www
+if [ $(ls /sites-enabled) == "" ];then
+    echo "
+    server {
+	listen 8080;
+	root /var/www/html;
+    }
+    " > /sites-enabled/default.conf
 
-nginx -g 'daemon off;'
+echo "
+    <!DOCTYPE html>
+    <head><title>Alpine Docker and Nginx</title></head>
+    <h1>$(nginx -v)</h1>
+    <p>
+	Nginx running inside a $(du -m / | sort -n | tail -1 | awk '{print $1}')MB Alpine Docker Container.
+
+	Nginx running with nginx user :
+	$(ps aux)
+    </p>
+" > /var/www/html/index.html
+fi
+
+
+mkdir -p /var/www/html
+chown -R nginx:nginx /var/www
+
+gosu nginx:nginx nginx -g 'daemon off;'

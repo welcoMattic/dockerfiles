@@ -36,11 +36,12 @@ RUN export BUILD_DEPS="build-base \
 
 ADD startup /usr/bin/startup
 ADD nginx.conf /etc/nginx/conf/nginx.conf
+ADD exemple.conf /sites-enabled/exemple.conf
+ADD index.html /var/www/html/index.html
 
 RUN chmod +x /usr/bin/startup
 
 EXPOSE 8080 8443
-VOLUME /sites-enabled /conf.d /ssl
 
 CMD ["tini","--","/usr/bin/startup"]
 	
