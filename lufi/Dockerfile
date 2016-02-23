@@ -1,7 +1,12 @@
 FROM debian:jessie
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV GID=991 UID=991 SECRET=0423bab3aea2d87d5eedd9a4e8173618 CONTACT=contact@domain.tld MAX_FILE_SIZE=1000000000 WEBROOT=/
+ENV GID=991 \
+    UID=991 \
+    SECRET=0423bab3aea2d87d5eedd9a4e8173618 \
+    CONTACT=contact@domain.tld \
+    MAX_FILE_SIZE=1000000000 \
+    WEBROOT=/
 
 RUN apt-get update && apt-get upgrade \
     && BUILD_DEPS="build-essential ca-certificates git" \
