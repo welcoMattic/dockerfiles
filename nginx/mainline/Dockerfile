@@ -1,12 +1,12 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-# ARG NGINX_VER=1.8.1
+# ARG NGINX_VER=1.9.12
 # ARG BUILD_CORES
 
 ENV UID=991 \
     GID=991 \
-    NGINX_VER=1.9.11
+    NGINX_VER=1.9.12
 
 RUN export BUILD_DEPS="build-base \
                     openssl-dev \
