@@ -7,7 +7,7 @@ ENV GID=991 \
     APIKEY="" \
     DELETEKEY=""
 
-RUN apk add -U go@community \
+RUN apk add -U go \
                 git \
 	&& cd / \
 	&& git clone https://github.com/xataz/Up1 \
