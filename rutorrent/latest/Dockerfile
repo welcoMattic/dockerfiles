@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 ENV UID=991 \
     GID=991 \
-    MEDIAINFO_VER=0.7.81 \
+    MEDIAINFO_VER=0.7.82 \
     WEBROOT=/ \
     RTORRENT_VER=0.9.6 \
     LIBTORRENT_VER=0.13.6 \
