@@ -1,8 +1,10 @@
 #!/bin/sh
 
-gosu ${UID}:${GID} sh -c "export GOROOT=/usr/local/go; \
-export PATH=${PATH}:${GOROOT}/bin; \
-export GOPATH=/app/src; \
-export GOBIN=${GOPATH}/bin; \
-cd /app/src; \
-go ${@}"
+WORKDIR=$(pwd)
+
+gosu ${UID}:${GID} sh -c "export GOROOT=/usr/local/go \
+&& export PATH=${PATH}:${GOROOT}/bin \
+&& export GOPATH=${WORKDIR} \
+&& export GOBIN=${GOPATH}/bin \
+&& cd ${WORKDIR} \
+&& /usr/local/go/bin/go ${@}"
