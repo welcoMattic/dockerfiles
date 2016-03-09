@@ -1,11 +1,11 @@
 FROM alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
-# ARG NODE_VER=v5.6.0 
+# ARG NODE_VER=v4.4.0 
 # ARG NPM_VER=3
 # ARG CORES_BUILD
 
-ENV NODE_VER=v5.7.0 \
+ENV NODE_VER=v4.4.0 \
     NPM_VER=3
 
 RUN export BUILD_DEPS="git \

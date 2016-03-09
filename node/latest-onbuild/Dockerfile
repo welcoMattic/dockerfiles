@@ -1,4 +1,4 @@
-FROM xataz/node:5.7.0
+FROM xataz/node:latest
 MAINTAINER xataz <https://github.com/xataz/>
 
 RUN mkdir -p /usr/src/app
