@@ -1,7 +1,11 @@
 FROM xataz/rutorrent
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV UID=991 GID=991 MEDIAINFO_VER=0.7.81 FILEBOT_VER=4.6.1 WEBROOT=/
+ENV UID=991 \
+    GID=991 \
+    FILEBOT_VER=4.6.1 \
+    WEBROOT=/ \
+    PORT_RTORRENT=45000
 
 RUN apk add -U openjdk8-jre \
     && mkdir /filebot \

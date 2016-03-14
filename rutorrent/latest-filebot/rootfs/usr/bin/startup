@@ -19,6 +19,7 @@ else
     sed -i 's|<webroot>|/|g' /sites/rutorrent.conf
     sed -i 's|<folder>|/torrent|g' /sites/rutorrent.conf
 fi
+sed -i 's|<PORT_RTORRENT>|'$PORT_RTORRENT'|g' /home/torrent/.rtorrent.rc
 
 chown -R torrent:torrent /data
 chown -R torrent:torrent /var/www 

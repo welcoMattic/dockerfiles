@@ -1,13 +1,15 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
+ARG BUILD_CORES
+
 ENV UID=991 \
     GID=991 \
     MEDIAINFO_VER=0.7.82 \
     WEBROOT=/ \
     RTORRENT_VER=0.9.6 \
     LIBTORRENT_VER=0.13.6 \
-    PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+    PORT_RTORRENT=45000
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -46,7 +48,7 @@ RUN export BUILD_DEPS="build-base \
     && tar xzf MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && tar xzvf mktorrent-1.0.tar.gz \
     && cd /tmp/mktorrent-1.0 \
-    && make -j ${NB_CORES} \
+    && make -j ${BUILD_CORES-NB_CORES} \
     && make install \
     && cd  /tmp/MediaInfo_DLL_GNU_FromSource \
     && ./SO_Compile.sh \
