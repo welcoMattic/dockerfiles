@@ -6,6 +6,10 @@ addgroup -g ${GID} torrent && adduser -h /home/torrent -s /bin/sh -G torrent -D 
 mkdir -p /data/torrents
 mkdir -p /data/.watch
 mkdir -p /data/.session
+mkdir -p /var/www/torrent/share/settings
+mkdir -p /var/www/torrent/share/torrents
+mkdir -p /var/www/torrent/share/users
+
 
 if [ $WEBROOT != "/" ]; then
     sed -i 's|<webroot>|'${WEBROOT}'|g' /sites/rutorrent.conf
