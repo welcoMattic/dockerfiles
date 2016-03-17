@@ -9,7 +9,8 @@ ENV UID=991 \
     WEBROOT=/ \
     RTORRENT_VER=0.9.6 \
     LIBTORRENT_VER=0.13.6 \
-    PORT_RTORRENT=45000
+    PORT_RTORRENT=45000 \
+    PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -22,7 +23,6 @@ RUN export BUILD_DEPS="build-base \
                         openssl-dev \
                         ncurses-dev \
                         curl-dev" \
-    && export NB_CORES=$(grep -c "processor" /proc/cpuinfo) \
     && apk add -U ${BUILD_DEPS} \
                 ffmpeg \
                 ca-certificates \
@@ -35,10 +35,8 @@ RUN export BUILD_DEPS="build-base \
                 unrar \
                 supervisor \
                 geoip \
-    && cd /tmp \
-    && wget http://downloads.sourceforge.net/mktorrent/mktorrent-1.0.tar.gz \
-    && tar xzvf mktorrent-1.0.tar.gz \
-    && cd /tmp \
+    && cd /tmp \ 
+    && git clone https://github.com/esmil/mktorrent \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
     && git clone https://github.com/rakshasa/libtorrent.git \
     && git clone https://github.com/rakshasa/rtorrent.git \
@@ -46,9 +44,8 @@ RUN export BUILD_DEPS="build-base \
     && wget http://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VER}/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && tar xzf MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && tar xzf MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
-    && tar xzvf mktorrent-1.0.tar.gz \
-    && cd /tmp/mktorrent-1.0 \
-    && make -j ${BUILD_CORES-NB_CORES} \
+    && cd /tmp/mktorrent \
+    && make -j ${BUILD_CORES-`grep -c "processor" /proc/cpuinfo`} \
     && make install \
     && cd  /tmp/MediaInfo_DLL_GNU_FromSource \
     && ./SO_Compile.sh \
@@ -68,13 +65,13 @@ RUN export BUILD_DEPS="build-base \
     && git checkout ${LIBTORRENT_VER} \    
     && ./autogen.sh \
     && ./configure \
-    && make -j ${NB_CORES} \
+    && make -j ${BUILD_CORES-`grep -c "processor" /proc/cpuinfo`} \
     && make install \
     && cd /tmp/rtorrent \
     && git checkout ${RTORRENT_VER} \
     && ./autogen.sh \
     && ./configure --with-xmlrpc-c \
-    && make -j ${NB_CORES} \
+    && make -j ${BUILD_CORES-`grep -c "processor" /proc/cpuinfo`} \
     && make install \
     && mkdir -p /var/www \
     && cd /var/www \
@@ -85,6 +82,10 @@ RUN export BUILD_DEPS="build-base \
     && git clone https://github.com/xombiemp/rutorrentMobile.git mobile \
     && cd /var/www/rutorrent/plugins/ \
     && svn checkout http://rutorrent-pausewebui.googlecode.com/svn/trunk pausewebui \
+    && cd /var/www/rutorrent/plugins/theme/themes \
+    && wget https://raw.githubusercontent.com/Swizards/QuickBox/master/plugins/rutorrent-quickbox-dark.zip \
+    && unzip rutorrent-quickbox-dark.zip \
+    && rm -rf rutorrent-quickbox-dark.zip \
     && mv /var/www/rutorrent /var/www/torrent \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/* \
@@ -92,8 +93,8 @@ RUN export BUILD_DEPS="build-base \
     && delgroup svnusers
 
 ADD rootfs /
-VOLUME /data
-EXPOSE 80
+VOLUME /data /var/www/torrent/share/
+EXPOSE 8080
 RUN chmod +x /usr/bin/startup
 
 CMD ["tini","--","/usr/bin/startup"]
