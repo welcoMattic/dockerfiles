@@ -40,18 +40,18 @@ docker build -t xataz/rutorrent github.com/xataz/dockerfiles.git#master:rutorren
 * /data/Media : If filebot version, rtorrent create a symlink 
 
 ### Ports
-* 80
+* 8080
 
 ## Usage
 ### Simple launch
 ```shell
-docker run -d -p 80:80 xataz/rutorrent
+docker run -d -p 8080:8080 xataz/rutorrent
 ```
-URI access : http://XX.XX.XX.XX
+URI access : http://XX.XX.XX.XX:8080
 
 ### Advanced launch
 ```shell
-docker run -d -p 80:80 \
+docker run -d -p 80:8080 \
 	-v /docker/data:/data \ 
 	-e UID=1001 \
 	-e GID=1001 \
