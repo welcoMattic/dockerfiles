@@ -1,0 +1,6 @@
+#!/bin/sh
+
+addgroup -g ${GID} bower && adduser -h /usr/app/src -s /bin/sh -G bower -D -u ${UID} bower
+chown -R bower:bower /usr/app/src
+
+gosu bower:bower bower $@
