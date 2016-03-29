@@ -37,5 +37,5 @@ alias compose='docker run -it --rm \
         -w $(workdir) \
         -e UID=$(id -u) \
         -e GID=991 \
-        xataz/compose:1.6.2 up -d
+        xataz/compose:1.6.2'
 ```
