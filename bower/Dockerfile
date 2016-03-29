@@ -16,3 +16,4 @@ COPY entrypoint /usr/bin/entrypoint
 RUN chmod +x /usr/bin/entrypoint
 
 ENTRYPOINT ["entrypoint"]
+CMD ["-v"]
