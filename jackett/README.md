@@ -4,7 +4,7 @@
 [![](https://badge.imagelayers.io/xataz/jackett:latest.svg)](https://imagelayers.io/?images=xataz/jackett:latest 'Get your own badge on imagelayers.io')
 
 ## Tag available
-* latest, 0.7.184 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/jackett/Dockerfile)
+* latest, 0.7.200 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/jackett/Dockerfile)
 
 ## Description
 What is [jackett](https://github.com/Jackett/Jackett) ?

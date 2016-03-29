@@ -1,7 +1,10 @@
 FROM xataz/mono
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV JACKETT_VER=0.7.184 UID=991 GID=991
+ARG JACKETT_VER=0.7.200
+
+ENV UID=991 \
+    GID=991
 
 RUN apk add -U curl-dev \
 	&& mkdir -p /opt \
