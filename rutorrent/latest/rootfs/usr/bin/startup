@@ -14,7 +14,9 @@ mkdir -p /var/www/torrent/share/users
 if [ $WEBROOT != "/" ]; then
     sed -i 's|<webroot>|'${WEBROOT}'|g' /sites/rutorrent.conf
     sed -i 's|<folder>||g' /sites/rutorrent.conf
-    mv /var/www/torrent /var/www${WEBROOT}
+    if [ $WEBROOT != "/torrent" ]; then
+        mv /var/www/torrent /var/www${WEBROOT}
+    fi
 else
     sed -i 's|<webroot>|/|g' /sites/rutorrent.conf
     sed -i 's|<folder>|/torrent|g' /sites/rutorrent.conf
