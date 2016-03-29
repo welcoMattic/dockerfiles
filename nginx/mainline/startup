@@ -19,7 +19,7 @@ mkdir -p /var/www/html
 echo "
     <!DOCTYPE html>
     <head><title>Alpine Docker and Nginx</title></head>
-    <h1>Nginx v${NGINX_VER}</h1>
+    <h1>Nginx $(nginx -v)</h1>
     <p>
 	Nginx running inside a $(du -m / | sort -n | tail -1 | awk '{print $1}')MB Alpine Docker Container.<br>
     </p>
