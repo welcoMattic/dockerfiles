@@ -1,7 +1,7 @@
 FROM xataz/mono
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG JACKETT_VER=0.7.200
+ARG JACKETT_VER=0.7.211
 
 ENV UID=991 \
     GID=991
