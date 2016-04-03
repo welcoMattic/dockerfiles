@@ -1,0 +1,20 @@
+set daemon 120
+
+set httpd port 2812
+    allow monit:monit
+
+set alert mail@gmail.com
+
+set logfile /var/log/monit.log
+set pidfile /var/run/monit.pid
+
+set eventqueue
+    basedir /var/lib/monit/events
+    slots 100
+
+set mail-format {
+    from: monit@$HOST
+    subject: monit alert --  $EVENT $SERVICE
+}
+
+include /etc/monit/conf.d/*
