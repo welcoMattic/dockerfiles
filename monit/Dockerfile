@@ -9,8 +9,11 @@ RUN export BUILD_DEPS="wget \
                     build-base \
                     linux-pam-dev \
                     openssl-dev" \
+    && echo "@comuedge http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories \
     && apk add -U ${BUILD_DEPS} \
                     linux-pam \
+                    docker@comuedge \
+                    bash \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && cd /tmp \
     && wget --no-check-certificate https://mmonit.com/monit/dist/monit-${MONIT_VER}.tar.gz \
@@ -22,6 +25,9 @@ RUN export BUILD_DEPS="wget \
     && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* /var/cache/apk/*
     
-COPY rootfs /
+COPY monitrc /etc/monit/monitrc
+COPY check_container /opt/check_container
+RUN chmod 700 /etc/monit/monitrc \
+    && chmod +x /opt/check_container
 
 CMD ["tini", "--", "/usr/local/bin/monit", "-I", "-c", "/etc/monit/monitrc"]
