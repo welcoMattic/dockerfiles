@@ -1,9 +1,10 @@
 FROM xataz/rutorrent
 MAINTAINER xataz <https://github.com/xataz>
 
+ARG FILEBOT_VER=4.6.1
+
 ENV UID=991 \
     GID=991 \
-    FILEBOT_VER=4.6.1 \
     WEBROOT=/ \
     PORT_RTORRENT=45000
 

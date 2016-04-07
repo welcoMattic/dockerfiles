@@ -2,13 +2,13 @@ FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
+ARG MEDIAINFO_VER=0.7.82
+ARG RTORRENT_VER=0.9.6
+ARG LIBTORRENT_VER=0.13.6
 
 ENV UID=991 \
     GID=991 \
-    MEDIAINFO_VER=0.7.82 \
     WEBROOT=/ \
-    RTORRENT_VER=0.9.6 \
-    LIBTORRENT_VER=0.13.6 \
     PORT_RTORRENT=45000 \
     PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
