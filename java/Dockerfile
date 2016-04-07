@@ -1,11 +1,12 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
+ARG JAVA_VERSION=8u77-b03
+ARG GLIBC_VER=2.23-r1
+
 ENV JAVA_HOME=/opt/jre \
-    JAVA_VERSION=8u77-b03 \
     FOLDER_TMP=jre1.8.0_77 \
-    GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased \
-    GLIBC_VER=2.23-r1
+    GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased 
 
 RUN export BUILD_DEPS="wget \
 			ca-certificates" \
