@@ -1,8 +1,9 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased \
-    GLIBC_VER=2.23-r1 
+ARG GLIBC_VER=2.23-r1
+
+ENV GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased 
 
 RUN export BUILD_DEPS="tar \
                     xz \
