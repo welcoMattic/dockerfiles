@@ -2,8 +2,8 @@ FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
 ENV JAVA_HOME=/opt/jre \
-    JAVA_VERSION=8u74-b02 \
-    FOLDER_TMP=jre1.8.0_74 \
+    JAVA_VERSION=8u77-b03 \
+    FOLDER_TMP=jre1.8.0_77 \
     GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased \
     GLIBC_VER=2.23-r1
 
