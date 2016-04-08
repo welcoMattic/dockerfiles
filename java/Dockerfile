@@ -11,13 +11,13 @@ ENV JAVA_HOME=/opt/jre \
 RUN export BUILD_DEPS="wget \
 			ca-certificates" \
     && apk add -U ${BUILD_DEPS} \
-    && wget --no-check-certificate ${GLIBC_URL}/glibc-${GLIBC_VER}.apk -O /tmp/glibc-${GLIBC_VER}.apk \
-    && wget --no-check-certificate ${GLIBC_URL}/glibc-bin-${GLIBC_VER}.apk -O /tmp/glibc-bin-${GLIBC_VER}.apk \
+    && wget ${GLIBC_URL}/glibc-${GLIBC_VER}.apk -O /tmp/glibc-${GLIBC_VER}.apk \
+    && wget ${GLIBC_URL}/glibc-bin-${GLIBC_VER}.apk -O /tmp/glibc-bin-${GLIBC_VER}.apk \
     && apk add --allow-untrusted /tmp/glibc-${GLIBC_VER}.apk \
                                     /tmp/glibc-bin-${GLIBC_VER}.apk \
     && echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf \
     && mkdir /opt \
-    && wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+    && wget --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
 	http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}/jre-$(echo ${JAVA_VERSION} | cut -d- -f1)-linux-x64.tar.gz -O /tmp/jre.tgz \
     && cd /opt \
     && tar zxvf /tmp/jre.tgz \

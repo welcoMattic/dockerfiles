@@ -16,7 +16,7 @@ RUN export BUILD_DEPS="wget \
                     bash \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && cd /tmp \
-    && wget --no-check-certificate https://mmonit.com/monit/dist/monit-${MONIT_VER}.tar.gz \
+    && wget https://mmonit.com/monit/dist/monit-${MONIT_VER}.tar.gz \
     && tar xzf monit-${MONIT_VER}.tar.gz \
     && cd /tmp/monit-${MONIT_VER} \
     && ./configure \

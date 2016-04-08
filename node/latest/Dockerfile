@@ -16,7 +16,7 @@ RUN export BUILD_DEPS="git \
                 binutils-gold" \
     && apk add --update libgcc libstdc++ ${BUILD_DEPS} \
     && cd /tmp \
-    && wget --no-check-certificate https://nodejs.org/dist/${NODE_VER}/node-${NODE_VER}.tar.gz \
+    && wget https://nodejs.org/dist/${NODE_VER}/node-${NODE_VER}.tar.gz \
     && tar xzf node-${NODE_VER}.tar.gz \
     && cd /tmp/node-${NODE_VER} \
     && NB_CORES=${CORES_BUILD-$(grep -c "processor" /proc/cpuinfo)} \

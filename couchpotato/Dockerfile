@@ -18,10 +18,10 @@ RUN export BUILD_DEPS="py-pip \
                 libffi \
                 git \
                 ${BUILD_DEPS} \
-	&& git clone https://github.com/CouchPotato/CouchPotatoServer \
-	&& cd /CouchPotatoServer \
+    && git clone https://github.com/CouchPotato/CouchPotatoServer \
+    && cd /CouchPotatoServer \
     && pip install lxml pyopenssl \
-	&& apk del ${BUILD_DEPS} \
+    && apk del ${BUILD_DEPS} \
     && rm -fr /var/cache/apk/*
 
 VOLUME ["/config"]

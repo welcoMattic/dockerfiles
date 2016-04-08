@@ -11,12 +11,12 @@ RUN echo "@testing http://dl-3.alpinelinux.org/alpine/edge/testing" >> /etc/apk/
 	            ffmpeg \
 	            unzip \
 	            supervisor \
-	&& mkdir /embyServer \
+    && mkdir /embyServer \
     && mkdir /embyData \
     && cd /embyServer \
     && wget https://github.com/MediaBrowser/Emby.Releases/raw/master/Server/Emby.Mono.zip \
-	&& unzip Emby.Mono.zip \
-	&& apk del unzip \
+    && unzip Emby.Mono.zip \
+    && apk del unzip \
     && rm -rf /var/cache/apk/* \
     && rm -f Emby.Mono.zip
 
