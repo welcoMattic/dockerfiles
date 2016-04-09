@@ -4,8 +4,8 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG GO_URL=https://storage.googleapis.com/golang
 ARG GO_VER=1.6
 
-RUN UID=991 \
-    GID=991 \
+ENV UID=991 \
+    GID=991 
 
 RUN BUILD_DEPS="wget \
                 tar \
