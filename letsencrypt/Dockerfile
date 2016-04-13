@@ -19,7 +19,7 @@ RUN export BUILD_DEPS="git \
     && git clone https://github.com/letsencrypt/letsencrypt /letsencrypt/src \
     && /letsencrypt/src/letsencrypt-auto-source/letsencrypt-auto --os-packages-only \
     && virtualenv --no-site-packages -p python2 /letsencrypt/venv \
-    && sed -i '/^BIO \*BIO_new_mem_buf(const void \*buf, int len);/ d' /usr/include/openssl/bio.h \
+#    && sed -i '/^BIO \*BIO_new_mem_buf(const void \*buf, int len);/ d' /usr/include/openssl/bio.h \
     && /letsencrypt/venv/bin/pip install \
                 -e /letsencrypt/src/acme \
                 -e /letsencrypt/src \
