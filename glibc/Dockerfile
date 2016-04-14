@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG GLIBC_VER=2.23-r1
 ARG GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased
 
+LABEL description="Glibc image based on alpine" \
+      build_ver="2016041401"
+
 RUN BUILD_DEPS="wget \
             ca-certificates" \
     && apk add -U ${BUILD_DEPS} \
