@@ -5,6 +5,7 @@ RUN export BUILD_DEPS="wget \
                     ca-certificates \
 		    tar" \
     && apk add -U git \
+                bash \
                 ${BUILD_DEPS} \
     && wget https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz -O /tmp/docker.tgz \
     && tar xzvf /tmp/docker.tgz -C /tmp \
