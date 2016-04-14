@@ -2,7 +2,7 @@ FROM xataz/glibc:2.23
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG GO_URL=https://storage.googleapis.com/golang
-ARG GO_VER=1.6
+ARG GO_VER=1.6.1
 
 ENV UID=991 \
     GID=991 

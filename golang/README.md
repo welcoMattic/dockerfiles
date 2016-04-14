@@ -4,7 +4,7 @@
 * latest [![](https://badge.imagelayers.io/xataz/golang:latest.svg)](https://imagelayers.io/?images=xataz/golang:latest 'Get your own badge on imagelayers.io')
 
 ## Tag available
-* 1.6, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
+* 1.6.1, 1.6, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
 
 ## Description
 What is [Golang](https://golang.org/) ?
