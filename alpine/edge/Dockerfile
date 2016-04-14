@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG GOSU_VER=1.7
 ARG TINI_VER=0.9.0
 
+LABEL description="Nginx image with GOSU and TINI" \
+      build_ver="2016041401"
+
 RUN export BUILD_DEPS="wget \
                     build-base \
                     ca-certificates \
