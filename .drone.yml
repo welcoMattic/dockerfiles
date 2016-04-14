@@ -1,4 +1,6 @@
 build:
-  image: looztra/alpine-docker-client
+  image: xataz/drone-docker
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
   commands:
     - ./test.sh
