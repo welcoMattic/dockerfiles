@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
-ARG NODE_VER=v4.4.2 
+ARG NODE_VER=v4.4.3 
 ARG NPM_VER=3
 ARG CORES_BUILD
 

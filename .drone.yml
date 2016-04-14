@@ -1,0 +1,4 @@
+build:
+  image: looztra/alpine-docker-client
+  commands:
+    - ./test.sh
