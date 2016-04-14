@@ -10,6 +10,7 @@ RUN export BUILD_DEPS="wget \
     && tar xzvf /tmp/docker.tgz -C /tmp \
     && mv /tmp/docker/docker /usr/bin/docker \
     && chmod +x /usr/bin/docker \
+    && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/* 
    
 
