@@ -5,4 +5,4 @@ build:
   commands:
     - ls -l
     - pwd
-    - ./test.sh
+    - $(pwd)/test.sh
