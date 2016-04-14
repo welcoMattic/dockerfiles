@@ -1,5 +1,5 @@
 build:
-  image: xataz/drone-docker
+  image: xataz/drone-docker:1.10.3
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   commands:
