@@ -69,9 +69,9 @@ build_image() {
     fi
 
     for tag in $tags_list; do
-        docker build -t ${image_name}:${tag} ${image_dir}
+        docker build -t ${VALIDATE_USER}/${image_name}:${tag} ${image_dir}
         echo "                       ---                                   "
-        echo "Successfully built ${image_name}:${tag} with context ${image_dir}"
+        echo "Successfully built ${VALIDATE_USER}/${image_name}:${tag} with context ${image_dir}"
         echo "                       ---                                   "
     done
 }
