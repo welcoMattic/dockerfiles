@@ -59,6 +59,9 @@ build_image() {
 
     for tag in $tags_list; do
         docker build -t ${image_name}:${image_tag} ${image_dir}
+        echo "                       ---                                   "
+        echo "Successfully built ${image_name}:${image_tag} with context ${image_dir}"
+        echo "                       ---                                   "
     done
 }
 
@@ -75,8 +78,4 @@ for f in "${files[@]}"; do
 
     deps_pull $(grep 'FROM' ${build_dir}/Dockerfile | awk '{print $2}')
     build_image ${base} ${build_dir}
-
-	echo "                       ---                                   "
-	echo "Successfully built ${base}:${suite} with context ${build_dir}"
-	echo "                       ---                                   "
 done
