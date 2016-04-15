@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # this is kind of an expensive check, so let's not do this twice if we
 # are running more than one validate bundlescript
 VALIDATE_REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
@@ -26,25 +25,32 @@ validate_diff() {
 deps_pull() {
     image=$1
     # alpine/3.3/.tags:3.3 latest
+    images_list=""
+    image_path=${build_dir}
 
+    while true; do
+        image=$(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
+        if [[ $image == ${VALIDATE_USER}* ]];then
+            image_name=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\2|g')
+            image_tag=${latest-$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\3|g')}
+            [ $image_name == $image_tag ] && $image_tag='latest'
+            image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | cut -d: -f1))
+            images_list="${image_name}|${image_tag}|${image_path} "${images_list}
+        else
+            image_name=$(echo $image | sed 's|\(.*\):\(.*\)|\1|g')
+            image_tag=$(echo $image | sed 's|\(.*\):\(.*\)|\2|g')
+            docker pull ${image_name}:${image_tag}
+            break
+        fi
+    done
 
-    if [[ $image == ${VALIDATE_USER}* ]];then
-        local image_name=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\2|g')
-        local image_tag=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\3|g')
-        local image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | cut -d: -f1))
-    else
-        local image_name=$(echo $image | sed 's|\(.*\):\(.*\)|\1|g')
-        local image_tag=$(echo $image | sed 's|\(.*\):\(.*\)|\2|g')
-    fi
+    for f in "${images_list[@]}"; do
+        f_name=${VALIDATE_USER}/$(echo $f | cut -d"|" -f1)
+        f_tag=$(echo $f | cut -d"|" -f2)
+        f_path=$(echo $f | cut -d"|" -f3)
+        build_image ${f_name} ${f_path}
+    done 
 
-    if [ -z $image_path ];then
-        echo "Pull deps ${image_name}:${image_tag}"
-        docker pull ${image_name}:${image_tag}
-    else
-        deps_pull $(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
-        echo "Build deps ${VALIDATE_USER}/${image_name}:${image_tag}"
-        docker build -t ${VALIDATE_USER}/${image_name}:${image_tag} ${image_path}
-    fi
 }
 
 build_image() {
@@ -58,9 +64,9 @@ build_image() {
     fi
 
     for tag in $tags_list; do
-        docker build -t ${image_name}:${image_tag} ${image_dir}
+        docker build -t ${image_name}:${tag} ${image_dir}
         echo "                       ---                                   "
-        echo "Successfully built ${image_name}:${image_tag} with context ${image_dir}"
+        echo "Successfully built ${image_name}:${tag} with context ${image_dir}"
         echo "                       ---                                   "
     done
 }
@@ -70,14 +76,12 @@ IFS=$'\n'
 files=( $(validate_diff --name-only -- '*Dockerfile') )
 unset IFS
 
-echo "${files[@]}"
-
 # build the changed dockerfiles
 for f in "${files[@]}"; do
 	image=${f%Dockerfile}
 	base=${image%%\/*}
 	build_dir=$(dirname $f)
 
-    deps_pull $(grep 'FROM' ${build_dir}/Dockerfile | awk '{print $2}')
+    deps_pull ${base}
     build_image ${base} ${build_dir}
 done
