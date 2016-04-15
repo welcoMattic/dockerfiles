@@ -38,11 +38,11 @@ deps_pull() {
     fi
 
     if [ -z $image_path ];then
-        echo "Pull deps $image_name"
-        docker pull ${image_name}
+        echo "Pull deps ${image_name}:${image_tag}"
+        docker pull ${image_name}:${image_tag}
     else
         deps_pull $(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
-        echo "Build deps $image_name"
+        echo "Build deps ${VALIDATE_USER}/${image_name}:${image_tag}"
         docker build -t ${VALIDATE_USER}/${image_name}:${image_tag} ${image_path}
     fi
 }
