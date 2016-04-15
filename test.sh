@@ -70,6 +70,8 @@ IFS=$'\n'
 files=( $(validate_diff --name-only -- '*Dockerfile') )
 unset IFS
 
+echo "${files[@]}"
+
 # build the changed dockerfiles
 for f in "${files[@]}"; do
 	image=${f%Dockerfile}
