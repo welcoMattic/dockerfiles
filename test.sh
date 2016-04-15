@@ -34,7 +34,12 @@ deps_pull() {
             image_name=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\2|g')
             image_tag=${latest-$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\3|g')}
             [ $image_name == $image_tag ] && $image_tag='latest'
-            image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | cut -d: -f1))
+            
+            if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
+                image_path=${image_name}
+            else
+                image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | cut -d: -f1))
+            fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
         else
             image_name=$(echo $image | sed 's|\(.*\):\(.*\)|\1|g')
@@ -57,7 +62,7 @@ build_image() {
     image_name=$1
     image_dir=$2
 
-    if [ -x "${image_dir}/.tags" ]; then
+    if [ -e "${image_dir}/.tags" ]; then
         tags_list=$(cat ${image_dir}/.tags)
     else
         tags_list="latest"

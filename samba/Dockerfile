@@ -10,7 +10,7 @@ RUN apk add -U \
             bc \
             supervisor
 
-ADD rootfs /
+COPY rootfs /
 RUN chmod +x /usr/bin/startup   
 
 CMD ["tini","--","/usr/bin/startup"]        
