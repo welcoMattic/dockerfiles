@@ -31,17 +31,19 @@ deps_pull() {
     if [[ $image == ${VALIDATE_USER}* ]];then
         local image_name=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\2|g')
         local image_tag=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\3|g')
-        local image_path=$(dirname $(grep $image_tag $(find $image_name -type f -name .tags) | cut -d: -f1))
+        local image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | cut -d: -f1))
     else
         local image_name=$(echo $image | sed 's|\(.*\):\(.*\)|\1|g')
         local image_tag=$(echo $image | sed 's|\(.*\):\(.*\)|\2|g')
     fi
 
     if [ -z $image_path ];then
-        deps_pull $image_name
-        docker build -t ${VALIDATE_USER}/${image_name}:${image_tag} ${image_path}
-    else
+        echo "Pull deps $image_name"
         docker pull ${image_name}
+    else
+        deps_pull $(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
+        echo "Build deps $image_name"
+        docker build -t ${VALIDATE_USER}/${image_name}:${image_tag} ${image_path}
     fi
 }
 
