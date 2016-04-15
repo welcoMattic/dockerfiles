@@ -26,8 +26,8 @@ RUN export BUILD_DEPS="py-pip \
 
 VOLUME ["/config"]
 EXPOSE 5050
-ADD startup /usr/bin/startup
-ADD config.ini /tmp/config.ini
+COPY startup /usr/bin/startup
+COPY config.ini /tmp/config.ini
 RUN chmod +x /usr/bin/startup
 
 CMD ["tini","--","/usr/bin/startup"]
