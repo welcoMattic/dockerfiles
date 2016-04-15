@@ -13,8 +13,8 @@ RUN apk add -U python \
     && apk del py-pip \
     && rm -rf /var/cache/apk/* 
 
-ADD startup /usr/bin/startup
-ADD config.ini /tmp/config.ini
+COPY startup /usr/bin/startup
+COPY config.ini /tmp/config.ini
 RUN chmod +x /usr/bin/startup
 
 VOLUME ["/config"]
