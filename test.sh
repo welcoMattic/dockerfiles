@@ -2,7 +2,7 @@
 
 # this is kind of an expensive check, so let's not do this twice if we
 # are running more than one validate bundlescript
-VALIDATE_REPO='https://github.com/xataz/dockerfiles.git'
+VALIDATE_REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
 VALIDATE_BRANCH='master'
 VALIDATE_USER='xataz'
 
