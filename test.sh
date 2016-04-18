@@ -33,7 +33,7 @@ deps_pull() {
         if [[ $image == ${VALIDATE_USER}* ]];then
             image_name=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\2|g')
             image_tag=${latest-$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\3|g')}
-            [ $image_name == $image_tag ] && $image_tag='latest'
+            [ $image_name == $image_tag ] && image_tag='latest'
             
             if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
                 image_path=${image_name}
@@ -70,13 +70,10 @@ build_image() {
 
     for tag in $tags_list; do
         docker build -t ${VALIDATE_USER}/${image_name}:${tag} ${image_dir}
-        if [ $DOCKER_PULL == "push" ]; then
-            docker push ${VALIDATE_USER}/${image_name}:${tag}
-        fi
         echo "                       ---                                   "
         echo "Successfully built ${VALIDATE_USER}/${image_name}:${tag} with context ${image_dir}"
         echo "                       ---                                   "
-        if [ $DOCKER_PULL == "push" ]; then
+        if [ "$DOCKER_PULL" == "push" ]; then
             docker push ${VALIDATE_USER}/${image_name}:${tag}
             echo "                       ---                                   "
                 echo "Successfully push ${VALIDATE_USER}/${image_name}:${tag}"
