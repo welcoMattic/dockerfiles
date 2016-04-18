@@ -33,8 +33,8 @@ RUN export BUILD_DEPS="build-base \
     && apk add openssl pcre zlib \
     && rm -rf /tmp/* /var/cache/apk/*
 
-ADD startup /usr/bin/startup
-ADD nginx.conf /etc/nginx/conf/nginx.conf
+COPY startup /usr/bin/startup
+COPY nginx.conf /etc/nginx/conf/nginx.conf
 
 RUN chmod +x /usr/bin/startup
 
