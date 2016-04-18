@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG COMPOSE_VER=1.6.2
+ARG COMPOSE_VER=1.7.0
 
 ENV UID=991 \
     GID=991
