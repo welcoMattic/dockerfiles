@@ -9,7 +9,7 @@ ENV UID=991 \
 RUN apk add -U python \
             py-setuptools \
             py-pip \
-    && pip install docker-compose==${COMPOSE_VER} \
+    && pip install --no-cache-dir docker-compose==${COMPOSE_VER} \
     && apk del py-pip \
     && rm -rf /var/cache/apk/*
 

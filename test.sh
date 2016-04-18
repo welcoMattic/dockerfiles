@@ -4,7 +4,7 @@
 VALIDATE_REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
 VALIDATE_BRANCH='master'
 VALIDATE_USER='xataz'
-
+DOCKER_PULL=$1
 
 VALIDATE_HEAD="$(git rev-parse --verify HEAD)"
 
@@ -70,9 +70,18 @@ build_image() {
 
     for tag in $tags_list; do
         docker build -t ${VALIDATE_USER}/${image_name}:${tag} ${image_dir}
+        if [ $DOCKER_PULL == "push" ]; then
+            docker push ${VALIDATE_USER}/${image_name}:${tag}
+        fi
         echo "                       ---                                   "
         echo "Successfully built ${VALIDATE_USER}/${image_name}:${tag} with context ${image_dir}"
         echo "                       ---                                   "
+        if [ $DOCKER_PULL == "push" ]; then
+            docker push ${VALIDATE_USER}/${image_name}:${tag}
+            echo "                       ---                                   "
+                echo "Successfully push ${VALIDATE_USER}/${image_name}:${tag}"
+            echo "                       ---                                   "
+        fi
     done
 }
 
