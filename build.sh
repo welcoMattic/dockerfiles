@@ -166,8 +166,8 @@ for f in "${files[@]}"; do
 	base=${image%%\/*}
 	build_dir=$(dirname $f)
 
-    deps_pull ${base}
-    build_image ${base} ${build_dir}
-    #deps_pull_test ${base}
-    #build_image_test ${base} ${build_dir}
+    #deps_pull ${base}
+    #build_image ${base} ${build_dir}
+    deps_pull_test ${base}
+    build_image_test ${base} ${build_dir}
 done
