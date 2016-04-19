@@ -82,7 +82,7 @@ deps_pull_test() {
             break
         fi
     done
-
+    echo ${images_list[@]}
     for f in "${images_list[@]}"; do
         f_name=${USER}/$(echo $f | cut -d"|" -f1)
         f_tag=$(echo $f | cut -d"|" -f2)
