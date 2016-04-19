@@ -1,7 +1,7 @@
 ![](http://nginx.org/nginx.png)
 
 ## Tag available
-* latest, mainline, 1.9, 1.9.14 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.14/Dockerfile)
+* latest, mainline, 1.9, 1.9.15 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.14/Dockerfile)
 * stable, 1.8, 1.8.1  [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.8.1/Dockerfile)
 
 ## Description
@@ -12,11 +12,11 @@ nginx (engine x) is an HTTP and reverse proxy server, a mail proxy server, and a
 ## Build Image
 
 ```shell
-docker build -t xataz/nginx github.com/xataz/dockerfiles.git#master:nginx/1.9.10
+docker build -t xataz/nginx github.com/xataz/dockerfiles.git#master:nginx/mainline
 ```
 ### Build other version
 ```shell
-docker build -t xataz/nginx --build-arg NGINX_VER=1.9.5 github.com/xataz/dockerfiles.git#master:nginx/1.9.10
+docker build -t xataz/nginx --build-arg NGINX_VER=1.9.5 github.com/xataz/dockerfiles.git#master:nginx/mainline
 ```
 
 ## Configuration
@@ -39,6 +39,6 @@ docker run -d \
 	-p 443:8443 \
 	-v /docker/config/nginx/www:/www \
 	-v /docker/config/nginx/sites-enabled:/sites-enabled \
-	xataz/nginx:1.9.14
+	xataz/nginx:1.9.15
 ```
 

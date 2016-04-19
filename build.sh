@@ -167,7 +167,7 @@ for f in "${files[@]}"; do
     
     echo $f $image $base $build_dir
 
-    deps_pull ${base}
+    deps_pull ${base} ${build_dir}
     build_image ${base} ${build_dir}
     #deps_pull_test ${base} ${build_dir}
     #build_image_test ${base} ${build_dir}
