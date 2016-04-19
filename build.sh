@@ -58,7 +58,7 @@ deps_pull() {
 deps_pull_test() {
     image=$1
     images_list=""
-    image_path=${build_dir}
+    image_path=$2
 
     while true; do
         image=$(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
@@ -166,6 +166,6 @@ for f in "${files[@]}"; do
 
     #deps_pull ${base}
     #build_image ${base} ${build_dir}
-    deps_pull_test ${base}
+    deps_pull_test ${base} ${build_dir}
     build_image_test ${base} ${build_dir}
 done
