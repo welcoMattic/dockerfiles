@@ -25,19 +25,19 @@ validate_diff() {
 deps_pull() {
     image=$1
     images_list=""
-    image_path=${build_dir}
+    image_path=$2
 
     while true; do
         image=$(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
         if [[ $image == ${USER}* ]];then
             image_name=$(echo $image | cut -d/ -f 2 | cut -d: -f1)
             image_tag=${latest-$(echo $image | cut -d: -f2)}
-            [ $image_name == $image_tag ] && image_tag='latest'
+            [ $image_name == $image_tag ] && image_tag='latest' && image_name=$(echo $image_name | cut -d/ -f2)
             
             if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
                 image_path=${image_name}
             else
-                image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | cut -d: -f1))
+                image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | grep -v ${image_path} | cut -d: -f1))
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
         else
@@ -165,8 +165,8 @@ for f in "${files[@]}"; do
     
     echo $f $image $base $build_dir
 
-    #deps_pull ${base}
-    #build_image ${base} ${build_dir}
-    deps_pull_test ${base} ${build_dir}
-    build_image_test ${base} ${build_dir}
+    deps_pull ${base}
+    build_image ${base} ${build_dir}
+    #deps_pull_test ${base} ${build_dir}
+    #build_image_test ${base} ${build_dir}
 done
