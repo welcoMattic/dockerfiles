@@ -1,8 +1,5 @@
 ![lufi](https://git.framasoft.org/uploads/project/avatar/1998/lufi.png =250x)
 
-## ImageLayer
-* latest [![](https://badge.imagelayers.io/xataz/lufi:latest.svg)](https://imagelayers.io/?images=xataz/lufi:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(lufi/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/lufi/Dockerfile)
 

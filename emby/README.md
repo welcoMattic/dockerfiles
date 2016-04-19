@@ -1,8 +1,5 @@
 # Emby Image
 
-## ImageLayer
-[![](https://badge.imagelayers.io/xataz/emby:latest.svg)](https://imagelayers.io/?images=xataz/emby:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/emby/Dockerfile)
 

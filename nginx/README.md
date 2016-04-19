@@ -1,9 +1,5 @@
 ![](http://nginx.org/nginx.png)
 
-## ImageLayer
-* 1.9.14 [![](https://badge.imagelayers.io/xataz/nginx:latest.svg)](https://imagelayers.io/?images=xataz/nginx:latest 'Get your own badge on imagelayers.io')
-* 1.8.1 [![](https://badge.imagelayers.io/xataz/nginx:stable.svg)](https://imagelayers.io/?images=xataz/nginx:stable 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest, mainline, 1.9, 1.9.14 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.14/Dockerfile)
 * stable, 1.8, 1.8.1  [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.8.1/Dockerfile)

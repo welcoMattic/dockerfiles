@@ -1,8 +1,5 @@
 ![# Samba](http://wiki.univention.de/images/6/6d/Logo_Samba.png)
 
-## ImageLayer
-* latest [![](https://badge.imagelayers.io/xataz/samba:latest.svg)](https://imagelayers.io/?images=xataz/samba:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/samba/Dockerfile)
 

@@ -1,8 +1,5 @@
 ![](https://git.framasoft.org/uploads/project/avatar/5/lstu.png)
 
-## ImageLayer
-* latest [![](https://badge.imagelayers.io/xataz/lstu:latest.svg)](https://imagelayers.io/?images=xataz/lstu:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(lstu/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/lstu/Dockerfile)
 

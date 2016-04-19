@@ -1,9 +1,5 @@
 # RuTorrent Image
 
-## ImageLayer
-* latest [![](https://badge.imagelayers.io/xataz/rutorrent:latest.svg)](https://imagelayers.io/?images=xataz/rutorrent:latest 'Get your own badge on imagelayers.io')
-* latest-filebot, filebot [![](https://badge.imagelayers.io/xataz/rutorrent:filebot.svg)](https://imagelayers.io/?images=xataz/rutorrent:filebot 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(rutorrent/latest/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/rutorrent/latest/Dockerfile)
 * latest-filebot, filebot [(rutorrent/latest-filebot/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/rutorrent/latest-filebot/Dockerfile)

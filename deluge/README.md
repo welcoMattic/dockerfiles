@@ -1,11 +1,5 @@
 # Deluge Image
 
-## ImageLayer
-* 1.3-stable, 1.3, latest [![](https://badge.imagelayers.io/xataz/deluge:latest.svg)](https://imagelayers.io/?images=xataz/deluge:latest 'Get your own badge on imagelayers.io')
-* 1.3-stable-filebot, 1.3-filebot, latest-filebot, filebot [![](https://badge.imagelayers.io/xataz/deluge:filebot.svg)](https://imagelayers.io/?images=xataz/deluge:filebot 'Get your own badge on imagelayers.io')
-* 1.4-master, 1.4 [![](https://badge.imagelayers.io/xataz/deluge:1.4.svg)](https://imagelayers.io/?images=xataz/deluge:1.4 'Get your own badge on imagelayers.io')
-* develop [![](https://badge.imagelayers.io/xataz/deluge:develop.svg)](https://imagelayers.io/?images=xataz/deluge:develop 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * 1.3-stable, 1.3, latest [(deluge/1.3-stable/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/deluge/1.3-stable/Dockerfile)
 * 1.3-stable-filebot, 1.3-filebot, latest-filebot, filebot [(deluge/1.3-stable-filebot/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/deluge/1.3-stable-filebot/Dockerfile)
