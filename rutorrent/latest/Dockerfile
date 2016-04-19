@@ -12,6 +12,9 @@ ENV UID=991 \
     PORT_RTORRENT=45000 \
     PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
+LABEL description="rutorrent based on alpine" \
+      build_ver="2016041901"
+
 RUN export BUILD_DEPS="build-base \
                         git \
                         libtool \
@@ -45,7 +48,7 @@ RUN export BUILD_DEPS="build-base \
     && tar xzf MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && tar xzf MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && cd /tmp/mktorrent \
-    && make -j ${BUILD_CORES-`grep -c "processor" /proc/cpuinfo`} \
+    && make -j ${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && make install \
     && cd  /tmp/MediaInfo_DLL_GNU_FromSource \
     && ./SO_Compile.sh \
@@ -65,13 +68,13 @@ RUN export BUILD_DEPS="build-base \
     && git checkout ${LIBTORRENT_VER} \    
     && ./autogen.sh \
     && ./configure \
-    && make -j ${BUILD_CORES-`grep -c "processor" /proc/cpuinfo`} \
+    && make -j ${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && make install \
     && cd /tmp/rtorrent \
     && git checkout ${RTORRENT_VER} \
     && ./autogen.sh \
     && ./configure --with-xmlrpc-c \
-    && make -j ${BUILD_CORES-`grep -c "processor" /proc/cpuinfo`} \
+    && make -j ${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && make install \
     && mkdir -p /var/www \
     && cd /var/www \

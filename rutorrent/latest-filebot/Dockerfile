@@ -8,6 +8,9 @@ ENV UID=991 \
     WEBROOT=/ \
     PORT_RTORRENT=45000
 
+LABEL description="rutorrent with filebot based on alpine" \
+      build_ver="2016041901"
+
 RUN apk add -U openjdk8-jre \
     && mkdir /filebot \
     && cd /filebot \
@@ -16,7 +19,7 @@ RUN apk add -U openjdk8-jre \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip
 
-ADD rootfs /
+COPY rootfs /
 VOLUME /data
 EXPOSE 8080
 RUN chmod +x /usr/bin/startup
