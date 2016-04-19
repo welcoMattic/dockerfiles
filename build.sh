@@ -32,13 +32,16 @@ deps_pull() {
         if [[ $image == ${USER}* ]];then
             image_name=$(echo $image | cut -d/ -f 2 | cut -d: -f1)
             image_tag=${latest-$(echo $image | cut -d: -f2)}
-            echo $image_name $image_tag $image_path
             [ $image_name == $image_tag ] && image_tag='latest' && image_name=$(echo $image_name | cut -d/ -f2)
             
             if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
                 image_path=${image_name}
             else
-                image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | grep -v ${image_path} | cut -d: -f1))
+                if [ -e "${image_name}/Dockerfile" ]; then
+                    image_path=${image_name}
+                else
+                    image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | grep -v ${image} | cut -d: -f1))
+                fi
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
         else
