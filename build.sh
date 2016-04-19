@@ -67,7 +67,7 @@ deps_pull_test() {
         if [[ $image == ${USER}* ]];then
             image_name=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\2|g')
             image_tag=${latest-$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\3|g')}
-            [ $image_name == $image_tag ] && image_tag='latest'
+            [ $image_name == $image_tag ] && image_tag='latest' && image_name=$(echo $image_name | cut -d/ -f2)
             
             if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
                 image_path=${image_name}
