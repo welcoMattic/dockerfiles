@@ -1,7 +1,6 @@
 #!/bin/bash
 # this is kind of an expensive check, so let's not do this twice if we
 # are running more than one validate bundlescript
-set -xa
 
 REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
 BRANCH='master'
@@ -24,7 +23,7 @@ validate_diff() {
 }
 
 deps_pull() {
-    image_base=$1
+    image=$1
     images_list=""
     image_path=$2
 
@@ -41,7 +40,7 @@ deps_pull() {
                 if [ -e "${image_name}/Dockerfile" ]; then
                     image_path=${image_name}
                 else
-                    image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | grep -v ${image_base} | cut -d: -f1))
+                    image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | grep -v "$2" | cut -d: -f1))
                 fi
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
@@ -50,14 +49,12 @@ deps_pull() {
             break
         fi
     done
-    echo ${images_list[@]}
     for f in ${images_list[@]}; do
         f_name=$(echo $f | cut -d"|" -f1)
         f_tag=$(echo $f | cut -d"|" -f2)
         f_path=$(echo $f | cut -d"|" -f3)
         build_image ${f_name} ${f_path}
     done 
-
 }
 
 build_image() {
