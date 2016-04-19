@@ -71,7 +71,7 @@ deps_pull_test() {
             if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
                 image_path=${image_name}
             else
-                image_path=$(dirname $(grep ${image_tag} $(find ${image_path} -type f -name .tags) | cut -d: -f1))
+                image_path=$(dirname $(grep ${image_tag} $(find ${image_name} -type f -name .tags) | grep -v ${image_path} cut -d: -f1))
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
         else
