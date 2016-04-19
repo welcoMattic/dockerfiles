@@ -32,6 +32,7 @@ deps_pull() {
         if [[ $image == ${USER}* ]];then
             image_name=$(echo $image | cut -d/ -f 2 | cut -d: -f1)
             image_tag=${latest-$(echo $image | cut -d: -f2)}
+            echo $image_name $image_tag $image_path
             [ $image_name == $image_tag ] && image_tag='latest' && image_name=$(echo $image_name | cut -d/ -f2)
             
             if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
@@ -45,11 +46,12 @@ deps_pull() {
             break
         fi
     done
-
+    echo ${images_list[@]}
     for f in ${images_list[@]}; do
         f_name=$(echo $f | cut -d"|" -f1)
         f_tag=$(echo $f | cut -d"|" -f2)
         f_path=$(echo $f | cut -d"|" -f3)
+        echo "build_image ${f_name} ${f_path}"
         build_image ${f_name} ${f_path}
     done 
 
