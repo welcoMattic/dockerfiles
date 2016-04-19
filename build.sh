@@ -161,6 +161,8 @@ for f in "${files[@]}"; do
 	image=${f%Dockerfile}
 	base=${image%%\/*}
 	build_dir=$(dirname $f)
+    
+    echo $f $image $base $build_dir
 
     #deps_pull ${base}
     #build_image ${base} ${build_dir}
