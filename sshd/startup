@@ -1,0 +1,9 @@
+#!/bin/sh
+
+addgroup -g ${GID} ${USER} && adduser -h /${USER} -s /bin/sh -D -G ${USER} -u ${UID} ${USER}
+
+mkdir /${USER}
+
+chown -R ${USER}:${USER} /${USER}
+
+dropbear -RFEmwg -p 22
