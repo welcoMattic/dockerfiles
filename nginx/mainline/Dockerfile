@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG NGINX_VER=1.9.14
+ARG NGINX_VER=1.9.15
 ARG BUILD_CORES
 
 ENV UID=991 \
