@@ -1,4 +1,4 @@
-FROM xataz/mono
+FROM xataz/mono:latest
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG JACKETT_VER=0.7.219
