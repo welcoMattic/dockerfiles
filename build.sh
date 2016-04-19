@@ -84,7 +84,7 @@ deps_pull_test() {
     done
     echo ${images_list[@]}
     for f in ${images_list[@]}; do
-        f_name=${USER}/$(echo $f | cut -d"|" -f1)
+        f_name=$(echo $f | cut -d"|" -f1)
         f_tag=$(echo $f | cut -d"|" -f2)
         f_path=$(echo $f | cut -d"|" -f3)
         echo "build_image_test ${f_name} ${f_path}"
