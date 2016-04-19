@@ -1,9 +1,5 @@
 # Alpine Image
 
-## ImageLayer
-* 3.3 [![](https://badge.imagelayers.io/xataz/alpine:3.3.svg)](https://imagelayers.io/?images=xataz/alpine:3.3 'Get your own badge on imagelayers.io')
-* edge [![](https://badge.imagelayers.io/xataz/alpine:edge.svg)](https://imagelayers.io/?images=xataz/alpine:edge 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest, 3.3 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/alpine/3.3/Dockerfile)
 * edge [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/alpine/edge/Dockerfile)

@@ -2,6 +2,6 @@ build:
   image: xataz/drone-docker:1.9.1
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - /home/xataz/.docker/config.json:/root/.docker/config.json
+    - /docker/.docker/config.json:/root/.docker/config.json
   commands:
     - ./test.sh push
