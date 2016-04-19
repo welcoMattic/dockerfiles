@@ -1,6 +1,7 @@
 #!/bin/bash
 # this is kind of an expensive check, so let's not do this twice if we
 # are running more than one validate bundlescript
+set -xa
 REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
 BRANCH='master'
 USER='xataz'
@@ -50,7 +51,6 @@ deps_pull() {
         f_name=$(echo $f | cut -d"|" -f1)
         f_tag=$(echo $f | cut -d"|" -f2)
         f_path=$(echo $f | cut -d"|" -f3)
-        echo "build_image ${f_name} ${f_path}"
         build_image ${f_name} ${f_path}
     done 
 
@@ -95,12 +95,10 @@ unset IFS
 
 # build the changed dockerfiles
 for f in "${files[@]}"; do
-	image=${f%Dockerfile}
-	base=${image%%\/*}
-	build_dir=$(dirname $f)
+    image=${f%Dockerfile}
+    base=${image%%\/*}
+    build_dir=$(dirname $f)
     
-    echo $f $image $base $build_dir
-
     deps_pull ${base} ${build_dir}
     build_image ${base} ${build_dir}
 done
