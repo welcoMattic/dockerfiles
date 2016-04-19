@@ -1,6 +1,8 @@
 #!/bin/bash
 # this is kind of an expensive check, so let's not do this twice if we
 # are running more than one validate bundlescript
+set -xa
+
 REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
 BRANCH='master'
 USER='xataz'
