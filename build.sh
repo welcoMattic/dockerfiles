@@ -48,7 +48,7 @@ deps_pull() {
         fi
     done
 
-    for f in "${images_list[@]}"; do
+    for f in ${images_list[@]}; do
         f_name=${USER}/$(echo $f | cut -d"|" -f1)
         f_tag=$(echo $f | cut -d"|" -f2)
         f_path=$(echo $f | cut -d"|" -f3)
@@ -83,7 +83,7 @@ deps_pull_test() {
         fi
     done
     echo ${images_list[@]}
-    for f in "${images_list[@]}"; do
+    for f in ${images_list[@]}; do
         f_name=${USER}/$(echo $f | cut -d"|" -f1)
         f_tag=$(echo $f | cut -d"|" -f2)
         f_path=$(echo $f | cut -d"|" -f3)
