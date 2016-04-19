@@ -49,7 +49,7 @@ deps_pull() {
     done
 
     for f in ${images_list[@]}; do
-        f_name=${USER}/$(echo $f | cut -d"|" -f1)
+        f_name=$(echo $f | cut -d"|" -f1)
         f_tag=$(echo $f | cut -d"|" -f2)
         f_path=$(echo $f | cut -d"|" -f3)
         build_image ${f_name} ${f_path}
@@ -166,8 +166,8 @@ for f in "${files[@]}"; do
 	base=${image%%\/*}
 	build_dir=$(dirname $f)
 
-    #deps_pull ${base}
-    #build_image ${base} ${build_dir}
-    deps_pull_test ${base}
-    build_image_test ${base} ${build_dir}
+    deps_pull ${base}
+    build_image ${base} ${build_dir}
+    #deps_pull_test ${base}
+    #build_image_test ${base} ${build_dir}
 done
