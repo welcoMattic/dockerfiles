@@ -7,6 +7,9 @@ ARG BUILD_CORES
 ENV UID=991 \
     GID=991
 
+LABEL description="nginx based on alpine" \
+      build_ver="2016041901"
+
 RUN export BUILD_DEPS="build-base \
                     openssl-dev \
                     pcre-dev \

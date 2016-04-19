@@ -1,6 +1,9 @@
 FROM xataz/node:lts
 MAINTAINER xataz <https://github.com/xataz/>
 
+LABEL description="nodejs based on alpine" \
+      build_ver="2016041901"
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 

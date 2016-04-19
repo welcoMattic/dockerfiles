@@ -1,8 +1,5 @@
 # Jackett Image
 
-## ImageLayer
-[![](https://badge.imagelayers.io/xataz/jackett:latest.svg)](https://imagelayers.io/?images=xataz/jackett:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest, 0.7.219 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/jackett/Dockerfile)
 
@@ -19,6 +16,10 @@ Developer note: The software implements the Torznab (with nZEDb category numberi
 
 ```shell
 docker build -t xataz/jackett github.com/xataz/dockerfiles.git#master:jackett
+```
+### Build other version
+```shell
+docker build --build-arg JACKETT_VER=0.7.217 -t xataz/jackett github.com/xataz/dockerfiles.git#master:jackett
 ```
 
 ## Configuration

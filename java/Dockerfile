@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz/>
 ARG JAVA_VERSION=8u77-b03
 ARG GLIBC_VER=2.23-r1
 
+LABEL description="Java based on alpine" \
+      build_ver="2016041901"
+
 ENV JAVA_HOME=/opt/jre \
     FOLDER_TMP=jre1.8.0_77 \
     GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased 

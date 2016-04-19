@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG TINI_VER=0.9.0
 ARG GOSU_VER=1.7
 
+LABEL description="Debian with TINI and GOSU" \
+      build_ver="2016041901"
+
 RUN export BUILD_DEPS="wget \
                     ca-certificates" \
     && apt-get update -qq \

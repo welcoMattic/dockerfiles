@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz>
 ENV UID=991 \
     GID=991
 
+LABEL description="bower based on alpine" \
+      build_ver="2016041901"
+
 RUN apk add -U git \
         make \
         gcc \

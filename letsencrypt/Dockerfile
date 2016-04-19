@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz>
 WORKDIR /letsencrypt
 ENV PATH /letsencrypt/venv/bin:$PATH
 
+LABEL description="Letsencrypt based on alpine" \
+      build_ver="2016041901"
+
 RUN export BUILD_DEPS="git \
                 build-base \
                 libffi-dev \

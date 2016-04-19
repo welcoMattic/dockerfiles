@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG MONIT_VER=5.17.1
 ARG BUILD_CORES
 
+LABEL description="Monit based on alpine" \
+      build_ver="2016041901"
+
 RUN export BUILD_DEPS="wget \
                     ca-certificates \
                     build-base \

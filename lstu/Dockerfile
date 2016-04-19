@@ -8,6 +8,9 @@ ENV GID=991 \
     WEBROOT=/ \
     ADMINPWD="s3cr3T"
 
+LABEL description="lstu based on debian" \
+      build_ver="2016041901"
+
 RUN apt-get update && apt-get upgrade \
     && BUILD_DEPS="make gcc ca-certificates git libssl-dev" \
     && apt-get install -y --no-install-recommends --no-install-suggests \

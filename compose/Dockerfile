@@ -6,6 +6,9 @@ ARG COMPOSE_VER=1.7.0
 ENV UID=991 \
     GID=991
 
+LABEL description="docker-compose based on alpine" \
+      build_ver="2016041901"
+
 RUN apk add -U python \
             py-setuptools \
             py-pip \

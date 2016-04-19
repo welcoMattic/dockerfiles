@@ -18,6 +18,10 @@ nginx (engine x) is an HTTP and reverse proxy server, a mail proxy server, and a
 ```shell
 docker build -t xataz/nginx github.com/xataz/dockerfiles.git#master:nginx/1.9.10
 ```
+### Build other version
+```shell
+docker build -t xataz/nginx --build-arg NGINX_VER=1.9.5 github.com/xataz/dockerfiles.git#master:nginx/1.9.10
+```
 
 ## Configuration
 ### Environments

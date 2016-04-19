@@ -1,9 +1,6 @@
 # up1
 Simple up1 conteneur pour docker
 
-## ImageLayer
-* [![](https://badge.imagelayers.io/xataz/up1:latest.svg)](https://imagelayers.io/?images=xataz/up1:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(Dockerfile)]()
 

@@ -5,6 +5,9 @@ ARG NODE_VER=v5.10.1
 ARG NPM_VER=3
 ARG CORES_BUILD
 
+LABEL description="nodejs based on alpine" \
+      build_ver="2016041901"
+
 RUN export BUILD_DEPS="git \
                 wget \
                 make \

@@ -1,16 +1,10 @@
 ![](https://i.goopics.net/lq.png)
 
-## ImageLayer
-* 4.4.2 [![](https://badge.imagelayers.io/xataz/node:4.svg)](https://imagelayers.io/?images=xataz/node:4 'Get your own badge on imagelayers.io')
-* 4.4.2-onbuild [![](https://badge.imagelayers.io/xataz/node:4-onbuild.svg)](https://imagelayers.io/?images=xataz/node:4-onbuild 'Get your own badge on imagelayers.io')
-* 5.10.1 [![](https://badge.imagelayers.io/xataz/node:5.svg)](https://imagelayers.io/?images=xataz/node:5 'Get your own badge on imagelayers.io')
-* 5.10.1-onbuild [![](https://badge.imagelayers.io/xataz/node:5-onbuild.svg)](https://imagelayers.io/?images=xataz/node:5-onbuild 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest, 5.10.1, 5.10, 5 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/5.10.1/Dockerfile)
 * latest-onbuild, 5.10.1-onbuild, 5.10-onbuild, 5-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/5.10.1-onbuild/Dockerfile)
-* lts, 4.4.2, 4.4, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.4.0/Dockerfile)
-* lts-onbuild, 4.4.2-onbuild, 4.4-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.4.0-onbuild/Dockerfile)
+* lts, 4.4.3, 4.4, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.4.0/Dockerfile)
+* lts-onbuild, 4.4.3-onbuild, 4.4-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.4.0-onbuild/Dockerfile)
 
 ## Description
 What is Node.js?
@@ -24,7 +18,12 @@ Node.js internally uses the Google V8 JavaScript engine to execute code; a large
 ## Build Image
 
 ```shell
-docker build -t xataz/node:5.10.1 github.com/xataz/dockerfiles.git#master:node/5.10.1
+docker build -t xataz/node:5.10.1 github.com/xataz/dockerfiles.git#master:node/latest
+```
+
+### Build other version
+```shell
+docker build -t xataz/node:5.9.0 --build-arg NODE_VER=5.9.0 github.com/xataz/dockerfiles.git#master:node/latest
 ```
 
 

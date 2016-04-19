@@ -21,4 +21,4 @@ RUN export BUILD_DEPS="wget \
     && rm -rf /var/cache/apk/* /tmp/* 
    
 
-CMD ["sh"] 
+CMD ["bash"] 

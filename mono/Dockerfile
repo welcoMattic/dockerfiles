@@ -1,6 +1,9 @@
 FROM xataz/glibc:2.23
 MAINTAINER xataz <https://github.com/xataz>
 
+LABEL description="bower based on alpine" \
+      build_ver="2016041901"
+
 RUN export BUILD_DEPS="tar \
                     xz \
                     ca-certificates \

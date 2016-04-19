@@ -5,6 +5,9 @@ ENV WEBROOT="" \
     UID=991 \
     GID=991
 
+LABEL description="Couchpotato based on alpine" \
+      build_ver="2016041901"
+
 RUN export BUILD_DEPS="py-pip \
                     build-base \
                     libxml2-dev \

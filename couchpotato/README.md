@@ -1,8 +1,5 @@
 ![CouchPotato](http://couchpota.to/media/images/full.png)
 
-## ImageLayer
-[![](https://badge.imagelayers.io/xataz/couchpotato:latest.svg)](https://imagelayers.io/?images=xataz/couchpotato:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/couchpotato/Dockerfile)
 

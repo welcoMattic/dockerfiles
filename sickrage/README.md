@@ -1,8 +1,5 @@
 ![Sickrage](https://sickrage.github.io/images/logo.png)
 
-## ImageLayer
-[![](https://badge.imagelayers.io/xataz/sickrage:latest.svg)](https://imagelayers.io/?images=xataz/sickrage:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/sickrage/Dockerfile)
 

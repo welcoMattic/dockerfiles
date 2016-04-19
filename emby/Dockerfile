@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz>
 ENV GID=991 \
     UID=991
 
+LABEL description="Emby based on alpine" \
+      build_ver="2016041901"
+
 RUN echo "@testing http://dl-3.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && apk add -U libmediainfo@testing \
                 imagemagick \

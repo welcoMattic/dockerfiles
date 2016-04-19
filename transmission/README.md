@@ -1,8 +1,5 @@
 ![Transmission](http://blogmmix.ch/sites/default/files/imagecache/gross/6/transmission-bittorrent1.png)
 
-## ImageLayer
-[![](https://badge.imagelayers.io/xataz/transmission:latest.svg)](https://imagelayers.io/?images=xataz/transmission:latest 'Get your own badge on imagelayers.io')
-
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/transmission/Dockerfile)
 
