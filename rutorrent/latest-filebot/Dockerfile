@@ -1,4 +1,4 @@
-FROM xataz/rutorrent
+FROM xataz/rutorrent:latest
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG FILEBOT_VER=4.6.1
