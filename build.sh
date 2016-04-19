@@ -88,6 +88,7 @@ deps_pull_test() {
         f_tag=$(echo $f | cut -d"|" -f2)
         f_path=$(echo $f | cut -d"|" -f3)
         echo "build_image_test ${f_name} ${f_path}"
+        build_image_test ${f_name} ${f_path}
     done 
 
 }
