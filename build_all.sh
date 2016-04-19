@@ -1,26 +1,16 @@
 #!/bin/bash
-# this is kind of an expensive check, so let's not do this twice if we
-# are running more than one validate bundlescript
 
-REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
-BRANCH='master'
 USER='xataz'
 DOCKER_PULL=$1
 
-HEAD="$(git rev-parse --verify HEAD)"
+CSI="\033["
+CEND="${CSI}0m"
+CRED="${CSI}1;31m"
+CGREEN="${CSI}1;32m"
+CYELLOW="${CSI}1;33m"
+CBLUE="${CSI}1;34m"
 
-git fetch -q "$REPO" "refs/heads/$BRANCH"
-UPSTREAM="$(git rev-parse --verify FETCH_HEAD)"
-
-COMMIT_DIFF="$UPSTREAM...$HEAD"
-
-validate_diff() {
-	if [ "$UPSTREAM" != "$HEAD" ]; then
-		git diff "$COMMIT_DIFF" "$@"
-	else
-		git diff HEAD~ "$@"
-	fi
-}
+RECAP=""
 
 deps_pull() {
     image=$1
@@ -28,6 +18,7 @@ deps_pull() {
     image_path=$2
 
     while true; do
+        echo $image $images_list $image_path $1 $2
         image=$(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
         if [[ $image == ${USER}* ]];then
             image_name=$(echo $image | cut -d/ -f 2 | cut -d: -f1)
@@ -40,11 +31,12 @@ deps_pull() {
                 if [ -e "${image_name}/Dockerfile" ]; then
                     image_path=${image_name}
                 else
-                    image_path=$(dirname $(grep -E "^${image_tag}[[:blank:]]|[[:blank:]]${image_tag}[[:blank:]]|[[:blank:]]${image_tag}$" $(find ${image_name} -type f -name .tags) | grep -v "$2" | cut -d: -f1))
+                    image_path=$(dirname $(grep  -E "^${image_tag}[[:blank:]]|[[:blank:]]${image_tag}[[:blank:]]|[[:blank:]]${image_tag}$" $(find ${image_name} -type f -name .tags) | grep -v "$2" | cut -d: -f1))
                 fi
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
         else
+            echo -e "${CBLUE}Pull ${image}${CEND}" 
             docker pull ${image}
             break
         fi
@@ -68,34 +60,30 @@ build_image() {
     fi
 
     for tag in $tags_list; do
+                echo -e "${CGREEN}Build ${USER}/${image_name}:${tag} on ${image_dir}${CEND}"
         docker build -t ${USER}/${image_name}:${tag} ${image_dir}
         if [ $? == 0 ]; then
-            echo "                       ---                                   "
-            echo "Successfully built ${USER}/${image_name}:${tag} with context ${image_dir}"
-            echo "                       ---                                   "
+            echo -e "${CGREEN}                       ---                                   "
+            echo -e "Successfully built ${USER}/${image_name}:${tag} with context ${image_dir}"
+            echo -e "                       ---                                   ${CEND}"
             if [ "$DOCKER_PULL" == "push" ]; then
+                echo -e "${CYELLOW}Push ${USER}/${image_name}:${tag}${CEND}"
                 docker push ${USER}/${image_name}:${tag}
-                echo "                       ---                                   "
-                echo "Successfully push ${USER}/${image_name}:${tag}"
-                echo "                       ---                                   "
+                echo -e "${CYELLOW}                       ---                                   "
+                echo -e "Successfully push ${USER}/${image_name}:${tag}"
+                echo -e "                       ---                                   ${CEND}"
             fi
         else
-            echo "                       ---                                   "
-            echo "Failed built ${USER}/${image_name}:${tag} with context ${image_dir}"
-            echo "                       ---                                   "
+            echo -e "${CRED}                       ---                                   "
+            echo -e "Failed built ${USER}/${image_name}:${tag} with context ${image_dir}"
+            echo -e "                       ---                                   ${CEND}"
             exit 1
         fi
     done
 }
 
 
-# get the dockerfiles changed
-IFS=$'\n'
-files=( $(validate_diff --diff-filter=ACMRTUX --name-only -- '*Dockerfile') )
-unset IFS
-
-# build the changed dockerfiles
-for f in "${files[@]}"; do
+for f in $(find . -iname Dockerfile | sed 's|^./||g'); do
     image=${f%Dockerfile}
     base=${image%%\/*}
     build_dir=$(dirname $f)

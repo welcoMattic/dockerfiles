@@ -3,7 +3,9 @@
 USER="xataz"
 
 echo "digraph g{" > dockviz.gviz
-echo "rankdir=LR;" >> dockviz.gviz
+echo "rankdir=LR;ratio = fill;node [style=filled];" >> dockviz.gviz
+	
+	
 
 for f in $(find . -iname Dockerfile | sed 's|^./||g');do
     image=${f%Dockerfile}
