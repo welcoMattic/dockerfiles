@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/opt/filebot/filebot.sh -script fn:cleaner /data/Media

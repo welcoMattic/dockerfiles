@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/opt/filebot/filebot.sh --lang fr -script fn:amc --output "/data/Media" --log-file "/data/.session/amc.log" --action symlink --conflict override -non-strict --def music=y "ut_dir=$1" "ut_kind=multi" "ut_title=$2" "ut_label=$3"

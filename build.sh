@@ -30,8 +30,8 @@ deps_pull() {
     while true; do
         image=$(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
         if [[ $image == ${USER}* ]];then
-            image_name=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\2|g')
-            image_tag=${latest-$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\3|g')}
+            image_name=$(echo $image | cut -d/ -f 2 | cut -d: -f1)
+            image_tag=${latest-$(echo $image | cut -d: -f2)}
             [ $image_name == $image_tag ] && image_tag='latest'
             
             if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
@@ -41,9 +41,7 @@ deps_pull() {
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
         else
-            image_name=$(echo $image | sed 's|\(.*\):\(.*\)|\1|g')
-            image_tag=$(echo $image | sed 's|\(.*\):\(.*\)|\2|g')
-            docker pull ${image_name}:${image_tag}
+            docker pull ${image}
             break
         fi
     done
@@ -65,8 +63,8 @@ deps_pull_test() {
     while true; do
         image=$(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
         if [[ $image == ${USER}* ]];then
-            image_name=$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\2|g')
-            image_tag=${latest-$(echo $image | sed 's|\(.*\)/\(.*\):\(.*\)|\3|g')}
+            image_name=$(echo $image | cut -d/ -f 2 | cut -d: -f1)
+            image_tag=${latest-$(echo $image | cut -d: -f2)}
             [ $image_name == $image_tag ] && image_tag='latest' && image_name=$(echo $image_name | cut -d/ -f2)
             
             if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
@@ -76,9 +74,7 @@ deps_pull_test() {
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
         else
-            image_name=$(echo $image | sed 's|\(.*\):\(.*\)|\1|g')
-            image_tag=$(echo $image | sed 's|\(.*\):\(.*\)|\2|g')
-            echo "docker pull ${image_name}:${image_tag}"
+            echo "docker pull ${image}"
             break
         fi
     done
