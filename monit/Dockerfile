@@ -2,21 +2,26 @@ FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG MONIT_VER=5.17.1
+ARG DOCKER_VER=1.10.3
 ARG BUILD_CORES
 
 LABEL description="Monit based on alpine" \
-      build_ver="2016042001"
+      build_ver="2016042002"
 
 RUN export BUILD_DEPS="wget \
                     ca-certificates \
                     build-base \
                     linux-pam-dev \
-                    openssl-dev" \
+                    openssl-dev \
+                    bash
+                    libseccomp-dev@mainedge" \
     && echo "@comuedge http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories \
+    && echo "@mainedge http://dl-4.alpinelinux.org/alpine/edge/main/" >> /etc/apk/repositories \
     && apk add -U ${BUILD_DEPS} \
                     linux-pam \
                     docker@comuedge \
                     bash \
+                    libseccomp@mainedge \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && cd /tmp \
     && wget https://mmonit.com/monit/dist/monit-${MONIT_VER}.tar.gz \
