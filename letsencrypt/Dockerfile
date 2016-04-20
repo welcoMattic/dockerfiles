@@ -26,8 +26,8 @@ RUN export BUILD_DEPS="git \
     && /letsencrypt/venv/bin/pip install \
                 -e /letsencrypt/src/acme \
                 -e /letsencrypt/src \
-                -e /letsencrypt/src/letsencrypt-apache \
-                -e /letsencrypt/src/letsencrypt-nginx \
+                -e /letsencrypt/src/certbot-apache \
+                -e /letsencrypt/src/certbot-nginx \
 	&& apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/*
 
