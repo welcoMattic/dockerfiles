@@ -1,5 +1,5 @@
 digraph g{
-rankdir=LR;
+rankdir=LR;ratio = fill;node [style=filled];
 "alpine:3.3" -> "xataz/alpine:3.3"
 "alpine:3.3" -> "xataz/alpine:latest"
 "alpine:edge" -> "xataz/alpine:edge"
@@ -27,7 +27,7 @@ rankdir=LR;
 "xataz/glibc:2.23" -> "xataz/golang:1.6.1"
 "xataz/glibc:2.23" -> "xataz/golang:1.6"
 "xataz/mono:latest" -> "xataz/jackett:latest"
-"xataz/mono:latest" -> "xataz/jackett:0.7.219"
+"xataz/mono:latest" -> "xataz/jackett:0.7.228"
 "xataz/glibc:2.23" -> "xataz/java:latest"
 "xataz/glibc:2.23" -> "xataz/java:8u77-b03"
 "alpine:3.3" -> "xataz/letsencrypt:latest"
@@ -51,7 +51,7 @@ rankdir=LR;
 "xataz/alpine:3.3" -> "xataz/node:5"
 "xataz/alpine:3.3" -> "xataz/node:latest"
 "xataz/node:latest" -> "xataz/node:latest-onbuild"
-"xataz/node:latest" -> "xataz/node:5.10.0-onbuild"
+"xataz/node:latest" -> "xataz/node:5.10.1-onbuild"
 "xataz/node:latest" -> "xataz/node:5.10-onbuild"
 "xataz/node:latest" -> "xataz/node:5-onbuild"
 "xataz/node:latest" -> "xataz/node:onbuild"
@@ -60,7 +60,7 @@ rankdir=LR;
 "xataz/alpine:3.3" -> "xataz/node:4"
 "xataz/alpine:3.3" -> "xataz/node:lts"
 "xataz/node:lts" -> "xataz/node:lts-onbuild"
-"xataz/node:lts" -> "xataz/node:4.4.2-onbuild"
+"xataz/node:lts" -> "xataz/node:4.4.3-onbuild"
 "xataz/node:lts" -> "xataz/node:4.4-onbuild"
 "xataz/node:lts" -> "xataz/node:4-onbuild"
 "xataz/alpine:3.3" -> "xataz/redis:latest"

@@ -1,9 +1,10 @@
 #!/bin/bash
 
 USER="xataz"
+FILE=dockviz.dot
 
-echo "digraph g{" > dockviz.gviz
-echo "rankdir=LR;ratio = fill;node [style=filled];" >> dockviz.gviz
+echo "digraph g{" > $FILE
+echo "rankdir=LR;ratio = fill;node [style=filled];" >> $FILE
 	
 	
 
@@ -14,11 +15,15 @@ for f in $(find . -iname Dockerfile | sed 's|^./||g');do
 
     if [ -e ${build_dir}/.tags ]; then
 	for tag in $(cat ${build_dir}/.tags); do
-		echo "\"$(grep '^FROM' ${build_dir}/Dockerfile | awk '{print $2}')\" -> \"$USER/$base:$tag\"" >> dockviz.gviz	
+		echo "\"$(grep '^FROM' ${build_dir}/Dockerfile | awk '{print $2}')\" -> \"$USER/$base:$tag\"" >> $FILE
 	done
     else
-        echo "\"$(grep '^FROM' ${build_dir}/Dockerfile | awk '{print $2}')\" -> \"$USER/$base:latest\"" >> dockviz.gviz
+        echo "\"$(grep '^FROM' ${build_dir}/Dockerfile | awk '{print $2}')\" -> \"$USER/$base:latest\"" >> $FILE
     fi
 done
 
-echo "}" >> dockviz.gviz
+echo "}" >> $FILE
+
+if [ "$1" == "svg" ]; then
+    cat $FILE | dot -Tsvg -o dockviz.svg
+fi
