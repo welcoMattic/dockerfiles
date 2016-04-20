@@ -13,7 +13,7 @@ RUN export BUILD_DEPS="wget \
                     build-base \
                     linux-pam-dev \
                     openssl-dev \
-                    bash
+                    bash \
                     libseccomp-dev@mainedge" \
     && echo "@comuedge http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories \
     && echo "@mainedge http://dl-4.alpinelinux.org/alpine/edge/main/" >> /etc/apk/repositories \
