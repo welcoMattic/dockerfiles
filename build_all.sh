@@ -60,7 +60,7 @@ build_image() {
     fi
 
     for tag in $tags_list; do
-                echo -e "${CGREEN}Build ${USER}/${image_name}:${tag} on ${image_dir}${CEND}"
+        echo -e "${CGREEN}Build ${USER}/${image_name}:${tag} on ${image_dir}${CEND}"
         docker build -t ${USER}/${image_name}:${tag} ${image_dir}
         if [ $? == 0 ]; then
             echo -e "${CGREEN}                       ---                                   "

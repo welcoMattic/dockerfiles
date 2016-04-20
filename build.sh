@@ -7,6 +7,13 @@ BRANCH='master'
 USER='xataz'
 DOCKER_PULL=$1
 
+CSI="\033["
+CEND="${CSI}0m"
+CRED="${CSI}1;31m"
+CGREEN="${CSI}1;32m"
+CYELLOW="${CSI}1;33m"
+CBLUE="${CSI}1;34m"
+
 HEAD="$(git rev-parse --verify HEAD)"
 
 git fetch -q "$REPO" "refs/heads/$BRANCH"
@@ -45,6 +52,7 @@ deps_pull() {
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
         else
+            echo -e "${CBLUE}Pull ${image}${CEND}" 
             docker pull ${image}
             break
         fi
@@ -68,21 +76,23 @@ build_image() {
     fi
 
     for tag in $tags_list; do
+        echo -e "${CGREEN}Build ${USER}/${image_name}:${tag} on ${image_dir}${CEND}"
         docker build -t ${USER}/${image_name}:${tag} ${image_dir}
         if [ $? == 0 ]; then
-            echo "                       ---                                   "
-            echo "Successfully built ${USER}/${image_name}:${tag} with context ${image_dir}"
-            echo "                       ---                                   "
+            echo -e "${CGREEN}                       ---                                   "
+            echo -e "Successfully built ${USER}/${image_name}:${tag} with context ${image_dir}"
+            echo -e "                       ---                                   ${CEND}"
             if [ "$DOCKER_PULL" == "push" ]; then
+                echo -e "${CYELLOW}Push ${USER}/${image_name}:${tag}${CEND}"
                 docker push ${USER}/${image_name}:${tag}
-                echo "                       ---                                   "
-                echo "Successfully push ${USER}/${image_name}:${tag}"
-                echo "                       ---                                   "
+                echo -e "${CYELLOW}                       ---                                   "
+                echo -e "Successfully push ${USER}/${image_name}:${tag}"
+                echo -e "                       ---                                   ${CEND}"
             fi
         else
-            echo "                       ---                                   "
-            echo "Failed built ${USER}/${image_name}:${tag} with context ${image_dir}"
-            echo "                       ---                                   "
+            echo -e "${CRED}                       ---                                   "
+            echo -e "Failed built ${USER}/${image_name}:${tag} with context ${image_dir}"
+            echo -e "                       ---                                   ${CEND}"
             exit 1
         fi
     done
