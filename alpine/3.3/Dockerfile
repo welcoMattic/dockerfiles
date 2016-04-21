@@ -1,11 +1,11 @@
 FROM alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG GOSU_VER=1.7
+ARG GOSU_VER=1.8
 ARG TINI_VER=0.9.0
 
 LABEL description="Alpine image with GOSU and TINI" \
-      build_ver="2016041901"
+      build_ver="2016042101"
 
 RUN export BUILD_DEPS="wget \
                     build-base \
@@ -14,6 +14,8 @@ RUN export BUILD_DEPS="wget \
     && apk add -U ${BUILD_DEPS} \
     && wget https://github.com/krallin/tini/archive/v${TINI_VER}.tar.gz -O /tmp/v${TINI_VER}.tar.gz \
     && tar xzvf /tmp/v${TINI_VER}.tar.gz -C /tmp \
+    && wget https://github.com/tianon/gosu/releases/download/${GOSU_VER}/gosu-amd64 -O /usr/bin/gosu \
+    && chmod +x /usr/bin/gosu \
     && cd /tmp/tini-${TINI_VER} \
     && cmake . \
     && make \
@@ -23,6 +25,5 @@ RUN export BUILD_DEPS="wget \
     && rm -rf /var/cache/apk/* /tmp/*
 
 ADD https://github.com/tianon/gosu/releases/download/${GOSU_VER}/gosu-amd64 /usr/bin/gosu
-RUN chmod +x /usr/bin/gosu
 
 CMD ["sh"]

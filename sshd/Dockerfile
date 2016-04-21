@@ -4,6 +4,9 @@ MAINTAINER xataz <https://github.com/xataz>
 ENV UID=991 \
     GID=991
 
+LABEL description="sshd based on alpine" \
+      build_ver="2016042101"
+
 RUN apk add -U dropbear \
     && rm -rf /var/cache/apk/*
 
