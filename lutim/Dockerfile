@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM xataz/debian:jessie
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV GID=991 \
@@ -8,7 +8,10 @@ ENV GID=991 \
     SECRET=e7c0b28877f7479fe6711720475dcbbd \
     MAX_FILE_SIZE=10000000000
 
-RUN apt-get update && apt-get upgrade \
+LABEL description="lutim based on debian" \
+      build_ver="2016042601"
+
+RUN apt-get update \
     && BUILD_DEPS="make gcc ca-certificates libssl-dev git" \
     && apt-get install -y --no-install-recommends --no-install-suggests \
         perl \

@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM xataz/debian:jessie
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV GID=991 \
@@ -8,7 +8,10 @@ ENV GID=991 \
     MAX_FILE_SIZE=1000000000 \
     WEBROOT=/
 
-RUN apt-get update && apt-get upgrade \
+LABEL description="lufi based on debian" \
+      build_ver="2016042601"
+
+RUN apt-get update \
     && BUILD_DEPS="build-essential ca-certificates git" \
     && apt-get install -y --no-install-recommends --no-install-suggests \
             perl \

@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM xataz/debian:jessie
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV GID=991 \
@@ -9,9 +9,9 @@ ENV GID=991 \
     ADMINPWD="s3cr3T"
 
 LABEL description="lstu based on debian" \
-      build_ver="2016041901"
+      build_ver="2016042601"
 
-RUN apt-get update && apt-get upgrade \
+RUN apt-get update \
     && BUILD_DEPS="make gcc ca-certificates git libssl-dev" \
     && apt-get install -y --no-install-recommends --no-install-suggests \
             perl \

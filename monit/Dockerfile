@@ -5,7 +5,7 @@ ARG MONIT_VER=5.17.1
 ARG BUILD_CORES
 
 LABEL description="Monit based on alpine" \
-      build_ver="2016042003"
+      build_ver="2016042601"
 
 RUN export BUILD_DEPS="wget \
                     ca-certificates \

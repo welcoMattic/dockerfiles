@@ -6,7 +6,7 @@ ARG NPM_VER=3
 ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
-      build_ver="2016042501"
+      build_ver="2016042601"
 
 RUN export BUILD_DEPS="git \
                 wget \

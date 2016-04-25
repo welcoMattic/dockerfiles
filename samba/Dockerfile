@@ -2,7 +2,7 @@ FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="samba based on alpine" \
-      build_ver="2016041901"
+      build_ver="2016042601"
 
 EXPOSE 137 138 139 445
 

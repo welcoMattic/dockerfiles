@@ -5,7 +5,7 @@ ARG GOSU_VER=1.8
 ARG TINI_VER=0.9.0
 
 LABEL description="Alpine image with GOSU and TINI" \
-      build_ver="2016042101"
+      build_ver="2016042601"
 
 RUN export BUILD_DEPS="wget \
                     build-base \

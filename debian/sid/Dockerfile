@@ -5,7 +5,7 @@ ARG TINI_VER=0.9.0
 ARG GOSU_VER=1.8
 
 LABEL description="Debian with TINI and GOSU" \
-      build_ver="2016041901"
+      build_ver="2016042601"
 
 RUN export BUILD_DEPS="wget \
                     ca-certificates" \
