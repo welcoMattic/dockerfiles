@@ -1,10 +1,10 @@
 ![](https://i.goopics.net/lq.png)
 
 ## Tag available
-* latest, 5.10.1, 5.10, 5 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/5.10.1/Dockerfile)
-* latest-onbuild, 5.10.1-onbuild, 5.10-onbuild, 5-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/5.10.1-onbuild/Dockerfile)
-* lts, 4.4.3, 4.4, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.4.0/Dockerfile)
-* lts-onbuild, 4.4.3-onbuild, 4.4-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/4.4.0-onbuild/Dockerfile)
+* latest, 5.11.0, 5.11, 5 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
+* latest-onbuild, 5.11.0-onbuild, 5.11-onbuild, 5-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
+* lts, 4.4.3, 4.4, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts/Dockerfile)
+* lts-onbuild, 4.4.3-onbuild, 4.4-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts-onbuild/Dockerfile)
 
 ## Description
 What is Node.js?
@@ -18,7 +18,7 @@ Node.js internally uses the Google V8 JavaScript engine to execute code; a large
 ## Build Image
 
 ```shell
-docker build -t xataz/node:5.10.1 github.com/xataz/dockerfiles.git#master:node/latest
+docker build -t xataz/node:5.11 github.com/xataz/dockerfiles.git#master:node/latest
 ```
 
 ### Build other version

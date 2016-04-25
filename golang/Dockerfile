@@ -1,14 +1,14 @@
 FROM xataz/glibc:2.23
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG GO_VER=1.6.1
+ARG GO_VER=1.6.2
 
 ENV UID=991 \
     GID=991 \
     GO_URL=https://storage.googleapis.com/golang
 
 LABEL description="Golang based on alpine" \
-      build_ver="2016041901"
+      build_ver="2016042501"
 
 RUN BUILD_DEPS="wget \
                 tar \

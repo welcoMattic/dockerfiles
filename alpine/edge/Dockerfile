@@ -24,6 +24,4 @@ RUN export BUILD_DEPS="wget \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/*
 
-ADD https://github.com/tianon/gosu/releases/download/${GOSU_VER}/gosu-amd64 /usr/bin/gosu
-
 CMD ["sh"]

@@ -1,12 +1,12 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
-ARG NODE_VER=v5.10.1 
+ARG NODE_VER=v5.11.0
 ARG NPM_VER=3
 ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
-      build_ver="2016041901"
+      build_ver="2016042501"
 
 RUN export BUILD_DEPS="git \
                 wget \

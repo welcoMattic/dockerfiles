@@ -31,7 +31,7 @@ deps_pull() {
                 if [ -e "${image_name}/Dockerfile" ]; then
                     image_path=${image_name}
                 else
-                    image_path=$(dirname $(grep  -E "^${image_tag}[[:blank:]]|[[:blank:]]${image_tag}[[:blank:]]|[[:blank:]]${image_tag}$" $(find ${image_name} -type f -name .tags) | grep -v "$2" | cut -d: -f1))
+                    image_path=$(dirname $(grep  -E "^${image_tag}[[:blank:]]|[[:blank:]]${image_tag}[[:blank:]]|[[:blank:]]${image_tag}$|^${image_tag}$" $(find ${image_name} -type f -name .tags) | grep -v "$2" | cut -d: -f1))
                 fi
             fi
             images_list="${image_name}|${image_tag}|${image_path} "${images_list}
