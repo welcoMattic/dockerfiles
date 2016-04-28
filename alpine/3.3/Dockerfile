@@ -5,13 +5,14 @@ ARG GOSU_VER=1.8
 ARG TINI_VER=0.9.0
 
 LABEL description="Alpine image with GOSU and TINI" \
-      build_ver="2016042601"
+      build_ver="2016042901"
 
 RUN export BUILD_DEPS="wget \
                     build-base \
                     ca-certificates \
                     cmake" \
-    && apk add -U ${BUILD_DEPS} \
+    && apk upgrade -U \
+    && apk add ${BUILD_DEPS} \
     && wget https://github.com/krallin/tini/archive/v${TINI_VER}.tar.gz -O /tmp/v${TINI_VER}.tar.gz \
     && tar xzvf /tmp/v${TINI_VER}.tar.gz -C /tmp \
     && wget https://github.com/tianon/gosu/releases/download/${GOSU_VER}/gosu-amd64 -O /usr/bin/gosu \

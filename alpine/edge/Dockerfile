@@ -11,7 +11,8 @@ RUN export BUILD_DEPS="wget \
                     build-base \
                     ca-certificates \
                     cmake" \
-    && apk add -U ${BUILD_DEPS} \
+    && apk upgrade -U \
+    && apk add ${BUILD_DEPS} \
     && wget https://github.com/krallin/tini/archive/v${TINI_VER}.tar.gz -O /tmp/v${TINI_VER}.tar.gz \
     && tar xzvf /tmp/v${TINI_VER}.tar.gz -C /tmp \
     && wget https://github.com/tianon/gosu/releases/download/${GOSU_VER}/gosu-amd64 -O /usr/bin/gosu \
