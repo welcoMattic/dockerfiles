@@ -5,4 +5,4 @@ build:
     - /docker/.docker/config.json:/root/.docker/config.json
   commands:
     - chmod +x build.sh
-    - ./build.sh
+    - ./build.sh push

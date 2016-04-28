@@ -2,7 +2,7 @@ FROM xataz/node:latest
 MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="nodejs based on alpine" \
-      build_ver="2016042801"
+      build_ver="2016042802"
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
