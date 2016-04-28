@@ -1,12 +1,12 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
-ARG NODE_VER=v5.11.0
+ARG NODE_VER=v6.0.0
 ARG NPM_VER=3
 ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
-      build_ver="2016042601"
+      build_ver="2016042801"
 
 RUN export BUILD_DEPS="git \
                 wget \
@@ -23,8 +23,8 @@ RUN export BUILD_DEPS="git \
     && tar xzf node-${NODE_VER}.tar.gz \
     && cd /tmp/node-${NODE_VER} \
     && NB_CORES=${CORES_BUILD-$(grep -c "processor" /proc/cpuinfo)} \
-    # && ./configure --prefix=/usr \
-    && ./configure --prefix=/usr --without-snapshot \
+    && ./configure --prefix=/usr \
+    # && ./configure --prefix=/usr --without-snapshot \
     && make -j ${NB_CORES} \
     && make install && paxctl -cm /usr/bin/node \
     && npm install -g npm@${NPM_VER} \
