@@ -5,4 +5,13 @@ addgroup -g ${GID} jackett && adduser -h /home/jackett -s /bin/sh -G jackett -u 
 chown -R ${UID}:${GID} /opt/Jackett
 chown -R ${UID}:${GID} /home/jackett
 
+mkdir -p /home/jackett/.config/Jackett
+
+APIKEY=${APIKEY-$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)}
+INSTANCEID=${INSTANCEID-$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 100 | head -n 1)}
+
+if [ ! -e /home/jackett/.config/Jackett/ServerConfig.json ]; then
+	sed 's/<apikey>/'${APIKEY}'/;s/<instanceid>/'${INSTANCEID}'/' /tmp/ServerConfig.json > /home/jackett/.config/Jackett/ServerConfig.json
+fi
+
 gosu ${UID}:${GID} sh -c "cd /opt/Jackett && mono JackettConsole.exe"

@@ -7,7 +7,7 @@ ENV UID=991 \
     GID=991
 
 LABEL description="Jackett based on alpine" \
-      build_ver="2016042801"
+      build_ver="2016042901"
 
 RUN apk add -U curl-dev \
 	&& mkdir -p /opt \
@@ -18,7 +18,8 @@ RUN apk add -U curl-dev \
 
 EXPOSE 9117
 
-ADD startup /usr/bin/startup
+COPY startup /usr/bin/startup
+COPY ServerConfig.json /tmp/ServerConfig.json
 RUN chmod +x /usr/bin/startup
 
 CMD ["tini","--","startup"]
