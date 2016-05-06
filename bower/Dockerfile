@@ -1,4 +1,4 @@
-FROM xataz/node:5
+FROM xataz/node:6
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV UID=991 \
