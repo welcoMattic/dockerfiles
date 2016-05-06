@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
-ARG NODE_VER=v4.4.3 
+ARG NODE_VER=v4.4.4 
 ARG NPM_VER=3
 ARG CORES_BUILD
 
@@ -23,8 +23,7 @@ RUN export BUILD_DEPS="git \
     && tar xzf node-${NODE_VER}.tar.gz \
     && cd /tmp/node-${NODE_VER} \
     && NB_CORES=${CORES_BUILD-$(grep -c "processor" /proc/cpuinfo)} \
-    # && ./configure --prefix=/usr \
-    && ./configure --prefix=/usr --without-snapshot \
+    && ./configure --prefix=/usr \
     && make -j ${NB_CORES} \
     && make install && paxctl -cm /usr/bin/node \
     && npm install -g npm@${NPM_VER} \
