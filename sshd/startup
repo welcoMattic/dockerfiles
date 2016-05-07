@@ -5,6 +5,6 @@ addgroup -g ${GID} ${USER} && adduser -h /home/${USER} -s /bin/sh -D -G ${USER} 
 mkdir -p /home/${USER}
 mkdir -p /etc/dropbear/
 
-chown -R ${USER}:${USER} /${USER}
+chown -R ${USER}:${USER} /home/${USER}
 
 dropbear -RFEmwg -p 22

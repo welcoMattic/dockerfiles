@@ -19,6 +19,7 @@ docker build -t xataz/sshd github.com/xataz/dockerfiles.git#master:sshd
 
 ### Volumes
 * /home/<user> : Mount this on your home directory
+* /etc/dropbear : For save fingerprint
 
 ### Ports
 * 22
