@@ -1,11 +1,11 @@
 FROM alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-WORKDIR /letsencrypt
-ENV PATH /letsencrypt/venv/bin:$PATH
+WORKDIR /certbot
+ENV PATH /certbot/venv/bin:$PATH
 
 LABEL description="Letsencrypt based on alpine" \
-      build_ver="2016042601"
+      build_ver="2016050701"
 
 RUN export BUILD_DEPS="git \
                 build-base \
@@ -19,20 +19,19 @@ RUN export BUILD_DEPS="git \
                 augeas-libs \
                 ${BUILD_DEPS} \
     && pip --no-cache-dir install virtualenv \
-    && git clone https://github.com/letsencrypt/letsencrypt /letsencrypt/src \
-    && /letsencrypt/src/letsencrypt-auto-source/letsencrypt-auto --os-packages-only \
-    && virtualenv --no-site-packages -p python2 /letsencrypt/venv \
-#    && sed -i '/^BIO \*BIO_new_mem_buf(const void \*buf, int len);/ d' /usr/include/openssl/bio.h \
-    && /letsencrypt/venv/bin/pip install \
-                -e /letsencrypt/src/acme \
-                -e /letsencrypt/src \
-                -e /letsencrypt/src/certbot-apache \
-                -e /letsencrypt/src/certbot-nginx \
-	&& apk del ${BUILD_DEPS} \
+    && git clone https://github.com/certbot/certbot /certbot/src \
+    && /certbot/src/letsencrypt-auto-source/letsencrypt-auto --os-packages-only \
+    && virtualenv --no-site-packages -p python2 /certbot/venv \
+    && /certbot/venv/bin/pip install \
+                -e /certbot/src/acme \
+                -e /certbot/src \
+                -e /certbot/src/certbot-apache \
+                -e /certbot/src/certbot-nginx \
+    && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/*
 
 EXPOSE 80 443
 VOLUME /etc/letsencrypt/
 
-ENTRYPOINT ["letsencrypt"]
+ENTRYPOINT ["certbot"]
 CMD ["--help"]
