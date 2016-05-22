@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG PHP_VER=5.6.21
+ARG PHP_VER=7.0.6
 ARG CORES_BUILD
 ARG PHP_MIRROR=http://fr2.php.net
 

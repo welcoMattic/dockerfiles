@@ -1,0 +1,8 @@
+FROM xataz/php:5
+MAINTAINER xataz <https://github.com/xataz>
+
+RUN apk add -U build-base autoconf\
+    && chmod +x /usr/local/bin/docker* \
+    && docker-php-ext-install mysqli \
+    && apk del build-base \
+    && rm -rf /var/cache/apk/*
