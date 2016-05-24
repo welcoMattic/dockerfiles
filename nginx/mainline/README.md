@@ -1,8 +1,8 @@
 ![](http://nginx.org/nginx.png)
 
 ## Tag available
-* latest, mainline, 1.9, 1.9.15 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.9.14/Dockerfile)
-* stable, 1.10, 1.10.0  [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/1.8.1/Dockerfile)
+* latest, mainline, 1.11, 1.11.0 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/mainline/Dockerfile)
+* stable, 1.10, 1.10.0  [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/stable/Dockerfile)
 
 ## Description
 What is [Nginx](http://nginx.org)?
