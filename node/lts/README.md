@@ -3,8 +3,8 @@
 ## Tag available
 * latest, 6.2.0, 6.2, 6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
 * latest-onbuild, 6.2.0-onbuild, 6.2-onbuild, 6-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
-* lts, 4.4.4, 4.4, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts/Dockerfile)
-* lts-onbuild, 4.4.4-onbuild, 4.4-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts-onbuild/Dockerfile)
+* lts, 4.4.5, 4.4, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts/Dockerfile)
+* lts-onbuild, 4.4.5-onbuild, 4.4-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts-onbuild/Dockerfile)
 
 ## Description
 What is Node.js?
