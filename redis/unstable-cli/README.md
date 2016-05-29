@@ -1,10 +1,10 @@
 ![](https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Redis_Logo.svg/467px-Redis_Logo.svg.png)
 
 ## Tag available
-* latest, stable, 3, 3.0, 3.0.7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/stable/Dockerfile)
-* latest-cli, stable-cli, 3-cli, 3.0-cli, 3.0.7-cli [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/stable-cli/Dockerfile)
-* testing, 3.2, 3.2.0, 3.2.0-rc3 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/testing/Dockerfile)
-* testing-cli, 3.2-cli, 3.2.0-cli, 3.2.0-rc3-cli [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/testing-cli/Dockerfile)
+* latest, stable, 3, 3.2, 3.2.0 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/stable/Dockerfile)
+* latest-cli, stable-cli, 3-cli, 3.2-cli, 3.2.0-cli [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/stable-cli/Dockerfile)
+* testing, 3.2, 3.2.0 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/testing/Dockerfile)
+* testing-cli, 3.2-cli, 3.2.0-cli [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/testing-cli/Dockerfile)
 * unstable [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/unstable/Dockerfile)
 * unstable-cli [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/unstable-cli/Dockerfile)
 
@@ -40,15 +40,15 @@ docker build -t xataz/redis --build-arg REDIS_VER=3.0.5 github.com/xataz/dockerf
 ### Server launch
 ```shell
 docker run -d \
-        --name redis \
+    --name redis \
 	-p 6379:6379 \
 	-v /docker/config/redis:/var/lib/redis \
-	xataz/redis:3.0.7
+	xataz/redis:3
 ```
 
 ### Cli usage
 ```shell
 docker run -ti --rm \
         --link redis:redis \
-	xataz/redis-cli:3.0.7 -h redis ping
+	xataz/redis-cli:3 -h redis ping
 ```

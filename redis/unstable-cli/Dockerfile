@@ -5,6 +5,10 @@ ENV REDIS_VER=unstable
 
 EXPOSE 6379
 
+LABEL description="redis based on alpine" \
+      tags="unstable-cli" \
+      build_ver="2016052901"
+
 RUN export BUILD_DEPS="wget \
                     linux-headers \
 		    ca-certificates \

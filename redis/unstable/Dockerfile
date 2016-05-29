@@ -7,6 +7,10 @@ ENV UID=991 \
 
 EXPOSE 6379
 
+LABEL description="redis based on alpine" \
+      tags="unstable" \
+      build_ver="2016052901"
+
 RUN export BUILD_DEPS="wget \
                     linux-headers \
 		    ca-certificates \
