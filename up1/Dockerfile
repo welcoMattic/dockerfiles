@@ -2,7 +2,7 @@ FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="up1 based on alpine" \
-      build_ver="2016042601"
+      build_ver="2016052901"
 
 ENV GID=991 \
     UID=991 \

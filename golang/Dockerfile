@@ -8,7 +8,8 @@ ENV UID=991 \
     GO_URL=https://storage.googleapis.com/golang
 
 LABEL description="Golang based on alpine" \
-      build_ver="2016042601"
+      tags="1.6.2 1.6 1 latest"
+      build_ver="2016052901"
 
 RUN BUILD_DEPS="wget \
                 tar \

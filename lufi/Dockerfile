@@ -9,7 +9,7 @@ ENV GID=991 \
     WEBROOT=/
 
 LABEL description="lufi based on debian" \
-      build_ver="2016042601"
+      build_ver="2016052901"
 
 RUN apt-get update \
     && BUILD_DEPS="build-essential ca-certificates git" \

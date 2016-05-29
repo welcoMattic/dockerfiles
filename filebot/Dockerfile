@@ -4,7 +4,7 @@ MAINTAINER xataz <https://github.com/xataz/>
 ARG FB_VER=4.6.1
 
 LABEL description="Filebot based on alpine" \
-      build_ver="2016042601"
+      build_ver="2016052901"
 
 RUN export BUILD_DEPS="wget \
                     unzip \

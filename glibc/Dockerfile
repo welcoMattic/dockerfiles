@@ -5,7 +5,8 @@ ARG GLIBC_VER=2.23-r1
 ARG GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased
 
 LABEL description="Glibc image based on alpine" \
-      build_ver="2016042601"
+      tags="latest 2.23-r1 2.23 2" \
+      build_ver="2016052901"
 
 RUN BUILD_DEPS="wget \
             ca-certificates" \

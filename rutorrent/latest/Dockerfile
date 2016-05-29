@@ -13,7 +13,7 @@ ENV UID=991 \
     PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 LABEL description="rutorrent based on alpine" \
-      build_ver="2016042601"
+      build_ver="2016052901"
 
 RUN export BUILD_DEPS="build-base \
                         git \

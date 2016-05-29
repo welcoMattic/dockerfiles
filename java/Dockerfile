@@ -4,7 +4,7 @@ MAINTAINER xataz <https://github.com/xataz/>
 ARG JAVA_VERSION=8u77-b03
 
 LABEL description="Java based on alpine" \
-      build_ver="2016042601"
+      build_ver="2016052901"
 
 ENV JAVA_HOME=/opt/jre \
     FOLDER_TMP=jre1.8.0_77

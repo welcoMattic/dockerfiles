@@ -2,7 +2,7 @@ FROM xataz/glibc:2.23
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="mono based on alpine" \
-      build_ver="2016042601"
+      build_ver="2016052901"
 
 RUN export BUILD_DEPS="tar \
                     xz \

@@ -9,7 +9,7 @@ ENV UID=991 \
     GID=991
 
 LABEL description="nginx based on alpine" \
-      build_ver="2016042901"
+      build_ver="2016052901"
 
 RUN export BUILD_DEPS="build-base \
                     openssl-dev \

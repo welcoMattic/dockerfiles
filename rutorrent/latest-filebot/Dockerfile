@@ -9,7 +9,7 @@ ENV UID=991 \
     PORT_RTORRENT=45000
 
 LABEL description="rutorrent with filebot based on alpine" \
-      build_ver="2016042601"
+      build_ver="2016052901"
 
 RUN apk add -U openjdk8-jre \
     && mkdir /filebot \

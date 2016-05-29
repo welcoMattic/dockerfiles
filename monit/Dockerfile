@@ -1,11 +1,12 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG MONIT_VER=5.17.1
+ARG MONIT_VER=5.18
 ARG BUILD_CORES
 
 LABEL description="Monit based on alpine" \
-      build_ver="2016042601"
+      tags="5.18 5 latest" \
+      build_ver="2016052901"
 
 RUN export BUILD_DEPS="wget \
                     ca-certificates \

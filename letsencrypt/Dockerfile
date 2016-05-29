@@ -5,7 +5,7 @@ WORKDIR /certbot
 ENV PATH /certbot/venv/bin:$PATH
 
 LABEL description="Letsencrypt based on alpine" \
-      build_ver="2016050701"
+      build_ver="2016052901"
 
 RUN export BUILD_DEPS="git \
                 build-base \
