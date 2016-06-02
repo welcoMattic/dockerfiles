@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG NGINX_VER=1.10.0
+ARG NGINX_VER=1.10.1
 ARG LIBRESSL_VER=2.3.3
 ARG BUILD_CORES
 
@@ -9,7 +9,8 @@ ENV UID=991 \
     GID=991
 
 LABEL description="nginx based on alpine" \
-      build_ver="2016052901"
+      tags="1.10.1 1.10 stable" \
+      build_ver="2016060201"
 
 RUN export BUILD_DEPS="build-base \
                     openssl-dev \

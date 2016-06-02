@@ -1,14 +1,15 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG NGINX_VER=1.11.0
+ARG NGINX_VER=1.11.1
 ARG BUILD_CORES
 
 ENV UID=991 \
     GID=991
 
 LABEL description="nginx based on alpine" \
-      build_ver="2016052901"
+      tags="latest mainline 1.11.1 1.11" \
+      build_ver="2016060201"
 
 RUN export BUILD_DEPS="build-base \
                     openssl-dev \
