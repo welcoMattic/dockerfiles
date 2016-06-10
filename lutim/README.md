@@ -46,14 +46,14 @@ URI access : http://XX.XX.XX.XX:8181
 ### Advanced launch
 ```shell
 docker run -d -p 8080:8181 \
-	-v /docker/config/lutim/data:/data \
-    -v /docker/data/lutim:/lutim/files 
-	-e UID=1001 \
-	-e GID=1001 \
+    -v /docker/config/lutim/data:/data \
+    -v /docker/data/lutim:/lutim/files \
+    -e UID=1001 \
+    -e GID=1001 \
     -e WEBROOT=/lutim \
     -e SECRET=$(date +%s | md5sum | head -c 32) \
     -e CONTACT=contact@mydomain.com \
     -e MAX_FILE_SIZE=250000000 \
-	xataz/lutim
+    xataz/lutim
 ```
 URI access : http://XX.XX.XX.XX:8080/lutim

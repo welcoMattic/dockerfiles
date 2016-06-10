@@ -3,7 +3,7 @@
 grep lutim /etc/group > /dev/null 2>&1; [[ $? -eq 1 ]] && addgroup --gid ${GID} lutim
 grep lutim /etc/passwd > /dev/null 2>&1; [[ $? -eq 1 ]] && adduser --system --shell /bin/sh --no-create-home --ingroup lutim --uid ${UID} lutim
 
-chown -R lutim:lutim /data /lutim /files
+chown -R lutim:lutim /data /lutim
 
 sed -i -e 's|<secret>|'${SECRET}'|' \
         -e 's|<contact>|'${CONTACT}'|' \
