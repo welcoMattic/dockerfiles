@@ -70,6 +70,7 @@ for f in "${files[@]}"; do
     base=${image%%\/*}
     build_dir=$(dirname $f)
 
+		echo ${build_dir}/custom.sh
 		if [ -e ${build_dir}/custom.sh ]; then
 			echo -e "${CBLUE}Build ${build_dir} with custom.sh"
 			chmod +x ${build_dir}/custom.sh
