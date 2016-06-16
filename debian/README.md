@@ -26,7 +26,7 @@ It's a bit like a tower. At the base is the kernel. On top of that are all the b
 
 ## Build Image
 ```shell
-docker build -t xataz/alpine:3.3 github.com/xataz/dockerfiles.git#master:debian/jessie
+docker build -t xataz/debian:jessie github.com/xataz/dockerfiles.git#master:debian/jessie
 ```
 
 ## Usage
@@ -43,4 +43,3 @@ RUN apt-get update \
 
 CMD ["tini", "--", "nginx", "-g", "daemon off;"]
 ```
-
