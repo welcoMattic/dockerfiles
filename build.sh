@@ -71,9 +71,11 @@ for f in "${files[@]}"; do
     build_dir=$(dirname $f)
 
 		if [ -e ${build_dir}/custom.sh ]; then
-			echo -e "${CBLUE}Build ${build_dir} with custom.sh"
+			echo -e "${CBLUE}                       ---                                   "
+			echo -e "Build ${build_dir} with custom.sh"
+			echo -e "                       ---                                   ${CEND}"
 			chmod +x ${build_dir}/custom.sh
-			./${build_dir}/custom.sh
+			./${build_dir}/custom.sh $DOCKER_PUSH
 			if [ $? == 0 ]; then
 				echo -e "${CGREEN}                       ---                                   "
 				echo -e "Successfully built ${build_dir} with custom.sh"
