@@ -1,7 +1,11 @@
-FROM alpine:3.3 
-MAINTAINER xataz <https://github.com/xataz> 
+FROM alpine:3.3
+MAINTAINER xataz <https://github.com/xataz>
 
-ARG DOCKER_VER=1.10.3
+ARG DOCKER_VER=1.11.2
+
+LABEL description="docker client for drone.io based on alpine" \
+      tags="1.11.2 1.11 latest" \
+      build_ver="2016061601"
 
 RUN export BUILD_DEPS="wget \
             ca-certificates \
@@ -18,7 +22,7 @@ RUN export BUILD_DEPS="wget \
                 fi" \
     && chmod +x /usr/bin/docker* \
     && apk del ${BUILD_DEPS} \
-    && rm -rf /var/cache/apk/* /tmp/* 
-   
+    && rm -rf /var/cache/apk/* /tmp/*
 
-CMD ["bash"] 
+
+CMD ["bash"]
