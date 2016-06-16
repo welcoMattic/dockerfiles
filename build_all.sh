@@ -10,54 +10,11 @@ CGREEN="${CSI}1;32m"
 CYELLOW="${CSI}1;33m"
 CBLUE="${CSI}1;34m"
 
-RECAP=""
-
-deps_pull() {
-    image=$1
-    images_list=""
-    image_path=$2
-
-    while true; do
-        echo $image $images_list $image_path $1 $2
-        image=$(grep 'FROM' ${image_path}/Dockerfile | awk '{print $2}')
-        if [[ $image == ${USER}* ]];then
-            image_name=$(echo $image | cut -d/ -f 2 | cut -d: -f1)
-            image_tag=${latest-$(echo $image | cut -d: -f2)}
-            [ $image_name == $image_tag ] && image_tag='latest' && image_name=$(echo $image_name | cut -d/ -f2)
-            
-            if [ "$(find ${image_name} -type f -name .tags)" == "" ]; then
-                image_path=${image_name}
-            else
-                if [ -e "${image_name}/Dockerfile" ]; then
-                    image_path=${image_name}
-                else
-                    image_path=$(dirname $(grep  -E "^${image_tag}[[:blank:]]|[[:blank:]]${image_tag}[[:blank:]]|[[:blank:]]${image_tag}$|^${image_tag}$" $(find ${image_name} -type f -name .tags) | grep -v "$2" | cut -d: -f1))
-                fi
-            fi
-            images_list="${image_name}|${image_tag}|${image_path} "${images_list}
-        else
-            echo -e "${CBLUE}Pull ${image}${CEND}" 
-            docker pull ${image}
-            break
-        fi
-    done
-    for f in ${images_list[@]}; do
-        f_name=$(echo $f | cut -d"|" -f1)
-        f_tag=$(echo $f | cut -d"|" -f2)
-        f_path=$(echo $f | cut -d"|" -f3)
-        build_image ${f_name} ${f_path}
-    done 
-}
-
 build_image() {
     image_name=$1
     image_dir=$2
 
-    if [ -e "${image_dir}/.tags" ]; then
-        tags_list=$(cat ${image_dir}/.tags)
-    else
-        tags_list="latest"
-    fi
+    tags_list=${latest-$(grep tags ${image_dir}/Dockerfile | cut -d\" -f2)}
 
     for tag in $tags_list; do
         echo -e "${CGREEN}Build ${USER}/${image_name}:${tag} on ${image_dir}${CEND}"
@@ -83,11 +40,28 @@ build_image() {
 }
 
 
-for f in $(find . -iname Dockerfile | sed 's|^./||g'); do
-    image=${f%Dockerfile}
-    base=${image%%\/*}
+for f in $(cat build_order); do
+    base=${f%%\/*}
     build_dir=$(dirname $f)
     
-    deps_pull ${base} ${build_dir}
-    build_image ${base} ${build_dir}
+    if [ -e ${build_dir}/custom.sh ]; then
+			echo -e "${CBLUE}                       ---                                   "
+			echo -e "Build ${build_dir} with custom.sh"
+			echo -e "                       ---                                   ${CEND}"
+			chmod +x ${build_dir}/custom.sh
+			./${build_dir}/custom.sh $DOCKER_PUSH
+			if [ $? == 0 ]; then
+				echo -e "${CGREEN}                       ---                                   "
+				echo -e "Successfully built ${build_dir} with custom.sh"
+				echo -e "                       ---                                   ${CEND}"
+			else
+				echo -e "${CRED}                       ---                                   "
+	      echo -e "Failed built ${build_dir} with custom.sh"
+	      echo -e "                       ---                                   ${CEND}"
+	      exit 1
+			fi
+	  else
+    	build_image ${base} $f
+	  fi
+
 done
