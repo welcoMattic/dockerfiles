@@ -1,12 +1,12 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG GLIBC_VER=2.23-r1
+ARG GLIBC_VER=2.23-r3
 ARG GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased
 
 LABEL description="Glibc image based on alpine" \
-      tags="latest 2.23-r1 2.23 2" \
-      build_ver="2016052901"
+      tags="latest 2.23-r3 2.23 2" \
+      build_ver="2016061601"
 
 RUN BUILD_DEPS="wget \
             ca-certificates" \
