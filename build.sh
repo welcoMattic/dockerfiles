@@ -74,7 +74,7 @@ for f in "${files[@]}"; do
 			echo -e "${CBLUE}Build ${build_dir} with custom.sh"
 			chmod +x ${build_dir}/custom.sh
 			./${build_dir}/custom.sh
-			if [ $? == 0 ];
+			if [ $? == 0 ]; then
 				echo -e "${CGREEN}                       ---                                   "
 				echo -e "Successfully built ${build_dir} with custom.sh"
 				echo -e "                       ---                                   ${CEND}"
