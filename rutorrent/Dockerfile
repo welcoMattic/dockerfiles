@@ -5,6 +5,8 @@ ARG BUILD_CORES
 ARG MEDIAINFO_VER=0.7.82
 ARG RTORRENT_VER=0.9.6
 ARG LIBTORRENT_VER=0.13.6
+ARG WITH_FILEBOT=NO
+ARG FILEBOT_VER=4.7
 
 ENV UID=991 \
     GID=991 \
@@ -14,7 +16,7 @@ ENV UID=991 \
 
 LABEL description="rutorrent based on alpine" \
       tags="latest" \
-      build_ver="2016053001"
+      build_ver="2016061601"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -39,7 +41,7 @@ RUN export BUILD_DEPS="build-base \
                 unrar \
                 supervisor \
                 geoip \
-    && cd /tmp \ 
+    && cd /tmp \
     && git clone https://github.com/esmil/mktorrent \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
     && git clone https://github.com/rakshasa/libtorrent.git \
@@ -66,7 +68,7 @@ RUN export BUILD_DEPS="build-base \
     && make -j ${NB_CORES} \
     && make install \
     && cd /tmp/libtorrent \
-    && git checkout ${LIBTORRENT_VER} \    
+    && git checkout ${LIBTORRENT_VER} \
     && ./autogen.sh \
     && ./configure \
     && make -j ${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
@@ -78,28 +80,30 @@ RUN export BUILD_DEPS="build-base \
     && make -j ${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && make install \
     && mkdir -p /var/www \
-    && cd /var/www \
-    && git clone https://github.com/Novik/ruTorrent.git rutorrent \
-    && cd /var/www/rutorrent/plugins/ \
-    && svn co http://rutorrent-logoff.googlecode.com/svn/trunk logoff \
-    && cd /var/www/rutorrent/plugins/ \
-    && git clone https://github.com/xombiemp/rutorrentMobile.git mobile \
-    && cd /var/www/rutorrent/plugins/ \
-    && svn checkout http://rutorrent-pausewebui.googlecode.com/svn/trunk pausewebui \
-    && cd /var/www/rutorrent/plugins/theme/themes \
-    && wget https://raw.githubusercontent.com/Swizards/QuickBox/master/plugins/rutorrent-quickbox-dark.zip \
-    && unzip rutorrent-quickbox-dark.zip \
-    && rm -rf rutorrent-quickbox-dark.zip \
+    && git clone https://github.com/Novik/ruTorrent.git /var/www/rutorrent \
+    && git clone https://github.com/xombiemp/rutorrentMobile.git /var/www/rutorrent/plugins/mobile \
+    && git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /var/www/rutorrent/plugins/theme/themes/materialdesign \
     && mv /var/www/rutorrent /var/www/torrent \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/* \
     && deluser svn \
     && delgroup svnusers
 
-ADD rootfs /
+COPY rootfs /
+
+RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
+        apk add -U openjdk8-jre \
+        && mkdir /filebot \
+        && cd /filebot \
+        && wget http://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VER}/FileBot_${FILEBOT_VER}-portable.zip \
+        && unzip FileBot_${FILEBOT_VER}-portable.zip \
+        && echo 'system.method.set_key=event.download.finished,filebot,"execute={/usr/bin/postdl,$d.get_base_path=,$d.get_name=,$d.get_custom1=}"' >> /home/torrent/.rtorrent.rc \
+        && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute={/usr/bin/postrm}"' >> /home/torrent/.rtorrent.rc \
+        && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip; \
+    fi
+
 VOLUME /data /var/www/torrent/share/
 EXPOSE 8080
 RUN chmod +x /usr/bin/startup
 
 CMD ["tini","--","/usr/bin/startup"]
-

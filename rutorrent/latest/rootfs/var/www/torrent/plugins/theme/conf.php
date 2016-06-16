@@ -1,4 +1,0 @@
-<?php
-
-$defaultTheme = "QuickBox-Dark"; 
-?>
