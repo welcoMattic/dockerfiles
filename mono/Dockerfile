@@ -1,4 +1,4 @@
-FROM xataz/glibc:2.23
+FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="mono based on alpine" \
@@ -9,9 +9,7 @@ RUN export BUILD_DEPS="tar \
                     xz \
                     ca-certificates \
                     wget " \
-    && apk add -U ${BUILD_DEPS} \
-    && wget https://www.archlinux.org/packages/extra/x86_64/mono/download/ -O /tmp/mono.pkg.tar.xz \
-    && tar xJf /tmp/mono.pkg.tar.xz \
-    && mozroots --import --ask-remove \
+    && apk add -U --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ ${BUILD_DEPS} \
+                    mono \
     && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* /var/cache/apk/*
