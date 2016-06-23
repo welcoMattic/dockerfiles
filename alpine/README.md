@@ -1,7 +1,8 @@
 # Alpine Image
 
 ## Tag available
-* latest, 3.3 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/alpine/3.3/Dockerfile)
+* 3.4 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/alpine/3.4/Dockerfile)
+* 3.3 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/alpine/3.3/Dockerfile)
 * edge [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/alpine/edge/Dockerfile)
 
 ## Description

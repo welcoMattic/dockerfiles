@@ -4,7 +4,7 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG TINI_VER=0.9.0
 
 LABEL description="Alpine image with GOSU and TINI" \
-      tags="3.3" \
+      tags="3.4 latest" \
       build_ver="2016062301"
 
 RUN export BUILD_DEPS="wget \
