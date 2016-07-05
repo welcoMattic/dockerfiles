@@ -5,10 +5,10 @@ ENV GID=991 UID=991
 
 LABEL Description="flarum based on alpine with nginx and php7" \
       tags="beta latest" \
-      build_ver="2016070502"
+      build_ver="2016070503"
 
 RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk -U add nginx \
+    && apk --no-cache add nginx \
             curl \
             php7-phar@testing \
             supervisor \
@@ -20,14 +20,13 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
             php7-pdo_mysql@testing \
             php7-gd@testing \
             php7-dom@testing \
-            php7-phar@testing \
-    && cd /tmp/ \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && curl -s http://getcomposer.org/installer | php \
     && mv /tmp/composer.phar /usr/bin/composer \
     && chmod +x /usr/bin/composer \
     && mkdir /flarum \
-    && composer create-project flarum/flarum /flarum --stability=beta
+    && composer create-project flarum/flarum /flarum --stability=beta \
+    && rm -rf /root/.composer/cache/*
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY php-fpm.conf /etc/php7/php-fpm.conf
