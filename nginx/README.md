@@ -1,7 +1,7 @@
 ![](http://nginx.org/nginx.png)
 
 ## Tag available
-* latest, mainline, 1.11, 1.11.1 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/mainline/Dockerfile)
+* latest, mainline, 1.11, 1.11.2 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/mainline/Dockerfile)
 * stable, 1.10, 1.10.1  [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/stable/Dockerfile)
 
 ## Description
