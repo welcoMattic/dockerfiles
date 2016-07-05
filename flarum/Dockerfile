@@ -20,6 +20,7 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
             php7-pdo_mysql@testing \
             php7-gd@testing \
             php7-dom@testing \
+    && cd /tmp \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && curl -s http://getcomposer.org/installer | php \
     && mv /tmp/composer.phar /usr/bin/composer \
