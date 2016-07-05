@@ -5,7 +5,7 @@ ENV GID=991 UID=991
 
 LABEL Description="flarum based on alpine with nginx and php7" \
       tags="beta latest" \
-      build_ver="2016070501"
+      build_ver="2016070502"
 
 RUN BUILD_DEPS="curl \
                 php7-phar@testing \
@@ -29,6 +29,7 @@ RUN BUILD_DEPS="curl \
     && chmod +x /usr/bin/composer \
     && mkdir /flarum \
     && composer create-project flarum/flarum /flarum --stability=beta \
+    && sleep 5 \
     && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* /var/cache/apk/*
 
