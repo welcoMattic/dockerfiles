@@ -7,12 +7,10 @@ LABEL Description="flarum based on alpine with nginx and php7" \
       tags="beta latest" \
       build_ver="2016070502"
 
-RUN BUILD_DEPS="curl \
-                php7-phar@testing \
-                php7@testing" \
-    && echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk -U add ${BUILD_DEPS} \
-            nginx \
+RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && apk -U add nginx \
+            curl \
+            php7-phar@testing \
             supervisor \
             php7-fpm@testing \
             php7-curl@testing \
@@ -22,16 +20,14 @@ RUN BUILD_DEPS="curl \
             php7-pdo_mysql@testing \
             php7-gd@testing \
             php7-dom@testing \
+            php7-phar@testing \
     && cd /tmp/ \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && curl -s http://getcomposer.org/installer | php \
     && mv /tmp/composer.phar /usr/bin/composer \
     && chmod +x /usr/bin/composer \
     && mkdir /flarum \
-    && composer create-project flarum/flarum /flarum --stability=beta \
-    && sleep 5 \
-    && apk del ${BUILD_DEPS} \
-    && rm -rf /tmp/* /var/cache/apk/*
+    && composer create-project flarum/flarum /flarum --stability=beta
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY php-fpm.conf /etc/php7/php-fpm.conf
