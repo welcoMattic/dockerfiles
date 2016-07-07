@@ -25,7 +25,9 @@ docker build -t xataz/nginx --build-arg NGINX_VER=1.9.5 github.com/xataz/dockerf
 * GID : Choose gid for launch nginx (default : 991)
 
 ### Volumes
-* /sites-enabled : Place your vhost here
+* /nginx/sites-enabled : Place your vhost here
+* /nginx/log : Log emplacement
+* /nginx/run : Here is pid and lock file
 
 ### Ports
 * 8080
