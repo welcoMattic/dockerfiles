@@ -31,8 +31,7 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
     && cd /flarum \
     && composer install \
     && composer clear-cache \
-    && rm -rf /root/.composer/cache/* \
-    && apk del ${BUILD_DEPS}
+    && rm -rf /root/.composer/cache/*
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY php-fpm.conf /etc/php7/php-fpm.conf
