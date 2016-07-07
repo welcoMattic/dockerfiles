@@ -1,29 +1,27 @@
 FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ENV GID=991 UID=991
+ARG GID=991
+ARG UID=991
 
-LABEL Description="flarum based on alpine with nginx and php7" \
+LABEL Description="flarum based on alpine with nginx and php5" \
       tags="beta latest" \
       build_ver="2016070503"
 
-RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && export BUILD_DEPS="git" \
+RUN export BUILD_DEPS="git" \
     && apk --no-cache add nginx \
             curl \
-            php7-phar@testing \
+            php5-phar \
             supervisor \
-            php7-fpm@testing \
-            php7-curl@testing \
-            php7-mbstring@testing \
-            php7-openssl@testing \
-            php7-json@testing \
-            php7-pdo_mysql@testing \
-            php7-gd@testing \
-            php7-dom@testing \
+            php5-fpm \
+            php5-curl \
+            php5-openssl \
+            php5-json \
+            php5-pdo_mysql \
+            php5-gd \
+            php5-dom \
             ${BUILD_DEPS} \
     && cd /tmp \
-    && ln -s /usr/bin/php7 /usr/bin/php \
     && curl -s http://getcomposer.org/installer | php \
     && mv /tmp/composer.phar /usr/bin/composer \
     && chmod +x /usr/bin/composer \
@@ -35,7 +33,7 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
     && rm -rf /flarum/.composer/cache/*
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY php-fpm.conf /etc/php7/php-fpm.conf
+COPY php-fpm.conf /etc/php5/php-fpm.conf
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 COPY startup /usr/local/bin/startup
 RUN chmod +x /usr/local/bin/startup
