@@ -25,8 +25,10 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
     && curl -s http://getcomposer.org/installer | php \
     && mv /tmp/composer.phar /usr/bin/composer \
     && chmod +x /usr/bin/composer \
-    && mkdir /flarum \
-    && composer create-project flarum/flarum /flarum --stability=beta \
+    && git clone -b v0.1.0-beta.5 https://github.com/flarum/flarum /flarum \
+    && cd /flarum \
+    && composer install \
+    && composer clear-cache \
     && rm -rf /root/.composer/cache/*
 
 COPY nginx.conf /etc/nginx/nginx.conf
