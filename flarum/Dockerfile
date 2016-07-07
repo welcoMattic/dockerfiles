@@ -8,6 +8,7 @@ LABEL Description="flarum based on alpine with nginx and php7" \
       build_ver="2016070503"
 
 RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && export BUILD_DEPS="git" \
     && apk --no-cache add nginx \
             curl \
             php7-phar@testing \
@@ -20,6 +21,7 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
             php7-pdo_mysql@testing \
             php7-gd@testing \
             php7-dom@testing \
+            ${BUILD_DEPS} \
     && cd /tmp \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && curl -s http://getcomposer.org/installer | php \
@@ -29,7 +31,8 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
     && cd /flarum \
     && composer install \
     && composer clear-cache \
-    && rm -rf /root/.composer/cache/*
+    && rm -rf /root/.composer/cache/* \
+    && apk del ${BUILD_DEPS}
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY php-fpm.conf /etc/php7/php-fpm.conf
