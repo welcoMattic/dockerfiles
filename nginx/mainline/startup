@@ -9,7 +9,7 @@ if [ "$(ls /nginx/sites-enabled)" == "" ];then
     echo "
     server {
 	listen 8080;
-	    root /var/www/html;
+	    root /nginx/www/html;
         index index.html;
     }
     " > /nginx/sites-enabled/default.conf
