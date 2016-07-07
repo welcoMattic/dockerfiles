@@ -24,7 +24,7 @@ echo "
     <p>
 	Nginx running inside a $(du -m / | sort -n | tail -1 | awk '{print $1}')MB Alpine Docker Container.<br>
     </p>
-" > /var/www/html/index.html
+" > /nginx/www/html/index.html
 fi
 
 
