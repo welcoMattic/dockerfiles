@@ -23,7 +23,7 @@ docker build --build-arg DOCKER_VER=1.12.0-rc1 -t xataz/drone-docker:1.12.0-rc1 
 docker build --build-arg DOCKER_VER=1.12.0-rc1 -t xataz/drone-docker:1.12.0 $FOLDER
 docker build --build-arg DOCKER_VER=1.12.0-rc1 -t xataz/drone-docker:1.12 $FOLDER
 
-if [ "$DOCKER_PUSH"== "push" ]; then
+if [ "$DOCKER_PUSH" == "push" ]; then
   for image in $(docker images --format "{{.Repository}}:{{.Tag}}" drone-docker); do
     docker push $image
   done
