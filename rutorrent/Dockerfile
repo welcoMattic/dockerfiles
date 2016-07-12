@@ -101,7 +101,7 @@ RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute={/usr/bin/postrm}"' >> /home/torrent/.rtorrent.rc \
         && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip; \
         && chmod +x /usr/bin/post* \
-    fi
+    ;fi
 
 VOLUME /data /var/www/torrent/share/
 EXPOSE 8080
