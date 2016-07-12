@@ -1,5 +1,6 @@
 alpine/3.3
 alpine/edge
+alpine/3.4
 debian/jessie
 debian/sid
 debian/testing
@@ -36,6 +37,7 @@ redis/testing-cli
 redis/unstable
 redis/unstable-cli
 rutorrent
+flarum
 samba
 sickrage
 transmission

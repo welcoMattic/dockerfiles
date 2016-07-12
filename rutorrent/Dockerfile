@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.3
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -12,9 +12,9 @@ ENV UID=991 \
     PORT_RTORRENT=45000 \
     PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
-LABEL description="rutorrent based on alpine" \
+LABEL Description="rutorrent based on alpine" \
       tags="latest" \
-      build_ver="2016061601"
+      build_ver="2016071201"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -99,7 +99,7 @@ RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         && unzip FileBot_${FILEBOT_VER}-portable.zip \
         && echo 'system.method.set_key=event.download.finished,filebot,"execute={/usr/bin/postdl,$d.get_base_path=,$d.get_name=,$d.get_custom1=}"' >> /home/torrent/.rtorrent.rc \
         && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute={/usr/bin/postrm}"' >> /home/torrent/.rtorrent.rc \
-        && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip; \
+        && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip \
         && chmod +x /usr/bin/post* \
     ;fi
 
