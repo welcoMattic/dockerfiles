@@ -5,7 +5,7 @@ ARG TINI_VER=0.9.0
 
 LABEL description="Alpine image with GOSU and TINI" \
       tags="edge" \
-      build_ver="2016061602"
+      build_ver="2016072701"
 
 RUN export BUILD_DEPS="wget \
                     build-base \
