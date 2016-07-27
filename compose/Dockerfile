@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.3
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG COMPOSE_VER=1.7.1
@@ -8,7 +8,7 @@ ENV UID=991 \
 
 LABEL description="docker-compose based on alpine" \
       tags="1.7.1 1.7 latest" \
-      build_ver="2016052901"
+      build_ver="2016072701"
 
 RUN apk add -U python \
             py-setuptools \
