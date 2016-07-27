@@ -5,8 +5,8 @@ ARG TINI_VER=0.9.0
 ARG SUEXEC_VER=0.2
 
 LABEL description="Debian with TINI and su-exec" \
-      tags="latest, jessie, 8" \
-      build_ver="2016072701"
+      tags="latest jessie, 8" \
+      build_ver="2016072702"
 
 RUN export BUILD_DEPS="wget \
                     ca-certificates \
