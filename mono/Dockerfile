@@ -1,9 +1,9 @@
-FROM xataz/alpine:3.3
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="mono based on alpine" \
       tags="latest" \
-      build_ver="2016052901"
+      build_ver="2016072701"
 
 RUN export BUILD_DEPS="tar \
                     xz \
