@@ -6,7 +6,7 @@ ENV UID=991 \
 
 LABEL description="bower based on alpine" \
       tags="latest" \
-      build_ver="2016060301"
+      build_ver="2016072701"
 
 RUN apk add -U git \
         make \
@@ -14,10 +14,8 @@ RUN apk add -U git \
         g++ \
         python \
         linux-headers \
-    && npm install -g bower
+    && npm install -g bower \
+    && rm -rf /var/cache/apk/*
 
-COPY entrypoint /usr/bin/entrypoint
-RUN chmod +x /usr/bin/entrypoint
-
-ENTRYPOINT ["entrypoint"]
+ENTRYPOINT ["su-exec", "${UID}:${GID}", "bower"]
 CMD ["-v"]
