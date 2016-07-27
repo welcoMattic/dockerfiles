@@ -24,6 +24,7 @@ Of course, the thing that people want is application software: programs to help 
 
 It's a bit like a tower. At the base is the kernel. On top of that are all the basic tools. Next is all the software that you run on the computer. At the top of the tower is Debian — carefully organizing and fitting everything so it all works together.
 
+This image include su-exec and tini.
 ## Build Image
 ```shell
 docker build -t xataz/debian:jessie github.com/xataz/dockerfiles.git#master:debian/jessie
