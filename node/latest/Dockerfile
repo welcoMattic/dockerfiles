@@ -7,7 +7,7 @@ ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
       tags="latest 6.3.1 6.3 6" \
-      build_ver="2016072702"
+      build_ver="2016072703"
 
 ENV UID=997 \
     GID=991
@@ -43,4 +43,5 @@ RUN export BUILD_DEPS="git \
         /usr/lib/node_modules/npm/html \
         /usr/share/man
 
-CMD ["su-exec", "${UID}:${GID}", "node", "version"]
+ENTRYPOINT ["su-exec", "${UID}:${GID}", "node"]
+CMD ["version"]
