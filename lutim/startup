@@ -11,5 +11,5 @@ sed -i -e 's|<secret>|'${SECRET}'|' \
         -e 's|<webroot>|'${WEBROOT}'|' /lutim/lutim.conf
 
 cd /lutim
-su lutim -c "/usr/local/bin/carton exec hypnotoad -f /lutim/script/lutim"
+su-exec lutim:lutim /usr/local/bin/carton exec hypnotoad -f /lutim/script/lutim
 

@@ -10,10 +10,14 @@ ENV GID=991 \
 
 LABEL description="lutim based on debian" \
       tags="latest" \
-      build_ver="2016061001"
+      build_ver="2016072701"
 
 RUN apt-get update \
-    && BUILD_DEPS="make gcc ca-certificates libssl-dev git" \
+    && BUILD_DEPS="make \
+                gcc \
+                ca-certificates \
+                libssl-dev \
+                git" \
     && apt-get install -y --no-install-recommends --no-install-suggests \
         perl \
         ca-certificates \
