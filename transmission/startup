@@ -17,4 +17,4 @@ mkdir -p /data/watch
 chown -R ${USER}:${GROUP} /data
 chown -R ${USER}:${GROUP} /home/transmission
 
-gosu ${USER}:${GROUP} transmission-daemon --foreground
+su-exec ${USER}:${GROUP} transmission-daemon --foreground
