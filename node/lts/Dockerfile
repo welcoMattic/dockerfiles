@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.3
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz/>
 
 ARG NODE_VER=v4.4.7 
@@ -7,7 +7,10 @@ ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
       tags="4.4.7 4.4 4 lts" \
-      build_ver="2016052901"
+      build_ver="2016072701"
+
+ENV UID=997 \
+    GID=991
 
 RUN export BUILD_DEPS="git \
                 wget \
@@ -40,4 +43,4 @@ RUN export BUILD_DEPS="git \
         /usr/lib/node_modules/npm/html \
         /usr/share/man
 
-CMD ["node","-v"]
+CMD ["su-exec", "${UID}:${GID}", "node", "version"]
