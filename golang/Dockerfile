@@ -23,4 +23,5 @@ RUN BUILD_DEPS="wget \
 COPY golang /usr/bin/golang
 RUN chmod +x /usr/bin/golang
 
-ENTRYPOINT ["tini", "--", "/usr/bin/golang"]
+WORKDIR /usr/app/src
+ENTRYPOINT ["su-exec", "${UID}:${GID}", "/usr/bin/golang"]
