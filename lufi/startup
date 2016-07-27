@@ -11,4 +11,4 @@ sed -i -e 's|<secret>|'${SECRET}'|' \
         -e 's|<webroot>|'${WEBROOT}'|' /lufi/lufi.conf
 
 cd /lufi
-su lufi -c "/usr/local/bin/carton exec hypnotoad -f /lufi/script/lufi"
+su-exec lufi:lufi /usr/local/bin/carton exec hypnotoad -f /lufi/script/lufi

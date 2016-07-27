@@ -9,10 +9,13 @@ ENV GID=991 \
     WEBROOT=/
 
 LABEL description="lufi based on debian" \
-      build_ver="2016052901"
+      tags="latest" \
+      build_ver="2016072701"
 
 RUN apt-get update \
-    && BUILD_DEPS="build-essential ca-certificates git" \
+    && BUILD_DEPS="build-essential \
+                ca-certificates \
+                git" \
     && apt-get install -y --no-install-recommends --no-install-suggests \
             perl \
             ${BUILD_DEPS} \
