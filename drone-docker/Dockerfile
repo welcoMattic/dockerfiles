@@ -1,11 +1,11 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG DOCKER_VER=1.11.2
 
 LABEL description="docker client for drone.io based on alpine" \
       tags="1.11.2 1.11 latest" \
-      build_ver="2016061601"
+      build_ver="2016072701"
 
 RUN export BUILD_DEPS="wget \
             ca-certificates \

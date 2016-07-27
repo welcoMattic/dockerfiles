@@ -18,10 +18,10 @@ echo "Build with docker 1.11.2"
 docker build --build-arg DOCKER_VER=1.11.2 -t xataz/drone-docker:1.11.2 $FOLDER
 docker build --build-arg DOCKER_VER=1.11.2 -t xataz/drone-docker:1.11 $FOLDER
 docker build --build-arg DOCKER_VER=1.11.2 -t xataz/drone-docker:latest $FOLDER
-echo "Build with docker 1.12.0-rc1"
-docker build --build-arg DOCKER_VER=1.12.0-rc1 -t xataz/drone-docker:1.12.0-rc1 $FOLDER
-docker build --build-arg DOCKER_VER=1.12.0-rc1 -t xataz/drone-docker:1.12.0 $FOLDER
-docker build --build-arg DOCKER_VER=1.12.0-rc1 -t xataz/drone-docker:1.12 $FOLDER
+echo "Build with docker 1.12.0-rc4"
+docker build --build-arg DOCKER_VER=1.12.0-rc5 -t xataz/drone-docker:1.12.0-rc5 $FOLDER
+docker build --build-arg DOCKER_VER=1.12.0-rc5 -t xataz/drone-docker:1.12.0 $FOLDER
+docker build --build-arg DOCKER_VER=1.12.0-rc5 -t xataz/drone-docker:1.12 $FOLDER
 
 if [ "$DOCKER_PUSH" == "push" ]; then
   for image in $(docker images --format "{{.Repository}}:{{.Tag}}" drone-docker); do
