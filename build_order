@@ -6,7 +6,6 @@ debian/sid
 debian/testing
 glibc
 golang
-java
 mono
 emby
 jackett
@@ -37,8 +36,6 @@ redis/testing-cli
 redis/unstable
 redis/unstable-cli
 rutorrent
-flarum
 samba
 sickrage
 transmission
-up1
