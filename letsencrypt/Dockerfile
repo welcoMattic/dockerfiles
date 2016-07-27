@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 WORKDIR /certbot
