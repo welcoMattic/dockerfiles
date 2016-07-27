@@ -9,10 +9,15 @@ ENV GID=991 \
     ADMINPWD="s3cr3T"
 
 LABEL description="lstu based on debian" \
-      build_ver="2016052901"
+      tags="latest" \
+      build_ver="2016072701"
 
 RUN apt-get update \
-    && BUILD_DEPS="make gcc ca-certificates git libssl-dev" \
+    && BUILD_DEPS="make \
+                gcc \
+                ca-certificates \
+                git \
+                libssl-dev" \
     && apt-get install -y --no-install-recommends --no-install-suggests \
             perl \
             ${BUILD_DEPS} \

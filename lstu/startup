@@ -11,4 +11,4 @@ sed -i -e 's|<secret>|'${SECRET}'|' \
         -e 's|<webroot>|'${WEBROOT}'|' /lstu/lstu.conf
 
 cd /lstu
-su lstu -c "/usr/local/bin/carton exec hypnotoad -f /lstu/script/lstu"
+su-exec lstu:lstu /usr/local/bin/carton exec hypnotoad -f /lstu/script/lstu
