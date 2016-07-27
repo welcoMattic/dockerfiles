@@ -16,4 +16,4 @@ fi
 chown -R ${USER}:${GROUP} /config
 chown -R ${USER}:${GROUP} /SickRage
 
-gosu ${USER}:${GROUP} sh -c "cd /SickRage && /usr/bin/python /SickRage/SickBeard.py --datadir=/config"
+su-exec ${USER}:${GROUP} sh -c "cd /SickRage && /usr/bin/python /SickRage/SickBeard.py --datadir=/config"
