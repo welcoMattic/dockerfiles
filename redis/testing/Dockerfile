@@ -1,15 +1,15 @@
-FROM xataz/alpine:3.3
+FROM xataz/alpine:3.4
 MAINTAINER <https://github.com/xataz>
 
 ENV UID=991 \
     GID=991 \
-    REDIS_VER=3.2.0
+    REDIS_VER=3.2.1
 
 EXPOSE 6379
 
 LABEL description="redis based on alpine" \
-      tags="testing 3.2.0 3.2" \
-      build_ver="2016052901"
+      tags="testing 3.2.1 3.2" \
+      build_ver="2016072701"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \
