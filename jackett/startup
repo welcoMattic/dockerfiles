@@ -14,4 +14,4 @@ if [ ! -e /home/jackett/.config/Jackett/ServerConfig.json ]; then
 	sed 's/<apikey>/'${APIKEY}'/;s/<instanceid>/'${INSTANCEID}'/' /tmp/ServerConfig.json > /home/jackett/.config/Jackett/ServerConfig.json
 fi
 
-gosu ${UID}:${GID} sh -c "cd /opt/Jackett && mono JackettConsole.exe"
+su-exec ${UID}:${GID} sh -c "cd /opt/Jackett && mono JackettConsole.exe"

@@ -8,7 +8,7 @@ ENV UID=991 \
 
 LABEL description="Jackett based on alpine" \
       tags="0.7.296 0.7 latest" \
-      build_ver="2016072701"
+      build_ver="2016072702"
 
 RUN apk add -U curl-dev \
 	&& mkdir -p /opt \
