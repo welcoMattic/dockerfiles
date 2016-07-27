@@ -18,4 +18,4 @@ mkdir -p /config/data
 chown -R ${USER}:${GROUP} /config
 chown -R ${USER}:${GROUP} /CouchPotatoServer
 
-gosu ${USER}:${GROUP} sh -c "cd /CouchPotatoServer && /usr/bin/python /CouchPotatoServer/CouchPotato.py --config_file=/config/config.ini --data_dir=/config/data --console_log"
+su-exec ${USER}:${GROUP} sh -c "cd /CouchPotatoServer && /usr/bin/python /CouchPotatoServer/CouchPotato.py --config_file=/config/config.ini --data_dir=/config/data --console_log"
