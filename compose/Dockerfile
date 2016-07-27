@@ -20,5 +20,5 @@ RUN apk add -U python \
 COPY entrypoint /usr/bin/entrypoint
 RUN chmod +x /usr/bin/entrypoint
 
-ENTRYPOINT ["/usr/bin/entrypoint"]
-CMD ["-v"]
+ENTRYPOINT ["su-exec", "${UID}:${GID}", "docker-compose"]
+CMD ["version"]
