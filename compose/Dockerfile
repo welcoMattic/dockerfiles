@@ -17,8 +17,5 @@ RUN apk add -U python \
     && apk del py-pip \
     && rm -rf /var/cache/apk/*
 
-COPY entrypoint /usr/bin/entrypoint
-RUN chmod +x /usr/bin/entrypoint
-
 ENTRYPOINT ["su-exec", "${UID}:${GID}", "docker-compose"]
 CMD ["version"]
