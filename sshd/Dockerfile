@@ -6,6 +6,7 @@ ENV UID=991 \
     USER=user
 
 LABEL description="sshd based on alpine" \
+      tags="latest" \
       build_ver="2016072701"
 
 RUN apk add -U dropbear \

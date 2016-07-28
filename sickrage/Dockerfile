@@ -2,6 +2,7 @@ FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="sickrage based on alpine" \
+      tags="latest" \
       build_ver="2016072701"
 
 ENV WEBROOT="/" \

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER='xataz'
-DOCKER_PULL=$1
+DOCKER_PUSH=$1
 
 CSI="\033["
 CEND="${CSI}0m"
@@ -23,7 +23,7 @@ build_image() {
             echo -e "${CGREEN}                       ---                                   "
             echo -e "Successfully built ${USER}/${image_name}:${tag} with context ${image_dir}"
             echo -e "                       ---                                   ${CEND}"
-            if [ "$DOCKER_PULL" == "push" ]; then
+            if [ "$DOCKER_PUSH" == "push" ]; then
                 echo -e "${CYELLOW}Push ${USER}/${image_name}:${tag}${CEND}"
                 docker push ${USER}/${image_name}:${tag}
                 echo -e "${CYELLOW}                       ---                                   "

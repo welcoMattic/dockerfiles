@@ -5,6 +5,7 @@ ENV GID=991 \
     UID=991
 
 LABEL description="Emby based on alpine" \
+      tags="latest" \
       build_ver="2016072701"
 
 RUN echo "@testing http://dl-3.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
