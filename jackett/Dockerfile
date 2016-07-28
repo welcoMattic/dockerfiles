@@ -11,10 +11,13 @@ LABEL description="Jackett based on alpine" \
       build_ver="2016072702"
 
 RUN apk add -U curl-dev \
+        ca-certificates \
+        wget \
 	&& mkdir -p /opt \
     && cd /opt \
     && wget https://github.com/Jackett/Jackett/releases/download/v${JACKETT_VER}/Jackett.Binaries.Mono.tar.gz \
     && tar xzf Jackett.Binaries.Mono.tar.gz \
+    && apk del ca-certificates wget \
     && rm -rf /opt/*.tar.gz /var/cache/apk/*
 
 EXPOSE 9117
