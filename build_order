@@ -20,7 +20,6 @@ compose
 couchpotato
 drone-docker
 filebot
-letsencrypt
 lstu
 lufi
 lutim
