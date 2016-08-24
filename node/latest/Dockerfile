@@ -1,13 +1,13 @@
 FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz/>
 
-ARG NODE_VER=v6.3.1
+ARG NODE_VER=v6.4.0
 ARG NPM_VER=3
 ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
-      tags="latest 6.3.1 6.3 6" \
-      build_ver="2016080901"
+      tags="latest 6.4.0 6.4 6" \
+      build_ver="2016082401"
 
 ENV UID=997 \
     GID=991
