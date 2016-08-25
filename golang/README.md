@@ -1,7 +1,7 @@
 ![Golang](https://blog.golang.org/gopher/gopher.png)
 
 ## Tag available
-* 1.6.2, 1.6, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
+* 1.7.0, 1.7, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
 
 ## Description
 What is [Golang](https://golang.org/) ?
@@ -11,7 +11,7 @@ Go is an open source programming language that makes it easy to build simple, re
 ## Build Image
 
 ```shell
-docker build -t xataz/golang:1.6 github.com/xataz/dockerfiles.git#master:golang
+docker build -t xataz/golang:1.7 github.com/xataz/dockerfiles.git#master:golang
 ```
 
 ## Configuration
