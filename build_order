@@ -7,7 +7,6 @@ debian/testing
 glibc
 golang
 mono
-emby
 jackett
 node/latest
 node/latest-onbuild
