@@ -3,13 +3,13 @@ MAINTAINER <https://github.com/xataz>
 
 ENV UID=991 \
     GID=991 \
-    REDIS_VER=3.2.1
+    REDIS_VER=3.2.3
 
 EXPOSE 6379
 
 LABEL description="redis based on alpine" \
-      tags="latest stable 3.2.1 3.2 3" \
-      build_ver="2016072701"
+      tags="latest stable 3.2.3 3.2 3" \
+      build_ver="2016090501"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \
