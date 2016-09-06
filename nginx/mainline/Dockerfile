@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 LABEL Description="nginx based on alpine" \
       tags="latest mainline 1.11.3 1.11" \
-      build_ver="2016072701"
+      build_ver="2016090601"
 
 ARG NGINX_VER=1.11.3
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
