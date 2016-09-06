@@ -19,8 +19,8 @@ if [ ! -e /nginx/www/html/index.php ];then
 mkdir -p /nginx/www/html
 echo "
     <!DOCTYPE html>
-    <head><title>Alpine Docker and Nginx on $(hostname)</title></head>
-    <h1>Nginx $(nginx -v 2>&1 | cut -d/ -f2)</h1>
+    <head><title>Alpine Docker and Nginx</title></head>
+    <h1>Nginx $(nginx -v 2>&1 | cut -d/ -f2) on $(hostname)</h1>
     <p>
 	Nginx running inside a $(du -m / | sort -n | tail -1 | awk '{print $1}')MB Alpine Docker Container.<br>
     </p>
