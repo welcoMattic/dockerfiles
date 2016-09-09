@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="nodejs based on alpine" \
       tags="4.5.0-onbuild 4.5-onbuild 4-onbuild lts-onbuild" \
-      build_ver="2016080901"
+      build_ver="2016090901"
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -19,7 +19,7 @@ ONBUILD RUN PKG_BUILD="git make gcc g++ python linux-headers" && \
 		npm install -g gulp && gulp; \
 	fi && if [ -e /usr/src/app/Gruntfile.js ]; then \
 		npm install -g grunt && grunt; \
-	fi && \
+	fi \
 	&& npm cache clean /root/.npm && apk del ${PKG_BUILD} && rm -rf /var/cache/apk/* \
 	&& chown -R ${UID}:${GID} /usr/src/app
 
