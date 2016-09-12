@@ -29,7 +29,7 @@ docker build -t xataz/rtorrent:custom --build-arg WITH_FILEBOT=YES --build-arg R
 * RTORRENT_VER : rtorrent version (default : 0.9.6)
 * LIBTORRENT_VER : libtorrent version (default : 0.13.6)
 * WITH_FILEBOT : Choose if install filebot (default : no)
-* FILEBOT_VER : filebot version (if WITH_FILEBOT=YES) (default : 4.7)
+* FILEBOT_VER : filebot version (if WITH_FILEBOT=YES) (default : 4.7.2)
 
 ### Environments
 * UID : Choose uid for launch rtorrent (default : 991)
