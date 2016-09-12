@@ -12,7 +12,7 @@ ENV UID=991 \
 
 LABEL description="flood nodejs alternative to rutorrent" \
       tags="latest" \
-      build_ver="2016091203"
+      build_ver="2016091204"
 
 RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
     && apk add -U ${BUILD_DEPS} \
@@ -20,7 +20,6 @@ RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
     && cd /usr/app/src \
     && npm run preinstall \
     && npm install \
-    && npm run prestart \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/*
 
@@ -30,6 +29,7 @@ RUN chmod +x /usr/local/bin/startup
 
 VOLUME /usr/app/src/server/db
 WORKDIR /usr/app/src
+RUN npm run prestart
 
 ENTRYPOINT ["tini", "--"]
 CMD ["startup"]
