@@ -11,13 +11,15 @@ ENV UID=991 \
 
 LABEL description="flood nodejs alternative to rutorrent" \
       tags="latest" \
-      build_ver="2016091201"
+      build_ver="2016091202"
 
 RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
     && apk add -U ${BUILD_DEPS} \
     && git clone https://github.com/jfurrow/flood /usr/app/src \
     && cd /usr/app/src \
+    && npm preinstall \
     && npm install \
+    && npm prestart \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/*
 
@@ -26,6 +28,7 @@ COPY startup /usr/local/bin/startup
 RUN chmod +x /usr/local/bin/startup
 
 VOLUME /usr/app/src/server/db
+WORKDIR /usr/app/src
 
 ENTRYPOINT ["tini", "--"]
 CMD ["startup"]
