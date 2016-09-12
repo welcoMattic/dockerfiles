@@ -12,7 +12,7 @@ ENV UID=991 \
 
 LABEL description="flood nodejs alternative to rutorrent" \
       tags="latest" \
-      build_ver="2016091204"
+      build_ver="2016091205"
 
 RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
     && apk add -U ${BUILD_DEPS} \
@@ -29,7 +29,6 @@ RUN chmod +x /usr/local/bin/startup
 
 VOLUME /usr/app/src/server/db
 WORKDIR /usr/app/src
-RUN npm run prestart
 
 ENTRYPOINT ["tini", "--"]
 CMD ["startup"]
