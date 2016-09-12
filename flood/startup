@@ -1,0 +1,7 @@
+#!/bin/sh
+
+sed -i 's/<rtorrent_host>/'${RTORRENT_HOST}'/;s/<rtorrent_port>/'${RTORRENT_PORT}'/;s/<rtorrent_socket>/'${RTORRENT_SOCKET}'/;s/<rtorrent_socket_path>/'${RTORRENT_SOCKET_PATH}'/;s/<flood_secret>/'${FLOOD_SECRET}'/' /usr/app/src/config.js
+
+chown ${UID}:${GID} /usr/app/src
+
+su-exec ${UID}:${GID} npm start
