@@ -4,4 +4,12 @@ sed -i 's/<rtorrent_host>/'${RTORRENT_HOST}'/;s/<rtorrent_port>/'${RTORRENT_PORT
 
 chown ${UID}:${GID} /usr/app/src
 
-su-exec ${UID}:${GID} npm start
+if [ "${FLOOD_START}" == "develop" ]; then
+    su-exec ${UID}:${GID} npm start
+elif [ "${FLOOD_START}" == "watch" ]; then
+    su-exec ${UID}:${GID} npm start &
+    su-exec ${UID}:${GID} npm run start:watch
+else
+    su-exec ${UID}:${GID} npm run start:production
+fi
+

@@ -7,19 +7,20 @@ ENV UID=991 \
     RTORRENT_PORT=5000 \
     RTORRENT_SOCKET=false \
     RTORRENT_SOCKET_PATH=/tmp/rtorrent.sock \
-    FLOOD_SECRET=flood
+    FLOOD_SECRET=flood \
+    FLOOD_START=production
 
 LABEL description="flood nodejs alternative to rutorrent" \
       tags="latest" \
-      build_ver="2016091202"
+      build_ver="2016091203"
 
 RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
     && apk add -U ${BUILD_DEPS} \
     && git clone https://github.com/jfurrow/flood /usr/app/src \
     && cd /usr/app/src \
-    && npm preinstall \
+    && npm run preinstall \
     && npm install \
-    && npm prestart \
+    && npm run prestart \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/*
 

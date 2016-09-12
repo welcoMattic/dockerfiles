@@ -21,6 +21,7 @@ docker build -t xataz/flood github.com/xataz/dockerfiles.git#master:flood
 * RTORRENT_SOCKET : enable or not socker for rtorrent (default : false)
 * RTORRENT_SOCKET_PATH : path of rtorrent socket if use (default : /tmp/rtorrent.sock)
 * FLOOD_SECRET : secret ? (default : flood)
+* FLOOD_START : Start flood in develop, production or watch mode (default : production)
 
 ### Volumes
 * /usr/app/src/server/db
