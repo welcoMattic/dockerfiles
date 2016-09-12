@@ -9,6 +9,10 @@ ENV UID=991 \
     RTORRENT_SOCKET_PATH=/tmp/rtorrent.sock \
     FLOOD_SECRET=flood
 
+LABEL description="flood nodejs alternative to rutorrent" \
+      tags="latest" \
+      build_ver="2016091201"
+
 RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
     && apk add -U ${BUILD_DEPS} \
     && git clone https://github.com/jfurrow/flood /usr/app/src \
