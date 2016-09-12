@@ -12,7 +12,7 @@ ENV UID=991 \
 
 LABEL description="flood nodejs alternative to rutorrent" \
       tags="latest" \
-      build_ver="2016091205"
+      build_ver="2016091206"
 
 RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
     && apk add -U ${BUILD_DEPS} \
