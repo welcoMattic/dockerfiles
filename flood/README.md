@@ -33,3 +33,40 @@ docker build -t xataz/flood github.com/xataz/dockerfiles.git#master:flood
 ```shell
 $ docker run -d --name flood --link torrent:torrent xataz/flood
 ```
+
+docker-compose.yml example :
+```yaml
+version: '2'
+
+networks:
+  torrent:
+    driver: bridge
+
+services:
+  rtorrent:
+    image: xataz/rtorrent
+    environment:
+      - UID=1000
+      - GID=1000
+    tty: true
+    networks:
+      - torrent
+
+  flood:
+    image: xataz/flood
+    environment:
+      - UID=1000
+      - GID=1000
+      - RTORRENT_HOST=rtorrent
+      - RTORRENT_PORT=5000
+      - FLOOD_SECRET=flood
+    ports:
+      - "3000:3000"
+    networks:
+      - torrent
+```
+
+run with :
+```shell
+$ docker-compose up -d
+```

@@ -4,14 +4,14 @@ sed -i 's/<rtorrent_host>/'${RTORRENT_HOST}'/;s/<rtorrent_port>/'${RTORRENT_PORT
 
 chown -R ${UID}:${GID} /usr/app/src
 
-su-exec ${UID}:${GID} npm run prestart
+su-exec ${UID}:${GID} ./node_modules/.bin/gulp dist
 
 if [ "${FLOOD_START}" == "develop" ]; then
-    su-exec ${UID}:${GID} npm start
+    su-exec ${UID}:${GID} ./node_modules/.bin/nodemon ./server/bin/www
 elif [ "${FLOOD_START}" == "watch" ]; then
-    su-exec ${UID}:${GID} npm start &
-    su-exec ${UID}:${GID} npm run start:watch
+    su-exec ${UID}:${GID} ./node_modules/.bin/nodemon ./server/bin/www &
+    su-exec ${UID}:${GID} NODE_ENV='development' ./node_modules/.bin/gulp livereload
 else
-    su-exec ${UID}:${GID} npm run start:production
+    su-exec ${UID}:${GID} node ./server/bin/www
 fi
 
