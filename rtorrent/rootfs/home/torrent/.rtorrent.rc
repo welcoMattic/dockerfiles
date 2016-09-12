@@ -1,0 +1,32 @@
+scgi_port = 0.0.0.0:5000
+encoding_list = UTF-8
+port_range = <PORT_RTORRENT>-<PORT_RTORRENT>
+port_random = no
+check_hash = no
+directory = /data/torrents
+session = /data/.session
+encryption = allow_incoming, try_outgoing, enable_retry
+use_udp_trackers = yes
+dht = off
+peer_exchange = no
+min_peers = 1
+max_peers = 100
+min_peers_seed = 1
+max_peers_seed = 50
+max_uploads = 15
+
+
+log.open_file = "rtorrent_info.log", (cat,/tmp/rtorrent_info.log.,(system.pid))
+log.open_file = "rtorrent_warn.log", (cat,/tmp/rtorrent_warn.log.,(system.pid))
+log.open_file = "rtorrent_error.log", (cat,/tmp/rtorrent_error.log.,(system.pid))
+log.open_file = "rtorrent_critical.log", (cat,/tmp/rtorrent_critical.log.,(system.pid))
+
+log.add_output = "info", "rtorrent_info.log"
+log.add_output = "warn", "rtorrent_warn.log"
+log.add_output = "error", "rtorrent_error.log"
+log.add_output = "critical", "rtorrent_critical.log"
+
+execute = {sh,-c,/usr/bin/php /var/www/torrent/php/initplugins.php torrent &}
+schedule = watch_directory,1,1,"load_start=/data/.watch/*.torrent"
+schedule = untied_directory,5,5,"stop_untied=/data/.watch/*.torrent"
+schedule = espace_disque_insuffisant,1,30,close_low_diskspace=500M
