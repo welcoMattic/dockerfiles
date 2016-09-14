@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/s6-alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -14,7 +14,7 @@ ENV UID=991 \
 
 LABEL Description="rutorrent based on alpine" \
       tags="latest" \
-      build_ver="2016090501"
+      build_ver="2016091401"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -37,7 +37,7 @@ RUN export BUILD_DEPS="build-base \
                 gzip \
                 zip \
                 unrar \
-                supervisor \
+                s6 \
                 geoip \
     && cd /tmp \
     && git clone https://github.com/esmil/mktorrent \
@@ -105,6 +105,8 @@ RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
 
 VOLUME /data /var/www/torrent/share/
 EXPOSE 8080
-RUN chmod +x /usr/bin/startup
+RUN chmod +x /usr/local/bin/startup \
+    && chmod +x /etc/s6.d/*/run
 
-CMD ["tini","--","/usr/bin/startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
+CMD ["/bin/s6-svscan", "/etc/s6.d"]

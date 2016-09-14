@@ -5,10 +5,6 @@ addgroup -g ${GID} torrent && adduser -h /home/torrent -s /bin/sh -G torrent -D 
 mkdir -p /data/torrents
 mkdir -p /data/.watch
 mkdir -p /data/.session
-mkdir -p /data/Media/Movies
-mkdir -p /data/Media/TV
-mkdir -p /data/Media/Animes
-mkdir -p /data/Media/Music
 
 if [ $WEBROOT != "/" ]; then
     sed -i 's|<webroot>|'${WEBROOT}'|g' /sites/rutorrent.conf
@@ -20,12 +16,18 @@ else
 fi
 sed -i 's|<PORT_RTORRENT>|'$PORT_RTORRENT'|g' /home/torrent/.rtorrent.rc
 
+if [ -e /filebot ]; then
+    mkdir -p /data/Media/Movies
+    mkdir -p /data/Media/TV
+    mkdir -p /data/Media/Animes
+    mkdir -p /data/Media/Music
+    chown -R torrent:torrent /filebot
+fi
 chown -R torrent:torrent /data
 chown -R torrent:torrent /var/www
 chown -R torrent:torrent /home/torrent
 chown -R torrent:torrent /var/lib/nginx
-chown -R torrent:torrent /filebot
 
 rm -f /data/.session/rtorrent.lock
 
-/usr/bin/supervisord -c /etc/supervisord.conf
+exec "$@"
