@@ -100,7 +100,7 @@ RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         && echo 'system.method.set_key=event.download.finished,filebot,"execute={/usr/bin/postdl,$d.get_base_path=,$d.get_name=,$d.get_custom1=}"' >> /home/torrent/.rtorrent.rc \
         && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute={/usr/bin/postrm}"' >> /home/torrent/.rtorrent.rc \
         && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip \
-        && chmod +x /usr/bin/post* \
+        && chmod +x /usr/local/bin/post* \
     ;fi
 
 VOLUME /data /var/www/torrent/share/
