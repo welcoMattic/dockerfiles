@@ -13,6 +13,6 @@ docker build --build-arg WITH_FILEBOT=YES -t xataz/rtorrent-rutorrent:latest-fil
 
 if [ "$DOCKER_PUSH" == "push" ]; then
   for tag in latest filebot latest-filebot; do
-    docker push rtorrent-rutorrent:$tag
+    docker push xataz/rtorrent-rutorrent:$tag
   done
 fi
