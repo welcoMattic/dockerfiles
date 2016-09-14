@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 LABEL Description="nginx based on alpine" \
       tags="latest mainline 1.11.4 1.11" \
-      build_ver="2016091302"
+      build_ver="2016091401"
 
 ARG NGINX_VER=1.11.4
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
@@ -69,4 +69,5 @@ RUN chmod +x /usr/bin/startup
 
 EXPOSE 8080 8443
 
-CMD ["tini","--","/usr/bin/startup"]
+ENTRYPOINT ["tini", "--"]
+CMD ["/usr/bin/startup"]

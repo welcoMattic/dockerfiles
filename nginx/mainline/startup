@@ -31,4 +31,4 @@ fi
 chown -R web:web /nginx
 chown -R web:web /etc/nginx
 
-su-exec web:web nginx -g 'daemon off;'
+exec su-exec web:web nginx -g 'daemon off;'
