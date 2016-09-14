@@ -10,7 +10,7 @@ What is [Alpine Linux](http://alpinelinux.org/)?
 
 Alpine Linux is an independent, non-commercial, general purpose Linux distribution designed for power users who appreciate security, simplicity and resource efficiency.
 
-This image is based on official alpine, but with tini and su-exec installed.
+This image is based on official alpine, but with s6 and su-exec installed.
 
 #### Small
 
