@@ -4,8 +4,7 @@ FOLDER=$(dirname $0)
 DOCKER_PUSH=$1
 
 # Download dependencies
-docker pull alpine:3.4
-docker pull xataz/alpine:3.4
+docker pull xataz/tini-alpine:3.4
 
 # Build rutorrent
 echo "Build with docker 1.9.1"

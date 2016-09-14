@@ -1,6 +1,9 @@
-alpine/3.3
-alpine/edge
-alpine/3.4
+tini-alpine/3.3
+tini-alpine/edge
+tini-alpine/3.4
+s6-alpine/3.3
+s6-alpine/3.4
+s6-alpine/edge
 debian/jessie
 debian/sid
 debian/testing
@@ -33,7 +36,9 @@ redis/testing
 redis/testing-cli
 redis/unstable
 redis/unstable-cli
-rutorrent
+rtorrent
+rtorrent-rutorrent
+flood
 samba
 sickrage
 transmission
