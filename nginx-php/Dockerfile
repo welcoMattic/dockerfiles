@@ -1,10 +1,11 @@
-FROM xataz/alpine:3.3
+FROM xataz/s6-alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
+
+ARG BUILD_CORES
 
 ARG NGINX_VER=1.11.4
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
-ARG BUILD_CORES
-ARG NGINX_CONF="--prefix=/etc/nginx \
+ARG NGINX_CONF="--prefix=/nginx \
                 --sbin-path=/usr/local/sbin/nginx \
                 --http-log-path=/nginx/log/nginx_access.log \
                 --error-log-path=/nginx/log/nginx_error.log \
@@ -32,7 +33,7 @@ ARG NGINX_CONF="--prefix=/etc/nginx \
                 --with-http_v2_module \
                 --with-ipv6"
 
-ARG PHP_VER=7.0.10
+ARG PHP_VER=7.0.11
 ARG PHP_MIRROR=http://fr2.php.net
 ARG PHP_GPG="6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3"
 ARG PHP_CONF="--enable-fpm \
@@ -57,6 +58,8 @@ LABEL description="nginx based on alpine" \
       php_version="${PHP_VER}" \
       build_ver="2016091501"
 
+COPY rootfs /
+
 RUN export BUILD_DEPS="build-base \
                     openssl-dev \
                     pcre-dev \
@@ -75,46 +78,49 @@ RUN export BUILD_DEPS="build-base \
                     openssl-dev \
                     sqlite-dev \
                     wget \
-                    ca-certificates" \
+                    ca-certificates \
+                    freetype-dev \
+                    openldap-dev \
+                    gmp-dev" \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && apk add -U ${BUILD_DEPS} \
                     curl \
                     libedit \
                     libxml2 \
+                    openssl \
+                    pcre \
+                    zlib \
     && cd /tmp \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
-#   && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
-#	&& gpg --batch --verify /tmp/nginx-${NGINX_VER}.tar.gz.asc /tmp/nginx-${NGINX_VER}.tar.gz \
+    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
+	&& gpg --batch --verify /tmp/nginx-${NGINX_VER}.tar.gz.asc /tmp/nginx-${NGINX_VER}.tar.gz \
     && tar xzf nginx-${NGINX_VER}.tar.gz \
     && cd /tmp/nginx-${NGINX_VER} \
     && ./configure ${NGINX_CONF} \            
     && make -j ${NB_CORES} \
     && make install \
     && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz \
-    && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz.asc/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz.esc \
-#    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHP_GPG" \
-#    && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
+    && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz.asc/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz.asc \
+    && gpg --keyserver pgp.mit.edu --recv-keys "$PHP_GPG" \
+    && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
     && mkdir -p /usr/local/etc/php/conf.d \
     && mkdir -p /usr/src \
     && tar xzvf /tmp/php-${PHP_VER}.tar.gz -C /usr/src \
     && mv /usr/src/php-${PHP_VER} /usr/src/php \
-    && NB_CORES=${CORES_BUILD-$(grep -c "processor" /proc/cpuinfo)} \
     && cd /usr/src/php \
     && ./configure ${PHP_CONF} \
     && make -j ${NB_CORES} \
     && make install \
     && { find /usr/local/bin /usr/local/sbin -type f -perm +0111 -exec strip --strip-all '{}' + || true; } \
     && make clean \
+    && chmod u+x /usr/local/bin/* \
+    && chmod +x /etc/s6.d/*/* \
+    && docker-php-ext-install gd mysqli ctype dom iconv json xml mbstring posix xmlwriter zip zlib sqlite3 pdo_sqlite pdo_pgsql pdo_mysql curl fileinfo bz2 intl mcrypt openssl ldap simplexml pgsql ftp exif gmp \
     && apk del ${BUILD_DEPS} \
-    && apk add openssl pcre zlib \
-    && rm -rf /tmp/* /var/cache/apk/*
-
-COPY startup /usr/bin/startup
-#COPY nginx.conf /etc/nginx/conf/nginx.conf
-
-RUN chmod +x /usr/bin/startup
+    && rm -rf /tmp/* /var/cache/apk/* /usr/src/php
 
 EXPOSE 8080 8443
 
-CMD ["tini","--","/usr/bin/startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
+CMD ["/bin/s6-svscan", "/etc/s6.d"]
