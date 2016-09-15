@@ -4,7 +4,7 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG BUILD_CORES
 
 ARG NGINX_VER=1.11.4
-ARG NGINX_GPG="1A4E 8B72 77C4 2E53 DBA9  C7B9 BCAA 30EA 9C0D 5763"
+ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
 ARG NGINX_CONF="--prefix=/nginx \
                 --sbin-path=/usr/local/sbin/nginx \
                 --http-log-path=/nginx/log/nginx_access.log \
@@ -35,7 +35,7 @@ ARG NGINX_CONF="--prefix=/nginx \
 
 ARG PHP_VER=7.0.11
 ARG PHP_MIRROR=http://fr2.php.net
-ARG PHP_GPG="6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3"
+ARG PHP_GPG="1A4E 8B72 77C4 2E53 DBA9  C7B9 BCAA 30EA 9C0D 5763"
 ARG PHP_CONF="--enable-fpm \
                 --with-fpm-user=web \
                 --with-fpm-group=web \
@@ -85,7 +85,7 @@ LABEL description="nginx based on alpine" \
       tags="latest" \
       nginx_version="${NGINX_VER}" \
       php_version="${PHP_VER}" \
-      build_ver="2016091501"
+      build_ver="2016091505"
 
 COPY rootfs /
 
