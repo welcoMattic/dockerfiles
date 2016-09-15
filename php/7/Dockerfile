@@ -1,17 +1,17 @@
 FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG PHP_VER=7.0.10
+ARG PHP_VER=7.0.11
 ARG CORES_BUILD
 ARG PHP_MIRROR=http://fr2.php.net
-ARG PHP_GPG="6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3"
+ARG PHP_GPG="1A4E 8B72 77C4 2E53 DBA9  C7B9 BCAA 30EA 9C0D 5763"
 
 ENV UID=991 \
     GID=991
 
 LABEL description="php based on alpine" \
-      tags="7.0.10 7.0 7 stable latest" \
-      build_ver="2016072701"
+      tags="7.0.11 7.0 7 stable latest" \
+      build_ver="2016091501"
 
 RUN export BUILD_DEPS="autoconf \
                 build-base \

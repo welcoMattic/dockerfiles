@@ -4,13 +4,14 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG PHP_VER=5.6.25
 ARG CORES_BUILD
 ARG PHP_MIRROR=http://fr2.php.net
+ARG PHP_GPG="0BD7 8B5F 9750 0D45 0838  F95D FE85 7D9A 90D9 0EC1"
 
 ENV UID=991 \
     GID=991
 
 LABEL description="php based on alpine" \
       tags="5.6.25 5.6 5" \
-      build_ver="2016090501"
+      build_ver="2016091501"
 
 RUN export BUILD_DEPS="autoconf \
                 build-base \
