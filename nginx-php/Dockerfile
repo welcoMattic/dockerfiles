@@ -4,7 +4,7 @@ MAINTAINER xataz <https://github.com/xataz>
 ARG BUILD_CORES
 
 ARG NGINX_VER=1.11.4
-ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
+ARG NGINX_GPG="1A4E 8B72 77C4 2E53 DBA9  C7B9 BCAA 30EA 9C0D 5763"
 ARG NGINX_CONF="--prefix=/nginx \
                 --sbin-path=/usr/local/sbin/nginx \
                 --http-log-path=/nginx/log/nginx_access.log \
@@ -48,6 +48,35 @@ ARG PHP_CONF="--enable-fpm \
                 --with-libedit \
                 --with-openssl \
                 --with-zlib"
+
+ARG PHP_EXT_LIST="gd \
+                mysqli \
+                ctype \
+                dom \
+                iconv \
+                json \
+                xml \
+                mbstring \
+                posix \
+                xmlwriter \
+                zip \
+                zlib \
+                sqlite3 \
+                pdo_sqlite \
+                pdo_pgsql \
+                pdo_mysql \
+                curl \
+                fileinfo \
+                bz2 \
+                intl \
+                mcrypt \
+                openssl \
+                ldap \
+                simplexml \
+                pgsql \
+                ftp \
+                exif \
+                gmp"
 
 ENV UID=991 \
     GID=991
@@ -116,7 +145,7 @@ RUN export BUILD_DEPS="build-base \
     && make clean \
     && chmod u+x /usr/local/bin/* \
     && chmod +x /etc/s6.d/*/* \
-    && docker-php-ext-install gd mysqli ctype dom iconv json xml mbstring posix xmlwriter zip zlib sqlite3 pdo_sqlite pdo_pgsql pdo_mysql curl fileinfo bz2 intl mcrypt openssl ldap simplexml pgsql ftp exif gmp \
+    && docker-php-ext-install ${PHP_EXT_LIST} \
     && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* /var/cache/apk/* /usr/src/php
 
