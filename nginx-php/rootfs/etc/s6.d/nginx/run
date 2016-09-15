@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec nginx
+exec su-exec web:web nginx -g 'daemon off;'

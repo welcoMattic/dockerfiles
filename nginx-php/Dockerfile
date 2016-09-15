@@ -39,8 +39,8 @@ ARG PHP_GPG="1A4E 8B72 77C4 2E53 DBA9  C7B9 BCAA 30EA 9C0D 5763"
 ARG PHP_CONF="--enable-fpm \
                 --with-fpm-user=web \
                 --with-fpm-group=web \
-                --with-config-file-path="/usr/local/etc/php" \
-                --with-config-file-scan-dir="/usr/local/etc/php/conf.d" \
+                --with-config-file-path="/php" \
+                --with-config-file-scan-dir="/php/conf.d" \
                 --disable-cgi \
                 --enable-mysqlnd \
                 --enable-mbstring \
@@ -77,6 +77,12 @@ ARG PHP_EXT_LIST="gd \
                 ftp \
                 exif \
                 gmp"
+ARG CUSTOM_BUILD_PKGS="freetype-dev \
+                        openldap-dev \
+                        gmp-dev"
+ARG CUSTOM_PKG="freetype \
+                openldap \
+                gmp"
 
 ENV UID=991 \
     GID=991
@@ -108,9 +114,7 @@ RUN export BUILD_DEPS="build-base \
                     sqlite-dev \
                     wget \
                     ca-certificates \
-                    freetype-dev \
-                    openldap-dev \
-                    gmp-dev" \
+                    ${CUSTOM_BUILD_PKGS}" \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && apk add -U ${BUILD_DEPS} \
                     curl \
@@ -119,23 +123,24 @@ RUN export BUILD_DEPS="build-base \
                     openssl \
                     pcre \
                     zlib \
+                    ${CUSTOM_PKG} \
     && cd /tmp \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
+    && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz \
+    && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz.asc/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz.asc \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
 	&& gpg --batch --verify /tmp/nginx-${NGINX_VER}.tar.gz.asc /tmp/nginx-${NGINX_VER}.tar.gz \
-    && tar xzf nginx-${NGINX_VER}.tar.gz \
-    && cd /tmp/nginx-${NGINX_VER} \
+    && gpg --keyserver pgp.mit.edu --recv-keys "$PHP_GPG" \
+    && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
+    && mkdir -p /php/conf.d \
+    && mkdir -p /usr/src \
+    && tar xzf nginx-${NGINX_VER}.tar.gz -C /usr/src \
+    && tar xzvf /tmp/php-${PHP_VER}.tar.gz -C /usr/src \
+    && cd /usr/src/nginx-${NGINX_VER} \
     && ./configure ${NGINX_CONF} \            
     && make -j ${NB_CORES} \
     && make install \
-    && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz \
-    && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz.asc/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz.asc \
-    && gpg --keyserver pgp.mit.edu --recv-keys "$PHP_GPG" \
-    && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
-    && mkdir -p /usr/local/etc/php/conf.d \
-    && mkdir -p /usr/src \
-    && tar xzvf /tmp/php-${PHP_VER}.tar.gz -C /usr/src \
     && mv /usr/src/php-${PHP_VER} /usr/src/php \
     && cd /usr/src/php \
     && ./configure ${PHP_CONF} \
@@ -147,7 +152,7 @@ RUN export BUILD_DEPS="build-base \
     && chmod +x /etc/s6.d/*/* \
     && docker-php-ext-install ${PHP_EXT_LIST} \
     && apk del ${BUILD_DEPS} \
-    && rm -rf /tmp/* /var/cache/apk/* /usr/src/php
+    && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
 
 EXPOSE 8080 8443
 

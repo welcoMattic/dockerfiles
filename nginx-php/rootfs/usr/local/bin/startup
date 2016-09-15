@@ -13,10 +13,7 @@ if [ "$(ls /nginx/sites-enabled)" == "" ];then
         index index.html index.htm index.php;
 
         location ~ \.php$ {
-            fastcgi_index index.php;
-            fastcgi_pass unix:/var/run/php-fpm.sock;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include /etc/nginx/fastcgi_params;
+            include /nginx/conf.d/php.conf;
         }
     }
     " > /nginx/sites-enabled/default.conf
@@ -39,5 +36,6 @@ fi
 
 
 chown -R web:web /nginx
+chown -R web:web /php
 
 exec "$@"
