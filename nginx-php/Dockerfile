@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.3
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG NGINX_VER=1.11.2
+ARG NGINX_VER=1.11.4
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
 ARG BUILD_CORES
 ARG NGINX_CONF="--prefix=/etc/nginx \
@@ -23,52 +23,95 @@ ARG NGINX_CONF="--prefix=/etc/nginx \
                 --with-http_random_index_module \
                 --with-http_secure_link_module \
                 --with-http_stub_status_module \
-                --with-http_auth_request_module \
-                --with-http_xslt_module=dynamic \
-                --with-http_image_filter_module=dynamic \
-                --with-http_geoip_module=dynamic \
-                --with-http_perl_module=dynamic \
                 --with-threads \
                 --with-stream \
                 --with-stream_ssl_module \
                 --with-http_slice_module \
                 --with-mail \
                 --with-mail_ssl_module \
-                --with-file-aio \
                 --with-http_v2_module \
                 --with-ipv6"
+
+ARG PHP_VER=7.0.10
+ARG PHP_MIRROR=http://fr2.php.net
+ARG PHP_GPG="6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3"
+ARG PHP_CONF="--enable-fpm \
+                --with-fpm-user=web \
+                --with-fpm-group=web \
+                --with-config-file-path="/usr/local/etc/php" \
+                --with-config-file-scan-dir="/usr/local/etc/php/conf.d" \
+                --disable-cgi \
+                --enable-mysqlnd \
+                --enable-mbstring \
+                --with-curl \
+                --with-libedit \
+                --with-openssl \
+                --with-zlib"
 
 ENV UID=991 \
     GID=991
 
 LABEL description="nginx based on alpine" \
-      tags="latest mainline 1.11.2 1.11" \
-      build_ver="2016070501"
+      tags="latest" \
+      nginx_version="${NGINX_VER}" \
+      php_version="${PHP_VER}" \
+      build_ver="2016091501"
 
 RUN export BUILD_DEPS="build-base \
                     openssl-dev \
                     pcre-dev \
                     zlib-dev \
                     wget \
-                    gnupg " \
+                    gnupg \
+                    autoconf \
+                    g++ \
+                    gcc \
+                    libc-dev \
+                    make \
+                    pkgconf \
+                    curl-dev \
+                    libedit-dev \
+                    libxml2-dev \
+                    openssl-dev \
+                    sqlite-dev \
+                    wget \
+                    ca-certificates" \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && apk add -U ${BUILD_DEPS} \
+                    curl \
+                    libedit \
+                    libxml2 \
     && cd /tmp \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
-    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
-	&& gpg --batch --verify nginx-${NGINX_VER}.tar.gz.asc nginx-${NGINX_VER}.tar.gz \
+#   && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
+#	&& gpg --batch --verify /tmp/nginx-${NGINX_VER}.tar.gz.asc /tmp/nginx-${NGINX_VER}.tar.gz \
     && tar xzf nginx-${NGINX_VER}.tar.gz \
     && cd /tmp/nginx-${NGINX_VER} \
     && ./configure ${NGINX_CONF} \            
     && make -j ${NB_CORES} \
     && make install \
+    && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz \
+    && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz.asc/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz.esc \
+#    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$PHP_GPG" \
+#    && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
+    && mkdir -p /usr/local/etc/php/conf.d \
+    && mkdir -p /usr/src \
+    && tar xzvf /tmp/php-${PHP_VER}.tar.gz -C /usr/src \
+    && mv /usr/src/php-${PHP_VER} /usr/src/php \
+    && NB_CORES=${CORES_BUILD-$(grep -c "processor" /proc/cpuinfo)} \
+    && cd /usr/src/php \
+    && ./configure ${PHP_CONF} \
+    && make -j ${NB_CORES} \
+    && make install \
+    && { find /usr/local/bin /usr/local/sbin -type f -perm +0111 -exec strip --strip-all '{}' + || true; } \
+    && make clean \
     && apk del ${BUILD_DEPS} \
     && apk add openssl pcre zlib \
     && rm -rf /tmp/* /var/cache/apk/*
 
 COPY startup /usr/bin/startup
-COPY nginx.conf /etc/nginx/conf/nginx.conf
+#COPY nginx.conf /etc/nginx/conf/nginx.conf
 
 RUN chmod +x /usr/bin/startup
 
