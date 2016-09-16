@@ -10,7 +10,7 @@ ENV GID=991 \
 
 LABEL description="lutim based on debian" \
       tags="latest" \
-      build_ver="2016072701"
+      build_ver="2016091601"
 
 RUN apt-get update \
     && BUILD_DEPS="make \
