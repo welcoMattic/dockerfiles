@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/tini-alpine:3.4
 MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="transmission based on alpine" \
@@ -17,4 +17,6 @@ COPY startup /usr/bin/startup
 COPY settings.json /tmp/settings.json
 RUN chmod +x /usr/bin/startup
 
-CMD ["tini","--","startup"]
+EXPOSE 9091
+
+CMD ["startup"]

@@ -1,8 +1,7 @@
 #!/bin/sh
 
 deluser transmission
-[[ ${GID} -ne 0 ]] && addgroup -g ${GID} transmission && GROUP="transmission" || GROUP="root" 
-[[ ${UID} -ne 0 ]] && adduser -h /home/transmission -D -G transmission -s /bin/sh -u ${UID} transmission && USER="transmission" || USER="root"
+addgroup -g ${GID} transmission && adduser -h /home/transmission -D -G transmission -s /bin/sh -u ${UID} transmission
 
 if [ ! -f /home/transmission/.config/transmission-daemon/settings.json ]
 then
@@ -11,10 +10,7 @@ then
     sed -i "s|<webroot>|"${WEBROOT}"|" /home/transmission/.config/transmission-daemon/settings.json
 fi
 
-mkdir -p /data/torrents
-mkdir -p /data/Media
-mkdir -p /data/watch
-chown -R ${USER}:${GROUP} /data
-chown -R ${USER}:${GROUP} /home/transmission
+mkdir -p /data/torrents /data/Media /data/watch
+chown -R transmission:transmission /data /home/transmission
 
-su-exec ${USER}:${GROUP} transmission-daemon --foreground
+exec su-exec transmission:transmission tini -- transmission-daemon --foreground
