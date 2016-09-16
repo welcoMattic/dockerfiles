@@ -91,7 +91,7 @@ LABEL description="nginx based on alpine" \
       tags="latest" \
       nginx_version="${NGINX_VER}" \
       php_version="${PHP_VER}" \
-      build_ver="2016091505"
+      build_ver="2016091601"
 
 COPY rootfs /
 
@@ -129,10 +129,10 @@ RUN export BUILD_DEPS="build-base \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
     && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz \
     && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz.asc/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz.asc \
-    # && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
-	# && gpg --batch --verify /tmp/nginx-${NGINX_VER}.tar.gz.asc /tmp/nginx-${NGINX_VER}.tar.gz \
-    # && gpg --keyserver pgp.mit.edu --recv-keys "$PHP_GPG" \
-    # && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
+    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
+	&& gpg --batch --verify /tmp/nginx-${NGINX_VER}.tar.gz.asc /tmp/nginx-${NGINX_VER}.tar.gz \
+    && gpg --keyserver pgp.mit.edu --recv-keys "$PHP_GPG" \
+    && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
     && mkdir -p /php/conf.d \
     && mkdir -p /usr/src \
     && tar xzf nginx-${NGINX_VER}.tar.gz -C /usr/src \
