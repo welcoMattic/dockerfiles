@@ -1,3 +1,7 @@
 #!/bin/sh
 
-exec su-exec web:web nginx -g 'daemon off;'
+if test -f ./setup; then
+    source ./setup
+fi
+
+exec nginx -g 'daemon off;'

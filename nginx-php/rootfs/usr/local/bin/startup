@@ -2,40 +2,12 @@
 
 addgroup -g ${GID} web && adduser -H -s /bin/sh -D -G web -u ${UID} web
 
-mkdir -p /sites-enabled
-mkdir -p /nginx/log /nginx/run /nginx/sites-enabled /nginx/www/html
+mkdir -p /nginx /php
 
-if [ "$(ls /nginx/sites-enabled)" == "" ];then
-    echo "
-    server {
-	listen 8080;
-	    root /nginx/www/html;
-        index index.html index.htm index.php;
+chown -R web:web /nginx /php /etc/s6.d
 
-        location ~ \.php$ {
-            include /nginx/conf.d/php.conf;
-        }
-    }
-    " > /nginx/sites-enabled/default.conf
+if [ "$@" == "" ]; then
+    exec su-exec web:web /bin/s6-svscan /etc/s6.d
+else
+    exec su-exec web:web "$@"
 fi
-
-if [ ! -e /nginx/www/html/index.php ];then
-mkdir -p /nginx/www/html
-echo "
-    <!DOCTYPE html>
-    <head><title>Alpine Docker and Nginx</title></head>
-    <h1>Nginx $(nginx -v 2>&1 | cut -d/ -f2) on $(hostname)</h1>
-    <p>
-	Nginx running inside a $(du -m / | sort -n | tail -1 | awk '{print $1}')MB Alpine Docker Container.<br>
-    </p>
-    <?php
-        phpinfo();
-    ?>
-" > /nginx/www/html/index.php
-fi
-
-
-chown -R web:web /nginx
-chown -R web:web /php
-
-exec "$@"

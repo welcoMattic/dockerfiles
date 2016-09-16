@@ -7,8 +7,8 @@ ARG NGINX_VER=1.11.4
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
 ARG NGINX_CONF="--prefix=/nginx \
                 --sbin-path=/usr/local/sbin/nginx \
-                --http-log-path=/nginx/log/nginx_access.log \
-                --error-log-path=/nginx/log/nginx_error.log \
+                --http-log-path=/nginx/logs/nginx_access.log \
+                --error-log-path=/nginx/logs/nginx_error.log \
                 --pid-path=/nginx/run/nginx.pid \
                 --lock-path=/nginx/run/nginx.lock \
                 --user=web --group=web \
@@ -129,10 +129,10 @@ RUN export BUILD_DEPS="build-base \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
     && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz \
     && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz.asc/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz.asc \
-    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
-	&& gpg --batch --verify /tmp/nginx-${NGINX_VER}.tar.gz.asc /tmp/nginx-${NGINX_VER}.tar.gz \
-    && gpg --keyserver pgp.mit.edu --recv-keys "$PHP_GPG" \
-    && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
+    # && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
+	# && gpg --batch --verify /tmp/nginx-${NGINX_VER}.tar.gz.asc /tmp/nginx-${NGINX_VER}.tar.gz \
+    # && gpg --keyserver pgp.mit.edu --recv-keys "$PHP_GPG" \
+    # && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
     && mkdir -p /php/conf.d \
     && mkdir -p /usr/src \
     && tar xzf nginx-${NGINX_VER}.tar.gz -C /usr/src \
