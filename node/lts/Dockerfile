@@ -7,7 +7,7 @@ ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
       tags="4.5.0 4.5 4 lts" \
-      build_ver="2016082401"
+      build_ver="2016091601"
 
 ENV UID=997 \
     GID=991
@@ -32,6 +32,7 @@ RUN export BUILD_DEPS="git \
     && make install && paxctl -cm /usr/bin/node \
     && npm install -g npm@${NPM_VER} \
     && find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf \
+    && strip -s /usr/bin/node \
     && cd / \
     && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* \
