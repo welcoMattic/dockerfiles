@@ -3,11 +3,7 @@ MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="nodejs based on alpine" \
       tags="4.5.0-onbuild 4.5-onbuild 4-onbuild lts-onbuild" \
-<<<<<<< Updated upstream
-      build_ver="2016091601"
-=======
-      build_ver="$(date +%Y%m%d)"
->>>>>>> Stashed changes
+      build_ver="2016092301"
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -26,5 +22,3 @@ ONBUILD RUN PKG_BUILD="git make gcc g++ python linux-headers" && \
 	fi \
 	&& npm cache clean /root/.npm && apk del ${PKG_BUILD} && rm -rf /var/cache/apk/* \
 	&& chown -R ${UID}:${GID} /usr/src/app
-
-CMD ["start"]

@@ -1,9 +1,3 @@
-tini-alpine/3.3
-tini-alpine/edge
-tini-alpine/3.4
-s6-alpine/3.3
-s6-alpine/3.4
-s6-alpine/edge
 debian/jessie
 debian/sid
 debian/testing
@@ -28,6 +22,7 @@ lutim
 monit
 nginx/mainline
 nginx/stable
+nginx-php
 php/5
 php/7
 redis/stable

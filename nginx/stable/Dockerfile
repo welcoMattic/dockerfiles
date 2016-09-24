@@ -3,12 +3,12 @@ MAINTAINER xataz <https://github.com/xataz>
 
 LABEL Description="nginx based on alpine" \
       tags="stable 1.10.1 1.10" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 ARG NGINX_VER=1.10.1
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
 ARG BUILD_CORES
-ARG NGINX_CONF="--prefix=/etc/nginx \
+ARG NGINX_CONF="--prefix=/nginx \
                 --sbin-path=/usr/local/sbin/nginx \
                 --http-log-path=/nginx/log/nginx_access.log \
                 --error-log-path=/nginx/log/nginx_error.log \
@@ -47,6 +47,8 @@ RUN export BUILD_DEPS="build-base \
                     gnupg " \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && apk add -U ${BUILD_DEPS} \
+                s6 \
+                su-exec \
     && cd /tmp \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
@@ -61,13 +63,10 @@ RUN export BUILD_DEPS="build-base \
     && apk add openssl pcre zlib \
     && rm -rf /tmp/* /var/cache/apk/*
 
-COPY startup /usr/bin/startup
-COPY nginx.conf /etc/nginx/conf/nginx.conf
-RUN chmod +x /usr/bin/startup
-
-RUN chmod +x /usr/bin/startup
+COPY rootfs /
+RUN chmod +x /usr/local/bin/startup
 
 EXPOSE 8080 8443
 
-ENTRYPOINT ["tini", "--"]
-CMD ["/usr/bin/startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
+CMD ["/bin/s6-svscan", "/etc/s6.d"]

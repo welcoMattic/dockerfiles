@@ -6,7 +6,7 @@ ARG SUEXEC_VER=0.2
 
 LABEL description="Debian with TINI and su-exec" \
       tags="unstable sid" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 RUN export BUILD_DEPS="wget \
                     ca-certificates \

@@ -1,13 +1,15 @@
 FROM alpine:3.4
 MAINTAINER <https://github.com/xataz>
 
-ENV REDIS_VER=3.2.3
+ENV REDIS_VER=3.2.3 \
+	UID=991 \
+	GID=991 
 
 EXPOSE 6379
 
 LABEL description="redis based on alpine" \
       tags="latest-cli stable-cli 3.2.3-cli 3.2-cli 3-cli" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \
@@ -17,7 +19,9 @@ RUN export BUILD_DEPS="wget \
 		    libc-dev \
 		    make \
 		    tar" \
-	&& apk add --update ${BUILD_DEPS} \ 
+	&& apk add --update ${BUILD_DEPS} \
+						tini \
+						su-exec \
 	&& wget https://github.com/antirez/redis/archive/${REDIS_VER}.tar.gz -O /tmp/redis-${REDIS_VER}.tar.gz \
 	&& cd /tmp \
 	&& tar xzf redis-${REDIS_VER}.tar.gz \
@@ -29,5 +33,8 @@ RUN export BUILD_DEPS="wget \
 	&& rm -rf /tmp/* /var/cache/apk/* \
 	&& mkdir /var/lib/redis
 
-ENTRYPOINT ["redis-cli"]
+COPY startup /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup
+
+ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["--help"]

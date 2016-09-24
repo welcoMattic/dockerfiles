@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="sickrage based on alpine" \
       tags="latest" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 ENV WEBROOT="/" \
     UID="991" \
@@ -12,15 +12,18 @@ ENV WEBROOT="/" \
 RUN apk add -U python \
                 py-pip \
                 git \
+                s6 \
+                su-exec \
     && pip install cheetah \
     && git clone https://github.com/SickRage/SickRage.git \
     && apk del py-pip \
-    && rm -rf /var/cache/apk/* 
+    && rm -rf /var/cache/apk/* ~/.pip/cache/*
 
-COPY startup /usr/bin/startup
-COPY config.ini /tmp/config.ini
-RUN chmod +x /usr/bin/startup
+COPY rootfs /
+RUN chmod +x /usr/local/bin/startup
 
 VOLUME ["/config"]
 EXPOSE 8081
-CMD ["tini","--","/usr/bin/startup"]
+
+ENTRYPOINT ["/usr/local/bin/startup"]
+CMD ["/bin/s6-svscan", "/etc/s6.d"]

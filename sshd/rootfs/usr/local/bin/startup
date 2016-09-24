@@ -1,0 +1,16 @@
+#!/bin/sh
+
+addgroup -g ${GID} ${USER} && adduser -h /home/${USER} -s /bin/sh -D -G ${USER} -u ${UID} ${USER}
+
+mkdir -p /etc/sshd
+
+chown -R ${USER}:${USER} /home/${USER} 
+chown -R root:root /etc/sshd /etc/s6.d
+
+echo -e "\nAllowUsers ${USER}" >> /etc/sshd/sshd_config
+
+if [ $# -gt 0 ]; then
+    exec su-exec root "$@"
+else
+    exec su-exec root /bin/s6-svscan /etc/s6.d    
+fi

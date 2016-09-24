@@ -7,11 +7,15 @@ ENV UID=991 \
 
 LABEL description="sshd based on alpine" \
       tags="latest" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
-RUN apk add -U dropbear \
+RUN apk add -U openssh \
+                s6 \
+                su-exec \
     && rm -rf /var/cache/apk/*
 
-COPY startup /usr/bin/startup
-RUN chmod +x /usr/bin/startup    
-ENTRYPOINT ["tini", "--", "startup"]
+COPY rootfs /
+RUN chmod +x /usr/local/bin/startup
+EXPOSE 2222
+
+ENTRYPOINT ["/usr/local/bin/startup"]

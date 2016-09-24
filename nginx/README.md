@@ -28,6 +28,7 @@ docker build -t xataz/nginx --build-arg NGINX_VER=1.9.5 github.com/xataz/dockerf
 * /nginx/sites-enabled : Place your vhost here
 * /nginx/log : Log emplacement
 * /nginx/run : Here is pid and lock file
+* /nginx/conf/nginx.conf : General configuration of nginx
 
 ### Ports
 * 8080
@@ -39,7 +40,7 @@ docker build -t xataz/nginx --build-arg NGINX_VER=1.9.5 github.com/xataz/dockerf
 docker run -d \
 	-p 80:8080 \
 	-p 443:8443 \
-	-v /docker/config/nginx/www:/www \
+	-v /docker/config/nginx/www/html:/nginx/www/html \
 	-v /docker/config/nginx/sites-enabled:/sites-enabled \
 	xataz/nginx:mainline
 ```

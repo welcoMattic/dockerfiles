@@ -5,7 +5,7 @@ ARG FB_VER=4.7.2
 
 LABEL description="Filebot based on alpine" \
       tags="4.7.2 4.7 4 latest" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 RUN export BUILD_DEPS="wget \
                     unzip \

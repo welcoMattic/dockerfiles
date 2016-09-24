@@ -1,7 +1,7 @@
 # Jackett Image
 
 ## Tag available
-* latest, 0.7.271 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/jackett/Dockerfile)
+* latest, 0.7.398 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/jackett/Dockerfile)
 
 ## Description
 What is [jackett](https://github.com/Jackett/Jackett) ?
@@ -12,11 +12,13 @@ Jackett works as a proxy server: it translates queries from apps (Sonarr, SickRa
 
 Developer note: The software implements the Torznab (with nZEDb category numbering) and TorrentPotato APIs.
 
-## Build Image
+**This image not contains root process**
 
+## Build Image
 ```shell
 docker build -t xataz/jackett github.com/xataz/dockerfiles.git#master:jackett
 ```
+
 ### Build other version
 ```shell
 docker build --build-arg JACKETT_VER=0.7.217 -t xataz/jackett github.com/xataz/dockerfiles.git#master:jackett

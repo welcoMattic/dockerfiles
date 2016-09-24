@@ -6,7 +6,7 @@ ARG BUILD_CORES
 
 LABEL description="Monit based on alpine" \
       tags="5.19.0 5.19 5 latest" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 RUN export BUILD_DEPS="wget \
                     ca-certificates \
@@ -21,6 +21,7 @@ RUN export BUILD_DEPS="wget \
                     docker@comuedge \
                     bash \
                     libseccomp@mainedge \
+                    tini \
     && NB_CORES=${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && cd /tmp \
     && wget https://mmonit.com/monit/dist/monit-${MONIT_VER}.tar.gz \

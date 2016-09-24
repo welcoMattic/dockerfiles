@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="samba based on alpine" \
       tags="latest" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 EXPOSE 137 138 139 445
 

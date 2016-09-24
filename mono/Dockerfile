@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="mono based on alpine" \
       tags="latest" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 RUN export BUILD_DEPS="tar \
                     xz \

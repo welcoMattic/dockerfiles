@@ -2,12 +2,8 @@ FROM xataz/node:latest
 MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="nodejs based on alpine" \
-      tags="latest-onbuild onbuild 6.5.0-onbuild 6.5-onbuild 6-onbuild" \
-<<<<<<< Updated upstream
-      build_ver="2016091601"
-=======
-      build_ver="$(date +%Y%m%d)"
->>>>>>> Stashed changes
+      tags="latest-onbuild onbuild 6.6.0-onbuild 6.6-onbuild 6-onbuild" \
+      build_ver="2016092301"
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -27,4 +23,3 @@ ONBUILD RUN PKG_BUILD="git make gcc g++ python linux-headers" && \
 	&& npm cache clean /root/.npm && apk del ${PKG_BUILD} && rm -rf /var/cache/apk/* \
 	&& chown -R ${UID}:${GID} /usr/src/app
 
-CMD ["start"]

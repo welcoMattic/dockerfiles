@@ -9,7 +9,7 @@ EXPOSE 6379
 
 LABEL description="redis based on alpine" \
       tags="latest stable 3.2.3 3.2 3" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \
@@ -19,7 +19,9 @@ RUN export BUILD_DEPS="wget \
 		    libc-dev \
 		    make \
 		    tar" \
-	&& apk add --update ${BUILD_DEPS} \ 
+	&& apk add --update ${BUILD_DEPS} \
+						s6 \
+						su-exec \
 	&& wget https://github.com/antirez/redis/archive/${REDIS_VER}.tar.gz -O /tmp/redis-${REDIS_VER}.tar.gz \
 	&& cd /tmp \
 	&& tar xzf redis-${REDIS_VER}.tar.gz \
@@ -32,8 +34,8 @@ RUN export BUILD_DEPS="wget \
 	&& mkdir /var/lib/redis
 
 
-ADD redis.conf /var/lib/redis/redis.conf
-ADD startup /usr/bin/startup
-RUN chmod +x /usr/bin/startup
+ADD rootfs /
+RUN chmod +x /usr/local/bin/startup
 
-CMD ["tini","--","startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
+CMD ["/bin/s6-svscan", "/etc/s6.d"]
