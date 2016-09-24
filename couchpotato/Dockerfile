@@ -7,7 +7,7 @@ ENV WEBROOT="" \
 
 LABEL description="Couchpotato based on alpine" \
       tags="latest" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 RUN export BUILD_DEPS="py-pip \
                     build-base \
@@ -28,12 +28,12 @@ RUN export BUILD_DEPS="py-pip \
     && cd /CouchPotatoServer \
     && pip install lxml pyopenssl \
     && apk del ${BUILD_DEPS} \
-    && rm -fr /var/cache/apk/*
+    && rm -fr /var/cache/apk/* ~/.pip/cache/*
 
 VOLUME ["/config"]
 EXPOSE 5050
 COPY rootfs /
-RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/run /etc/s6.d/*/finish
+RUN chmod +x /usr/local/bin/startup
 
 ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]
