@@ -1,4 +1,4 @@
-FROM xataz/s6-alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -39,6 +39,7 @@ RUN export BUILD_DEPS="build-base \
                 unrar \
                 s6 \
                 geoip \
+                su-exec \
     && cd /tmp \
     && git clone https://github.com/esmil/mktorrent \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
