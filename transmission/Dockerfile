@@ -16,7 +16,7 @@ RUN apk add -U transmission-daemon \
 
 VOLUME ["/data","/home/transmission/.config/transmission-daemon/"]
 COPY rootfs /
-RUN chmod +x /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/*
 
 EXPOSE 9091
 

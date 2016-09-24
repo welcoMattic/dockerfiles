@@ -35,7 +35,7 @@ RUN export BUILD_DEPS="wget \
 
 
 ADD rootfs /
-RUN chmod +x /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/*
 
 ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

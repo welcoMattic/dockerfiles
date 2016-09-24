@@ -148,8 +148,7 @@ RUN export BUILD_DEPS="build-base \
     && make install \
     && { find /usr/local/bin /usr/local/sbin -type f -perm +0111 -exec strip --strip-all '{}' + || true; } \
     && make clean \
-    && chmod u+x /usr/local/bin/* \
-    && chmod +x /etc/s6.d/*/* \
+    && chmod u+x /usr/local/bin/* /etc/s6.d/*/* \
     && docker-php-ext-install ${PHP_EXT_LIST} \
     && apk del ${BUILD_DEPS} \
     && rm -rf /tmp/* /var/cache/apk/* /usr/src/*

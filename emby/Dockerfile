@@ -48,7 +48,7 @@ RUN export BUILD_DEPS="build-base \
 EXPOSE 8096 8920 7359/udp
 VOLUME /embyData
 ADD rootfs /
-RUN chmod +x /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/*
 
 ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["s6-svscan", "/etc/s6.d"]

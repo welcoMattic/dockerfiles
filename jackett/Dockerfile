@@ -27,7 +27,7 @@ RUN BUILD_DEPS="wget \
 EXPOSE 9117
 
 COPY rootfs /
-RUN chmod +x /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/*
 
 ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["s6-svscan", "/etc/s6.d"]
