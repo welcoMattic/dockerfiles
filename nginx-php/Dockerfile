@@ -1,4 +1,4 @@
-FROM xataz/s6-alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -123,6 +123,8 @@ RUN export BUILD_DEPS="build-base \
                     openssl \
                     pcre \
                     zlib \
+                    s6 \
+                    su-exec \
                     ${CUSTOM_PKG} \
     && cd /tmp \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
