@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM xataz/nginx-php
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -79,10 +79,10 @@ RUN export BUILD_DEPS="build-base \
     && make -j ${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && make install \
     && mkdir -p /var/www \
-    && git clone https://github.com/Novik/ruTorrent.git /var/www/rutorrent \
-    && git clone https://github.com/xombiemp/rutorrentMobile.git /var/www/rutorrent/plugins/mobile \
-    && git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /var/www/rutorrent/plugins/theme/themes/materialdesign \
-    && mv /var/www/rutorrent /var/www/torrent \
+    && git clone https://github.com/Novik/ruTorrent.git /nginx/www/html/rutorrent \
+    && git clone https://github.com/xombiemp/rutorrentMobile.git /nginx/www/html/rutorrent/plugins/mobile \
+    && git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /nginx/www/html/rutorrent/plugins/theme/themes/materialdesign \
+    && mv /nginx/www/html/rutorrent /nginx/www/html/torrent \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/* \
     && deluser svn \
@@ -106,8 +106,7 @@ RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
 
 VOLUME /data /var/www/torrent/share/
 EXPOSE 8080
-RUN chmod +x /usr/local/bin/startup \
-    && chmod +x /etc/s6.d/*/run
+RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/*
 
 ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

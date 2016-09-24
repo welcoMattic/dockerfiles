@@ -1,9 +1,3 @@
 #!/bin/sh
 
-export HOME="/home/torrent"
-export PWD="/home/torrent"
-export LOGNAME="rtorrent"
-export USER="torrent"
-export TERM="xterm"
-
-exec su-exec torrent:torrent rtorrent
+exec rtorrent

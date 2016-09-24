@@ -1,4 +1,0 @@
-#!/bin/sh
-
-
-exec su-exec root /usr/sbin/nginx
