@@ -50,6 +50,7 @@ docker build -t xataz/rutorrent:custom --build-arg WITH_FILEBOT=YES --build-arg 
 * /data/.session : Rtorrent save statement here
 * /data/torrents : Rtorrent download torrent here
 * /data/Media : If filebot version, rtorrent create a symlink
+* /nginx/www/html/<WEBROOT>/share/ : rutorrent configuration
 
 ### Ports
 * 8080
