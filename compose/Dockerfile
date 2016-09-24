@@ -8,7 +8,7 @@ ENV UID=991 \
 
 LABEL description="docker-compose based on alpine" \
       tags="1.8.0 1.8 latest" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 COPY startup /usr/local/bin/startup
 
@@ -16,6 +16,7 @@ RUN apk add -U python \
             py-setuptools \
             py-pip \
             su-exec \
+            tini \
     && pip install --no-cache-dir docker-compose==${COMPOSE_VER} \
     && apk del py-pip \
     && rm -rf /var/cache/apk/* \
