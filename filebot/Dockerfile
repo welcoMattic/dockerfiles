@@ -1,11 +1,11 @@
-FROM xataz/alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz/>
 
 ARG FB_VER=4.7.2
 
 LABEL description="Filebot based on alpine" \
       tags="4.7.2 4.7 4 latest" \
-      build_ver="2016090501"
+      build_ver="$(date +%Y%m%d)"
 
 RUN export BUILD_DEPS="wget \
                     unzip \

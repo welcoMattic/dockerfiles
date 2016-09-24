@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM alpine:3.4
 MAINTAINER <https://github.com/xataz>
 
 ENV REDIS_VER=3.2.3
@@ -7,7 +7,7 @@ EXPOSE 6379
 
 LABEL description="redis based on alpine" \
       tags="testing-cli 3.2.3-cli 3.2-cli" \
-      build_ver="2016090501"
+      build_ver="$(date +%Y%m%d)"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \

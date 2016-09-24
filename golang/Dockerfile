@@ -9,7 +9,7 @@ ENV UID=991 \
 
 LABEL description="Golang based on alpine" \
       tags="1.7.0 1.7 1 latest" \
-      build_ver="2016082501"
+      build_ver="$(date +%Y%m%d)"
 
 RUN BUILD_DEPS="wget \
                 tar \
@@ -24,4 +24,4 @@ COPY golang /usr/bin/golang
 RUN chmod +x /usr/bin/golang
 
 WORKDIR /usr/app/src
-ENTRYPOINT ["su-exec", "${UID}:${GID}", "/usr/bin/golang"]
+ENTRYPOINT ["exec", "su-exec", "${UID}:${GID}", "/usr/bin/golang"]

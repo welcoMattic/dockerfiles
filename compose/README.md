@@ -31,15 +31,15 @@ docker run -it --rm \
     -w $(pwd) \
     -e UID=$(id -u) \
     -e GID=$(id -g) \
-    xataz/compose:1.7.0 up -d
+    xataz/compose:1.8.0 up -d
 ```
 
-### Alias for bashrc
+### Alias for .(shell)rc
 ```shell
 alias compose='docker run -it --rm \
-        -v $(pwd):$(pwd) \
-        -w $(workdir) \
+        -v $(pwd):/usr/app \
+        -w /usr/app \
         -e UID=$(id -u) \
-        -e GID=991 \
-        xataz/compose:1.7.0'
+        -e GID=$(id -g) \
+        xataz/compose:1.8.0'
 ```

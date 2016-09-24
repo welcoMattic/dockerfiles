@@ -5,7 +5,7 @@ ARG DOCKER_VER=1.11.2
 
 LABEL description="docker client for drone.io based on alpine" \
       tags="1.11.2 1.11 latest" \
-      build_ver="2016072701"
+      build_ver="$(date +%Y%m%d)"
 
 RUN export BUILD_DEPS="wget \
             ca-certificates \

@@ -12,23 +12,22 @@ ENV UID=991 \
 
 LABEL description="flood nodejs alternative to rutorrent" \
       tags="latest" \
-      build_ver="2016091206"
+      build_ver="$(date +%Y%m%d)"
 
 RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
-    && apk add -U ${BUILD_DEPS} \
-    && git clone https://github.com/jfurrow/flood /usr/app/src \
-    && cd /usr/app/src \
+    && apk add -U ${BUILD_DEPS} su-exec s6 \
+    && git clone https://github.com/jfurrow/flood /usr/flood \
+    && cd /usr/flood \
     && npm run preinstall \
     && npm install \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/*
 
-COPY config.js /usr/app/src/config.js
-COPY startup /usr/local/bin/startup
+COPY rootfs /
 RUN chmod +x /usr/local/bin/startup
 
-VOLUME /usr/app/src/server/db
-WORKDIR /usr/app/src
+VOLUME /usr/flood/server/db
+WORKDIR /usr/flood
 
-ENTRYPOINT ["tini", "--"]
-CMD ["startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
+CMD ["s6-svscan", "/etc/s6.d"]

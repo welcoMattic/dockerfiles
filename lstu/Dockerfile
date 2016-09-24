@@ -10,7 +10,11 @@ ENV GID=991 \
 
 LABEL description="lstu based on debian" \
       tags="latest" \
+<<<<<<< Updated upstream
       build_ver="2016091601"
+=======
+      build_ver="$(date +%Y%m%d)"
+>>>>>>> Stashed changes
 
 RUN apt-get update \
     && BUILD_DEPS="make \

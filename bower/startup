@@ -1,0 +1,5 @@
+#!/bin/sh
+
+addgroup -g ${GID} bower && adduser -h /home/bower -s /bin/sh -G bower -D -u ${UID} bower
+
+exec su-exec bower:bower bower "$@"

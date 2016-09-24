@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG PHP_VER=5.6.25
@@ -11,7 +11,7 @@ ENV UID=991 \
 
 LABEL description="php based on alpine" \
       tags="5.6.25 5.6 5" \
-      build_ver="2016091501"
+      build_ver="$(date +%Y%m%d)"
 
 RUN export BUILD_DEPS="autoconf \
                 build-base \

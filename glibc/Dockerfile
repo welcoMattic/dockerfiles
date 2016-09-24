@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG GLIBC_VER=2.23-r3
@@ -6,7 +6,7 @@ ARG GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/un
 
 LABEL description="Glibc image based on alpine" \
       tags="latest 2.23-r3 2.23 2" \
-      build_ver="2016072701"
+      build_ver="$(date +%Y%m%d)"
 
 RUN BUILD_DEPS="wget \
             ca-certificates" \

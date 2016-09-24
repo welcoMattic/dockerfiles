@@ -3,7 +3,11 @@ MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="nodejs based on alpine" \
       tags="4.5.0-onbuild 4.5-onbuild 4-onbuild lts-onbuild" \
+<<<<<<< Updated upstream
       build_ver="2016091601"
+=======
+      build_ver="$(date +%Y%m%d)"
+>>>>>>> Stashed changes
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

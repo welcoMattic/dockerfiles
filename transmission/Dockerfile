@@ -1,9 +1,13 @@
+<<<<<<< Updated upstream
 FROM xataz/tini-alpine:3.4
+=======
+FROM alpine:3.4
+>>>>>>> Stashed changes
 MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="transmission based on alpine" \
       tags="latest" \
-      build_ver="2016072701"
+      build_ver="$(date +%Y%m%d)"
 
 ENV UID=991 \
     GID=991 \

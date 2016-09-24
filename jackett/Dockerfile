@@ -8,7 +8,7 @@ ENV UID=991 \
 
 LABEL description="Jackett based on alpine" \
       tags="0.7.363 0.7 latest" \
-      build_ver="2016090502"
+      build_ver="$(date +%Y%m%d)"
 
 RUN apk add -U curl-dev \
         ca-certificates \

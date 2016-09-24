@@ -8,7 +8,7 @@ ENV GID=991 \
 
 LABEL description="Emby based on alpine" \
       tags="latest" \
-      build_ver="2016072701"
+      build_ver="$(date +%Y%m%d)"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -18,7 +18,8 @@ RUN export BUILD_DEPS="build-base \
     && apk add -U imagemagick \
 	            sqlite \
 	            ffmpeg \
-	            supervisor \
+	            s6 \
+                su-exec \
                 $BUILD_DEPS \
     && cd /tmp \
     && wget http://mediaarea.net/download/binary/mediainfo/${MEDIAINFO_VER}/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
@@ -44,9 +45,10 @@ RUN export BUILD_DEPS="build-base \
     && rm -rf /var/cache/apk/* /tmp/* \
     && rm -f Emby.Mono.zip
 
-EXPOSE 8096
+EXPOSE 8096 8920 7359/udp
 VOLUME /embyData
 ADD rootfs /
-RUN chmod +x /usr/bin/startup
+RUN chmod +x /usr/local/bin/startup
 
-CMD ["tini","--","startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
+CMD ["s6-svscan", "/etc/s6.d"]

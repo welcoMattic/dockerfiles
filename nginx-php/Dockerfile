@@ -91,7 +91,7 @@ LABEL description="nginx based on alpine" \
       tags="latest" \
       nginx_version="${NGINX_VER}" \
       php_version="${PHP_VER}" \
-      build_ver="2016091601"
+      build_ver="$(date +%Y%m%d)"
 
 COPY rootfs /
 

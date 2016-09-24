@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz/>
 
 ARG NODE_VER=v4.5.0 
@@ -7,7 +7,11 @@ ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
       tags="4.5.0 4.5 4 lts" \
+<<<<<<< Updated upstream
       build_ver="2016091601"
+=======
+      build_ver="$(date +%Y%m%d)"
+>>>>>>> Stashed changes
 
 ENV UID=997 \
     GID=991
@@ -44,5 +48,5 @@ RUN export BUILD_DEPS="git \
         /usr/lib/node_modules/npm/html \
         /usr/share/man
 
-ENTRYPOINT ["su-exec", "${UID}:${GID}", "node"]
+ENTRYPOINT ["exec", "su-exec", "${UID}:${GID}", "node"]
 CMD ["-v"]

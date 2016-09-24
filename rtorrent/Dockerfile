@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -12,7 +12,7 @@ ENV UID=991 \
 
 LABEL Description="rtorrent based on alpine" \
       tags="latest" \
-      build_ver="2016091301"
+      build_ver="$(date +%Y%m%d)"
 
 RUN export BUILD_DEPS="build-base \
                         git \

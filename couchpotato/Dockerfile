@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV WEBROOT="" \
@@ -6,7 +6,8 @@ ENV WEBROOT="" \
     GID=991
 
 LABEL description="Couchpotato based on alpine" \
-      build_ver="2016072702"
+      tags="latest" \
+      build_ver="$(date +%Y%m%d)"
 
 RUN export BUILD_DEPS="py-pip \
                     build-base \
@@ -20,6 +21,8 @@ RUN export BUILD_DEPS="py-pip \
                 libxslt \
                 libffi \
                 git \
+                su-exec \
+                s6 \
                 ${BUILD_DEPS} \
     && git clone https://github.com/CouchPotato/CouchPotatoServer \
     && cd /CouchPotatoServer \
@@ -29,8 +32,8 @@ RUN export BUILD_DEPS="py-pip \
 
 VOLUME ["/config"]
 EXPOSE 5050
-COPY startup /usr/bin/startup
-COPY config.ini /tmp/config.ini
-RUN chmod +x /usr/bin/startup
+COPY rootfs /
+RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/run /etc/s6.d/*/finish
 
-CMD ["tini","--","/usr/bin/startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
+CMD ["/bin/s6-svscan", "/etc/s6.d"]
