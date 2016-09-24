@@ -8,7 +8,7 @@ What is [Golang](https://golang.org/) ?
 
 Go is an open source programming language that makes it easy to build simple, reliable, and efficient software. 
 
-**This image not contain root process**
+**This image not contains root process**
 
 ## Build Image
 
