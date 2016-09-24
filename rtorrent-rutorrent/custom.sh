@@ -4,7 +4,8 @@ FOLDER=$(dirname $0)
 DOCKER_PUSH=$1
 
 # Download dependencies
-docker pull xataz/s6-alpine:3.4
+docker pull alpine:3.4
+docker pull xataz/nginx-php
 
 # Build rtorrent-rutorrent
 docker build -t xataz/rtorrent-rutorrent:latest $FOLDER

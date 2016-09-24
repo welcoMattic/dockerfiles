@@ -75,6 +75,6 @@ RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
 
 VOLUME /data /var/www/torrent/share/
 EXPOSE 8080
-RUN chmod +x /usr/bin/startup /etc/s6.d/*/*
+RUN chmod +x /usr/bin/startup
 
 CMD ["tini","--","/usr/bin/startup"]
