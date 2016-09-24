@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ '$@' == '' ]; then
+    exec su-exec ${UID}:${GID} tini -- node -v
+else
+    exec su-exec ${UID}:${GID} tini -- node "$@"
+fi

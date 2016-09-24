@@ -7,13 +7,9 @@ ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
       tags="4.5.0 4.5 4 lts" \
-<<<<<<< Updated upstream
-      build_ver="2016091601"
-=======
-      build_ver="$(date +%Y%m%d)"
->>>>>>> Stashed changes
+      build_ver="2016092301"
 
-ENV UID=997 \
+ENV UID=991 \
     GID=991
 
 RUN export BUILD_DEPS="git \
@@ -48,5 +44,8 @@ RUN export BUILD_DEPS="git \
         /usr/lib/node_modules/npm/html \
         /usr/share/man
 
-ENTRYPOINT ["exec", "su-exec", "${UID}:${GID}", "node"]
+COPY startup /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup
+
+ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["-v"]

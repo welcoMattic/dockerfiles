@@ -1,15 +1,15 @@
-FROM xataz/alpine:3.4
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz/>
 
-ARG NODE_VER=v6.5.0
+ARG NODE_VER=v6.6.0
 ARG NPM_VER=3
 ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
-      tags="latest 6.5.0 6.5 6" \
-      build_ver="2016091601"
+      tags="latest 6.6.0 6.6 6" \
+      build_ver="2016092301"
 
-ENV UID=997 \
+ENV UID=991 \
     GID=991
 
 RUN export BUILD_DEPS="git \
@@ -21,7 +21,11 @@ RUN export BUILD_DEPS="git \
                 linux-headers \
                 paxctl \
                 binutils-gold" \
-    && apk add --update libgcc libstdc++ ${BUILD_DEPS} \
+    && apk add -U libgcc \
+                libstdc++ \
+                su-exec \
+                tini \
+                ${BUILD_DEPS} \
     && cd /tmp \
     && wget https://nodejs.org/dist/${NODE_VER}/node-${NODE_VER}.tar.gz \
     && tar xzf node-${NODE_VER}.tar.gz \
@@ -44,5 +48,8 @@ RUN export BUILD_DEPS="git \
         /usr/lib/node_modules/npm/html \
         /usr/share/man
 
-ENTRYPOINT ["su-exec", "${UID}:${GID}", "node"]
+COPY startup /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup
+
+ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["-v"]
