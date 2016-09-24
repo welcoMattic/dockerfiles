@@ -64,7 +64,7 @@ RUN export BUILD_DEPS="build-base \
     && rm -rf /tmp/* /var/cache/apk/*
 
 COPY rootfs /
-RUN chmod +x /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup /etc/s6.d/nginx/* /etc/s6.d/.s6-svscan/*
 
 EXPOSE 8080 8443
 
