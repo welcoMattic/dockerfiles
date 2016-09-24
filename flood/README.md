@@ -7,6 +7,8 @@
 What is [Flood](https://github.com/jfurrow/flood)?
 Flood is another web interface for rtorrent. It implements a Node.js server for communicating with the rTorrent API, storing historical data, and serving the web UI.
 
+**This image not contains root process**
+
 ## Build Image
 ```shell
 docker build -t xataz/flood github.com/xataz/dockerfiles.git#master:flood
