@@ -10,6 +10,8 @@ Emby Server is a home media server built on top of other popular open source tec
 
 It features a REST-based API with built-in documention to facilitate client development. We also have client libraries for our API to enable rapid development. 
 
+**This image not contain root process**
+
 ## Build Image
 
 ```shell
