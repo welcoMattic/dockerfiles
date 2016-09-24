@@ -6,7 +6,7 @@ ARG GLIBC_URL=https://github.com/andyshinn/alpine-pkg-glibc/releases/download/un
 
 LABEL description="Glibc image based on alpine" \
       tags="latest 2.23-r3 2.23 2" \
-      build_ver="$(date +%Y%m%d)"
+      build_ver="2016092301"
 
 RUN BUILD_DEPS="wget \
             ca-certificates" \
