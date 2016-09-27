@@ -7,7 +7,7 @@ ENV UID=991 \
 
 LABEL description="sshd based on alpine" \
       tags="latest" \
-      build_ver="2016092301"
+      build_ver="2016092701"
 
 RUN apk add -U openssh \
                 s6 \
