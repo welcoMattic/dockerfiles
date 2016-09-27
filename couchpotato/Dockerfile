@@ -7,7 +7,7 @@ ENV WEBROOT="" \
 
 LABEL description="Couchpotato based on alpine" \
       tags="latest" \
-      build_ver="2016092301"
+      build_ver="2016092701"
 
 RUN export BUILD_DEPS="py-pip \
                     build-base \
