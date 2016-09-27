@@ -18,11 +18,11 @@ docker build -t xataz/rsync github.com/xataz/dockerfiles.git#master:rsync
 * USER : Choose username (default : user)
 
 ### Volumes
-* /home/<user> : Mount this on your home directory
+* /home/$USER : Mount this on your home directory
 * /etc/dropbear : For save fingerprint
 
 ### Ports
-* 22
+* 2222
 
 ## Usage
 ### Build your project
