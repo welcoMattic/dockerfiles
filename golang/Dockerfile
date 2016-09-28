@@ -9,7 +9,7 @@ ENV UID=991 \
 
 LABEL description="Golang based on alpine" \
       tags="1.7.1 1.7 1 latest" \
-      build_ver="2016092301"
+      build_ver="2016092801"
 
 RUN BUILD_DEPS="wget \
                 tar \
