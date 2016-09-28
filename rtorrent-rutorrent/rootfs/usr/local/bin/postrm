@@ -1,3 +1,16 @@
 #!/bin/sh
 
-/filebot/filebot.sh -script fn:cleaner /data/Media &
+(find /data/Media -type l > /tmp/symlink
+
+sleep 5
+
+while read in; do 
+    file "$in" | grep "broken symbolic link" > /dev/null 2>&1
+    if [ $? -ne 1 ]; then
+        rm -f "$in"
+    fi
+done < /tmp/symlink
+
+rm /tmp/symlink) &
+
+# /filebot/filebot.sh -script fn:cleaner /data/Media &
