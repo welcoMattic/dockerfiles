@@ -26,6 +26,5 @@ RUN BUILD_DEPS="wget \
 COPY startup /usr/local/bin/startup
 RUN chmod +x /usr/local/bin/startup
 
-WORKDIR /usr/app/src
 ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["version"]
