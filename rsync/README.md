@@ -30,7 +30,7 @@ docker build -t xataz/sshd github.com/xataz/dockerfiles.git#master:sshd
 
 ### Volumes
 * /home/$USER : Mount this on your home directory
-* /etc/sshd/keys : For save fingerprint
+* /etc/ssh/keys : For save server keys
 
 ### Ports
 * 2222
