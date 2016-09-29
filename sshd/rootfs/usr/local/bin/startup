@@ -1,13 +1,15 @@
 #!/bin/sh
 
 addgroup -g ${GID} ${USER} && adduser -h /home/${USER} -s /bin/sh -D -G ${USER} -u ${UID} ${USER}
+PASSWORD=$(date +%s | md5sum | awk '{print $1}')
+passwd ${USER} -d "$PASSWORD"
 
-mkdir -p /etc/sshd
+mkdir -p /etc/ssh/keys
 
 chown -R ${USER}:${USER} /home/${USER} 
-chown -R root:root /etc/sshd /etc/s6.d
+chown -R root:root /etc/ssh /etc/s6.d
 
-echo -e "\nAllowUsers ${USER}" >> /etc/sshd/sshd_config
+echo -e "\nAllowUsers ${USER}" >> /etc/ssh/sshd_config
 
 if [ $# -gt 0 ]; then
     exec su-exec root "$@"

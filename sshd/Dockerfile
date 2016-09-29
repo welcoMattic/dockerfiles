@@ -3,11 +3,11 @@ MAINTAINER xataz <https://github.com/xataz>
 
 ENV UID=991 \
     GID=991 \
-    USER=user
+    USER=openssh
 
 LABEL description="sshd based on alpine" \
       tags="latest" \
-      build_ver="2016092701"
+      build_ver="2016092901"
 
 RUN apk add -U openssh \
                 s6 \

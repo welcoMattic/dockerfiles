@@ -26,7 +26,7 @@ docker build -t xataz/sshd github.com/xataz/dockerfiles.git#master:sshd
 ### Environments
 * UID : Choose uid for use sshd (default : 991)
 * GID : Choose gid for use sshd (default : 991)
-* USER : Choose username (default : user)
+* USER : Choose username (default : openssh)
 
 ### Volumes
 * /home/$USER : Mount this on your home directory
