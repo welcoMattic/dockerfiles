@@ -1,4 +1,4 @@
-![openssh](http://www.openssh.com/)
+![openssh](http://www.openssh.com/images/openssh.gif)
 
 ## Description
 openssh and rsync on alpine
