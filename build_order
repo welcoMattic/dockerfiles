@@ -9,7 +9,7 @@ node/latest
 node/latest-onbuild
 node/lts
 node/lts-onbuild
-rsync
+openssh
 bower
 compose
 couchpotato

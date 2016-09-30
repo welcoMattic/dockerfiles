@@ -1,6 +1,8 @@
-![sshd](http://www.openssh.com/)
+![openssh](http://www.openssh.com/)
 
 ## Description
+openssh and rsync on alpine
+
 What is [opensshd](http://www.openssh.com/) ?
 
 OpenSSH is the premier connectivity tool for remote login with the SSH protocol. It encrypts all traffic to eliminate eavesdropping, connection hijacking, and other attacks. In addition, OpenSSH provides a large suite of secure tunneling capabilities, several authentication methods, and sophisticated configuration options.
@@ -16,10 +18,13 @@ OpenSSH is incorporated into many commercial products, but very few of those com
 
 Contributions towards OpenSSH can be sent to the OpenBSD Foundation.
 
+What is [rsync](https://en.wikipedia.org/wiki/Rsync) ?
+rsync is a utility that keeps copies of a file on two computer systems. It is commonly found on Unix-like systems and functions as both a file synchronization and file transfer program. The rsync algorithm is a type of delta encoding, and is used to minimize network usage. Zlib may be used for additional compression, and SSH or stunnel can be used for data security.
+
 ## Build Image
 
 ```shell
-docker build -t xataz/sshd github.com/xataz/dockerfiles.git#master:sshd
+docker build -t xataz/sshd github.com/xataz/dockerfiles.git#master:openssh
 ```
 
 ## Configuration
