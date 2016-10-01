@@ -8,9 +8,9 @@ ENV GID=991 \
     WEBROOT=/ \
     ADMINPWD="s3cr3T"
 
-LABEL description="lstu based on debian" \
+LABEL description="lstu based on alpine" \
       tags="latest" \
-      build_ver="2016100101"
+      build_ver="2016100102"
 
 RUN BUILD_DEPS="build-base \
                 openssl-dev \
