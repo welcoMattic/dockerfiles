@@ -1,6 +1,3 @@
-debian/jessie
-debian/sid
-debian/testing
 golang
 jackett
 node/latest

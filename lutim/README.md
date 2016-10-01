@@ -12,6 +12,8 @@ It stores images and allows you to see them, download them or share them on soci
 
 Images are indefinitly stored unless you request that they will be deleted at first view or after 24 hours / one week / one month / one year.
 
+**This image not contains root process**
+
 ## BUILD IMAGE
 
 ```shell
@@ -26,12 +28,14 @@ docker build -t xataz/lutim github.com/xataz/dockerfiles.git#master:lutim
 * SECRET : random string used to encrypt cookies (default : e7c0b28877f7479fe6711720475dcbbd)
 * MAX_FILE_SIZE : maximum file size of an uploaded file in bytes (default : 10000000000)
 * CONTACT : lutim contact (default : contact@domain.tld)
+* DEFAULT_DELAY : default time limit for files in days (default : 1 (0 for unlimited))
+* MAX_DELAY : number of days after which the images will be deleted (default : 0 for unlimited)
 
 Tip : you can use the following command to generate SECRET. `date +%s | md5sum | head -c 32`
 
 ### Volumes
-* /data : Lutim's database is here
-* /lutim/files : Location of uploaded images
+* /usr/lutim/data : Lutim's database is here
+* /usr/lutim/files : Location of uploaded images
 
 ### Ports
 * 8181

@@ -1,4 +1,4 @@
-FROM xataz/debian:jessie
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV GID=991 \
@@ -6,38 +6,51 @@ ENV GID=991 \
     CONTACT=contact@domain.tld \
     WEBROOT=/ \
     SECRET=e7c0b28877f7479fe6711720475dcbbd \
-    MAX_FILE_SIZE=10000000000
+    MAX_FILE_SIZE=10000000000 \
+    DEFAULT_DELAY=1 \
+    MAX_DELAY=0
 
-LABEL description="lutim based on debian" \
+LABEL description="lutim based on alpine" \
       tags="latest" \
-      build_ver="2016092301"
+      build_ver="2016100101"
 
-RUN apt-get update \
-    && BUILD_DEPS="make \
-                gcc \
+RUN BUILD_DEPS="build-base \
+                openssl-dev \
                 ca-certificates \
-                libssl-dev \
-                git" \
-    && apt-get install -y --no-install-recommends --no-install-suggests \
-        perl \
-        ca-certificates \
-        shared-mime-info \
-        perlmagick \
-        ${BUILD_DEPS} \
+                git \
+                tar \
+                perl-dev \
+                libidn-dev \
+                wget \
+                imagemagick-dev" \
+    && apk add -U ${BUILD_DEPS} \
+                openssl \
+                perl \
+                libidn \
+                perl-crypt-rijndael \
+                perl-test-manifest \
+                imagemagick \
+                shared-mime-info \
+                tini \
+                su-exec \
+    && echo | cpan \
     && cpan install Carton \
     && cd / \
-    && git clone https://git.framasoft.org/luc/lutim.git \
-    && cd /lutim && carton install \
-    && apt-get purge -y ${BUILD_DEPS} \
-    && apt-get autoremove --purge -y && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /root/.cpan* /lutim/local/cache/* /lufi/utilities
+    && git clone https://git.framasoft.org/luc/lutim.git /usr/lutim \
+    && echo "requires 'Image::Magick';" >> /usr/lutim/cpanfile \
+    && echo "requires 'Mojolicious::Plugin::AssetPack::Backcompat';" >> /usr/lutim/cpanfile \
+    && cd /usr/lutim \
+    && rm -rf cpanfile.snapshot \
+    && carton install \
+    && apk del ${BUILD_DEPS} \
+    && rm -rf /var/cache/apk/* /root/.cpan* /usr/lutim/local/cache/* /usr/lufi/utilities
 
-VOLUME /lutim/files /data
+VOLUME /usr/lutim/data/ /usr/lutim/files
 
 EXPOSE 8181
 
-ADD lutim.conf /lutim/lutim.conf
-ADD startup /usr/bin/startup
-RUN chmod +x /usr/bin/startup
+ADD lutim.conf /usr/lutim/lutim.conf
+ADD startup /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup
 
-CMD ["startup"]
+CMD ["/usr/local/bin/startup"]
