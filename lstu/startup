@@ -2,6 +2,7 @@
 
 addgroup -g ${GID} lstu && adduser -H -s /bin/sh -D -G lstu -u ${UID} lstu
 
+mkdir -p /usr/lstu/data
 chown -R lstu:lstu /usr/lstu
 
 sed -i -e 's|<secret>|'${SECRET}'|' \

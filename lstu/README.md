@@ -8,6 +8,8 @@ What is [lstu](https://git.framasoft.org/luc/lstu) ?
 
 It means Let's Shorten That Url.
 
+**This image not contains root process**
+
 ## BUILD IMAGE
 
 ```shell
@@ -26,7 +28,7 @@ docker build -t xataz/lstu github.com/xataz/dockerfiles.git#master:lstu
 Tip : you can use the following command to generate SECRET. `date +%s | md5sum | head -c 32`
 
 ### Volumes
-* /lstu/lstu.db : lstu's database is here
+* /usr/lstu/data/ : lstu's database is here
 
 ### Ports
 * 8282
@@ -41,7 +43,7 @@ URI access : http://XX.XX.XX.XX:8282
 ### Advanced launch
 ```shell
 docker run -d -p 8181:8282 \
-	-v /docker/config/lstu/lstu.db:/lstu/lstu.db \
+	-v /docker/config/lstu:/usr/lstu/data \
 	-e UID=1001 \
 	-e GID=1001 \
     -e WEBROOT=/lstu \

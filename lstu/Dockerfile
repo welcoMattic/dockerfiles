@@ -10,7 +10,7 @@ ENV GID=991 \
 
 LABEL description="lstu based on alpine" \
       tags="latest" \
-      build_ver="2016100102"
+      build_ver="2016100103"
 
 RUN BUILD_DEPS="build-base \
                 openssl-dev \
