@@ -2,7 +2,6 @@ debian/jessie
 debian/sid
 debian/testing
 golang
-mono
 jackett
 node/latest
 node/latest-onbuild
