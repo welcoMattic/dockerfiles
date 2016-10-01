@@ -1,4 +1,4 @@
-FROM xataz/debian:jessie
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV GID=991 \
@@ -10,31 +10,34 @@ ENV GID=991 \
 
 LABEL description="lstu based on debian" \
       tags="latest" \
-      build_ver="2016092301"
+      build_ver="2016100101"
 
-RUN apt-get update \
-    && BUILD_DEPS="make \
-                gcc \
+RUN BUILD_DEPS="build-base \
+                openssl-dev \
                 ca-certificates \
                 git \
-                libssl-dev" \
-    && apt-get install -y --no-install-recommends --no-install-suggests \
-            perl \
-            ${BUILD_DEPS} \
+                tar \
+                perl-dev \
+                libidn-dev \
+                wget" \
+    && apk add -U ${BUILD_DEPS} \
+                openssl \
+                perl \
+                libidn \
+                tini \
+                su-exec \
+    && echo | cpan \
     && cpan install Carton \
-    && cd / \
-    && git clone https://git.framasoft.org/luc/lstu.git \
-    && cd /lstu \
+    && git clone https://git.framasoft.org/luc/lstu.git /usr/lstu \
+    && cd /usr/lstu \
     && carton install \
-    && apt-get purge -y ${BUILD_DEPS} \
-    && apt-get autoremove --purge -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /root/.cpan* /lstu/local/cache/* /lstu/utilities
+    && apk del ${BUILD_DEPS} \
+    && rm -rf /var/cache/apk/* /root/.cpan* /usr/lstu/local/cache/* /usr/lstu/utilities
     
 EXPOSE 8282
 
-ADD startup /usr/bin/startup
-ADD lstu.conf /lstu/lstu.conf
-RUN chmod +x /usr/bin/startup
+COPY startup /usr/local/bin/startup
+COPY lstu.conf /usr/lstu/lstu.conf
+RUN chmod +x /usr/local/bin/startup
 
-CMD ["startup"]
+CMD ["/usr/local/bin/startup"]
