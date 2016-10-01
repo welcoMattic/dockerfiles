@@ -1,28 +1,25 @@
-FROM xataz/mono:latest
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG JACKETT_VER=0.7.398
+ARG JACKETT_VER=0.7.411
 
 ENV UID=991 \
     GID=991
 
 LABEL description="Jackett based on alpine" \
-      tags="0.7.398 0.7 latest" \
-      build_ver="2016092301"
+      tags="0.7.411 0.7 latest" \
+      build_ver="2016100101"
 
-RUN BUILD_DEPS="wget \
-                curl-dev" \
-    && apk add -U ${BUILD_DEPS} \
+RUN apk add -U wget \
             libcurl \
             ca-certificates \
             s6 \
             su-exec \
-	&& mkdir -p /opt \
-    && cd /opt \
-    && wget https://github.com/Jackett/Jackett/releases/download/v${JACKETT_VER}/Jackett.Binaries.Mono.tar.gz \
-    && tar xzf Jackett.Binaries.Mono.tar.gz \
-    && apk del wget curl-dev \
-    && rm -rf /opt/*.tar.gz /var/cache/apk/*
+    && apk add -U --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ mono \
+    && wget https://github.com/Jackett/Jackett/releases/download/v${JACKETT_VER}/Jackett.Binaries.Mono.tar.gz -O /tmp/Jackett.Binaries.Mono.tar.gz \
+    && tar xzf /tmp/Jackett.Binaries.Mono.tar.gz -C /usr \
+    && apk del wget \
+    && rm -rf /tmp/* /var/cache/apk/*
 
 EXPOSE 9117
 
