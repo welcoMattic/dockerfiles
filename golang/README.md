@@ -1,7 +1,7 @@
 ![Golang](https://blog.golang.org/gopher/gopher.png)
 
 ## Tag available
-* 1.7.0, 1.7, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
+* 1.7.1, 1.7, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
 
 ## Description
 What is [Golang](https://golang.org/) ?

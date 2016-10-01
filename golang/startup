@@ -9,8 +9,8 @@ export GOBIN=${GOPATH}/bin
 
 chown ${UID}:${GID} ${WORKDIR}
 if [ '$@' == '' ]; then
-    exec su-exec ${UID}:${GID} tini -- /usr/local/go/bin/go version
+    exec su-exec ${UID}:${GID} /sbin/tini -- /usr/local/go/bin/go version
 else
-    exec su-exec ${UID}:${GID} tini -- /usr/local/go/bin/go "$@"
+    exec su-exec ${UID}:${GID} /sbin/tini -- /usr/local/go/bin/go "$@"
 fi
 
