@@ -1,4 +1,4 @@
-FROM xataz/mono:latest
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG MEDIAINFO_VER=0.7.88
@@ -8,7 +8,7 @@ ENV GID=991 \
 
 LABEL description="Emby based on alpine" \
       tags="latest" \
-      build_ver="2016092301"
+      build_ver="2016100101"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -21,11 +21,11 @@ RUN export BUILD_DEPS="build-base \
 	            s6 \
                 su-exec \
                 $BUILD_DEPS \
-    && cd /tmp \
-    && wget http://mediaarea.net/download/binary/mediainfo/${MEDIAINFO_VER}/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
-    && wget http://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VER}/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
-    && tar xzf MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
-    && tar xzf MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
+    && apk add -U --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ mono \
+    && wget http://mediaarea.net/download/binary/mediainfo/${MEDIAINFO_VER}/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz -O /tmp/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
+    && wget http://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VER}/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz -O /tmp/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
+    && tar xzf /tmp/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz -C /tmp \
+    && tar xzf /tmp/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz -C /tmp \
     && cd  /tmp/MediaInfo_DLL_GNU_FromSource \
     && ./SO_Compile.sh \
     && cd /tmp/MediaInfo_DLL_GNU_FromSource/ZenLib/Project/GNU/Library \
@@ -36,14 +36,11 @@ RUN export BUILD_DEPS="build-base \
     && ./CLI_Compile.sh \
     && cd /tmp/MediaInfo_CLI_GNU_FromSource/MediaInfo/Project/GNU/CLI \
     && make install \
-    && mkdir /embyServer \
-    && mkdir /embyData \
-    && cd /embyServer \
-    && wget https://github.com/MediaBrowser/Emby.Releases/raw/master/Server/Emby.Mono.zip \
-    && unzip Emby.Mono.zip \
+    && mkdir /embyServer /embyData \
+    && wget https://github.com/MediaBrowser/Emby.Releases/raw/master/Server/Emby.Mono.zip -O /tmp/Emby.Mono.zip \
+    && unzip /tmp/Emby.Mono.zip -d /embyServer \
     && apk del $BUILD_DEPS \
-    && rm -rf /var/cache/apk/* /tmp/* \
-    && rm -f Emby.Mono.zip
+    && rm -rf /var/cache/apk/* /tmp/*
 
 EXPOSE 8096 8920 7359/udp
 VOLUME /embyData
