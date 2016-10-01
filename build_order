@@ -1,7 +1,6 @@
 debian/jessie
 debian/sid
 debian/testing
-glibc
 golang
 mono
 jackett
