@@ -12,6 +12,8 @@ It stores files and allows you to download them.
 
 Is that all? No. All the files are encrypted by the browser! It means that your files never leave your computer unencrypted. The administrator of the Lufi instance you use will not be able to see what is in your file, neither will your network administrator, or your ISP.
 
+**This image not contains root process**
+
 ## BUILD IMAGE
 
 ```shell
@@ -26,12 +28,15 @@ docker build -t xataz/lufi github.com/xataz/dockerfiles.git#master:lufi
 * SECRET : random string used to encrypt cookies (default : 0423bab3aea2d87d5eedd9a4e8173618)
 * MAX_FILE_SIZE : maximum file size of an uploaded file in bytes (default : 10000000000)
 * CONTACT : lufi contact (default : contact@domain.tld)
+* DEFAULT_DELAY : default time limit for files in days (default : 1 (0 for unlimited))
+* MAX_DELAY : number of days after which the images will be deleted (default : 0 for unlimited)
 
-Tip : you can use the following command to generate SECRET. `date +%s | md5sum | head -c 32`
+Tips : you can use the following command to generate SECRET. `date +%s | md5sum | head -c 32`
 
 ### Volumes
-* /data : lufi's database is here
-* /files : Location of uploaded files
+* /usr/lufi/data : lufi's database is here
+* /usr/lufi/files : Location of uploaded files
+* /usr/lufi/themes : Location of themes
 
 ### Ports
 * 8080

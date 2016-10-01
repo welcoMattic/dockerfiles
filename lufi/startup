@@ -1,14 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 
-grep lufi /etc/group > /dev/null 2>&1; [[ $? -eq 1 ]] && addgroup --gid ${GID} lufi
-grep lufi /etc/passwd > /dev/null 2>&1; [[ $? -eq 1 ]] && adduser --system --shell /bin/sh --no-create-home --ingroup lufi --uid ${UID} lufi
+addgroup -g ${GID} lufi && adduser -H -s /bin/sh -D -G lufi -u ${UID} lufi
 
-chown -R lufi:lufi /data /lufi /files
+mkdir -p /usr/lufi/data /usr/lufi/files
+chown -R lufi:lufi /usr/lufi
 
 sed -i -e 's|<secret>|'${SECRET}'|' \
         -e 's|<contact>|'${CONTACT}'|' \
         -e 's|<max_file_size>|'${MAX_FILE_SIZE}'|' \
-        -e 's|<webroot>|'${WEBROOT}'|' /lufi/lufi.conf
+        -e 's|<webroot>|'${WEBROOT}'|' \
+        -e 's|<default_delay>|'${DEFAULT_DELAY}'|' \
+        -e 's|<max_delay>|'${MAX_DELAY}'|' /usr/lufi/lufi.conf
 
-cd /lufi
-exec su-exec lufi:lufi tini -- /usr/local/bin/carton exec hypnotoad -f /lufi/script/lufi
+cd /usr/lufi
+exec su-exec lufi:lufi /sbin/tini -- /usr/local/bin/carton exec hypnotoad -f /usr/lufi/script/lufi

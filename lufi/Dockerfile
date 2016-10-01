@@ -1,4 +1,4 @@
-FROM xataz/debian:jessie
+FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV GID=991 \
@@ -6,35 +6,45 @@ ENV GID=991 \
     SECRET=0423bab3aea2d87d5eedd9a4e8173618 \
     CONTACT=contact@domain.tld \
     MAX_FILE_SIZE=1000000000 \
-    WEBROOT=/
+    WEBROOT=/ \
+    DEFAULT_DELAY=1 \
+    MAX_DELAY=0
 
-LABEL description="lufi based on debian" \
+LABEL description="lufi based on alpine" \
       tags="latest" \
-      build_ver="2016092301"
+      build_ver="2016100101"
 
-RUN apt-get update \
-    && BUILD_DEPS="build-essential \
+RUN BUILD_DEPS="build-base \
+                openssl-dev \
                 ca-certificates \
-                git" \
-    && apt-get install -y --no-install-recommends --no-install-suggests \
-            perl \
-            ${BUILD_DEPS} \
+                git \
+                tar \
+                perl-dev \
+                libidn-dev \
+                wget" \
+    && apk add -U ${BUILD_DEPS} \
+                openssl \
+                perl \
+                libidn \
+                perl-crypt-rijndael \
+                perl-test-manifest \
+                tini \
+                su-exec \
+    && echo | cpan \
     && cpan install Carton \
-    && cd / \
-    && git clone https://git.framasoft.org/luc/lufi.git \
-    && cd /lufi \
+    && git clone https://git.framasoft.org/luc/lufi.git /usr/lufi \
+    && cd /usr/lufi \
+    && rm -rf cpanfile.snapshot \
     && carton install \
-    && apt-get purge -y ${BUILD_DEPS} \
-    && apt-get autoremove --purge -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /root/.cpan* /lufi/local/cache/* /lufi/utilities
+    && apk del -y ${BUILD_DEPS} \
+    && rm -rf /var/cache/apk/* /root/.cpan* /usr/lufi/local/cache/* /usr/lufi/utilities
     
-VOLUME /files /data
+VOLUME /usr/lufi/files /usr/lufi/data
 
 EXPOSE 8080
 
-ADD startup /usr/bin/startup
-ADD lufi.conf /lufi/lufi.conf
-RUN chmod +x /usr/bin/startup
+ADD startup /usr/local/bin/startup
+ADD lufi.conf /usr/lufi/lufi.conf
+RUN chmod +x /usr/local/bin/startup
 
-CMD ["startup"]
+CMD ["/usr/local/bin/startup"]
