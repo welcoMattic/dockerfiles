@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="nodejs based on alpine" \
       tags="latest-onbuild onbuild 6.6.0-onbuild 6.6-onbuild 6-onbuild" \
-      build_ver="2016100101"
+      build_ver="2016100501"
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
