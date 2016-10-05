@@ -3,5 +3,5 @@
 if [ '$@' == '' ]; then
     exec su-exec ${UID}:${GID} tini -- node -v
 else
-    exec su-exec ${UID}:${GID} tini -- node "$@"
+    exec su-exec ${UID}:${GID} tini -- "$@"
 fi

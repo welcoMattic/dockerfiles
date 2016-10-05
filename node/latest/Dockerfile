@@ -7,7 +7,7 @@ ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
       tags="latest 6.7.0 6.7 6" \
-      build_ver="2016100101"
+      build_ver="2016100501"
 
 ENV UID=991 \
     GID=991
