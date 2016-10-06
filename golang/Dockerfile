@@ -13,7 +13,7 @@ LABEL description="Golang based on alpine" \
       tags="1.7.1 1.7 1 latest" \
       glibc_ver="2.23-r3" \
       golang_ver="1.7.1" \
-      build_ver="2016100101"
+      build_ver="2016100501"
 
 RUN BUILD_DEPS="wget \
                 tar \
