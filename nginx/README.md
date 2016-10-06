@@ -9,8 +9,16 @@ What is [Nginx](http://nginx.org)?
 
 nginx (engine x) is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP proxy server, originally written by Igor Sysoev. For a long time, it has been running on many heavily loaded Russian sites including Yandex, Mail.Ru, VK, and Rambler. According to Netcraft, nginx served or proxied 24.29% busiest sites in December 2015. Here are some of the success stories: Netflix, Wordpress.com, FastMail.FM.
 
-## Build Image
+**This image not contains root process**
 
+## Build Image
+### Build arguments
+* NGINX_CONF : Nginx make configure options
+* NGINX_VER : Nginx version (default : 1.11.4 for latest and 1.10.1 for lts)
+* ARG NGINX_GPG : GPG fingerprint (default : "B0F4253373F8F6F510D42178520A9993A1C052F8")
+* ARG BUILD_CORES : Number of core use for make nginx (default : All cores)
+
+# Simply build
 ```shell
 docker build -t xataz/nginx github.com/xataz/dockerfiles.git#master:nginx/mainline
 ```
