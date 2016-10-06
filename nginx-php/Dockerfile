@@ -80,7 +80,7 @@ ARG PHP_EXT_LIST="gd \
 ARG CUSTOM_BUILD_PKGS="freetype-dev \
                         openldap-dev \
                         gmp-dev"
-ARG CUSTOM_PKG="freetype \
+ARG CUSTOM_PKGS="freetype \
                 openldap \
                 gmp"
 
@@ -125,10 +125,9 @@ RUN export BUILD_DEPS="build-base \
                     zlib \
                     s6 \
                     su-exec \
-                    ${CUSTOM_PKG} \
-    && cd /tmp \
-    && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
-    && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
+                    ${CUSTOM_PKGS} \
+    && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz -O /tmp/nginx-${NGINX_VER}.tar.gz \
+    && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc -O nginx-${NGINX_VER}.tar.gz.asc \
     && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz \
     && wget ${PHP_MIRROR}/get/php-${PHP_VER}.tar.gz.asc/from/this/mirror -O /tmp/php-${PHP_VER}.tar.gz.asc \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$NGINX_GPG" \
@@ -137,7 +136,7 @@ RUN export BUILD_DEPS="build-base \
     && gpg --batch --verify /tmp/php-${PHP_VER}.tar.gz.asc /tmp/php-${PHP_VER}.tar.gz \
     && mkdir -p /php/conf.d \
     && mkdir -p /usr/src \
-    && tar xzf nginx-${NGINX_VER}.tar.gz -C /usr/src \
+    && tar xzf /tmp/nginx-${NGINX_VER}.tar.gz -C /usr/src \
     && tar xzvf /tmp/php-${PHP_VER}.tar.gz -C /usr/src \
     && cd /usr/src/nginx-${NGINX_VER} \
     && ./configure ${NGINX_CONF} \            
