@@ -1,7 +1,0 @@
-FROM xataz/php:7
-MAINTAINER xataz <https://github.com/xataz>
-
-RUN apk add -U build-base autoconf\
-    && docker-php-ext-install mysqli \
-    && apk del build-base autoconf \
-    && rm -rf /var/cache/apk/*
