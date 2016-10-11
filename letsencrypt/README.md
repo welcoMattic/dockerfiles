@@ -1,7 +1,7 @@
 # Letsencrypt lite
 
 ## Tag available
-* latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/letsencrypt/Dockerfile)
+* latest, 0.9.1, 0.9 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/letsencrypt/Dockerfile)
 
 ## Description
 What is [letsencrypt](https://github.com/letsencrypt/letsencrypt) ?
@@ -11,10 +11,19 @@ The Let's Encrypt Client is BETA SOFTWARE. It contains plenty of bugs and rough 
 For more information regarding the status of the project, please see [Website](https://letsencrypt.org) or [Github](https://github.com/letsencrypt/letsencrypt).
 
 ## Build Image
+### Build arguments
+* CERTBOT_VER : Version of certbot (default : v0.9.1)
 
+### Build
 ```shell
 docker build -t xataz/letsencrypt github.com/xataz/dockerfiles.git#master:letsencrypt
 ```
+
+### Build other Version
+```shell
+docker build -t xataz/letsencrypt:0.7.0 --build-arg CERTBOT_VER=v0.7.0 github.com/xataz/dockerfiles.git#master:letsencrypt
+```
+
 
 ## Usage
 ### Create a project folder
