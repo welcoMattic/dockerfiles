@@ -2,10 +2,10 @@ FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL Description="nginx based on alpine" \
-      tags="latest mainline 1.11.4 1.11" \
+      tags="latest mainline 1.11.5 1.11" \
       build_ver="2016092301"
 
-ARG NGINX_VER=1.11.4
+ARG NGINX_VER=1.11.5
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
 ARG BUILD_CORES
 ARG NGINX_CONF="--prefix=/nginx \
