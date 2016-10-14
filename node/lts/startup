@@ -1,7 +1,9 @@
 #!/bin/sh
 
+chown ${UID}:${GID} .
+
 if [ '$@' == '' ]; then
-    exec su-exec ${UID}:${GID} tini -- node -v
+    exec su-exec ${UID}:${GID} /sbin/tini -- node -v
 else
-    exec su-exec ${UID}:${GID} tini -- "$@"
+    exec su-exec ${UID}:${GID} /sbin/tini -- "$@"
 fi

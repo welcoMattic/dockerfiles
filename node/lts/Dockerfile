@@ -7,7 +7,7 @@ ARG CORES_BUILD
 
 LABEL description="nodejs based on alpine" \
       tags="4.6.0 4.6 4 lts" \
-      build_ver="2016100501"
+      build_ver="2016101401"
 
 ENV UID=991 \
     GID=991
@@ -21,7 +21,11 @@ RUN export BUILD_DEPS="git \
                 linux-headers \
                 paxctl \
                 binutils-gold" \
-    && apk add --update libgcc libstdc++ ${BUILD_DEPS} \
+    && apk add -U libgcc \
+                libstdc++ \
+                su-exec \
+                tini \
+                ${BUILD_DEPS} \
     && cd /tmp \
     && wget https://nodejs.org/dist/${NODE_VER}/node-${NODE_VER}.tar.gz \
     && tar xzf node-${NODE_VER}.tar.gz \
@@ -48,4 +52,4 @@ COPY startup /usr/local/bin/startup
 RUN chmod +x /usr/local/bin/startup
 
 ENTRYPOINT ["/usr/local/bin/startup"]
-CMD ["-v"]
+CMD ["node", "-v"]

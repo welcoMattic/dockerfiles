@@ -52,4 +52,4 @@ COPY startup /usr/local/bin/startup
 RUN chmod +x /usr/local/bin/startup
 
 ENTRYPOINT ["/usr/local/bin/startup"]
-CMD ["-v"]
+CMD ["node", "-v"]
