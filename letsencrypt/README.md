@@ -1,18 +1,32 @@
 # Letsencrypt lite
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> Automated build is disable in this repo.
+> If you don't trust, you can build yourself.
+
 ## Tag available
-* latest, 0.9.1, 0.9 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/letsencrypt/Dockerfile)
+* latest, 0.9.3, 0.9 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/letsencrypt/Dockerfile)
 
 ## Description
-What is [letsencrypt](https://github.com/letsencrypt/letsencrypt) ?
+What is [letsencrypt](https://github.com/certbot/certbot) ?
 
-The Let's Encrypt Client is BETA SOFTWARE. It contains plenty of bugs and rough edges, and should be tested thoroughly in staging environments before use on production systems.
+Letsencrypt rename to certbot.
 
-For more information regarding the status of the project, please see [Website](https://letsencrypt.org) or [Github](https://github.com/letsencrypt/letsencrypt).
+Certbot is part of EFF’s effort to encrypt the entire Internet. Secure communication over the Web relies on HTTPS, which requires the use of a digital certificate that lets browsers verify the identify of web servers (e.g., is that really google.com?). Web servers obtain their certificates from trusted third parties called certificate authorities (CAs). Certbot is an easy-to-use client that fetches a certificate from Let’s Encrypt—an open certificate authority launched by the EFF, Mozilla, and others—and deploys it to a web server.
+
+Anyone who has gone through the trouble of setting up a secure website knows what a hassle getting and maintaining a certificate is. Certbot and Let’s Encrypt can automate away the pain and let you turn on and manage HTTPS with simple commands. Using Certbot and Let's Encrypt is free, so there’s no need to arrange payment.
+
+How you use Certbot depends on the configuration of your web server. The best way to get started is to use our interactive guide. It generates instructions based on your configuration settings. In most cases, you’ll need root or administrator access to your web server to run Certbot.
+
+If you’re using a hosted service and don’t have direct access to your web server, you might not be able to use Certbot. Check with your hosting provider for documentation about uploading certificates or using certificates issues by Let’s Encrypt.
+
+Certbot is a fully-featured, extensible client for the Let's Encrypt CA (or any other CA that speaks the ACME protocol) that can automate the tasks of obtaining certificates and configuring webservers to use them. This client runs on Unix-based operating systems.
+
+Until May 2016, Certbot was named simply letsencrypt or letsencrypt-auto, depending on install method. Instructions on the Internet, and some pieces of the software, may still refer to this older name.
 
 ## Build Image
 ### Build arguments
-* CERTBOT_VER : Version of certbot (default : v0.9.1)
+* CERTBOT_VER : Version of certbot (default : v0.9.3)
 
 ### Build
 ```shell
