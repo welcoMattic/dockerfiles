@@ -1,8 +1,8 @@
 ![](https://i.goopics.net/lq.png)
 
 ## Tag available
-* latest, 6.7.0, 6.7, 6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
-* latest-onbuild, 6.7.0-onbuild, 6.7-onbuild, 6-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
+* latest, 6.8.0, 6.8, 6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
+* latest-onbuild, 6.8.0-onbuild, 6.8-onbuild, 6-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
 * lts, 4.6.0, 4.6, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts/Dockerfile)
 * lts-onbuild, 4.6.0-onbuild, 4.6-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts-onbuild/Dockerfile)
 
