@@ -1,5 +1,8 @@
 ![](https://i.goopics.net/lq.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest, 6.8.0, 6.8, 6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
 * latest-onbuild, 6.8.0-onbuild, 6.8-onbuild, 6-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
@@ -25,11 +28,6 @@ docker build -t xataz/node:6 github.com/xataz/dockerfiles.git#master:node/latest
 ```shell
 docker build -t xataz/node:5.9.0 --build-arg NODE_VER=5.9.0 github.com/xataz/dockerfiles.git#master:node/latest
 ```
-
-
-## Autobuild specification
-This is an autobuild image, but for this autobuild works, I added the compilation directive --without-snapshot.
-You can build this image without this directive, it works on my computer.
 
 ## Usage
 ### Simple run
