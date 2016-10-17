@@ -1,7 +1,7 @@
 ![docker-compose](https://raw.githubusercontent.com/docker/compose/master/logo.png)
 
 ## Tag available
-* 1.8.0, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/compose/Dockerfile)
+* 1.8.1, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/compose/Dockerfile)
 
 ## Description
 What is [docker-compose](https://github.com/docker/compose) ?
