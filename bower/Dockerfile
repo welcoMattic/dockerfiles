@@ -6,7 +6,7 @@ ENV UID=991 \
 
 LABEL description="bower based on alpine" \
       tags="latest" \
-      build_ver="2016092301"
+      build_ver="2016101701"
 
 COPY startup /usr/local/bin/startup
 
@@ -17,6 +17,7 @@ RUN apk add -U git \
         python \
         linux-headers \
         su-exec \
+        tini \
     && npm install -g bower \
     && rm -rf /var/cache/apk/* \
     && chmod +x /usr/local/bin/startup

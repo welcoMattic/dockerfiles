@@ -10,6 +10,8 @@ Bower offers a generic, unopinionated solution to the problem of front-end packa
 
 Bower runs over Git, and is package-agnostic. A packaged component can be made up of any type of asset, and use any type of transport (e.g., AMD, CommonJS, etc.).
 
+**This image not contains root process**
+
 ## Build Image
 
 ```shell
