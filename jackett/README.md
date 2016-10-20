@@ -1,7 +1,7 @@
 # Jackett Image
 
 ## Tag available
-* latest, 0.7.420, 0.7 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/jackett/Dockerfile)
+* latest, 0.7.425, 0.7 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/jackett/Dockerfile)
 
 ## Description
 What is [jackett](https://github.com/Jackett/Jackett) ?
@@ -15,6 +15,10 @@ Developer note: The software implements the Torznab (with nZEDb category numberi
 **This image not contains root process**
 
 ## Build Image
+### Build Argument
+* JACKETT_VER : Version of Jackett (default : 0.7.425)
+
+### Build
 ```shell
 docker build -t xataz/jackett github.com/xataz/dockerfiles.git#master:jackett
 ```
