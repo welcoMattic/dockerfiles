@@ -12,7 +12,7 @@ RUN apk add -U \
             samba-common-tools \
             acl \
             bc \
-            supervisor
+            supervisor tini
 
 COPY rootfs /
 RUN chmod +x /usr/bin/startup   
