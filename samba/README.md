@@ -86,3 +86,10 @@ On linux, you can mount share with :
 ```shell
 mount -t cifs -o username=user1,password=user1passwd //172.1.0.2/Shared /mnt
 ```
+
+On Windows, you can mount share with :
+```shell
+net use Z: \\computer_name\Shared /PERSISTENT:YES
+To disconnect a mapped drive:
+net use  Z: /delete
+```

@@ -17,4 +17,4 @@ RUN apk add -U \
 COPY rootfs /
 RUN chmod +x /usr/bin/startup   
 
-CMD ["tini","--","/usr/bin/startup"]        
+CMD ["/sbin/tini","--","/usr/bin/startup"]        
