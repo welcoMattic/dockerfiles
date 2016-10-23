@@ -4,10 +4,10 @@
 > If you don't trust, you can build yourself.
 
 ## Tag available
-* latest, 6.8.0, 6.8, 6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
-* latest-onbuild, 6.8.0-onbuild, 6.8-onbuild, 6-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
-* lts, 4.6.0, 4.6, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts/Dockerfile)
-* lts-onbuild, 4.6.0-onbuild, 4.6-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts-onbuild/Dockerfile)
+* latest, 6.9.1, 6.9, 6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
+* latest-onbuild, 6.9.1-onbuild, 6.9-onbuild, 6-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
+* lts, 4.6.1, 4.6, 4 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts/Dockerfile)
+* lts-onbuild, 4.6.1-onbuild, 4.6-onbuild, 4-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts-onbuild/Dockerfile)
 
 ## Description
 What is Node.js?
