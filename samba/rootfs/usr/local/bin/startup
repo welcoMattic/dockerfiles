@@ -8,6 +8,7 @@ if [ -e /config/shares.conf ] && [ -e /config/users.conf ]; then
             PASSWORD=$(echo $line | cut -d: -f2)
             echo "Add user $USERNAME"
             adduser -D $USERNAME
+            touch /var/lib/samba/private/smbpasswd
             (echo $PASSWORD;echo $PASSWORD) | smbpasswd -s -a $USERNAME
         done
     else
@@ -60,4 +61,6 @@ else
     exit 1
 fi
 
-/usr/bin/supervisord -c /etc/supervisord.conf
+chmod +x /etc/s6.d/*/*
+
+exec /bin/s6-svscan /etc/s6.d

@@ -12,9 +12,9 @@ RUN apk add -U \
             samba-common-tools \
             acl \
             bc \
-            supervisor tini
+            s6
 
 COPY rootfs /
-RUN chmod +x /usr/bin/startup   
+RUN chmod +x /usr/local/bin/startup   
 
-CMD ["/sbin/tini","--","/usr/bin/startup"]        
+CMD ["/usr/local/bin/startup"]        

@@ -22,7 +22,7 @@ docker build -t xataz/samba github.com/xataz/dockerfiles.git#master:samba
 #### users.conf
 users.conf is a configuration file for list your users and them password :
 ```shell
-USER:PASSWORD
+#USER:PASSWORD
 xataz:xatazpasswd
 user1:user1passwd
 etc ...
@@ -37,7 +37,7 @@ for encrypt your password on samba's format, use this command :
 ```shell
 printf '%s' "<passwd>" | iconv -t utf16le | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
 ```
-exemple with xatazpasswd :
+exemple with user1passwd :
 ```shell
 $ printf '%s' "user1passwd" | iconv -t utf16le | openssl md4 | awk '{print $2}' | tr '[:lower:]' '[:upper:]'
 F5C8257B666CB899CC34AA3FF3771316
@@ -53,7 +53,7 @@ SHARE_PATH:SHARE_NAME:USER_WRITE:USER_READ
 /storage/share2:Volume:user1:user2,xataz
 ```
 
-Use "," for separte user, without space.
+Use "," for separate user, without space.
 
 Mount this files on /config/shares.conf, with `-v /path/of/file/shares.conf:/config/shares.conf`
 
@@ -71,7 +71,7 @@ Mount this files on /config/shares.conf, with `-v /path/of/file/shares.conf:/con
 * 445
 
 ## Usage
-My configuration files (users.conf and shares.conf) are in /docker/config/samba directory.
+My configuration files (users.conf and shares.conf) are in /docker/config/samba.
 ```shell
 docker run -d -p 137:137 \
               -p 138:138 \
