@@ -8,6 +8,9 @@ LABEL description="Monit based on alpine" \
       tags="5.20.0 5.20 5 latest" \
       build_ver="2016102401"
 
+ENV USER_MONIT="monit" \
+    USER_PASSWORD="monit"
+
 RUN export BUILD_DEPS="wget \
                     ca-certificates \
                     build-base \
@@ -16,7 +19,8 @@ RUN export BUILD_DEPS="wget \
                     bash" \
     && echo "@comuedge http://dl-4.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories \
     && echo "@mainedge http://dl-4.alpinelinux.org/alpine/edge/main/" >> /etc/apk/repositories \
-    && apk add -U ${BUILD_DEPS} \
+    && apk upgrade -U \
+    && apk add ${BUILD_DEPS} \
                     linux-pam \
                     docker@comuedge \
                     bash \
@@ -34,9 +38,8 @@ RUN export BUILD_DEPS="wget \
                 libseccomp-dev \
     && rm -rf /tmp/* /var/cache/apk/*
     
-COPY monitrc /etc/monit/monitrc
-COPY check_container /opt/check_container
+COPY rootfs /
 RUN chmod 700 /etc/monit/monitrc \
-    && chmod +x /opt/check_container
+    && chmod +x /usr/local/bin/*
 
-CMD ["/sbin/tini", "--", "/usr/local/bin/monit", "-I", "-c", "/etc/monit/monitrc"]
+CMD ["/usr/local/bin/startup"]
