@@ -1,12 +1,12 @@
 FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG MONIT_VER=5.19.0
+ARG MONIT_VER=5.20.0
 ARG BUILD_CORES
 
 LABEL description="Monit based on alpine" \
-      tags="5.19.0 5.19 5 latest" \
-      build_ver="2016092301"
+      tags="5.20.0 5.20 5 latest" \
+      build_ver="2016102401"
 
 RUN export BUILD_DEPS="wget \
                     ca-certificates \
@@ -39,4 +39,4 @@ COPY check_container /opt/check_container
 RUN chmod 700 /etc/monit/monitrc \
     && chmod +x /opt/check_container
 
-CMD ["tini", "--", "/usr/local/bin/monit", "-I", "-c", "/etc/monit/monitrc"]
+CMD ["/sbin/tini", "--", "/usr/local/bin/monit", "-I", "-c", "/etc/monit/monitrc"]
