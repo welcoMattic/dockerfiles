@@ -2,8 +2,8 @@ FROM xataz/node:lts
 MAINTAINER xataz <https://github.com/xataz/>
 
 LABEL description="nodejs based on alpine" \
-      tags="4.6.1-onbuild 4.6-onbuild 4-onbuild lts-onbuild" \
-      build_ver="2016102401"
+      tags="6.9.1-onbuild 6.9-onbuild 6-onbuild lts-onbuild" \
+      build_ver="2016102601"
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
