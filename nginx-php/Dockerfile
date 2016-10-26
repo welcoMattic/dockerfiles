@@ -33,7 +33,7 @@ ARG NGINX_CONF="--prefix=/nginx \
                 --with-http_v2_module \
                 --with-ipv6"
 
-ARG PHP_VER=7.0.11
+ARG PHP_VER=7.0.12
 ARG PHP_MIRROR=http://fr2.php.net
 ARG PHP_GPG="1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763"
 ARG PHP_CONF="--enable-fpm \
@@ -91,7 +91,7 @@ LABEL description="nginx based on alpine" \
       tags="latest" \
       nginx_version="${NGINX_VER}" \
       php_version="${PHP_VER}" \
-      build_ver="2016101101"
+      build_ver="2016102601"
 
 COPY rootfs /
 
