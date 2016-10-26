@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG PHP_VER=7.0.11
+ARG PHP_VER=7.0.12
 ARG PHP_MIRROR=http://fr2.php.net
 ARG PHP_GPG="1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763"
 ARG PHP_CONF="--enable-fpm \
@@ -56,8 +56,8 @@ ENV UID=991 \
     GID=991
 
 LABEL description="php based on alpine" \
-      tags="7.0.11 7.0 7 stable latest" \
-      build_ver="2016091501"
+      tags="7.0.12 7.0 7 stable latest" \
+      build_ver="2016102601"
 
 COPY docker-php-ext-* /usr/local/bin/
 
@@ -98,11 +98,11 @@ RUN export BUILD_DEPS="autoconf \
     && apk del ${BUILD_DEPS} ${CUSTOM_BUILD_PKGS} \
     && rm -rf /tmp/* /var/cache/apk/* /usr/src
 
-COPY startup /usr/bin/startup
+COPY startup /usr/local/bin/startup
 COPY php-fpm.conf /usr/local/etc/php-fpm.conf
-RUN chmod +x /usr/bin/startup /usr/local/bin/docker*
+RUN chmod +x /usr/local/bin/startup /usr/local/bin/docker*
 
 WORKDIR /var/www/html
 
 EXPOSE 9000
-ENTRYPOINT ["/usr/bin/startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
