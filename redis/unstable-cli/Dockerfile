@@ -9,7 +9,7 @@ EXPOSE 6379
 
 LABEL description="redis based on alpine" \
       tags="unstable-cli" \
-      build_ver="2016092301"
+      build_ver="2016102601"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \

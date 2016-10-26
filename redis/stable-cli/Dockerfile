@@ -1,15 +1,15 @@
 FROM alpine:3.4
 MAINTAINER <https://github.com/xataz>
 
-ENV REDIS_VER=3.2.3 \
+ENV REDIS_VER=3.2.5 \
 	UID=991 \
 	GID=991 
 
 EXPOSE 6379
 
 LABEL description="redis based on alpine" \
-      tags="latest-cli stable-cli 3.2.3-cli 3.2-cli 3-cli" \
-      build_ver="2016092301"
+      tags="latest-cli stable-cli 3.2.5-cli 3.2-cli 3-cli" \
+      build_ver="2016102601"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \
