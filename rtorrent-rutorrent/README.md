@@ -59,7 +59,7 @@ docker build -t xataz/rtorrent-rutorrent:custom --build-arg WITH_FILEBOT=YES --b
 ## Usage
 ### Simple launch
 ```shell
-docker run -dt -p 8080:8080 xataz/rutorrent
+docker run -dt -p 8080:8080 xataz/rtorrent-rutorrent
 ```
 URI access : http://XX.XX.XX.XX:8080
 
@@ -70,6 +70,6 @@ docker run -dt -p 80:8080 \
 	  -e UID=1001 \
 	  -e GID=1001 \
     -e WEBROOT=/rutorrent \
-	xataz/rutorrent:filebot
+	xataz/rtorrent-rutorrent:filebot
 ```
 URI access : http://XX.XX.XX.XX/rutorrent
