@@ -16,40 +16,9 @@ ARG PHP_CONF="--enable-fpm \
                 --with-libedit \
                 --with-openssl \
                 --with-zlib"
-ARG PHP_EXT_LIST="gd \
-                mysqli \
-                ctype \
-                dom \
-                iconv \
-                json \
-                xml \
-                mbstring \
-                posix \
-                xmlwriter \
-                zip \
-                zlib \
-                sqlite3 \
-                pdo_sqlite \
-                pdo_pgsql \
-                pdo_mysql \
-                curl \
-                fileinfo \
-                bz2 \
-                intl \
-                mcrypt \
-                openssl \
-                ldap \
-                simplexml \
-                pgsql \
-                ftp \
-                exif \
-                gmp"
-ARG CUSTOM_BUILD_PKGS="freetype-dev \
-                        openldap-dev \
-                        gmp-dev"
-ARG CUSTOM_PKGS="freetype \
-                openldap \
-                gmp"
+ARG PHP_EXT_LIST
+ARG CUSTOM_BUILD_PKGS
+ARG CUSTOM_PKGS
 ARG CORES_BUILD
 
 ENV UID=991 \
@@ -57,7 +26,7 @@ ENV UID=991 \
 
 LABEL description="php based on alpine" \
       tags="7.0.12 7.0 7 stable latest" \
-      build_ver="2016102601"
+      build_ver="2016102701"
 
 COPY docker-php-ext-* /usr/local/bin/
 
