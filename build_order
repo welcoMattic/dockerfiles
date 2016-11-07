@@ -1,9 +1,6 @@
 golang
 jackett
-node/latest
-node/latest-onbuild
-node/lts
-node/lts-onbuild
+node
 openssh
 bower
 compose

@@ -1,11 +1,11 @@
-FROM alpine:3.4
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG DOCKER_VER=1.11.2
+ARG DOCKER_VER=1.12.1
 
 LABEL description="docker client for drone.io based on alpine" \
-      tags="1.11.2 1.11 latest" \
-      build_ver="2016092301"
+      tags="1.12.1 1.12 latest" \
+      build_ver="2016110701"
 
 RUN export BUILD_DEPS="wget \
             ca-certificates \
@@ -13,7 +13,7 @@ RUN export BUILD_DEPS="wget \
     && apk add -U git \
                 bash \
                 ${BUILD_DEPS} \
-    && bash -c "if [[ $DOCKER_VER != 1.11.* ]]; then \
+    && bash -c "if [[ $DOCKER_VER != 1.11.* ]] && [[ $DOCKER_VER != 1.12.* ]]; then \
                     wget https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VER} -O /usr/bin/docker; \
                 else \
 	                wget https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VER}.tgz -O /tmp/docker.tgz; \
