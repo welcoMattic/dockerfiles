@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV GID=991 \
@@ -12,7 +12,7 @@ ENV GID=991 \
 
 LABEL description="lutim based on alpine" \
       tags="latest" \
-      build_ver="2016100101"
+      build_ver="2016110801"
 
 RUN BUILD_DEPS="build-base \
                 openssl-dev \

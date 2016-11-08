@@ -26,7 +26,7 @@ ENV UID=991 \
 
 LABEL description="php based on alpine" \
       tags="7.0.12 7.0 7 stable latest" \
-      build_ver="2016102701"
+      build_ver="2016110801"
 
 COPY docker-php-ext-* /usr/local/bin/
 

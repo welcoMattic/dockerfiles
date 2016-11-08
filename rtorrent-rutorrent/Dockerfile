@@ -2,7 +2,7 @@ FROM xataz/nginx-php
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
-ARG MEDIAINFO_VER=0.7.88
+ARG MEDIAINFO_VER=0.7.90
 ARG RTORRENT_VER=0.9.6
 ARG LIBTORRENT_VER=0.13.6
 
@@ -14,7 +14,7 @@ ENV UID=991 \
 
 LABEL Description="rutorrent based on alpine" \
       tags="latest" \
-      build_ver="2016092301"
+      build_ver="2016110801"
 
 RUN export BUILD_DEPS="build-base \
                         git \
