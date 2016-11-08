@@ -10,7 +10,7 @@ docker pull xataz/nginx-php
 # Build rtorrent-rutorrent
 docker build -t xataz/rtorrent-rutorrent:latest $FOLDER
 docker build --build-arg WITH_FILEBOT=YES -t xataz/rtorrent-rutorrent:filebot $FOLDER
-docker build --build-arg WITH_FILEBOT=YES -t xataz/rtorrent-rutorrent:latest-filebot $FOLDER
+docker tag xataz/rtorrent-rutorrent:filebot xataz/rtorrent-rutorrent:latest-filebot
 
 if [ "$DOCKER_PUSH" == "push" ]; then
   for tag in latest filebot latest-filebot; do

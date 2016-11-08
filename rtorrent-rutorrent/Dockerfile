@@ -14,7 +14,7 @@ ENV UID=991 \
 
 LABEL Description="rutorrent based on alpine" \
       tags="latest" \
-      build_ver="2016110801"
+      build_ver="2016110802"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -30,9 +30,6 @@ RUN export BUILD_DEPS="build-base \
     && apk add -U ${BUILD_DEPS} \
                 ffmpeg \
                 ca-certificates \
-                nginx \
-                php5-fpm \
-                php5-json \
                 curl \
                 gzip \
                 zip \
