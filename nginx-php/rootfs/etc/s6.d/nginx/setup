@@ -21,9 +21,9 @@ mkdir -p /nginx/www/html
 echo "
     <!DOCTYPE html>
     <head><title>Alpine Docker and Nginx</title></head>
-    <h1>Nginx $(nginx -v 2>&1 | cut -d/ -f2) on $(hostname)</h1>
+    <h1>Nginx $(nginx -v 2>&1 | cut -d/ -f2) and $(php-fpm -v | head -1 | awk '{print $1,$2}') on $(hostname)</h1>
     <p>
-	Nginx running inside a $(du -m / | sort -n | tail -1 | awk '{print $1}')MB Alpine Docker Container.<br>
+	Nginx + php-fpm running inside a $(du -sh / 2> /dev/null | awk '{print $1}') Alpine Docker Container.<br>
     </p>
     <?php
         phpinfo();
