@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM xataz/alpine:3.4
 MAINTAINER <https://github.com/xataz>
 
 ENV REDIS_VER=unstable \
@@ -9,7 +9,7 @@ EXPOSE 6379
 
 LABEL description="redis based on alpine" \
       tags="unstable-cli" \
-      build_ver="2016102601"
+      build_ver="2016110801"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \
