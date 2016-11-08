@@ -1,14 +1,15 @@
-FROM alpine:3.4
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG MEDIAINFO_VER=0.7.88
+ARG MEDIAINFO_VER=0.7.90
+ARG EMBY_VER=3.0.8500
 
 ENV GID=991 \
     UID=991
 
 LABEL description="Emby based on alpine" \
-      tags="latest" \
-      build_ver="2016100101"
+      tags="3.0.8500 3.0 3 latest" \
+      build_ver="2016110801"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -21,7 +22,7 @@ RUN export BUILD_DEPS="build-base \
 	            s6 \
                 su-exec \
                 $BUILD_DEPS \
-    && apk add -U --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ mono \
+    && apk add -U --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --repository http://dl-cdn.alpinelinux.org/alpine/edge/main/ mono python2 \
     && wget http://mediaarea.net/download/binary/mediainfo/${MEDIAINFO_VER}/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz -O /tmp/MediaInfo_CLI_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && wget http://mediaarea.net/download/binary/libmediainfo0/${MEDIAINFO_VER}/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz -O /tmp/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz \
     && tar xzf /tmp/MediaInfo_DLL_${MEDIAINFO_VER}_GNU_FromSource.tar.gz -C /tmp \
@@ -37,7 +38,7 @@ RUN export BUILD_DEPS="build-base \
     && cd /tmp/MediaInfo_CLI_GNU_FromSource/MediaInfo/Project/GNU/CLI \
     && make install \
     && mkdir /embyServer /embyData \
-    && wget https://github.com/MediaBrowser/Emby.Releases/raw/master/Server/Emby.Mono.zip -O /tmp/Emby.Mono.zip \
+    && wget https://github.com/MediaBrowser/Emby/releases/download/${EMBY_VER}/Emby.Mono.zip -O /tmp/Emby.Mono.zip \
     && unzip /tmp/Emby.Mono.zip -d /embyServer \
     && apk del $BUILD_DEPS \
     && rm -rf /var/cache/apk/* /tmp/*
