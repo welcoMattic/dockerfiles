@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG GO_VER=1.7.3
@@ -13,7 +13,7 @@ LABEL description="Golang based on alpine" \
       tags="1.7.3 1.7 1 latest" \
       glibc_ver="2.23-r3" \
       golang_ver="1.7.3" \
-      build_ver="2016102001"
+      build_ver="2016110801"
 
 RUN BUILD_DEPS="wget \
                 tar \
