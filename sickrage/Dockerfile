@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="sickrage based on alpine" \
       tags="latest" \
-      build_ver="2016110801"
+      build_ver="2016111001"
 
 ENV WEBROOT="/" \
     UID="991" \
@@ -14,6 +14,7 @@ RUN apk add -U python \
                 git \
                 s6 \
                 su-exec \
+                unrar \
     && pip install cheetah \
     && git clone https://github.com/SickRage/SickRage.git \
     && apk del py-pip \
