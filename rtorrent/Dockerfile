@@ -12,7 +12,7 @@ ENV UID=991 \
 
 LABEL Description="rtorrent based on alpine" \
       tags="latest" \
-      build_ver="2016110801"
+      build_ver="2016111501"
 
 RUN export BUILD_DEPS="build-base \
                         git \
