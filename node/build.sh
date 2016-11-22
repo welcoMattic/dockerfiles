@@ -10,7 +10,7 @@ CYELLOW="${CSI}1;33m"
 CBLUE="${CSI}1;34m"
 
 # Download dependencies
-docker pull alpine:3.4
+docker pull xataz/alpine:3.4
 
 build() {
     image_name=$1

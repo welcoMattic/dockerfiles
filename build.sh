@@ -17,7 +17,7 @@ CBLUE="${CSI}1;34m"
 git fetch -q "$REPO" "refs/heads/$BRANCH"
 
 # build the changed dockerfiles
-for f in $(git diff HEAD~ "$@" --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | uniq); do
+for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | uniq); do
     if [ -d $f ]; then
         if [ ! -x $f/build.sh ]; then
             chmod +x $f/build.sh
