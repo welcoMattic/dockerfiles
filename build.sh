@@ -69,13 +69,14 @@ for f in "${files[@]}"; do
     image=${f%Dockerfile}
     base=${image%%\/*}
     build_dir=$(dirname $f)
+    build_base=$(echo $build_dir | cut -d"/" -f1)
 
-		if [ -e ${build_dir}/custom.sh ]; then
+		if [ -e ${build_base}/custom.sh ]; then
 			echo -e "${CBLUE}                       ---                                   "
 			echo -e "Build ${build_dir} with custom.sh"
 			echo -e "                       ---                                   ${CEND}"
-			chmod +x ${build_dir}/custom.sh
-			./${build_dir}/custom.sh $DOCKER_PUSH
+			chmod +x ${build_base}/custom.sh
+			./${build_base}/custom.sh $DOCKER_PUSH
 			if [ $? == 0 ]; then
 				echo -e "${CGREEN}                       ---                                   "
 				echo -e "Successfully built ${build_dir} with custom.sh"

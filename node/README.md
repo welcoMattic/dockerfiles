@@ -4,8 +4,8 @@
 > If you don't trust, you can build yourself.
 
 ## Tag available
-* latest, 7.0.0, 7.0, 7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
-* latest-onbuild, 7.0.0-onbuild, 7.0-onbuild, 7-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
+* latest, 7.1.0, 7.1, 7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest/Dockerfile)
+* latest-onbuild, 7.1.0-onbuild, 7.1-onbuild, 7-onbuild, onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/latest-onbuild/Dockerfile)
 * lts, 6.9.1, 6.9, 6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts/Dockerfile)
 * lts-onbuild, 6.9.1-onbuild, 6.9-onbuild, 6-onbuild [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/node/lts-onbuild/Dockerfile)
 
