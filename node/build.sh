@@ -45,13 +45,13 @@ for tag in $(grep 'tags=' $FOLDER/latest/Dockerfile | cut -d'"' -f2); do
     build "xataz/node:$tag" "$FOLDER/latest/"
 done
 for tag in $(grep 'tags=' $FOLDER/latest-onbuild/Dockerfile | cut -d'"' -f2); do
-    build "xataz/node:$tag" "$FOLDER/latest/"
+    build "xataz/node:$tag" "$FOLDER/latest-onbuild/"
 done
 
 ## LTS
 for tag in $(grep 'tags=' $FOLDER/lts/Dockerfile | cut -d'"' -f2); do
-    build "xataz/node:$tag" "$FOLDER/latest/"
+    build "xataz/node:$tag" "$FOLDER/lts/"
 done
 for tag in $(grep 'tags=' $FOLDER/lts-onbuild/Dockerfile | cut -d'"' -f2); do
-    build "xataz/node:$tag" "$FOLDER/latest/"
+    build "xataz/node:$tag" "$FOLDER/lts-onbuild/"
 done
