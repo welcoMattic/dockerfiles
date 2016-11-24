@@ -9,7 +9,7 @@ ENV GID=991 \
 
 LABEL description="Emby based on alpine" \
       tags="3.0.8500 3.0 3 latest" \
-      build_ver="2016110801"
+      build_ver="2016112401"
 
 RUN export BUILD_DEPS="build-base \
                         git \

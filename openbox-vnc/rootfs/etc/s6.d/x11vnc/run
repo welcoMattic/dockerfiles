@@ -1,7 +1,0 @@
-#!/bin/sh
-
-while [ true ]; do
-    if [ "$(ps -ef | grep Xvfb | grep -v grep)" != "" ]; then break; fi
-done
-
-exec /usr/local/bin/x11vnc -display :1 -nopw -wait 5 -shared -permitfiletransfer -tightfilexfer

@@ -37,15 +37,15 @@ push() {
         echo -e "${CYELLOW}Push ${image_name}${CEND}"
         docker push ${image_name}
         echo -e "${CYELLOW}                       ---                                   "
-        echo -e "Successfully push ${USER}/${image_name}"
+        echo -e "Successfully push ${image_name}"
         echo -e "                       ---                                   ${CEND}"
     fi
 }
 
-# Build node
+# Build jackett
 ## Latest
 for tag in $(grep 'tags=' $FOLDER/Dockerfile | cut -d'"' -f2); do
-    build "xataz/node:$tag" "$FOLDER"
+    build "xataz/jackett:$tag" "$FOLDER"
     if [ $? == 0 ]; then
         push "xataz/jackett:$tag"
     fi

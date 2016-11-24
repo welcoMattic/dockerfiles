@@ -42,31 +42,11 @@ push() {
     fi
 }
 
-# Build node
+# Build emby
 ## Latest
-for tag in $(grep 'tags=' $FOLDER/latest/Dockerfile | cut -d'"' -f2); do
-    build "xataz/node:$tag" "$FOLDER/latest/"
+for tag in $(grep 'tags=' $FOLDER/Dockerfile | cut -d'"' -f2); do
+    build "xataz/emby:$tag" "$FOLDER"
     if [ $? == 0 ]; then
-        push "xataz/node:$tag"
-    fi
-done
-for tag in $(grep 'tags=' $FOLDER/latest-onbuild/Dockerfile | cut -d'"' -f2); do
-    build "xataz/node:$tag" "$FOLDER/latest-onbuild/"
-    if [ $? == 0 ]; then
-        push "xataz/node:$tag"
-    fi
-done
-
-## LTS
-for tag in $(grep 'tags=' $FOLDER/lts/Dockerfile | cut -d'"' -f2); do
-    build "xataz/node:$tag" "$FOLDER/lts/"
-    if [ $? == 0 ]; then
-        push "xataz/node:$tag"
-    fi
-done
-for tag in $(grep 'tags=' $FOLDER/lts-onbuild/Dockerfile | cut -d'"' -f2); do
-    build "xataz/node:$tag" "$FOLDER/lts-onbuild/"
-    if [ $? == 0 ]; then
-        push "xataz/node:$tag"
+        push "xataz/emby:$tag"
     fi
 done
