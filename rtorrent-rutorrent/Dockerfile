@@ -91,7 +91,8 @@ RUN export BUILD_DEPS="build-base \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/* \
     && deluser svn \
-    && delgroup svnusers
+    && delgroup svnusers \
+    && ln -s /usr/bin/php7 /usr/bin/php
 
 COPY rootfs /
 ARG WITH_FILEBOT=NO
