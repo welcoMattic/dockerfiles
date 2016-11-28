@@ -84,9 +84,9 @@ RUN export BUILD_DEPS="build-base \
     && make -j ${BUILD_CORES-$(grep -c "processor" /proc/cpuinfo)} \
     && make install \
     && mkdir -p /var/www \
-    && git clone https://github.com/Novik/ruTorrent.git /nginx/www/html/rutorrent \
-    && git clone https://github.com/xombiemp/rutorrentMobile.git /nginx/www/html/rutorrent/plugins/mobile \
-    && git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /nginx/www/html/rutorrent/plugins/theme/themes/materialdesign \
+    && git clone https://github.com/Novik/ruTorrent.git /var/www/html/rutorrent \
+    && git clone https://github.com/xombiemp/rutorrentMobile.git /var/www/html/rutorrent/plugins/mobile \
+    && git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /var/www/html/rutorrent/plugins/theme/themes/materialdesign \
     && mv /nginx/www/html/rutorrent /nginx/www/html/torrent \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/* \
