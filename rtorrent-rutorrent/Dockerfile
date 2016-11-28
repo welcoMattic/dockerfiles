@@ -1,4 +1,4 @@
-FROM xataz/nginx-php
+FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -27,6 +27,8 @@ RUN export BUILD_DEPS="build-base \
                         openssl-dev \
                         ncurses-dev \
                         curl-dev" \
+    && echo "@commuedge http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+    && echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && apk add -U ${BUILD_DEPS} \
                 ffmpeg \
                 ca-certificates \
@@ -37,6 +39,12 @@ RUN export BUILD_DEPS="build-base \
                 s6 \
                 geoip \
                 su-exec \
+                nginx \
+                php7@commuedge \
+                php7-fpm@commuedge \
+                php7-json@commuedge \
+                php7-opcache@commuedge \
+                php7-apcu@testing \
     && cd /tmp \
     && git clone https://github.com/esmil/mktorrent \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
