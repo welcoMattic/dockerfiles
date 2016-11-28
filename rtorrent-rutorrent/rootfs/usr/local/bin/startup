@@ -24,9 +24,6 @@ if [ -e /filebot ]; then
     chown -R torrent:torrent /filebot
 fi
 
-# mkdir -p /var/lib/nginx/tmp/client_body /var/lib/nginx/tmp/proxy /var/lib/nginx/tmp/fastcgi
-mkdir -p /var/lib/nginx/tmp
-chmod 770 /var/lib/nginx/tmp/
 chown -R torrent:torrent /data /var/www /etc/s6.d /home/web /var/lib/nginx /etc/php7 /etc/nginx /var/log /tmp
 
 rm -f /data/.session/rtorrent.lock
