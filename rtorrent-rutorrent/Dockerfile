@@ -87,7 +87,7 @@ RUN export BUILD_DEPS="build-base \
     && git clone https://github.com/Novik/ruTorrent.git /var/www/html/rutorrent \
     && git clone https://github.com/xombiemp/rutorrentMobile.git /var/www/html/rutorrent/plugins/mobile \
     && git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git /var/www/html/rutorrent/plugins/theme/themes/materialdesign \
-    && mv /nginx/www/html/rutorrent /nginx/www/html/torrent \
+    && mv /var/www/html/rutorrent /var/www/html/torrent \
     && apk del ${BUILD_DEPS} \
     && rm -rf /var/cache/apk/* /tmp/* \
     && deluser svn \
