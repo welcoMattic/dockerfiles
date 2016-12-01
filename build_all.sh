@@ -44,19 +44,19 @@ for f in $(cat build_order); do
     base=${f%%\/*}
     build_dir=$(dirname $f)
     
-    if [ -e ${build_dir}/custom.sh ]; then
+    if [ -e ${build_dir}/build.sh ]; then
 			echo -e "${CBLUE}                       ---                                   "
-			echo -e "Build ${build_dir} with custom.sh"
+			echo -e "Build ${build_dir} with build.sh"
 			echo -e "                       ---                                   ${CEND}"
-			chmod +x ${build_dir}/custom.sh
-			./${build_dir}/custom.sh $DOCKER_PUSH
+			chmod +x ${build_dir}/build.sh
+			./${build_dir}/build.sh $DOCKER_PUSH
 			if [ $? == 0 ]; then
 				echo -e "${CGREEN}                       ---                                   "
-				echo -e "Successfully built ${build_dir} with custom.sh"
+				echo -e "Successfully built ${build_dir} with build.sh"
 				echo -e "                       ---                                   ${CEND}"
 			else
 				echo -e "${CRED}                       ---                                   "
-	      echo -e "Failed built ${build_dir} with custom.sh"
+	      echo -e "Failed built ${build_dir} with build.sh"
 	      echo -e "                       ---                                   ${CEND}"
 	      exit 1
 			fi

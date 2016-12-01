@@ -16,7 +16,7 @@ f_maj_dockerfile() {
     BUILD_VER=$(date +%Y%m%d01)
 
     ## Edit dockerfile
-    sed 's/EMBY_VER=.*/EMBY_VER='${NEW_EMBY_VERSION}'/;
+    sed -i 's/EMBY_VER=.*/EMBY_VER='${NEW_EMBY_VERSION}'/;
         s/MEDIAINFO_VER=.*/MEDIAINFO_VER='${NEW_MEDIAINFO_VERSION}'/;
         s/tags=".*"/tags="'"${TAGS}"'"/;
         s/build_ver=".*"/build_ver="'${BUILD_VER}'"/' Dockerfile
@@ -27,7 +27,7 @@ f_maj_readme() {
     VERSION=$1
     TAGS=$(echo $TAGS | sed 's/ /, /g')
 
-    sed 's#\* .*/Dockerfile)#\* '"${TAGS}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/emby/Dockerfile)#' README.md
+    sed -i 's#\* .*/Dockerfile)#\* '"${TAGS}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/emby/Dockerfile)#' README.md
 }
 
 if [ "${EMBY_VERSION}" != "${NEW_EMBY_VERSION}" ] || [ "${MEDIAINFO_VERSION}" != "${NEW_MEDIAINFO_VERSION}" ]; then
