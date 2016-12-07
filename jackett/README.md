@@ -1,7 +1,7 @@
 # Jackett Image
 
 ## Tag available
-* latest, v0.7.673, v0.7, v0 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/Jackett/Dockerfile)
+* latest, 0.7.759, 0.7, 0 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/Jackett/Dockerfile)
 
 ## Description
 What is [jackett](https://github.com/Jackett/Jackett) ?
