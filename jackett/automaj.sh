@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JACKETT_VERSION=$(grep "JACKETT_VER=" Dockerfile | cut -d"=" -f2)
-NEW_JACKETT_VERSION=$(curl https://github.com/Jackett/Jackett/releases/latest 2> /dev/null | sed 's#.*tag/##;s#">.*##')
+NEW_JACKETT_VERSION=$(curl https://github.com/Jackett/Jackett/releases/latest 2> /dev/null | sed 's#.*tag/##;s#">.*##' |  cut -dv -f2)
 
 f_gen_tag() {
     VERSION=$1
@@ -27,7 +27,7 @@ f_maj_readme() {
 }
 
 if [ "${JACKETT_VERSION}" != "${NEW_JACKETT_VERSION}" ]; then
-    f_gen_tag $( echo ${NEW_JACKETT_VERSION} |  cut -dv -f2)
+    f_gen_tag $NEW_JACKETT_VERSION
     f_maj_dockerfile
     f_maj_readme
 fi
