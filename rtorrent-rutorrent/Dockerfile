@@ -45,6 +45,7 @@ RUN export BUILD_DEPS="build-base \
                 php7-json@commuedge \
                 php7-opcache@commuedge \
                 php7-apcu@testing \
+                openssl \
     && cd /tmp \
     && git clone https://github.com/esmil/mktorrent \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
