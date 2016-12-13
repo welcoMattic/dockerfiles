@@ -28,7 +28,6 @@ RUN export BUILD_DEPS="build-base \
                         ncurses-dev \
                         curl-dev" \
     && echo "@commuedge http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && apk add -U ${BUILD_DEPS} \
                 ffmpeg \
                 ca-certificates \
@@ -44,7 +43,7 @@ RUN export BUILD_DEPS="build-base \
                 php7-fpm@commuedge \
                 php7-json@commuedge \
                 php7-opcache@commuedge \
-                php7-apcu@testing \
+                php7-apcu@commuedge \
                 openssl \
     && cd /tmp \
     && git clone https://github.com/esmil/mktorrent \
