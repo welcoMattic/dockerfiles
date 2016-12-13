@@ -1,7 +1,7 @@
 FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG JACKETT_VER=v0.7.797
+ARG JACKETT_VER=0.7.797
 
 ENV UID=991 \
     GID=991

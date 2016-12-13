@@ -6,7 +6,7 @@ NEW_JACKETT_VERSION=$(curl https://github.com/Jackett/Jackett/releases/latest 2>
 f_gen_tag() {
     VERSION=$1
 
-    TAGS="latest $(echo ${VERSION} | cut -dv -f2) $(echo ${VERSION} |  cut -dv -f2 | cut -d'.' -f '1 2') $(echo ${VERSION} |  cut -dv -f2 | cut -d'.' -f '1')"
+    TAGS="latest ${VERSION} $(echo ${VERSION} | cut -d'.' -f '1 2') $(echo ${VERSION} | cut -d'.' -f '1')"
 }
 
 f_maj_dockerfile() {
@@ -27,7 +27,7 @@ f_maj_readme() {
 }
 
 if [ "${JACKETT_VERSION}" != "${NEW_JACKETT_VERSION}" ]; then
-    f_gen_tag ${NEW_JACKETT_VERSION}
+    f_gen_tag $( echo ${NEW_JACKETT_VERSION} |  cut -dv -f2)
     f_maj_dockerfile
     f_maj_readme
 fi
