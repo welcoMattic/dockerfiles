@@ -17,7 +17,7 @@
 	$forbidUserSettings = false;
 	$scgi_port = 5000;
 	$scgi_host = "127.0.0.1";
-	$XMLRPCMountPoint = "/RPC";
+	$XMLRPCMountPoint = "<webroot>RPC";
 	$pathToExternals = array(
 		"php" 	=> '/usr/bin/php7',
 		"curl"	=> '/usr/bin/curl',
