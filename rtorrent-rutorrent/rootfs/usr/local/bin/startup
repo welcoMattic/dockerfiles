@@ -14,7 +14,7 @@ if [ $WEBROOT != "/" ]; then
 else
     sed -i 's|<webroot>|/|g' /etc/nginx/nginx.conf
     sed -i 's|<folder>|/torrent|g' /etc/nginx/nginx.conf
-    sed -i 's|<webroot>|/|g' /var/www/html${WEBROOT}/conf/config.php
+    sed -i 's|<webroot>|/|g' /var/www/html/torrent/conf/config.php
 fi
 sed -i 's|<PORT_RTORRENT>|'$PORT_RTORRENT'|g' /home/torrent/.rtorrent.rc
 
