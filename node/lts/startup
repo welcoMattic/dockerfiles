@@ -1,9 +1,0 @@
-#!/bin/sh
-
-chown ${UID}:${GID} .
-
-if [ '$@' == '' ]; then
-    exec su-exec ${UID}:${GID} /sbin/tini -- node -v
-else
-    exec su-exec ${UID}:${GID} /sbin/tini -- "$@"
-fi
