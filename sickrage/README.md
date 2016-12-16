@@ -52,7 +52,7 @@ docker build -t xataz/sickrage github.com/xataz/dockerfiles.git#master:sickrage
 ```shell
 docker run -d -p 8081:8081 xataz/sickrage
 ```
-URI access : http://XX.XX.XX.XX:5050
+URI access : http://XX.XX.XX.XX:8081
 
 ### Advanced launch
 ```shell
