@@ -5,8 +5,8 @@ ARG MONIT_VER=5.20.0
 ARG BUILD_CORES
 
 LABEL description="Monit based on alpine" \
-      tags="5.20.0 5.20 5 latest" \
-      build_ver="2016110801"
+      tags="latest stable 5.20.0 5.20 5" \
+      build_ver="2016121901"
 
 ENV USER_MONIT="monit" \
     USER_PASSWORD="monit"

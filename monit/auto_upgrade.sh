@@ -17,7 +17,7 @@ f_maj_dockerfile() {
     ## Edit dockerfile
     sed -i 's/MONIT_VER=.*/MONIT_VER='${NEW_MONIT_VER}'/;
         s/tags=".*"/tags="'"${TAGS}"'"/;
-        s/build_ver=".*"/build_ver="'${BUILD_VER}'"/' stable/Dockerfile
+        s/build_ver=".*"/build_ver="'${BUILD_VER}'"/' Dockerfile
 }
 
 f_maj_readme() {
