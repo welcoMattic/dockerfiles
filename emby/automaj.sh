@@ -31,6 +31,7 @@ f_maj_readme() {
 }
 
 if [ "${EMBY_VERSION}" != "${NEW_EMBY_VERSION}" ] || [ "${MEDIAINFO_VERSION}" != "${NEW_MEDIAINFO_VERSION}" ]; then
+    echo "Update emby to ${NEW_EMBY_VERSION}"
     f_gen_tag ${NEW_EMBY_VERSION}
     f_maj_dockerfile
     f_maj_readme
