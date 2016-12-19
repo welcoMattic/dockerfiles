@@ -1,9 +1,10 @@
 FROM xataz/alpine:3.4
 MAINTAINER <https://github.com/xataz>
 
+ARG REDIS_VER=3.2.6
+
 ENV UID=991 \
-    GID=991 \
-    REDIS_VER=3.2.6
+    GID=991
 
 EXPOSE 6379
 

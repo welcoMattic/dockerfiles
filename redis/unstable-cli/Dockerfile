@@ -1,8 +1,9 @@
 FROM xataz/alpine:3.4
 MAINTAINER <https://github.com/xataz>
 
-ENV REDIS_VER=unstable \
-	UID=991 \
+ARG REDIS_VER=unstable
+
+ENV	UID=991 \
 	GID=991 
 
 EXPOSE 6379
