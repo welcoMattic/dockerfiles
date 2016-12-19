@@ -27,27 +27,27 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
             for dockerfile in $(find $f -name Dockerfile); do
                 FOLDER=$(dirname $dockerfile)
                 LOG_FILE="/tmp/${f}_$(date +%Y%m%d).log"
-                echo -ne "Build $dockerfile with context $FOLDER [${CYELLOW}..${CEND}]\r"
+                echo -e "Build $dockerfile with context $FOLDER [${CYELLOW}..${CEND}]"
                 docker build -f $dockerfile -t tmp-build $FOLDER > $LOG_FILE 2>&1
                 if [ $? != 0 ]; then
-                    echo -ne "Build $dockerfile with context $FOLDER [${CRED}KO${CEND}]"
+                    echo -e "Build $dockerfile with context $FOLDER [${CRED}KO${CEND}]"
                     cat $LOG_FILE
                 else
-                    echo -ne "Build $dockerfile with context $FOLDER [${CGREEN}OK${CEND}]"
+                    echo -e "Build $dockerfile with context $FOLDER [${CGREEN}OK${CEND}]"
                     for tag in $(grep "tags=" $dockerfile | cut -d'"' -f2); do
-                        echo -ne "Tags tmp-build to ${f}:${tag} [${CYELLOW}..${CEND}]\r"
-                        docker tags tmp-build ${f}:${tag}
+                        echo -e "Tags tmp-build to ${f}:${tag} [${CYELLOW}..${CEND}]"
+                        docker tag tmp-build ${f}:${tag}
                         if [ $? != 0 ]; then
-                            echo -ne "Tags tmp-build to ${f}:${tag} [${CRED}KO${CEND}]"
+                            echo -e "Tags tmp-build to ${f}:${tag} [${CRED}KO${CEND}]"
                         else
-                            echo -ne "Tags tmp-build to ${f}:${tag} [${CGREEN}OK${CEND}]"
+                            echo -e "Tags tmp-build to ${f}:${tag} [${CGREEN}OK${CEND}]"
                             if [ "$DOCKER_PUSH" == "push" ]; then
-                                echo -ne "Push ${f}:${tag} [${CYELLOW}..${CEND}]\r"
+                                echo -e "Push ${f}:${tag} [${CYELLOW}..${CEND}]"
                                 docker push ${f}:${tag} > $LOG_FILE 2>&1
                                 if [ $? != 0 ]; then
-                                    echo -ne "Push ${f}:${tag} [${CRED}KO${CEND}]"
+                                    echo -e "Push ${f}:${tag} [${CRED}KO${CEND}]"
                                 else
-                                    echo -ne "Push ${f}:${tag} [${CGREEN}OK${CEND}]"
+                                    echo -e "Push ${f}:${tag} [${CGREEN}OK${CEND}]"
                                 fi
                             fi
                         fi
