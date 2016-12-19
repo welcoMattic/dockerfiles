@@ -10,58 +10,45 @@ CGREEN="${CSI}1;32m"
 CYELLOW="${CSI}1;33m"
 CBLUE="${CSI}1;34m"
 
-build_image() {
-    image_name=$1
-    image_dir=$2
-
-    tags_list=${latest-$(grep tags ${image_dir}/Dockerfile | cut -d\" -f2)}
-
-    for tag in $tags_list; do
-        echo -e "${CGREEN}Build ${USER}/${image_name}:${tag} on ${image_dir}${CEND}"
-        docker build -t ${USER}/${image_name}:${tag} ${image_dir}
-        if [ $? == 0 ]; then
-            echo -e "${CGREEN}                       ---                                   "
-            echo -e "Successfully built ${USER}/${image_name}:${tag} with context ${image_dir}"
-            echo -e "                       ---                                   ${CEND}"
-            if [ "$DOCKER_PUSH" == "push" ]; then
-                echo -e "${CYELLOW}Push ${USER}/${image_name}:${tag}${CEND}"
-                docker push ${USER}/${image_name}:${tag}
-                echo -e "${CYELLOW}                       ---                                   "
-                echo -e "Successfully push ${USER}/${image_name}:${tag}"
-                echo -e "                       ---                                   ${CEND}"
-            fi
+for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|./||'); do
+    if [ -d $f ]; then
+        if [ -e $f/build.sh ]; then
+            chmod +x $f/build.sh
+            echo 
+            ./$f/build.sh $DOCKER_PUSH
         else
-            echo -e "${CRED}                       ---                                   "
-            echo -e "Failed built ${USER}/${image_name}:${tag} with context ${image_dir}"
-            echo -e "                       ---                                   ${CEND}"
-            exit 1
+            for dockerfile in $(find $f -name Dockerfile); do
+                FOLDER=$(dirname $dockerfile)
+                LOG_FILE="/tmp/${f}_$(date +%Y%m%d).log"
+                echo -ne "Build $dockerfile with context $FOLDER [${CYELLOW}..${CEND}]\r"
+                docker build -f $dockerfile -t tmp-build $FOLDER > $LOG_FILE 2>&1
+                if [ $? != 0 ]; then
+                    echo -ne "Build $dockerfile with context $FOLDER [${CRED}KO${CEND}]"
+                    cat $LOG_FILE
+                else
+                    echo -e "Build $dockerfile with context $FOLDER [${CGREEN}OK${CEND}]"
+                    for tag in $(grep "tags=" $dockerfile | cut -d'"' -f2); do
+                        echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CYELLOW}..${CEND}]\r"
+                        docker tag tmp-build ${USER}/${f}:${tag}
+                        if [ $? != 0 ]; then
+                            echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                        else
+                            echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
+                            if [ "$DOCKER_PUSH" == "push" ]; then
+                                echo -ne "Push ${USER}/${f}:${tag} [${CYELLOW}..${CEND}]\r"
+                                docker push ${USER}/${f}:${tag} > $LOG_FILE 2>&1
+                                if [ $? != 0 ]; then
+                                    echo -ne "Push ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                                    cat $LOG_FILE
+                                else
+                                    echo -ne "Push ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
+                                fi
+                            fi
+                        fi
+                    done
+                fi
+            done
         fi
-    done
-}
-
-
-for f in $(cat build_order); do
-    base=${f%%\/*}
-    build_dir=$(dirname $f)
-    
-    if [ -e ${build_dir}/build.sh ]; then
-			echo -e "${CBLUE}                       ---                                   "
-			echo -e "Build ${build_dir} with build.sh"
-			echo -e "                       ---                                   ${CEND}"
-			chmod +x ${build_dir}/build.sh
-			./${build_dir}/build.sh $DOCKER_PUSH
-			if [ $? == 0 ]; then
-				echo -e "${CGREEN}                       ---                                   "
-				echo -e "Successfully built ${build_dir} with build.sh"
-				echo -e "                       ---                                   ${CEND}"
-			else
-				echo -e "${CRED}                       ---                                   "
-	      echo -e "Failed built ${build_dir} with build.sh"
-	      echo -e "                       ---                                   ${CEND}"
-	      exit 1
-			fi
-	  else
-    	build_image ${base} $f
-	  fi
-
+        
+    fi
 done

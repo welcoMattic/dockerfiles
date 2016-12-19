@@ -46,6 +46,7 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                                 docker push ${USER}/${f}:${tag} > $LOG_FILE 2>&1
                                 if [ $? != 0 ]; then
                                     echo -e "Push ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                                    cat $LOG_FILE
                                 else
                                     echo -e "Push ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
                                 fi
