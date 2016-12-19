@@ -1,5 +1,8 @@
 ![monit](https://mmonit.com/monit/img/logo.png)
 
+## Tag available
+* latest, 5.20.0, 5.20, 5 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/monit/Dockerfile)
+
 ## Description
 What is [monit](https://mmonit.com/monit/) ?
 
