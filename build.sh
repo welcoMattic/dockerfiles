@@ -35,12 +35,12 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                 else
                     echo -e "Build $dockerfile with context $FOLDER [${CGREEN}OK${CEND}]"
                     for tag in $(grep "tags=" $dockerfile | cut -d'"' -f2); do
-                        echo -e "Tags tmp-build to ${f}:${tag} [${CYELLOW}..${CEND}]"
-                        docker tag tmp-build ${f}:${tag}
+                        echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CYELLOW}..${CEND}]"
+                        docker tag tmp-build ${USER}/${f}:${tag}
                         if [ $? != 0 ]; then
-                            echo -e "Tags tmp-build to ${f}:${tag} [${CRED}KO${CEND}]"
+                            echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
                         else
-                            echo -e "Tags tmp-build to ${f}:${tag} [${CGREEN}OK${CEND}]"
+                            echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
                             if [ "$DOCKER_PUSH" == "push" ]; then
                                 echo -e "Push ${f}:${tag} [${CYELLOW}..${CEND}]"
                                 docker push ${f}:${tag} > $LOG_FILE 2>&1
