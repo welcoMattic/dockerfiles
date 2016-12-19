@@ -48,7 +48,8 @@ for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|
                     done
                 fi
             done
-            if [ $(docker images | grep tmp-build) -eq 0 ]; then docker rmi tmp-build; fi
+            docker images | grep tmp-build > /dev/null 2>&1
+            if [ $? -eq 0 ]; then docker rmi tmp-build; fi
         fi
         
     fi

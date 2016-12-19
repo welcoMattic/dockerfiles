@@ -55,7 +55,8 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                     done
                 fi
             done
-            if [ $(docker images | grep tmp-build) -eq 0 ]; then docker rmi tmp-build; fi
+            docker images | grep tmp-build > /dev/null 2>&1
+            if [ $? -eq 0 ]; then docker rmi tmp-build; fi
         fi
         
     fi

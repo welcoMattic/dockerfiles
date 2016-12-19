@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -xa
-
 GO_VERSION=$(grep "GO_VER=" Dockerfile | cut -d"=" -f2)
 NEW_GO_VERSION=$(curl https://golang.org/dl/ 2> /dev/null | grep '<span class="filename">' | head -1 | sed 's|  <span class="filename">go\(.*\).windows-amd64.msi</span>|\1|')
 GLIBC_VERSION=$(grep "GLIBC_VER=" Dockerfile | cut -d"=" -f2)
