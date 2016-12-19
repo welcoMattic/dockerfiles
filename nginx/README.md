@@ -1,7 +1,7 @@
 ![](http://nginx.org/nginx.png)
 
 ## Tag available
-* latest, mainline, 1.11, 1.11.6 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/mainline/Dockerfile)
+* latest, mainline, 1.11, 1.11.7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/mainline/Dockerfile)
 * stable, 1.10, 1.10.2  [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/stable/Dockerfile)
 
 ## Description
@@ -14,7 +14,7 @@ nginx (engine x) is an HTTP and reverse proxy server, a mail proxy server, and a
 ## Build Image
 ### Build arguments
 * NGINX_CONF : Nginx make configure options
-* NGINX_VER : Nginx version (default : 1.11.6 for latest and 1.10.2 for lts)
+* NGINX_VER : Nginx version (default : 1.11.7 for latest and 1.10.2 for lts)
 * ARG NGINX_GPG : GPG fingerprint (default : "B0F4253373F8F6F510D42178520A9993A1C052F8")
 * ARG BUILD_CORES : Number of core use for make nginx (default : All cores)
 
