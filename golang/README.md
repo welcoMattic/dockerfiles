@@ -1,7 +1,7 @@
 ![Golang](https://blog.golang.org/gopher/gopher.png)
 
 ## Tag available
-* 1.7.3, 1.7, 1, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
+* 1.7.4, 1.7, 1, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
 
 ## Description
 What is [Golang](https://golang.org/) ?
@@ -12,7 +12,7 @@ Go is an open source programming language that makes it easy to build simple, re
 
 ## Build Image
 ### Build arguments
-* GO_VER : Golang version (default : 1.7.3)
+* GO_VER : Golang version (default : 1.7.4)
 * GLIBC_VER : GLIBC version (default : 2.23-r3)
 * GO_URL : URL of golang (default : https://storage.googleapis.com/golang/go${GO_VER}.linux-amd64.tar.gz)
 * GLIBC_URL : URL of glibc for alpine (default : https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased)
