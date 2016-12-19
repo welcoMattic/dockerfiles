@@ -2,7 +2,7 @@ build:
   image: xataz/docker-client:1.12.5
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - /home/docker/.docker/config.json:/root/.docker/config.json
+    - /home/xataz/.docker/config.json:/home/docker/.docker/config.json
   environment:
     - UID=1000
     - GID=1000
