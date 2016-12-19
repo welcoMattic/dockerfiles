@@ -2,8 +2,8 @@ FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL Description="nginx based on alpine" \
-      tags="stable 1.10.2 1.10" \
-      build_ver="2016121903"
+      tags="latest stable 1.10.2 1.10" \
+      build_ver="2016121901"
 
 ARG NGINX_VER=1.10.2
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"

@@ -27,7 +27,7 @@ f_maj_readme() {
     sed -i 's#\* .*Dockerfile)#\* '"${TAGS}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/monit/Dockerfile)#' README.md
 }
 
-if [ "${MONIT_VER}" != "${NEW_MONIT_VER}" ] || [ "${MEDIAINFO_VERSION}" != "${NEW_MEDIAINFO_VERSION}" ]; then
+if [ "${MONIT_VER}" != "${NEW_MONIT_VER}" ]; then
     echo "Update monit to ${NEW_MONIT_VER}"
     f_gen_tag ${NEW_MONIT_VER}
     f_maj_dockerfile

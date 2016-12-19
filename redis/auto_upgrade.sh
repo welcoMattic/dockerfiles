@@ -33,7 +33,7 @@ f_maj_readme() {
             s#\* .*stable-cli/Dockerfile)#\* '"${TAGS_CLI}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/redis/stable-cli/Dockerfile)#' README.md
 }
 
-if [ "${REDIS_VERSION}" != "${NEW_REDIS_VERSION}" ] || [ "${MEDIAINFO_VERSION}" != "${NEW_MEDIAINFO_VERSION}" ]; then
+if [ "${REDIS_VERSION}" != "${NEW_REDIS_VERSION}" ]; then
     echo "Update redis to ${NEW_REDIS_VERSION}"
     f_gen_tag ${NEW_REDIS_VERSION}
     f_maj_dockerfile

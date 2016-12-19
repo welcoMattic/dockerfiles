@@ -27,7 +27,7 @@ f_maj_readme() {
     sed -i 's#\* .*/Dockerfile)#\* '"${TAGS}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/compose/Dockerfile)#' README.md
 }
 
-if [ "${COMPOSE_VERSION}" != "${NEW_COMPOSE_VERSION}" ] || [ "${MEDIAINFO_VERSION}" != "${NEW_MEDIAINFO_VERSION}" ]; then
+if [ "${COMPOSE_VERSION}" != "${NEW_COMPOSE_VERSION}" ]; then
     echo "Update compose to ${NEW_COMPOSE_VERSION}"
     f_gen_tag ${NEW_COMPOSE_VERSION}
     f_maj_dockerfile
