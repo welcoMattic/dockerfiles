@@ -1,7 +1,7 @@
 ![](http://php.net/manual/fr/images/c0d23d2d6769e53e24a1b3136c064577-php_logo.png)
 
 ## Tag available
-* latest, 7.0.12, 7.0, 7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/php-fpm/Dockerfile)
+* latest, 7.1.0, 7.1, 7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/php-fpm/Dockerfile)
 
 ## Description
 What is [PHP](https://secure.php.net/)?
@@ -13,7 +13,7 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 ## Build Image
 ### Build arguments
-* PHP_VER : PHP version (default : 7.0.12)
+* PHP_VER : PHP version (default : 7.1.0)
 * PHP_MIRROR : PHP mirror (default : http://fr2.php.net)
 * PHP_GPG : GPG fingerprint (default : 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763)
 * PHP_CONF : PHP make configure options 

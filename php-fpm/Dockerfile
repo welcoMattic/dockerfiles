@@ -1,9 +1,9 @@
 FROM alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG PHP_VER=7.0.13
+ARG PHP_VER=7.1.0
 ARG PHP_MIRROR=http://fr2.php.net
-ARG PHP_GPG="1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763"
+ARG PHP_GPG="A917B1ECDA84AEC2B568FED6F50ABC807BD5DCD0"
 ARG PHP_CONF="--enable-fpm \
                 --with-fpm-user=web \
                 --with-fpm-group=web \
@@ -25,8 +25,8 @@ ENV UID=991 \
     GID=991
 
 LABEL description="php based on alpine" \
-      tags="7.0.13 7.0 7 stable latest" \
-      build_ver="2016111601"
+      tags="7.1.0 7.1 7 stable latest" \
+      build_ver="2016121901"
 
 COPY docker-php-ext-* /usr/local/bin/
 
