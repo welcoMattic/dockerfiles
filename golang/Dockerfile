@@ -10,7 +10,7 @@ ENV UID=991 \
     GID=991    
 
 LABEL description="Golang based on alpine" \
-      tags="1.7.4 1.7 1 latest" \
+      tags="latest 1.7.4 1.7 1" \
       glibc_ver="2.23-r3" \
       golang_ver="1.7.4" \
       build_ver="2016121901"

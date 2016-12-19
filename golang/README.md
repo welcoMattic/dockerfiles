@@ -1,7 +1,7 @@
 ![Golang](https://blog.golang.org/gopher/gopher.png)
 
 ## Tag available
-* 1.7.4, 1.7, 1, latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/golang/Dockerfile)
+* latest, 1.7.4, 1.7, 1 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/golang/Dockerfile)
 
 ## Description
 What is [Golang](https://golang.org/) ?
@@ -50,6 +50,6 @@ alias go1.6='docker run -ti --rm \
             -w /usr/app/src \
             -e UID=$(id -u) \
             -e GID=$(id -g) \
-            xataz/golang:1.7.3'
+            xataz/golang:1.6'
 ```
 

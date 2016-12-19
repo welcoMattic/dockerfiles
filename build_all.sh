@@ -20,13 +20,13 @@ for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|
             for dockerfile in $(find $f -name Dockerfile); do
                 FOLDER=$(dirname $dockerfile)
                 LOG_FILE="/tmp/${f}_$(date +%Y%m%d).log"
-                echo -ne "Build $dockerfile with context $FOLDER [${CYELLOW}..${CEND}]\r"
+                echo -ne "Build $dockerfile with context $FOLDER on tmp-build [${CYELLOW}..${CEND}]\r"
                 docker build -f $dockerfile -t tmp-build $FOLDER > $LOG_FILE 2>&1
                 if [ $? != 0 ]; then
-                    echo -ne "Build $dockerfile with context $FOLDER [${CRED}KO${CEND}]"
+                    echo -ne "Build $dockerfile with context $FOLDER on tmp-build [${CRED}KO${CEND}]"
                     cat $LOG_FILE
                 else
-                    echo -e "Build $dockerfile with context $FOLDER [${CGREEN}OK${CEND}]"
+                    echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CGREEN}OK${CEND}]"
                     for tag in $(grep "tags=" $dockerfile | cut -d'"' -f2); do
                         echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CYELLOW}..${CEND}]\r"
                         docker tag tmp-build ${USER}/${f}:${tag}
@@ -48,6 +48,7 @@ for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|
                     done
                 fi
             done
+            if [ $(docker images | grep tmp-build) -eq 0 ]; then docker rmi tmp-build; fi
         fi
         
     fi

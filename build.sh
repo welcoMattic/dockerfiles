@@ -27,13 +27,13 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
             for dockerfile in $(find $f -name Dockerfile); do
                 FOLDER=$(dirname $dockerfile)
                 LOG_FILE="/tmp/${f}_$(date +%Y%m%d).log"
-                echo -e "Build $dockerfile with context $FOLDER [${CYELLOW}..${CEND}]"
+                echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CYELLOW}..${CEND}]"
                 docker build -f $dockerfile -t tmp-build $FOLDER > $LOG_FILE 2>&1
                 if [ $? != 0 ]; then
-                    echo -e "Build $dockerfile with context $FOLDER [${CRED}KO${CEND}]"
+                    echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CRED}KO${CEND}]"
                     cat $LOG_FILE
                 else
-                    echo -e "Build $dockerfile with context $FOLDER [${CGREEN}OK${CEND}]"
+                    echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CGREEN}OK${CEND}]"
                     for tag in $(grep "tags=" $dockerfile | cut -d'"' -f2); do
                         echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CYELLOW}..${CEND}]"
                         docker tag tmp-build ${USER}/${f}:${tag}
@@ -55,6 +55,7 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                     done
                 fi
             done
+            if [ $(docker images | grep tmp-build) -eq 0 ]; then docker rmi tmp-build; fi
         fi
         
     fi
