@@ -4,8 +4,8 @@ build:
     - /var/run/docker.sock:/var/run/docker.sock
     - /home/docker/.docker/config.json:/root/.docker/config.json
   environment:
-    - UID=991
-    - GID=991
+    - UID=1000
+    - GID=1000
   commands:
     - chmod +x build.sh
     - ./build.sh push
