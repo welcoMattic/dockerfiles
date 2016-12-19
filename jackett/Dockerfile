@@ -1,14 +1,14 @@
 FROM xataz/alpine:3.4
 MAINTAINER xataz <https://github.com/xataz>
 
-ARG JACKETT_VER=0.7.797
+ARG JACKETT_VER=0.7.817
 
 ENV UID=991 \
     GID=991
 
 LABEL description="Jackett based on alpine" \
-      tags="latest 0.7.797 0.7 0" \
-      build_ver="2016121301"
+      tags="latest 0.7.817 0.7 0" \
+      build_ver="2016121901"
 
 RUN apk add -U wget \
             libcurl \
