@@ -4,6 +4,7 @@ REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
 BRANCH='master'
 USER='xataz'
 DOCKER_PUSH=$1
+ERROR=0
 
 CSI="\033["
 CEND="${CSI}0m"
@@ -28,6 +29,7 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                 docker build -f $dockerfile -t tmp-build $FOLDER > $LOG_FILE 2>&1
                 if [ $? != 0 ]; then
                     echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CRED}KO${CEND}]"
+                    ERROR=1
                     cat $LOG_FILE
                 else
                     echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CGREEN}OK${CEND}]"
@@ -36,6 +38,7 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                         docker tag tmp-build ${USER}/${f}:${tag}
                         if [ $? != 0 ]; then
                             echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                            ERROR=1
                         else
                             echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
                             if [ "$DOCKER_PUSH" == "push" ]; then
@@ -43,6 +46,7 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                                 docker push ${USER}/${f}:${tag} > $LOG_FILE 2>&1
                                 if [ $? != 0 ]; then
                                     echo -e "Push ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                                    ERROR=1
                                     cat $LOG_FILE
                                 else
                                     echo -e "Push ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"

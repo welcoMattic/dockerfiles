@@ -2,6 +2,7 @@
 
 USER='xataz'
 DOCKER_PUSH=$1
+ERROR=0
 
 CSI="\033["
 CEND="${CSI}0m"
@@ -24,6 +25,7 @@ for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|
                 docker build -f $dockerfile -t tmp-build $FOLDER > $LOG_FILE 2>&1
                 if [ $? != 0 ]; then
                     echo -ne "Build $dockerfile with context $FOLDER on tmp-build [${CRED}KO${CEND}]"
+                    ERROR=1
                     cat $LOG_FILE
                 else
                     echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CGREEN}OK${CEND}]"
@@ -32,6 +34,7 @@ for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|
                         docker tag tmp-build ${USER}/${f}:${tag}
                         if [ $? != 0 ]; then
                             echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                            ERROR=1
                         else
                             echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
                             if [ "$DOCKER_PUSH" == "push" ]; then
@@ -39,6 +42,7 @@ for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|
                                 docker push ${USER}/${f}:${tag} > $LOG_FILE 2>&1
                                 if [ $? != 0 ]; then
                                     echo -ne "Push ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                                    ERROR=1
                                     cat $LOG_FILE
                                 else
                                     echo -ne "Push ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
