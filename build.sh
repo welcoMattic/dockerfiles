@@ -42,12 +42,12 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                         else
                             echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
                             if [ "$DOCKER_PUSH" == "push" ]; then
-                                echo -e "Push ${f}:${tag} [${CYELLOW}..${CEND}]"
-                                docker push ${f}:${tag} > $LOG_FILE 2>&1
+                                echo -e "Push ${USER}/${f}:${tag} [${CYELLOW}..${CEND}]"
+                                docker push ${USER}/${f}:${tag} > $LOG_FILE 2>&1
                                 if [ $? != 0 ]; then
-                                    echo -e "Push ${f}:${tag} [${CRED}KO${CEND}]"
+                                    echo -e "Push ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
                                 else
-                                    echo -e "Push ${f}:${tag} [${CGREEN}OK${CEND}]"
+                                    echo -e "Push ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
                                 fi
                             fi
                         fi
