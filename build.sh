@@ -1,6 +1,4 @@
 #!/bin/bash
-# this is kind of an expensive check, so let's not do this twice if we
-# are running more than one validate bundlescript
 
 REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
 BRANCH='master'
@@ -16,7 +14,6 @@ CBLUE="${CSI}1;34m"
 
 git fetch -q "$REPO" "refs/heads/$BRANCH"
 
-# build the changed dockerfiles
 for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | uniq); do
     if [ -d $f ]; then
         if [ -e $f/build.sh ]; then
