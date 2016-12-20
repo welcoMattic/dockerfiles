@@ -8,11 +8,13 @@ mkdir -p /data/.session
 
 if [ $WEBROOT != "/" ]; then
     sed -i 's|<webroot>|'${WEBROOT}'|g' /etc/nginx/nginx.conf
+    sed -i 's|<webroot_rpc>|'${WEBROOT}'|g' /etc/nginx/nginx.conf
     sed -i 's|<folder>||g' /etc/nginx/nginx.conf
     mv /var/www/html/torrent /var/www/html${WEBROOT}
     sed -i 's|<webroot>|'${WEBROOT}'/|g' /var/www/html${WEBROOT}/conf/config.php
 else
-    sed -i 's|<webroot>/|/|g' /etc/nginx/nginx.conf
+    sed -i 's|<webroot>|/|g' /etc/nginx/nginx.conf
+    sed -i 's|<webroot_rpc>/|/|g' /etc/nginx/nginx.conf
     sed -i 's|<folder>|/torrent|g' /etc/nginx/nginx.conf
     sed -i 's|<webroot>|/|g' /var/www/html/torrent/conf/config.php
 fi
