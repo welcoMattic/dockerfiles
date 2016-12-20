@@ -24,7 +24,7 @@ for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|
                 echo -ne "Build $dockerfile with context $FOLDER on tmp-build [${CYELLOW}..${CEND}]\r"
                 docker build -f $dockerfile -t tmp-build $FOLDER > $LOG_FILE 2>&1
                 if [ $? != 0 ]; then
-                    echo -ne "Build $dockerfile with context $FOLDER on tmp-build [${CRED}KO${CEND}]"
+                    echo -ne "Build $dockerfile with context $FOLDER on tmp-build [${CRED}KO${CEND}]\n"
                     ERROR=1
                     cat $LOG_FILE
                 else
@@ -33,19 +33,19 @@ for f in $(find . -maxdepth 1 -type d | grep -v '^.$' | grep -v '.git' | sed 's|
                         echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CYELLOW}..${CEND}]\r"
                         docker tag tmp-build ${USER}/${f}:${tag}
                         if [ $? != 0 ]; then
-                            echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                            echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CRED}KO${CEND}]\n"
                             ERROR=1
                         else
-                            echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
+                            echo -ne "Tags tmp-build to ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]\n"
                             if [ "$DOCKER_PUSH" == "push" ]; then
                                 echo -ne "Push ${USER}/${f}:${tag} [${CYELLOW}..${CEND}]\r"
                                 docker push ${USER}/${f}:${tag} > $LOG_FILE 2>&1
                                 if [ $? != 0 ]; then
-                                    echo -ne "Push ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
+                                    echo -ne "Push ${USER}/${f}:${tag} [${CRED}KO${CEND}]\n"
                                     ERROR=1
                                     cat $LOG_FILE
                                 else
-                                    echo -ne "Push ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
+                                    echo -ne "Push ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]\n\n"
                                 fi
                             fi
                         fi
