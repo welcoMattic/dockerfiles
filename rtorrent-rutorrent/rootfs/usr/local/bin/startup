@@ -12,6 +12,7 @@ if [ $WEBROOT != "/" ]; then
     mv /var/www/html/torrent /var/www/html${WEBROOT}
     sed -i 's|<webroot>|'${WEBROOT}'/|g' /var/www/html${WEBROOT}/conf/config.php
 else
+    sed -i 's|<webroot>|/|g' /etc/nginx/nginx.conf
     sed -i 's|<webroot>/|/|g' /etc/nginx/nginx.conf
     sed -i 's|<folder>|/torrent|g' /etc/nginx/nginx.conf
     sed -i 's|<webroot>|/|g' /var/www/html/torrent/conf/config.php
