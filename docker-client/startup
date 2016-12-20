@@ -1,0 +1,5 @@
+#!/bin/sh
+
+addgroup -g ${GID} docker && adduser -h /home/docker -s /bin/sh -G docker -D -u ${UID} docker
+
+exec su-exec docker:docker /sbin/tini -- "$@"

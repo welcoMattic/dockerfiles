@@ -1,10 +1,46 @@
+![](http://readme.drone.io/logos/downstream.svg)
+
+## Tag available
+* latest, 1.12.0, 1.12 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/drone-docker/Dockerfile)
+* 1.11.2, 1.11 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/drone-docker/Dockerfile)
+* 1.10.3, 1.10 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/drone-docker/Dockerfile)
+* 1.9.1, 1.9 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/drone-docker/Dockerfile)
+
+## Description
+What is [Drone.io](https://github.com/drone/drone)?
+
+Drone is a Continuous Integration platform built on container technology. Every build is executed inside an ephemeral Docker container, giving developers complete control over their build environment with guaranteed isolation.
+
+What is [drone-docker](https://github.com/xataz/dockerfiles/tree/master/drone-docker/)
+
+Drone-docker is a docker image, based on alpine 3.3 with all tools for build your image.
+
+## Build Image
+```shell
+docker build -t xataz/drone-docker github.com/xataz/dockerfiles.git#master:drone-docker
+```
+
+
+## Configuration
+### Build arguments
+* DOCKER_VER : Docker version (default : 1.11.2)
+
+
+## Usage
+[Drone.io](https://github.com/drone/drone) use a git repository for works, please refer to [Setup guide](http://readme.drone.io/setup/overview/).
+
+Add `.drone.yml` and `build.sh` on your repository.
+
+In `.drone.yml`, add volumes and commands to execute.
+In `build.sh`, add a script for build your docker's images.
+### build.sh examples :
+```shell
 #!/bin/bash
 
 REPO='https://gogs.boxobox.xyz/xataz/dockerfiles.git'
 BRANCH='master'
 USER='xataz'
 DOCKER_PUSH=$1
-ERROR=0
 
 CSI="\033["
 CEND="${CSI}0m"
@@ -29,7 +65,6 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                 docker build -f $dockerfile -t tmp-build $FOLDER > $LOG_FILE 2>&1
                 if [ $? != 0 ]; then
                     echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CRED}KO${CEND}]"
-                    ERROR=1
                     cat $LOG_FILE
                 else
                     echo -e "Build $dockerfile with context $FOLDER on tmp-build [${CGREEN}OK${CEND}]"
@@ -38,7 +73,6 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                         docker tag tmp-build ${USER}/${f}:${tag}
                         if [ $? != 0 ]; then
                             echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
-                            ERROR=1
                         else
                             echo -e "Tags tmp-build to ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
                             if [ "$DOCKER_PUSH" == "push" ]; then
@@ -46,7 +80,6 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
                                 docker push ${USER}/${f}:${tag} > $LOG_FILE 2>&1
                                 if [ $? != 0 ]; then
                                     echo -e "Push ${USER}/${f}:${tag} [${CRED}KO${CEND}]"
-                                    ERROR=1
                                     cat $LOG_FILE
                                 else
                                     echo -e "Push ${USER}/${f}:${tag} [${CGREEN}OK${CEND}]"
@@ -62,3 +95,17 @@ for f in $(git diff HEAD~ --diff-filter=ACMRTUX --name-only | cut -d"/" -f1 | un
         
     fi
 done
+
+```
+
+### .drone.yml examples
+```yaml
+build:
+  image: xataz/drone-docker:1.9.1
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /home/$USER/.docker/config.json:/root/.docker/config.json
+  commands:
+    - chmod +x build.sh
+    - ./build.sh push
+```
