@@ -1,0 +1,21 @@
+#!/bin/sh
+
+log_info() {
+    echo "=INF= $(date +%d/%m/%Y-%H:%M:%S) : $1"
+}
+
+log_wrn() {
+    echo "=WRN= $(date +%d/%m/%Y-%H:%M:%S) : $1"
+}
+
+log_err() {
+    echo "=ERR= $(date +%d/%m/%Y-%H:%M:%S) : $1"
+}
+
+log_info "Creating directory ..."
+mkdir -p /rundeck/projects /rundeck/config
+
+# log_info "Encrypt password"
+# java -cp server/lib/jetty-all-9.0.7.v20131107.jar org.eclipse.jetty.util.security.Password xataz1 test
+
+mv /rundeck/rundeck.defaults /rundeck
