@@ -13,8 +13,7 @@ docker tag xataz/docker-client:1.12.5 xataz/docker-client:1.12
 docker tag xataz/docker-client:1.12.5 xataz/docker-client:latest
 
 
-if [ "$DOCKER_PUSH" == "push" ]; then
-  for image in $(docker images --format "{{.Repository}}:{{.Tag}}" docker-client); do
-    docker push $image
-  done
-fi
+docker push xataz/docker-client:1.12.5
+docker push xataz/docker-client:1.12
+docker push xataz/docker-client:latest
+
