@@ -45,6 +45,7 @@ RUN export BUILD_DEPS="build-base \
                 php7-opcache@commuedge \
                 php7-apcu@commuedge \
                 openssl \
+                tar \
     && cd /tmp \
     && git clone https://github.com/esmil/mktorrent \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
@@ -96,16 +97,16 @@ RUN export BUILD_DEPS="build-base \
 
 COPY rootfs /
 ARG WITH_FILEBOT=NO
-ARG FILEBOT_VER=4.7.2
+ARG FILEBOT_VER=4.7.5
 
 RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         apk add -U openjdk8-jre \
         && mkdir /filebot \
         && cd /filebot \
-        && wget http://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VER}/FileBot_${FILEBOT_VER}-portable.zip \
-        && unzip FileBot_${FILEBOT_VER}-portable.zip \
+        && wget http://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VER}/FileBot_${FILEBOT_VER}-portable.tar.xz \
+        && tar xJf FileBot_${FILEBOT_VER}-portable.tar.xz \
         && echo 'system.method.set_key=event.download.finished,filebot,"execute={/usr/local/bin/postdl,$d.get_base_path=,$d.get_name=,$d.get_custom1=}"' >> /home/torrent/.rtorrent.rc \
-        && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute={/usr/local/bin/postrm}"' >> /home/torrent/.rtorrent.rc \
+        && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute=/usr/local/bin/postrm"' >> /home/torrent/.rtorrent.rc \
         && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip \
         && chmod +x /usr/local/bin/post* \
     ;fi
