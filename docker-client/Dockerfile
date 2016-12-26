@@ -20,6 +20,7 @@ RUN BUILD_DEPS="go \
                     ${BUILD_DEPS} \
                     tini \
                     su-exec \
+                    curl \
     && git clone -b v${DOCKER_VER} https://github.com/docker/docker /tmp/docker \
     && export AUTO_GOPATH=1 \
     && cd /tmp/docker \
