@@ -101,6 +101,7 @@ ARG FILEBOT_VER=4.7.5
 
 RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         apk add -U openjdk8-jre \
+                    xz-libs \
         && mkdir /filebot \
         && cd /filebot \
         && wget http://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VER}/FileBot_${FILEBOT_VER}-portable.tar.xz -O /filebot/filebot.tar.xz \
