@@ -46,6 +46,7 @@ RUN export BUILD_DEPS="build-base \
                 php7-apcu@commuedge \
                 openssl \
                 tar \
+                xz \
     && cd /tmp \
     && git clone https://github.com/esmil/mktorrent \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
@@ -101,8 +102,6 @@ ARG FILEBOT_VER=4.7.5
 
 RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         apk add -U openjdk8-jre \
-                    xz-libs \
-                    xz \
         && mkdir /filebot \
         && cd /filebot \
         && wget http://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VER}/FileBot_${FILEBOT_VER}-portable.tar.xz -O /filebot/filebot.tar.xz \
