@@ -9,14 +9,14 @@ LABEL description="Couchpotato based on alpine" \
       tags="latest" \
       build_ver="2016110801"
 
-RUN export BUILD_DEPS="py-pip \
+RUN export BUILD_DEPS="py2-pip \
                     build-base \
                     libxml2-dev \
                     python-dev \
                     libxslt-dev \
                     libffi-dev \
                     openssl-dev" \
-    && apk add -U python \
+    && apk add -U python2 \
                 libxml2 \
                 libxslt \
                 libffi \
