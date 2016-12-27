@@ -36,7 +36,7 @@ docker run -it --rm \
 
 ### Alias for bashrc
 ```shell
-alias compose='docker run -it --rm \
+alias bower='docker run -it --rm \
         -v $(pwd):$(pwd) \
         -w $(workdir) \
         -e UID=$(id -u) \

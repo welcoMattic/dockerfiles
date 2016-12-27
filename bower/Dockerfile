@@ -6,7 +6,7 @@ ENV UID=991 \
 
 LABEL description="bower based on alpine" \
       tags="latest" \
-      build_ver="2016110801"
+      build_ver="2016122701"
 
 COPY startup /usr/local/bin/startup
 
