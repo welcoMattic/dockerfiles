@@ -31,6 +31,8 @@ RUN export BUILD_DEPS="build-base \
                 ncurses \
                 libstdc++ \
                 libgcc \
+                tar \
+                xz \
     && cd /tmp \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
     && git clone https://github.com/rakshasa/libtorrent.git \
@@ -65,10 +67,10 @@ RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         apk add -U openjdk8-jre \
         && mkdir /filebot \
         && cd /filebot \
-        && wget http://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VER}/FileBot_${FILEBOT_VER}-portable.zip \
-        && unzip FileBot_${FILEBOT_VER}-portable.zip \
+        && wget http://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VER}/FileBot_${FILEBOT_VER}-portable.tar.xz -O /filebot/filebot.tar.xz \
+        && tar xJf filebot.tar.xz \
         && echo 'system.method.set_key=event.download.finished,filebot,"execute={/usr/local/bin/postdl,$d.get_base_path=,$d.get_name=,$d.get_custom1=}"' >> /home/torrent/.rtorrent.rc \
-        && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute={/usr/local/bin/postrm}"' >> /home/torrent/.rtorrent.rc \
+        && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute=/usr/local/bin/postrm"' >> /home/torrent/.rtorrent.rc \
         && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip \
         && chmod +x /usr/bin/post* \
     ;fi
