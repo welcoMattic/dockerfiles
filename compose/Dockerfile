@@ -14,11 +14,11 @@ COPY startup /usr/local/bin/startup
 
 RUN apk add -U python \
             py-setuptools \
-            py-pip \
+            py2-pip \
             su-exec \
             tini \
     && pip install --no-cache-dir docker-compose==${COMPOSE_VER} \
-    && apk del py-pip \
+    && apk del py2-pip \
     && rm -rf /var/cache/apk/* \
     && chmod +x /usr/local/bin/startup
 
