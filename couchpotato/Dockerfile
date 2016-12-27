@@ -12,7 +12,7 @@ LABEL description="Couchpotato based on alpine" \
 RUN export BUILD_DEPS="py2-pip \
                     build-base \
                     libxml2-dev \
-                    python-dev \
+                    python2-dev \
                     libxslt-dev \
                     libffi-dev \
                     openssl-dev" \
