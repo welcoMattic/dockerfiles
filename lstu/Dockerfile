@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV GID=991 \
@@ -10,7 +10,7 @@ ENV GID=991 \
 
 LABEL description="lstu based on alpine" \
       tags="latest" \
-      build_ver="2016110803"
+      build_ver="2016122803"
 
 RUN BUILD_DEPS="build-base \
                 openssl-dev \
