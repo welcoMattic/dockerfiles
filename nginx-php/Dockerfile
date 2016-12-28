@@ -35,7 +35,7 @@ ARG NGINX_CONF="--prefix=/nginx \
 
 ARG PHP_VER=7.1.0
 ARG PHP_MIRROR=http://fr2.php.net
-ARG PHP_GPG="1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763"
+ARG PHP_GPG="A917B1ECDA84AEC2B568FED6F50ABC807BD5DCD0"
 ARG PHP_CONF="--enable-fpm \
                 --with-fpm-user=web \
                 --with-fpm-group=web \
