@@ -1,16 +1,16 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG CERTBOT_VER=v0.9.3
 
 LABEL description="Letsencrypt based on alpine" \
       tags="latest 0.9.3 0.9" \
-      build_ver="2016110801"
+      build_ver="2016122801"
 
-RUN BUILD_DEPS="py-pip \
+RUN BUILD_DEPS="py2-pip \
             gcc \
             musl-dev \
-            python-dev \
+            python2-dev \
             libffi-dev \
             openssl-dev" \
     && apk add -U ${BUILD_DEPS} \
