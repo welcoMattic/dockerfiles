@@ -1,9 +1,9 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
 
-ARG NGINX_VER=1.11.7
+ARG NGINX_VER=1.11.8
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
 ARG NGINX_CONF="--prefix=/nginx \
                 --sbin-path=/usr/local/sbin/nginx \
@@ -91,7 +91,7 @@ LABEL description="nginx based on alpine" \
       tags="latest" \
       nginx_version="${NGINX_VER}" \
       php_version="${PHP_VER}" \
-      build_ver="2016121901"
+      build_ver="2016122801"
 
 COPY rootfs /
 
