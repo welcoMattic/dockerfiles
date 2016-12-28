@@ -40,7 +40,7 @@ ENV UID=991 \
     GID=991
 
 RUN export BUILD_DEPS="build-base \
-                    openssl-dev \
+                    libressl-dev \
                     pcre-dev \
                     zlib-dev \
                     wget \
