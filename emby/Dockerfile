@@ -1,15 +1,15 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG MEDIAINFO_VER=0.7.91
-ARG EMBY_VER=3.1.0
+ARG EMBY_VER=3.1.1
 
 ENV GID=991 \
     UID=991
 
 LABEL description="Emby based on alpine" \
-      tags="latest 3.1.0 3.1 3" \
-      build_ver="2016121901"
+      tags="latest 3.1.1 3.1 3" \
+      build_ver="2016122801"
 
 RUN export BUILD_DEPS="build-base \
                         git \

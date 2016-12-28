@@ -1,7 +1,7 @@
 # Emby Image
 
 ## Tag available
-* latest, 3.1.0, 3.1, 3 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/emby/Dockerfile)
+* latest, 3.1.1, 3.1, 3 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/emby/Dockerfile)
 
 ## Description
 What is [Emby](https://github.com/MediaBrowser/Emby) ?
