@@ -14,7 +14,6 @@ RUN BUILD_DEPS="py2-pip \
             libffi-dev \
             openssl-dev" \
     && apk add -U ${BUILD_DEPS} \
-        py-pip \
         tini \
         dialog \
         python \
