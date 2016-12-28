@@ -27,6 +27,7 @@ f_maj_readme() {
 }
 
 if [ "${JACKETT_VERSION}" != "${NEW_JACKETT_VERSION}" ]; then
+    echo "Upgrade jackett ${JACKETT_VERSION} to ${NEW_JACKETT_VERSION}"
     f_gen_tag $NEW_JACKETT_VERSION
     f_maj_dockerfile
     f_maj_readme
