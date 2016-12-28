@@ -1,11 +1,11 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL Description="nginx based on alpine" \
-      tags="latest mainline 1.11.7 1.11" \
-      build_ver="2016121901"
+      tags="latest mainline 1.11.8 1.11" \
+      build_ver="2016122801"
 
-ARG NGINX_VER=1.11.7
+ARG NGINX_VER=1.11.8
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
 ARG BUILD_CORES
 ARG NGINX_CONF="--prefix=/nginx \
