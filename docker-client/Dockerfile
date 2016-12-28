@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG DOCKER_VER=1.12.5
@@ -8,7 +8,7 @@ ENV UID=991 \
 
 LABEL description="docker client for drone.io based on alpine" \
       tags="1.12.5 1.12 latest" \
-      build_ver="2016110701"
+      build_ver="2016122801"
 
 
 RUN BUILD_DEPS="go \
