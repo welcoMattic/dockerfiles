@@ -96,7 +96,6 @@ LABEL description="nginx based on alpine" \
 COPY rootfs /
 
 RUN export BUILD_DEPS="build-base \
-                    openssl-dev \
                     pcre-dev \
                     zlib-dev \
                     wget \
@@ -110,7 +109,7 @@ RUN export BUILD_DEPS="build-base \
                     curl-dev \
                     libedit-dev \
                     libxml2-dev \
-                    openssl-dev \
+                    libressl-dev \
                     sqlite-dev \
                     wget \
                     ca-certificates \
@@ -120,7 +119,7 @@ RUN export BUILD_DEPS="build-base \
                     curl \
                     libedit \
                     libxml2 \
-                    openssl \
+                    libressl \
                     pcre \
                     zlib \
                     s6 \
