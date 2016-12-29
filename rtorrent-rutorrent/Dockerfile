@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -14,7 +14,7 @@ ENV UID=991 \
 
 LABEL Description="rutorrent based on alpine" \
       tags="latest" \
-      build_ver="2016122301"
+      build_ver="2016122701"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -24,7 +24,7 @@ RUN export BUILD_DEPS="build-base \
                         wget \
                         subversion \
                         cppunit-dev \
-                        openssl-dev \
+                        libressl-dev \
                         ncurses-dev \
                         curl-dev" \
     && echo "@commuedge http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
@@ -44,7 +44,7 @@ RUN export BUILD_DEPS="build-base \
                 php7-json@commuedge \
                 php7-opcache@commuedge \
                 php7-apcu@commuedge \
-                openssl \
+                libressl \
                 tar \
                 xz \
     && cd /tmp \

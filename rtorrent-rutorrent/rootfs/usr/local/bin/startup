@@ -32,4 +32,8 @@ chown -R torrent:torrent /data /var/www /etc/s6.d /home/torrent /var/lib/nginx /
 
 rm -f /data/.session/rtorrent.lock
 
-exec su-exec torrent:torrent "$@"
+if [ $# -eq 0 ]; then
+    exec su-exec torrent:torrent /sbin/tini -- /bin/s6-svscan /etc/s6.d
+else
+    exec su-exec torrent:torrent /sbin/tini -- $@
+fi
