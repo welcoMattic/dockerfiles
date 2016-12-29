@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ENV UID=991 \
@@ -7,7 +7,7 @@ ENV UID=991 \
 
 LABEL description="sshd based on alpine" \
       tags="latest" \
-      build_ver="2016121901"
+      build_ver="2016122801"
 
 RUN apk add -U openssh \
                 s6 \
