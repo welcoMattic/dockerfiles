@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG BUILD_CORES
@@ -22,7 +22,7 @@ RUN export BUILD_DEPS="build-base \
                         wget \
                         subversion \
                         cppunit-dev \
-                        openssl-dev \
+                        libressl-dev \
                         ncurses-dev \
                         curl-dev" \
     && apk add -U ${BUILD_DEPS} \
@@ -33,6 +33,8 @@ RUN export BUILD_DEPS="build-base \
                 libgcc \
                 tar \
                 xz \
+                tini \
+                su-exec \
     && cd /tmp \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
     && git clone https://github.com/rakshasa/libtorrent.git \
@@ -72,11 +74,12 @@ RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         && echo 'system.method.set_key=event.download.finished,filebot,"execute={/usr/local/bin/postdl,$d.get_base_path=,$d.get_name=,$d.get_custom1=}"' >> /home/torrent/.rtorrent.rc \
         && echo 'system.method.set_key=event.download.erased,filebot_cleaner,"execute=/usr/local/bin/postrm"' >> /home/torrent/.rtorrent.rc \
         && rm -rf /var/cache/apk/* /tmp/* /FileBot_${FILEBOT_VER}-portable.zip \
-        && chmod +x /usr/bin/post* \
+        && chmod +x /usr/local/bin/post* \
     ;fi
 
 VOLUME /data /var/www/torrent/share/
 EXPOSE 8080
-RUN chmod +x /usr/bin/startup
+RUN chmod +x /usr/local/bin/startup
 
-CMD ["tini","--","/usr/bin/startup"]
+ENTRYPOINT ["/usr/bin/startup"]
+CMD ["rtorrent"]

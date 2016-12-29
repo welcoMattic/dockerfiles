@@ -21,4 +21,8 @@ fi
 
 rm -f /data/.session/rtorrent.lock
 
-su-exec torrent:torrent rtorrent
+if [ $# -eq 0 ]; then
+    exec su-exec torrent:torrent /sbin/tini -- rtorrent
+else
+    exec su-exec torrent:torrent /sbin/tini -- $@
+fi
