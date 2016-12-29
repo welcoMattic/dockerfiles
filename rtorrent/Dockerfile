@@ -35,6 +35,7 @@ RUN export BUILD_DEPS="build-base \
                 xz \
                 tini \
                 su-exec \
+                libressl \
     && cd /tmp \
     && svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c \
     && git clone https://github.com/rakshasa/libtorrent.git \
@@ -63,7 +64,7 @@ RUN export BUILD_DEPS="build-base \
 
 COPY rootfs /
 ARG WITH_FILEBOT=NO
-ARG FILEBOT_VER=4.7.2
+ARG FILEBOT_VER=4.7.5
 
 RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
         apk add -U openjdk8-jre \
