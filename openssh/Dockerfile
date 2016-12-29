@@ -16,7 +16,7 @@ RUN apk add -U openssh \
     && rm -rf /var/cache/apk/*
 
 COPY rootfs /
-RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/*
+RUN chmod +x /usr/local/bin/startup
 EXPOSE 2222
 
 ENTRYPOINT ["/usr/local/bin/startup"]
