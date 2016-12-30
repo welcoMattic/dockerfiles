@@ -5,7 +5,7 @@ ARG CERTBOT_VER=v0.9.3
 
 LABEL description="Letsencrypt based on alpine" \
       tags="latest 0.9.3 0.9" \
-      build_ver="2016122801"
+      build_ver="2016122901"
 
 RUN BUILD_DEPS="py2-pip \
             gcc \
@@ -17,6 +17,7 @@ RUN BUILD_DEPS="py2-pip \
         tini \
         dialog \
         python \
+        libssl1.0 \
     && pip install --no-cache virtualenv \
     && virtualenv --no-site-packages -p python2 /usr/certbot/venv \
     && /usr/certbot/venv/bin/pip install --no-cache-dir certbot==${CERTBOT_VER} \
