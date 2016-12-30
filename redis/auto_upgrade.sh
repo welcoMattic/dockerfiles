@@ -29,8 +29,8 @@ f_maj_readme() {
     VERSION=$1
     TAGS=$(echo $TAGS | sed 's/ /, /g')
 
-    sed -i 's#\* .*stable/Dockerfile)#\* '"${TAGS}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/redis/stable/Dockerfile)#;
-            s#\* .*stable-cli/Dockerfile)#\* '"${TAGS_CLI}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/redis/stable-cli/Dockerfile)#' README.md
+    sed -i 's#\* .*/stable/Dockerfile)#\* '"${TAGS}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/redis/stable/Dockerfile)#;
+            s#\* .*/stable-cli/Dockerfile)#\* '"${TAGS_CLI}"' \[(Dockerfile)\](https://github.com/xataz/dockerfiles/blob/master/redis/stable-cli/Dockerfile)#' README.md
 }
 
 if [ "${REDIS_VERSION}" != "${NEW_REDIS_VERSION}" ]; then

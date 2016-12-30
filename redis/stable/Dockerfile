@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER <https://github.com/xataz>
 
 ARG REDIS_VER=3.2.6
@@ -10,16 +10,16 @@ EXPOSE 6379
 
 LABEL description="redis based on alpine" \
       tags="latest stable 3.2.6 3.2 3" \
-      build_ver="2016121901"
+      build_ver="2016123001"
 
 RUN export BUILD_DEPS="wget \
                     linux-headers \
-		    ca-certificates \
-		    curl \
-		    gcc \
-		    libc-dev \
-		    make \
-		    tar" \
+		    		ca-certificates \
+					curl \
+					gcc \
+					libc-dev \
+					make \
+					tar" \
 	&& apk add --update ${BUILD_DEPS} \
 						s6 \
 						su-exec \

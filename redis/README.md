@@ -3,8 +3,8 @@
 ## Tag available
 * latest, stable, 3.2.6, 3.2, 3 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/stable/Dockerfile)
 * latest-cli stable-cli 3.2.6-cli 3.2-cli 3-cli [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/stable-cli/Dockerfile)
-* latest, stable, 3.2.6, 3.2, 3 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/stable/Dockerfile)
-* latest-cli stable-cli 3.2.6-cli 3.2-cli 3-cli [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/stable-cli/Dockerfile)
+* unstable [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/unstable/Dockerfile)
+* unstable-cli [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/redis/unstable-cli/Dockerfile)
 
 
 ## Description
