@@ -1,4 +1,4 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG RUNDECK_VER=2.7.1
