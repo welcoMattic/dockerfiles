@@ -82,5 +82,5 @@ VOLUME /data /var/www/torrent/share/
 EXPOSE 8080
 RUN chmod +x /usr/local/bin/startup
 
-ENTRYPOINT ["/usr/bin/startup"]
+ENTRYPOINT ["/usr/local/bin/startup"]
 CMD ["rtorrent"]
