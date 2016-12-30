@@ -1,9 +1,9 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="samba based on alpine" \
       tags="latest" \
-      build_ver="2016110801"
+      build_ver="2016123001"
 
 EXPOSE 137 138 139 445
 
