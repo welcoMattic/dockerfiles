@@ -1,16 +1,16 @@
-FROM xataz/alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 LABEL description="sickrage based on alpine" \
       tags="latest" \
-      build_ver="2016111001"
+      build_ver="2016123001"
 
 ENV WEBROOT="/" \
     UID="991" \
     GID="991"
 
 RUN apk add -U python \
-                py-pip \
+                py2-pip \
                 git \
                 s6 \
                 su-exec \
