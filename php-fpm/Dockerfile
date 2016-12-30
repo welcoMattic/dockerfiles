@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM xataz/alpine:3.5
 MAINTAINER xataz <https://github.com/xataz>
 
 ARG PHP_VER=7.1.0
@@ -26,7 +26,7 @@ ENV UID=991 \
 
 LABEL description="php based on alpine" \
       tags="7.1.0 7.1 7 stable latest" \
-      build_ver="2016121901"
+      build_ver="2016123001"
 
 COPY docker-php-ext-* /usr/local/bin/
 
@@ -40,7 +40,7 @@ RUN export BUILD_DEPS="autoconf \
                 curl-dev \
                 libedit-dev \
                 libxml2-dev \
-                openssl-dev \
+                libressl-dev \
                 sqlite-dev \
                 wget \
                 ca-certificates \
