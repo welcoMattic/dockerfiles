@@ -1,5 +1,8 @@
 ![openssh](http://www.openssh.com/images/openssh.gif)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Description
 openssh and rsync on alpine
 
@@ -50,4 +53,7 @@ docker run -it --rm \
     -v ~/:/home/$USER \
     xataz/sshd
 ```
+
+## Contributing
+Any contributions, are very welcome !
 
