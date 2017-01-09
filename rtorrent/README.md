@@ -1,5 +1,7 @@
 # RTorrent
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
 
 ## Tag available
 * latest [(rutorrent/latest/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/rtorrent/latest/Dockerfile)
@@ -10,6 +12,7 @@ What is [rtorrent](https://github.com/rakshasa/rtorrent/) ?
 
 rtorrent is the popular Bittorrent client.
 
+**This image not contains root process**
 
 ## BUILD IMAGE
 ### Build arguments
@@ -28,7 +31,6 @@ docker build -t xataz/rutorrent github.com/xataz/dockerfiles.git#master:rtorrent
 ```shell
 docker build -t xataz/rtorrent:custom --build-arg WITH_FILEBOT=YES --build-arg RTORRENT_VER=0.9.4 github.com/xataz/dockerfiles.git#master:rtorrent
 ```
-
 
 ## Configuration
 ### Environments
@@ -64,3 +66,5 @@ docker run -dt -p 80:8080 \
 	xataz/rtorrent:filebot
 ```
 
+## Contributing
+Any contributions, are very welcome !
