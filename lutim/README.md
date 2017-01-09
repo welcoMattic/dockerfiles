@@ -1,5 +1,8 @@
 ![](http://framacloud.org/wp-content/uploads/2015/03/lutim.jpg)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest [(lutim/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/lutim/Dockerfile)
 
@@ -61,3 +64,6 @@ docker run -d -p 8080:8181 \
     xataz/lutim
 ```
 URI access : http://XX.XX.XX.XX:8080/lutim
+
+## Contributing
+Any contributions, are very welcome !
