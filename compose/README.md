@@ -1,5 +1,8 @@
 ![docker-compose](https://raw.githubusercontent.com/docker/compose/master/logo.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest, 1.9.0, 1.9, 1 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/compose/Dockerfile)
 
@@ -45,3 +48,6 @@ alias compose='docker run -it --rm \
         -e GID=$(id -g) \
         xataz/compose:1.8.0'
 ```
+
+## Contributing
+Any contributions, are very welcome !
