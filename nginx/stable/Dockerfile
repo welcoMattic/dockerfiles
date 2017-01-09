@@ -3,7 +3,7 @@ MAINTAINER xataz <https://github.com/xataz>
 
 LABEL Description="nginx based on alpine" \
       tags="latest stable 1.10.2 1.10" \
-      build_ver="2016121901"
+      build_ver="2017010901"
 
 ARG NGINX_VER=1.10.2
 ARG NGINX_GPG="B0F4253373F8F6F510D42178520A9993A1C052F8"
@@ -49,6 +49,9 @@ RUN export BUILD_DEPS="build-base \
     && apk add -U ${BUILD_DEPS} \
                 s6 \
                 su-exec \
+                libressl \
+                pcre \
+                zlib \
     && cd /tmp \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz \
     && wget http://nginx.org/download/nginx-${NGINX_VER}.tar.gz.asc \
@@ -60,7 +63,6 @@ RUN export BUILD_DEPS="build-base \
     && make -j ${NB_CORES} \
     && make install \
     && apk del ${BUILD_DEPS} \
-    && apk add openssl pcre zlib \
     && rm -rf /tmp/* /var/cache/apk/*
 
 COPY rootfs /
