@@ -3,6 +3,9 @@
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/transmission/Dockerfile)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Description
 What is [Transmission](http://www.transmissionbt.com/) ?
 
@@ -16,6 +19,8 @@ Transmission is an open source, volunteer-based project. Unlike some BitTorrent 
 
 Easy.  
 Transmission is designed for easy, powerful use. We've set the defaults to "Just Work" and it only takes a few clicks to configure advanced features like watch directories, bad peer blocklists, and the web interface. When Ubuntu chose Transmission as its default BitTorrent client, one of the most-cited reasons was its easy learning curve.
+
+**This image not contains root process**
 
 ## Build Image
 
@@ -53,3 +58,6 @@ docker run -d -p 8080:9091 \
 	xataz/transmission
 ```
 URI access : http://XX.XX.XX.XX:8080/tbt/web/
+
+## Contributing
+Any contributions, are very welcome !
