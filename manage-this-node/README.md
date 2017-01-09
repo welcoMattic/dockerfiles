@@ -39,3 +39,6 @@ docker run -d \
         -p 3000:3000 \
         xataz/manage-this-node
 ```
+
+## Contributing
+Any contributions, are very welcome !
