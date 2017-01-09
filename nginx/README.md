@@ -1,8 +1,11 @@
 ![](http://nginx.org/nginx.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
-* latest, mainline, 1.11.8, 1.11 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/mginx/mainline/Dockerfile)
-* latest, stable, 1.10.2, 1.10 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/mginx/stable/Dockerfile)
+* latest, mainline, 1.11.8, 1.11 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/mainline/Dockerfile)
+* latest, stable, 1.10.2, 1.10 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/nginx/stable/Dockerfile)
 
 ## Description
 What is [Nginx](http://nginx.org)?
@@ -53,3 +56,5 @@ docker run -d \
 	xataz/nginx:mainline
 ```
 
+## Contributing
+Any contributions, are very welcome !
