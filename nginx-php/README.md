@@ -88,3 +88,6 @@ docker run -d -p 80:8080 -p 443:8443 \
 	xataz/nginx-php
 ```
 URI access : http://XX.XX.XX.XX
+
+## Contributing
+Any contributions, are very welcome !
