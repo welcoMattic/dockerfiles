@@ -11,10 +11,10 @@ then
 fi
 
 mkdir -p /data/torrents /data/Media /data/watch
-chown -R transmission:transmission /data /home/transmission /etc/s6.d
+chown -R transmission:transmission /data /home/transmission /usr/share/transmission
 
 if [ '$@' == '' ]; then
-    exec su-exec transmission:transmission s6-svscan /etc/s6.d
+    exec su-exec transmission:transmission /sbin/tini -- transmission-daemon --foreground
 else
-    exec su-exec transmission:transmission "$@"
+    exec su-exec transmission:transmission /sbin/tini -- "$@"
 fi
