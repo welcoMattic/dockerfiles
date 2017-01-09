@@ -1,5 +1,8 @@
 # Emby Image
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest, 3.1.1, 3.1, 3 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/emby/Dockerfile)
 
@@ -46,3 +49,6 @@ docker run -d -p 8096 \
 	xataz/emby
 ```
 URI access : http://XX.XX.XX.XX:8096
+
+## Contributing
+Any contributions, are very welcome !
