@@ -48,3 +48,6 @@ docker run -d -p 8080:5060 \
 	xataz/cardigannn
 ```
 URI access : http://XX.XX.XX.XX:8080
+
+## Contributing
+Any contributions, are very welcome !
