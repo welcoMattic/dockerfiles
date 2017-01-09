@@ -1,5 +1,8 @@
 ![CouchPotato](http://couchpota.to/media/images/full.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/couchpotato/Dockerfile)
 
@@ -46,3 +49,6 @@ docker run -d -p 8080:5050 \
 	xataz/couchpotato
 ```
 URI access : http://XX.XX.XX.XX:8080/cp
+
+## Contributing
+Any contributions, are very welcome !
