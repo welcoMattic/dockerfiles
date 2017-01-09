@@ -1,5 +1,8 @@
 ![](http://readme.drone.io/logos/downstream.svg)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest, 1.12.0, 1.12 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/drone-docker/Dockerfile)
 * 1.11.2, 1.11 [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/drone-docker/Dockerfile)
@@ -14,6 +17,8 @@ Drone is a Continuous Integration platform built on container technology. Every 
 What is [drone-docker](https://github.com/xataz/dockerfiles/tree/master/drone-docker/)
 
 Drone-docker is a docker image, based on alpine 3.3 with all tools for build your image.
+
+**This image not contains root process**
 
 ## Build Image
 ```shell
@@ -109,3 +114,6 @@ build:
     - chmod +x build.sh
     - ./build.sh push
 ```
+
+## Contributing
+Any contributions, are very welcome !
