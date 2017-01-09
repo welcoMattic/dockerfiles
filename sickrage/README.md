@@ -1,5 +1,8 @@
 ![Sickrage](https://sickrage.github.io/images/logo.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/sickrage/Dockerfile)
 
@@ -27,6 +30,8 @@ Features :
 * DupeKey/DupeScore for NZBGet 12+
 * Real SSL certificate validation
 * Supports Anime shows
+
+**This image not contains root process**
 
 ## Build Image
 
@@ -64,3 +69,6 @@ docker run -d -p 8080:8081 \
 	xataz/sickrage
 ```
 URI access : http://XX.XX.XX.XX:8080/sr
+
+## Contributing
+Any contributions, are very welcome !
