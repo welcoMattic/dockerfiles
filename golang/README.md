@@ -1,5 +1,8 @@
 ![Golang](https://blog.golang.org/gopher/gopher.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest, 1.7.4, 1.7, 1 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/golang/Dockerfile)
 
@@ -53,3 +56,5 @@ alias go1.6='docker run -ti --rm \
             xataz/golang:1.6'
 ```
 
+## Contributing
+Any contributions, are very welcome !
