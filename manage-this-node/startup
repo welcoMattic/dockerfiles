@@ -8,6 +8,7 @@ fi
 
 ln -sf /config/config.json /manage-this-node/config.json
 
+mkdir -p /config
 chown -R ${UID}:${GID} /config /manage-this-node
 
 if [ $# == 0 ]; then
