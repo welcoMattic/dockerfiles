@@ -1,5 +1,8 @@
 ![](https://git.framasoft.org/uploads/project/avatar/5/lstu.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest [(lstu/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/lstu/Dockerfile)
 
@@ -53,3 +56,6 @@ docker run -d -p 8181:8282 \
 	xataz/lstu
 ```
 URI access : http://XX.XX.XX.XX:8181/lstu
+
+## Contributing
+Any contributions, are very welcome !
