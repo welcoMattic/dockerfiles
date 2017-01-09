@@ -1,5 +1,8 @@
 ![monit](https://mmonit.com/monit/img/logo.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest, stable, 5.20.0, 5.20, 5 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/monit/Dockerfile)
 
@@ -33,3 +36,6 @@ docker run -d \
         -p 2812:2812 \
         xataz/monit
 ```
+
+## Contributing
+Any contributions, are very welcome !
