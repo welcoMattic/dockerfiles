@@ -1,5 +1,8 @@
 ![](http://php.net/manual/fr/images/c0d23d2d6769e53e24a1b3136c064577-php_logo.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest, 7.1.0, 7.1, 7 [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/php-fpm/Dockerfile)
 
@@ -59,3 +62,6 @@ $ docker run -d --name php \
         -v /docker/nginx/www:/nginx/www \
         xataz/php-fpm:7
 ```
+
+## Contributing
+Any contributions, are very welcome !
