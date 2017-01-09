@@ -1,5 +1,8 @@
 ![lufi](https://git.framasoft.org/uploads/project/avatar/1998/lufi.png =250x)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest [(lufi/Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/lufi/Dockerfile)
 
@@ -62,3 +65,6 @@ docker run -d -p 8181:8080 \
 	xataz/lufi
 ```
 URI access : http://XX.XX.XX.XX:8181/lufi
+
+## Contributing
+Any contributions, are very welcome !
