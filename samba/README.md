@@ -1,5 +1,8 @@
 ![# Samba](http://wiki.univention.de/images/6/6d/Logo_Samba.png)
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/blob/master/samba/Dockerfile)
 
@@ -93,3 +96,6 @@ net use Z: \\computer_name\Shared /PERSISTENT:YES
 To disconnect a mapped drive:
 net use  Z: /delete
 ```
+
+## Contributing
+Any contributions, are very welcome !
