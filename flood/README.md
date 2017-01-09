@@ -1,5 +1,8 @@
 # flood
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/flood/Dockerfile)
 
@@ -72,3 +75,6 @@ run with :
 ```shell
 $ docker-compose up -d
 ```
+
+## Contributing
+Any contributions, are very welcome !
