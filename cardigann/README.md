@@ -1,5 +1,9 @@
 # Cardigann
 
+> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
+> Automated build is disable in this repo.
+> If you don't trust, you can build yourself.
+
 ## Tag available
 * latest [(Dockerfile)](https://github.com/xataz/dockerfiles/tree/master/cardigann/Dockerfile)
 
