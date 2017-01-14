@@ -10,10 +10,10 @@ ENV GID=991 \
 
 LABEL description="lstu based on alpine" \
       tags="latest" \
-      build_ver="2016122803"
+      build_ver="2017011401"
 
 RUN BUILD_DEPS="build-base \
-                openssl-dev \
+                libressl-dev \
                 ca-certificates \
                 git \
                 tar \
@@ -21,7 +21,7 @@ RUN BUILD_DEPS="build-base \
                 libidn-dev \
                 wget" \
     && apk add -U ${BUILD_DEPS} \
-                openssl \
+                libressl \
                 perl \
                 libidn \
                 tini \
