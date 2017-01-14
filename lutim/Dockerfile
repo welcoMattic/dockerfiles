@@ -12,10 +12,10 @@ ENV GID=991 \
 
 LABEL description="lutim based on alpine" \
       tags="latest" \
-      build_ver="2016122801"
+      build_ver="2017011401"
 
 RUN BUILD_DEPS="build-base \
-                openssl-dev \
+                libressl-dev \
                 ca-certificates \
                 git \
                 tar \
@@ -24,7 +24,7 @@ RUN BUILD_DEPS="build-base \
                 wget \
                 imagemagick-dev" \
     && apk add -U ${BUILD_DEPS} \
-                openssl \
+                libressl \
                 perl \
                 libidn \
                 perl-crypt-rijndael \
