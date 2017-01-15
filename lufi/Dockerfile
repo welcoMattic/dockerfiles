@@ -12,7 +12,7 @@ ENV GID=991 \
 
 LABEL description="lufi based on alpine" \
       tags="latest" \
-      build_ver="2017011401"
+      build_ver="2017011501"
 
 RUN BUILD_DEPS="build-base \
                 libressl-dev \
@@ -28,6 +28,7 @@ RUN BUILD_DEPS="build-base \
                 libidn \
                 perl-crypt-rijndael \
                 perl-test-manifest \
+                perl-net-ssleay \
                 tini \
                 su-exec \
     && echo | cpan \
