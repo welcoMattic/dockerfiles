@@ -12,7 +12,7 @@ ENV UID=991 \
 
 LABEL Description="rtorrent based on alpine" \
       tags="latest" \
-      build_ver="2016111501"
+      build_ver="2017011501"
 
 RUN export BUILD_DEPS="build-base \
                         git \
@@ -64,10 +64,10 @@ RUN export BUILD_DEPS="build-base \
 
 COPY rootfs /
 ARG WITH_FILEBOT=NO
-ARG FILEBOT_VER=4.7.5
+ARG FILEBOT_VER=4.7.7
 
 RUN if [ "${WITH_FILEBOT}" == "YES" ]; then \
-        apk add -U openjdk8-jre \
+        apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.4/community -U openjdk8-jre==8.111.14-r0 openjdk8-jre-base==8.111.14-r0 openjdk8-jre-lib==8.111.14-r0 \
         && mkdir /filebot \
         && cd /filebot \
         && wget http://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VER}/FileBot_${FILEBOT_VER}-portable.tar.xz -O /filebot/filebot.tar.xz \
