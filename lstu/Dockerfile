@@ -10,7 +10,7 @@ ENV GID=991 \
 
 LABEL description="lstu based on alpine" \
       tags="latest" \
-      build_ver="2017011401"
+      build_ver="2017011501"
 
 RUN BUILD_DEPS="build-base \
                 libressl-dev \
@@ -26,6 +26,7 @@ RUN BUILD_DEPS="build-base \
                 libidn \
                 tini \
                 su-exec \
+                perl-net-ssleay \
     && echo | cpan \
     && cpan install Carton \
     && git clone https://git.framasoft.org/luc/lstu.git /usr/lstu \
