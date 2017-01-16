@@ -21,7 +21,7 @@ server {
   include /nginx/path.d/<frontend_domain>/*.conf;
 
   location ~ /\.well-known/acme-challenge {
-    root /nginx/www/letsencrypt;
+    root /nginx/www/<frontend_domain>;
     allow all;
   }
 }

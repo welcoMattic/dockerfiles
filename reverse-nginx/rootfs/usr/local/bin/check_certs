@@ -26,27 +26,17 @@ f_log() {
     esac
 }
 
-f_check_selfsigned() {
-    CERTFILE=/nginx/ssl/selfsigned/fullchain.pem
-    if [ ! -e ${CERTFILE} ] && [ ! -e ${KEYFILE} ]; then
-        if openssl x509 -checkend 864000 -noout -in "$CERTFILE"; then
-            f_log INF "Selfsigned Certificate is good for another 10 days!"
-        else
-            f_log INF "Generate New Selfsigned Certificate"
-            openssl req -new -newkey rsa:4096 -days 3658 -sha256 -nodes -x509 \
-                -subj "/C=FR/ST=France/L=Paris/O=${FRONTEND_DOMAIN}/OU=${container_name}/CN=*/emailAddress=postmaster@${FRONTEND_DOMAIN}" \
-                -keyout "$KEYFILE" \
-                -out "$CERTFILE"
-            [[ $? == 0 ]] && f_log INF "New Selfsigned Certificate generated" || f_log ERR "New Selfsigned Certificate not generated"
-        fi       
-    fi 
-}
-
 f_check_le() {
     LIST_DOMAINS=$(ls /nginx/ssl/certificates | grep .crt)
 
     for domain in ${LIST_DOMAINS}; do 
-        if openssl x509 -checkend 864000 -noout -in "/nginx/ssl/certificates/${domain}.crt"; then
+        CERTFILE=/nginx/ssl/certificates/${domain}.cert.pem
+        KEYFILE=/nginx/ssl/certificates/${domain}.key
+        CHAINFILE=/nginx/ssl/certificates/${domain}.chain.pem
+        FULLCHAINFILE=/nginx/ssl/certificates/${domain}.
+        
+        mkdir -p /nginx/www/${domain}
+        if openssl x509 -checkend 864000 -noout -in "${FULLCHAINFILE}"; then
             f_log INF "Certificate is good for another 10 days!"
         else
             f_log INF "Generate New Certificate for ${domain}"
@@ -54,12 +44,18 @@ f_check_le() {
             if [ $? == 0 ]; then
                 rm -rf /nginx/ssl/certificates/${domain}.*
                 /usr/local/bin/lego -a -m ${EMAIL} --domain ${domain} --path /nginx/ssl --webroot /nginx/www/${domain} --key ${FRONTEND_SSLTYPE} run
-                [[ $? == 0 ]] && f_log INF "New Certificate for ${domain} generated" || f_log ERR "New Certificate for ${domain} not generated"
+                if [ $? == 0 ]; then 
+                    head -$(grep -n "END CERTIFICATE" ${FULLCHAINFILE} | head -1 | cut -d: -f1) ${FULLCHAINFILE} > ${CERTFILE}
+                    tail -$(($(wc -l ${FULLCHAINFILE} | awk '{print $1}')-$(grep -n "END CERTIFICATE" ${FULLCHAINFILE} | head -1 | cut -d: -f1))) ${FULLCHAINFILE} > ${CHAINFILE}
+                    f_log INF "New Certificate for ${domain} generated" 
+                else 
+                    f_log ERR "New Certificate for ${domain} not generated"
+                fi
             else
-                f_log ERR "New Certificate for ${domain} not revoke"
+                f_log ERR "New Certificate for ${domain} not revoked"
             fi
         fi             
     done
 }
 
-f_check_selfsigned
+f_check_le

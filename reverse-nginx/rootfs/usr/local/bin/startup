@@ -85,29 +85,16 @@ f_gen_location() {
 f_gen_certs() {
     container_name=$1
     if [ "${FRONTEND_SSL}" == "true" ]; then
-        if [ "${FRONTEND_LE}" == "true" ]; then
-            CERTFILE=/nginx/ssl/certificates/${FRONTEND_DOMAIN}.cert.pem
-            KEYFILE=/nginx/ssl/certificates/${FRONTEND_DOMAIN}.key
-            CHAINFILE=/nginx/ssl/certificates/${FRONTEND_DOMAIN}.chain.pem
-            FULLCHAINFILE=/nginx/ssl/certificates/${FRONTEND_DOMAIN}.crt
-            if [ ! -e ${CERTFILE} ] || [ ! -e ${KEYFILE} ] || [ ! -e ${CHAINFILE} ] || [ ! -e ${FULLCHAINFILE} ]; then
-                /usr/local/bin/lego -a -m ${EMAIL} --domain ${domain} --path /nginx/ssl --webroot /nginx/www/${domain} --key ${FRONTEND_SSLTYPE} run
-                [[ $? == 0 ]] && f_log INF "New Certificate for ${domain} generated" || f_log ERR "New Certificate for ${domain} not generated"
-            fi
-        else
-            DHPARAM=/nginx/ssl/selfsigned/dhparam/dhparam.pem
-            CERTFILE=/nginx/ssl/selfsigned/fullchain.pem
-            KEYFILE=/nginx/ssl/selfsigned/privkey.pem
-            if [ ! -e ${CERTFILE} ] || [ ! -e ${KEYFILE} ]; then
-                openssl req -new -newkey rsa:4096 -days 3658 -sha256 -nodes -x509 \
-                    -subj "/C=FR/ST=France/L=Paris/O=${FRONTEND_DOMAIN}/OU=${container_name}/CN=*/emailAddress=postmaster@${FRONTEND_DOMAIN}" \
-                    -keyout "$KEYFILE" \
-                    -out "$CERTFILE"
-            fi
-
-            if [ ! -e ${DHPARAM} ]; then
-                openssl dhparam -out "$DHPARAM" 2048
-            fi
+        CERTFILE=/nginx/ssl/certificates/${FRONTEND_DOMAIN}.cert.pem
+        KEYFILE=/nginx/ssl/certificates/${FRONTEND_DOMAIN}.key
+        CHAINFILE=/nginx/ssl/certificates/${FRONTEND_DOMAIN}.chain.pem
+        FULLCHAINFILE=/nginx/ssl/certificates/${FRONTEND_DOMAIN}.crt
+        if [ ! -e ${CERTFILE} ] || [ ! -e ${KEYFILE} ] || [ ! -e ${CHAINFILE} ] || [ ! -e ${FULLCHAINFILE} ]; then
+            mkdir -p /nginx/www/${FRONTEND_DOMAIN}
+            /usr/local/bin/lego -a -m ${EMAIL} --domain ${FRONTEND_DOMAIN} --path /nginx/ssl --webroot /nginx/www/${FRONTEND_DOMAIN} --key ${FRONTEND_SSLTYPE} run
+            head -$(grep -n "END CERTIFICATE" ${FULLCHAINFILE} | head -1 | cut -d: -f1) ${FULLCHAINFILE} > ${CERTFILE}
+            tail -$(($(wc -l ${FULLCHAINFILE} | awk '{print $1}')-$(grep -n "END CERTIFICATE" ${FULLCHAINFILE} | head -1 | cut -d: -f1))) ${FULLCHAINFILE} > ${CHAINFILE}
+            [[ $? == 0 ]] && f_log INF "New Certificate for ${FRONTEND_DOMAIN} generated" || f_log ERR "New Certificate for ${FRONTEND_DOMAIN} not generated"
         fi
     fi
 }
