@@ -8,8 +8,9 @@ ARG LIBTORRENT_VER=0.13.6
 ENV UID=991 \
     GID=991 \
     PORT_RTORRENT=45000 \
-    PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-
+    PKG_CONFIG_PATH=/usr/local/lib/pkgconfig \
+    TERM=xterm
+    
 LABEL Description="rtorrent based on alpine" \
       tags="latest" \
       build_ver="2017011501"
