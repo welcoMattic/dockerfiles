@@ -11,6 +11,9 @@ const CONFIG = {
     socket: <rtorrent_socket>,
     socketPath: '<rtorrent_socket_path>'
   }
+  ssl: '<flood_ssl>',
+  sslKey: '<flood_ssl_key>',
+  sslCert: '<flood_ssl_cert>'
 };
 
 module.exports = CONFIG;
