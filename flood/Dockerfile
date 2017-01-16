@@ -8,6 +8,9 @@ ENV UID=991 \
     RTORRENT_SOCKET=false \
     RTORRENT_SOCKET_PATH=/tmp/rtorrent.sock \
     FLOOD_SECRET=flood \
+    FLOOD_SSL=false \
+    FLOOD_SSL_KEY=/absolute/path/to/key \
+    FLOOD_SSL_CERT=/absolute/path/to/cert \
     FLOOD_START=production
 
 LABEL description="flood nodejs alternative to rutorrent" \
