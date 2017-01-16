@@ -27,6 +27,9 @@ docker build -t xataz/flood github.com/xataz/dockerfiles.git#master:flood
 * RTORRENT_SOCKET_PATH : path of rtorrent socket if use (default : /tmp/rtorrent.sock)
 * FLOOD_SECRET : secret ? (default : flood)
 * FLOOD_START : Start flood in develop, production or watch mode (default : production)
+* FLOOD_SSL : Add SSL
+* FLOOD_SSL_KEY : Absolute path to key
+* FLOOD_SSL_CERT : Absolute path to certificate
 
 ### Volumes
 * /usr/app/src/server/db
@@ -65,6 +68,9 @@ services:
       - RTORRENT_HOST=rtorrent
       - RTORRENT_PORT=5000
       - FLOOD_SECRET=flood
+      - FLOOD_SSL=true
+      - FLOOD_SSL_KEY=/absolute/path/to/key
+      - FLOOD_SSL_CERT=/absolute/path/to/cert
     ports:
       - "3000:3000"
     networks:
