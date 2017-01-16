@@ -24,7 +24,7 @@ RUN BUILD_DEPS="git make gcc g++ python linux-headers" \
     && rm -rf /var/cache/apk/*
 
 COPY rootfs /
-RUN chmod +x /usr/local/bin/startup /etc/s6.d/*/*
+RUN chmod +x -R /usr/local/bin/startup /etc/s6.d/* /etc/s6.d/.[!.]*
 
 VOLUME /usr/flood/server/db
 WORKDIR /usr/flood
